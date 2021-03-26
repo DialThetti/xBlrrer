@@ -23,10 +23,11 @@
             "src/**"
         ],
         "reporter": [
-            "html"
+            "html",
+            "clover",
+            "lcovonly"
         ],
-        "all": true,
-        "check-coverage": true
+        "all": true
     },
     "author": "",
     "license": "ISC",
@@ -48,6 +49,7 @@
         "copy-webpack-plugin": "^8.1.0",
         "eslint": "^7.22.0",
         "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-unused-imports": "^1.1.0",
         "mocha": "^8.3.2",
         "nodemon": "^2.0.7",

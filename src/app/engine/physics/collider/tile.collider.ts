@@ -39,7 +39,7 @@ export default class TileCollider {
             if (!matches) {
                 continue;
             }
-            matches.forEach(match => this.handle('x', entity, match, resolver));
+            matches.forEach((match) => this.handle('x', entity, match, resolver));
         }
     }
 
@@ -54,12 +54,12 @@ export default class TileCollider {
             if (!matches) {
                 continue;
             }
-            matches.forEach(match => this.handle('y', entity, match, resolver));
+            matches.forEach((match) => this.handle('y', entity, match, resolver));
         }
     }
 
     handle(dimension: 'x' | 'y', entity: Entity, match: PositionedTile, tiles: TileColliderLayer): void {
-        match.tile.types.forEach(e => {
+        match.tile.types.forEach((e) => {
             const h = handlers[e];
             if (h) {
                 h[dimension](entity, match, tiles);

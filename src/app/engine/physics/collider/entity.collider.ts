@@ -5,8 +5,8 @@ export default class EntityCollider {
 
     check(subject: Entity): void {
         [...this.entities]
-            .filter(canditate => subject !== canditate)
-            .filter(canditate => subject.bounds.overlaps(canditate.bounds))
-            .forEach(canditate => subject.collide(canditate));
+            .filter((canditate) => subject !== canditate)
+            .filter((canditate) => subject.bounds.overlaps(canditate.bounds))
+            .forEach((canditate) => subject.collide(canditate));
     }
 }

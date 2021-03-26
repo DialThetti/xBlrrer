@@ -6,7 +6,7 @@ export default class Timer {
     constructor(private updateFunc: (deltaTime: number) => void, private deltaTime = 1 / 60) {}
 
     enqueue(): void {
-        requestAnimationFrame(time => this.update(time));
+        requestAnimationFrame((time) => this.update(time));
     }
 
     update(absoluteTime: number): void {

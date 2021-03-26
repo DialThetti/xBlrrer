@@ -6,6 +6,6 @@ export default class Compositor implements RenderLayer {
     layers: RenderLayer[] = [];
 
     draw(context: CanvasRenderingContext2D, camera: Camera, e: Entity): void {
-        this.layers.forEach(layer => layer.draw(context, camera, e));
+        this.layers.forEach((layer) => layer.draw(context, camera, e));
     }
 }

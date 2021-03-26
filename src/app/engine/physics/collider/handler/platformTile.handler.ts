@@ -5,7 +5,9 @@ import { TwoDimTileCollisionHandler } from '../tile.collider';
 
 export function createPlatformTileHandler(): TwoDimTileCollisionHandler {
     return {
-        x: (): void => {},
+        x: (): void => {
+            // platforms do not collide vertically
+        },
         y: (entity: Entity, match: PositionedTile): void => {
             if (entity.bypassPlatform) return;
             if (entity.vel.y > 0) {

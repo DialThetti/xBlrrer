@@ -20,7 +20,7 @@ export default class TileSetLoader implements Loader<TileSet> {
         }
 
         if (sheetSpec.animations) {
-            sheetSpec.animations.forEach(animSpec => {
+            sheetSpec.animations.forEach((animSpec) => {
                 const animation = createAnim(
                     animSpec.frames,
                     animSpec.frameLen,

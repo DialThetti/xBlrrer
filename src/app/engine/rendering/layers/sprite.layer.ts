@@ -14,8 +14,8 @@ export default class SpriteLayer implements RenderLayer {
 
     draw(context: CanvasRenderingContext2D, camera: Camera): void {
         [...this.entities]
-            .filter(entity => entity.bounds.overlaps(camera.box))
-            .forEach(entity => {
+            .filter((entity) => entity.bounds.overlaps(camera.box))
+            .forEach((entity) => {
                 this.bufferContext.clearRect(0, 0, this.width, this.height);
                 entity.draw(this.bufferContext);
                 context.drawImage(

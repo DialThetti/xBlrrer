@@ -18,7 +18,7 @@ export default class TileColliderLayer {
     }
 
     setByRange(x: Range, y: Range, tile: Tile): void {
-        cross(this.math.toIndexRange(x), this.math.toIndexRange(y)).map(([x, y]) => this.tiles.set(x, y, tile));
+        cross(this.math.toIndexRange(x), this.math.toIndexRange(y)).forEach(([x, y]) => this.tiles.set(x, y, tile));
     }
 
     getByIndex(x: number, y: number): PositionedTile {

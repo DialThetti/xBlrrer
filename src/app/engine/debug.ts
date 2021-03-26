@@ -10,7 +10,7 @@ export function setupMouseControl(canvas: HTMLCanvasElement, playerFigure: Entit
     if (initializedOnce) {
         return;
     }
-    ['mousedown', 'mousemove'].forEach(n => {
+    ['mousedown', 'mousemove'].forEach((n) => {
         canvas.addEventListener(n, (ev: MouseEvent) => {
             if (!debug) {
                 return;
@@ -31,7 +31,7 @@ export function setupMouseControl(canvas: HTMLCanvasElement, playerFigure: Entit
             lastEvent = ev;
         });
     });
-    canvas.addEventListener('contextmenu', ev => ev.preventDefault());
+    canvas.addEventListener('contextmenu', (ev) => ev.preventDefault());
     initializedOnce = true;
 }
 
