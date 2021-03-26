@@ -1,6 +1,6 @@
 import Entity from '../../../entities/entity';
 import { Side } from '../../../world/tiles/side';
-import TileColliderLayer, { PositionedTile } from '../../../physics/collider/tile.collider.layer';
+import { PositionedTile } from '../../../physics/collider/tile.collider.layer';
 import { TwoDimTileCollisionHandler } from '../tile.collider';
 
 export function createSolidTileHandler(): TwoDimTileCollisionHandler {
