@@ -23,7 +23,8 @@
             "src/**"
         ],
         "reporter": [
-            "html"
+            "html",
+            "clover"
         ],
         "all": true,
         "check-coverage": true
