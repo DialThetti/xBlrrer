@@ -27,8 +27,7 @@
             "clover",
             "lcovonly"
         ],
-        "all": true,
-        "check-coverage": true
+        "all": true
     },
     "author": "",
     "license": "ISC",
