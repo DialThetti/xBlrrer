@@ -20,8 +20,8 @@ export default class EventBuffer {
      * @param name - The name of the Event
      * @param callback - a function which shall be called on the queued event
      */
-    process<T>(name: string, callback: (T) => void): void {
-        this.events.filter(event => event.name === name).forEach(event => callback(event.payload));
-        this.events = this.events.filter(event => event.name !== name);
+    process<T>(name: string, callback: (t: T) => void): void {
+        this.events.filter((event) => event.name === name).forEach((event) => callback(event.payload as T));
+        this.events = this.events.filter((event) => event.name !== name);
     }
 }

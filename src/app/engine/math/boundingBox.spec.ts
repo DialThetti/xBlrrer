@@ -38,4 +38,8 @@ describe('BoundingBox', () => {
         box.right = 8;
         expect(box.right).to.equal(8);
     });
+    it('should verify overlaps', () => {
+        expect(box.overlaps(box)).to.be.true;
+        expect(box.overlaps(new BoundingBox(new Vector(0, 0), new Vector(1, 2), new Vector(2, 3)))).to.be.false;
+    });
 });
