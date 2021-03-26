@@ -1,0 +1,65 @@
+{
+    "name": "jsgame",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "scripts": {
+        "prod": "serve ./dist",
+        "dev": "webpack-dev-server --config webpack.config.dev.js -d --host 0.0.0.0 --disable-host-check",
+        "build": "webpack --config webpack.config.js ",
+        "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
+        "format": "npx prettier --write 'src/**/*.ts'",
+        "lint": "npx eslint --fix 'src/**/*.ts' --ignore-pattern 'src/**/*.spec.ts'"
+    },
+    "nyc": {
+        "extension": [
+            ".ts"
+        ],
+        "exclude": [
+            "**/*.d.ts",
+            "**/*.spec.ts"
+        ],
+        "include": [
+            "src/**"
+        ],
+        "reporter": [
+            "html"
+        ],
+        "all": true,
+        "check-coverage": true
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/cli": "^7.13.10",
+        "@babel/core": "^7.13.10",
+        "@babel/node": "^7.13.12",
+        "@babel/plugin-proposal-class-properties": "^7.13.0",
+        "@babel/preset-env": "^7.13.12",
+        "@babel/register": "^7.13.8",
+        "@types/chai": "^4.2.15",
+        "@types/mocha": "^8.2.2",
+        "@typescript-eslint/eslint-plugin": "^4.19.0",
+        "@typescript-eslint/parser": "^4.19.0",
+        "awesome-typescript-loader": "^5.2.1",
+        "chai": "^4.3.4",
+        "commonjs": "0.0.1",
+        "copy-webpack-plugin": "^8.1.0",
+        "eslint": "^7.22.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-unused-imports": "^1.1.0",
+        "mocha": "^8.3.2",
+        "nodemon": "^2.0.7",
+        "nyc": "^15.1.0",
+        "prettier": "^2.2.1",
+        "serve": "^11.3.2",
+        "source-map-loader": "^2.0.1",
+        "source-map-support": "^0.5.19",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.2.3",
+        "webpack": "^5.28.0",
+        "webpack-cli": "^4.5.0",
+        "webpack-dev-server": "^3.11.2"
+    }
+}
