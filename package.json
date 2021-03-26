@@ -24,7 +24,8 @@
         ],
         "reporter": [
             "html",
-            "clover"
+            "clover",
+            "lcovonly"
         ],
         "all": true,
         "check-coverage": true
