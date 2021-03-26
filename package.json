@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "prod": "serve ./dist",
-        "dev": "webpack-dev-server --config webpack.config.dev.js -d --host 0.0.0.0 --disable-host-check",
+        "dev": "webpack --config webpack.config.dev.js",
         "build": "webpack --config webpack.config.js ",
         "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
         "format": "npx prettier --write 'src/**/*.ts'",

@@ -8,7 +8,7 @@ module.exports = {
     },
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: 'source-map',
+    devtool: "source-map",
 
     resolve: {
         // Add '.ts' as resolvable extensions.
@@ -26,7 +26,11 @@ module.exports = {
     },
     watch: true,
     plugins: [
-        new CopyPlugin([{ from: 'src/assets' }]),
+        new CopyPlugin({
+            patterns: [
+                { from: 'src/assets' }
+            ]
+        }),
         new webpack.LoaderOptionsPlugin({
             debug: true,
         }),
