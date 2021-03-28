@@ -1,4 +1,3 @@
-import { cross, intRange } from './math';
 import { expect } from 'chai';
 import BoundingBox from './boundingBox';
 import Vector from './vector';
