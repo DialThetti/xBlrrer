@@ -26,10 +26,12 @@ export default abstract class EntityPrefab {
             f.offset.set(this.offset.x, this.offset.y);
             f.addTraits(this.traits());
             f.draw = (context: CanvasRenderingContext2D): void => {
-                if (sprite) {
-                    const frame = this.routeFrame(f, sprite);
-
-                    if (frame) sprite.draw(frame, context, 0, 0, this.flipped(f));
+                if (!sprite) {
+                    return;
+                }
+                const frame = this.routeFrame(f, sprite);
+                if (frame) {
+                    sprite.draw(frame, context, 0, 0, this.flipped(f));
                 }
             };
 
