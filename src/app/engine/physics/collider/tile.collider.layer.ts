@@ -14,7 +14,7 @@ export default class TileColliderLayer {
      * get a range of tiles. Each position will be scaled by tilesize
      * @param x
      * @param y
-     * @param tile
+     * @param tile - never null
      */
     get(x: number | Range, y: number | Range): PositionedTile[] {
         if (typeof x === 'number') {

@@ -35,11 +35,9 @@ export default class TileCollider {
         }
         const x = entity.vel.x > 0 ? box.right : box.left;
         for (const resolver of this.layers) {
-            const matches = resolver.get({ from: x, to: x }, { from: box.top, to: box.bottom });
-            if (!matches) {
-                continue;
-            }
-            matches.forEach((match) => this.handle('x', entity, match, resolver));
+            resolver
+                .get({ from: x, to: x }, { from: box.top, to: box.bottom })
+                .forEach((match) => this.handle('x', entity, match, resolver));
         }
     }
 
@@ -50,15 +48,16 @@ export default class TileCollider {
         }
         const y = entity.vel.y > 0 ? box.bottom : box.top;
         for (const resolver of this.layers) {
-            const matches = resolver.get({ from: box.left, to: box.right }, { from: y, to: y });
-            if (!matches) {
-                continue;
-            }
-            matches.forEach((match) => this.handle('y', entity, match, resolver));
+            resolver
+                .get({ from: box.left, to: box.right }, { from: y, to: y })
+                .forEach((match) => this.handle('y', entity, match, resolver));
         }
     }
 
     handle(dimension: 'x' | 'y', entity: Entity, match: PositionedTile, tiles: TileColliderLayer): void {
+        if (!match.tile.types) {
+            return;
+        }
         match.tile.types.forEach((e) => {
             const h = handlers[e];
             if (h) {
