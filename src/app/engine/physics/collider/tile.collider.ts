@@ -35,7 +35,7 @@ export default class TileCollider {
         }
         const x = entity.vel.x > 0 ? box.right : box.left;
         for (const resolver of this.layers) {
-            const matches = resolver.getByRange({ from: x, to: x }, { from: box.top, to: box.bottom });
+            const matches = resolver.get({ from: x, to: x }, { from: box.top, to: box.bottom });
             if (!matches) {
                 continue;
             }
@@ -50,7 +50,7 @@ export default class TileCollider {
         }
         const y = entity.vel.y > 0 ? box.bottom : box.top;
         for (const resolver of this.layers) {
-            const matches = resolver.getByRange({ from: box.left, to: box.right }, { from: y, to: y });
+            const matches = resolver.get({ from: box.left, to: box.right }, { from: y, to: y });
             if (!matches) {
                 continue;
             }
