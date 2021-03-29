@@ -1,7 +1,6 @@
 import Entity from './entity';
 import EntityPrefab from './entity.prefab';
-
-import { mock, spy, verify, anything} from 'ts-mockito';
+import { mock } from 'ts-mockito';
 import TraitCtnr from './trait.container';
 import { expect } from 'chai';
 import Trait from './trait';

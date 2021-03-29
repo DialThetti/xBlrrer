@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { mock, spy,  verify, anything } from 'ts-mockito';
+import { mock, spy, verify, anything } from 'ts-mockito';
 import Emitter from './emitter';
 import Entity from './entity';
 import { Context } from './trait';
