@@ -66,7 +66,6 @@ export default class TileColliderLayer {
         if (typeof y === 'number') {
             y = { from: y, to: y + 1 } as Range;
         }
-        console.log(x, y);
         this.setByRange(x, y, null);
     }
 }

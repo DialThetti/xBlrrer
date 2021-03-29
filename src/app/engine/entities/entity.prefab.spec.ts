@@ -47,9 +47,7 @@ describe('EntityPrefab', () => {
             expect(entityFac).not.to.be.null;
         });
         it('should create a constructor that can create an Entity', () => {
-            console.log(entityFac);
             const entity: Entity & TraitCtnr = entityFac();
-
             expect(entity).not.to.be.null;
         });
     });
