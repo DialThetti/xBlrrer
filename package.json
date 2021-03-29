@@ -9,7 +9,7 @@
         "build": "webpack --config webpack.config.js ",
         "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
         "format": "npx prettier --write 'src/**/*.ts'",
-        "lint": "npx eslint --fix 'src/**/*.ts' --ignore-pattern 'src/**/*.spec.ts'"
+        "lint": "npx eslint --fix 'src/**/*.ts'"
     },
     "nyc": {
         "extension": [
