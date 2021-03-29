@@ -1,4 +1,4 @@
-import { cross, intRange } from './math';
+import { cross, intRange, random } from './math';
 import { expect } from 'chai';
 
 describe('cross', () => {
@@ -31,5 +31,16 @@ describe('intRange', () => {
 
         const result2 = intRange(0, -5);
         expect(result2).to.deep.equal([]);
+    });
+});
+
+describe('random', () => {
+
+    it('should return a number smaller than N',()=>{
+        expect(random(5)).to.be.lessThan(5);
+    });
+    it('should return a number without digits',()=>{
+        const n = random(5);
+        expect(n).to.equals(Math.floor(n));
     });
 });

@@ -8,7 +8,9 @@ export default class ActivateOnSight extends Trait {
     }
 
     update(entity: Entity, context: Context): void {
-        if (context.camera.box.right > entity.bounds.left && context.camera.box.left < entity.bounds.right) {
+        const cameraBox = context.camera.box;
+        const entityBox = entity.bounds;
+        if (cameraBox.right > entityBox.left && cameraBox.left < entityBox.right) {
             entity.state = EntityState.ACTIVE;
         } else {
             entity.state = EntityState.UNTRIGGERED;
