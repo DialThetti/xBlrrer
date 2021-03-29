@@ -35,11 +35,10 @@ describe('intRange', () => {
 });
 
 describe('random', () => {
-
-    it('should return a number smaller than N',()=>{
+    it('should return a number smaller than N', () => {
         expect(random(5)).to.be.lessThan(5);
     });
-    it('should return a number without digits',()=>{
+    it('should return a number without digits', () => {
         const n = random(5);
         expect(n).to.equals(Math.floor(n));
     });

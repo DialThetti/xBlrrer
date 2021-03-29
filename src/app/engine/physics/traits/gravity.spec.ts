@@ -5,14 +5,14 @@ import Vector from '../../math/vector';
 import Gravity from './gravity';
 
 describe('Gravity', () => {
-    let trait = new Gravity();
+    const trait = new Gravity();
 
     it('should be named "gravity"', () => {
         expect(trait.name).to.equal('gravity');
     });
 
     describe('update', () => {
-        let entity = {} as Entity;
+        const entity = {} as Entity;
 
         beforeEach(() => {
             entity.vel = new Vector(0, 0);

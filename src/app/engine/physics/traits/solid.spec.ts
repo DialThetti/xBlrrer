@@ -1,24 +1,21 @@
 import { expect } from 'chai';
 import Entity from '../../entities/entity';
-import { mock } from 'ts-mockito';
-import { Context } from '../../entities/trait';
 import Vector from '../../math/vector';
-import Collidable from '../collidable';
 import Solid from './solid';
 import { PositionedTile } from '../collider/tile.collider.layer';
 import { Side } from '../../world/tiles/side';
 import BoundingBox from '../../math/boundingBox';
 
 describe('Solid', () => {
-    let trait = new Solid();
+    const trait = new Solid();
 
     it('should be named "solid"', () => {
         expect(trait.name).to.equal('solid');
     });
 
     describe('obstruct', () => {
-        let entity = {} as Entity;
-        let match = { y: { from: 0, to: 2 }, x: { from: 2, to: 4 } } as PositionedTile;
+        const entity = {} as Entity;
+        const match = { y: { from: 0, to: 2 }, x: { from: 2, to: 4 } } as PositionedTile;
         beforeEach(() => {
             entity.vel = new Vector(4, 2);
             entity.size = new Vector(5, 5);
