@@ -1,7 +1,6 @@
 import Entity from './entity';
 import EntityPrefab from './entity.prefab';
-
-import { mock, spy, verify, anything} from 'ts-mockito';
+import { mock } from 'ts-mockito';
 import TraitCtnr from './trait.container';
 import { expect } from 'chai';
 import Trait from './trait';
@@ -48,9 +47,7 @@ describe('EntityPrefab', () => {
             expect(entityFac).not.to.be.null;
         });
         it('should create a constructor that can create an Entity', () => {
-            console.log(entityFac);
             const entity: Entity & TraitCtnr = entityFac();
-
             expect(entity).not.to.be.null;
         });
     });

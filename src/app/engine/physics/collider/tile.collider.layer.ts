@@ -10,41 +10,63 @@ export default class TileColliderLayer {
     constructor(protected tiles: Matrix<Tile>, private tilesize: number) {
         this.math = new TileMath(tilesize);
     }
-
-    getByRange(x: Range, y: Range): PositionedTile[] {
+    /**
+     * get a range of tiles. Each position will be scaled by tilesize
+     * @param x
+     * @param y
+     * @param tile - never null
+     */
+    get(x: number | Range, y: number | Range): PositionedTile[] {
+        if (typeof x === 'number') {
+            x = { from: x, to: x + 1 } as Range;
+        }
+        if (typeof y === 'number') {
+            y = { from: y, to: y + 1 } as Range;
+        }
         return cross(this.math.toIndexRange(x), this.math.toIndexRange(y))
-            .map(([x, y]) => this.getByIndex(x, y))
+            .map(([xRange, yRange]) => this.getByIndex(xRange, yRange))
             .filter(notNull);
     }
-
+    /**
+     * set a range of tiles. Each position will be scaled by tilesize
+     * @param x
+     * @param y
+     * @param tile
+     */
     setByRange(x: Range, y: Range, tile: Tile): void {
         cross(this.math.toIndexRange(x), this.math.toIndexRange(y)).forEach(([x, y]) => this.tiles.set(x, y, tile));
     }
-
+    /**
+     * Get a tile by index. Note: this is the only method not scaled by tilesize
+     * @param x
+     * @param y
+     * @returns
+     */
     getByIndex(x: number, y: number): PositionedTile {
         const tile = this.tiles.get(x, y);
-        if (tile) {
-            return {
-                tile,
-
-                y: { from: y * this.tilesize, to: (y + 1) * this.tilesize },
-                x: { from: x * this.tilesize, to: (x + 1) * this.tilesize },
-            };
+        if (!tile) {
+            return null;
         }
+        return {
+            tile,
+            y: { from: y * this.tilesize, to: (y + 1) * this.tilesize },
+            x: { from: x * this.tilesize, to: (x + 1) * this.tilesize },
+        };
     }
 
-    getByPosition(x: number, y: number): PositionedTile {
-        return this.getByIndex(this.math.toIndex(x), this.math.toIndex(y));
-    }
-
+    /**
+     * remove a tile or a range of tiles, scaled by tilesize
+     * @param x
+     * @param y
+     */
     delete(x: number | Range, y: number | Range): void {
         if (typeof x === 'number') {
-            x = { from: x, to: x } as Range;
+            x = { from: x, to: x + 1 } as Range;
         }
         if (typeof y === 'number') {
-            y = { from: y, to: y } as Range;
+            y = { from: y, to: y + 1 } as Range;
         }
-        this.setByRange(x as Range, y as Range, undefined);
+        this.setByRange(x, y, null);
     }
 }
 

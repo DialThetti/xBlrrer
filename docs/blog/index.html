@@ -1,74 +1,187 @@
 <html>
     <head>
         <title>Dev Blog: xBlrrer</title>
-        <!-- Compiled and minified CSS -->
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
-        <link rel="stylesheet" href="./css/style.css" />
-        <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="./css/style.css" />
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+        <meta content="utf-8" http-equiv="encoding" />
+        <meta name="viewport" content="width=device-width, initial-scale=2">
     </head>
     <body>
-        <div class="row">
-            <div class="col s12 m10 offset-m1">
-                <h1>Codename <i>xBlrrer</i> - Devblog</h1>
-                <div class="blog-entry card-panel">
-                    <div class="blog-entry-title">
-                        <h4>Day 1: Initium Novum</h4>
-                        <label>29.03.2021 from DialThetti</label>
-                    </div>
-                    <div class="tags right">
-                        <div class="chip">
-                            Typescript
+        <sidenav class="hide-on-med-and-down">
+            <h1><i>xBlrrer</i> - Devblog</h1>
+        </sidenav>
+        <main>
+            <div class="row">
+                <div class="col s12">
+                    <article class="blog-entry">
+                        <div class="blog-entry-title">
+                            <h2>Day 2: Engine</h2>
+                            <label>30.03.2021 from DialThetti</label>
                         </div>
-                        <div class="chip">
-                            Engine
+                        <div class="tags right">
+                            <div class="chip">Architecture</div>
+                            <div class="chip">Engine</div>
                         </div>
-                        <div class="chip">
-                            CI/CD
+                        <div class="blog-entry-text">
+                            <h3>Why an Engine</h3>
+                            <blockquote>
+                                <i>
+                                    But DialThetti, why do you need an engine? Other games just have spaghetti code and
+                                    also works, or are implemented as a unity project which consumes 7GB of data. Why
+                                    not using these magical wonders?
+                                </i>
+                            </blockquote>
+                            <div class="more">
+                                <p>
+                                    This is a good question. First of, i dont have the
+                                    <a href="https://elderscrolls.fandom.com/wiki/Thu%27um">Thu'um</a>, which is
+                                    required to make a sucessful game:
+                                </p>
+                                <p class="center">
+                                    <i>IT JUST WORKS</i>
+                                </p>
+                                <p>
+                                    I have to follow more traditional ways of game making. I would like to know what
+                                    happens under the bonnet when i develop a game. In addition, this project should
+                                    also be a kind of showpiece to make my skills presentable.
+                                </p>
+                                <p>
+                                    I would also like to be able to reuse the basic building blocks of the game, be it
+                                    for another platformer or a top down RPG like 'The legend of Zelda'. That is, all
+                                    the basic elements like tiles, timer, sound and file input/output can be bundled and
+                                    neatly decapsulated. This means I never have to start from scratch again with the
+                                    next project.
+                                </p>
+                                <p>
+                                    Since I am only a single developer, I have to try to have tools check my quality. A
+                                    clean division of the project is also beneficial for this.
+                                </p>
+                                <p>
+                                    On the subject of third-party libraries: Of course I can use a third-party system
+                                    and pray that with 2-3 clicks and wizards what I want will happen. But I want to
+                                    know what happens internally. I want a small system, without overhead and
+                                    unnecessary dependencies.
+                                </p>
+                                <p>
+                                    As a basic structure, I have thought of the following:
+                                    <img
+                                        class="materialboxed"
+                                        src="img/day_2/structure.png"
+                                        data-caption="Rough structure of the game and engine"
+                                        style="margin: auto; max-width:100%"
+                                    />
+                                </p>
+                                <p>
+                                    Even if layer architectures can lead to problems now and then, I would still use
+                                    these 3 layers:
+                                </p>
+                                <dl>
+                                    <dt>Engine layer</dt>
+                                    <dd>on which all game-unspecific classes, functions and algorithms are located</dd>
+                                    <dt>Extensions layer</dt>
+                                    <dd>
+                                        which provides extended functionalities, and can be added or omitted depending
+                                        on the game
+                                    </dd>
+                                    <dt>Game layer</dt>
+                                    <dd>
+                                        where the specific levels, entities and mechanics reside. These should be so
+                                        specific that they cannot be reused
+                                    </dd>
+                                </dl>
+                            </div>
                         </div>
-                        <div class="chip">
-                            Open Source
+                    </article>
+                    <article class="blog-entry">
+                        <div class="blog-entry-title">
+                            <h2>Day 1: Initium Novum</h2>
+                            <label>29.03.2021 from DialThetti</label>
                         </div>
-                    </div>
-                    <div class="blog-entry-text">
-                        <h5>Yet another Platformer</h5>
-                        <p>
-                            After a long period of extreme programming, I decided to take the project of developing a
-                            platformer game seriously once again. It all started with a tutorial by
-                            <a href="https://www.youtube.com/channel/UC8A0M0eDttdB11MHxX58vXQ"
-                                >Meth Meth Method on Youtube</a
-                            >, implementing Super Mario Bros. in Javascript and HTML 5.
-                        </p>
-                        <p>
-                            Right from the start, I thought Typescript might have some advantages, and adopted his steps in
-                            Typescript. In the process, I managed to make one or two abstractions and/or revisions, so
-                            that I ended up with a modular code state. In this, I could replace the game (here Super
-                            Mario) on an engine at will.
-                        </p>
-                        <p>
-                            I decided to remove all Super Mario resources and build a new game inspired by various
-                            platformers on the engine.
-                        </p>
-                        <p>
-                            For this, however, it was important to have a stable engine. After weeks of refactorings and
-                            try and error, I had a working code, but neither tests nor a build path. So this should be
-                            my first step. A combination of <a href="https://github.com/">Github</a> workflows and
-                            <a href="https://sonarcloud.io">sonarcloud</a> should give me enough confidence about my
-                            code to start the project.
-                        </p>
-                        <p>
-                            At the moment I have 1.2k lines of typescript code, with a still too low test coverage, but
-                            the worst mistakes are already removed, so I can start the actual game soon.
-                        </p>
-                        <p>
-                            The project will be <a href="https://github.com/DialThetti/xBlrrer">open source</a> as it is developed, and I will continue to report as the game grows.
-                        </p>
-                    </div>
+                        <div class="tags right">
+                            <div class="chip">Typescript</div>
+                            <div class="chip">Engine</div>
+                            <div class="chip">CI/CD</div>
+                            <div class="chip">Open Source</div>
+                        </div>
+                        <div class="blog-entry-text">
+                            <h3>Yet another Platformer</h3>
+                            <p>
+                                After a long period of extreme programming, I decided to take the project of developing
+                                a platformer game seriously once again. It all started with a tutorial by
+                                <a href="https://www.youtube.com/channel/UC8A0M0eDttdB11MHxX58vXQ"
+                                    >Meth Meth Method on Youtube</a
+                                >, implementing Super Mario Bros. in Javascript and HTML 5.
+                            </p>
+                            <div class="more">
+                                <p>
+                                    Right from the start, I thought Typescript might have some advantages, and adopted
+                                    his steps in Typescript. In the process, I managed to make one or two abstractions
+                                    and/or revisions, so that I ended up with a modular code state. In this, I could
+                                    replace the game (here Super Mario) on an engine at will.
+                                </p>
+                                <p>
+                                    I decided to remove all Super Mario resources and build a new game inspired by
+                                    various platformers on the engine.
+                                </p>
+                                <p>
+                                    For this, however, it was important to have a stable engine. After weeks of
+                                    refactorings and try and error, I had a working code, but neither tests nor a build
+                                    path. So this should be my first step. A combination of
+                                    <a href="https://github.com/">Github</a> workflows and
+                                    <a href="https://sonarcloud.io">sonarcloud</a> should give me enough confidence
+                                    about my code to start the project.
+                                </p>
+                                <p>
+                                    At the moment I have 1.2k lines of typescript code, with a still too low test
+                                    coverage, but the worst mistakes are already removed, so I can start the actual game
+                                    soon.
+                                </p>
+                                <p>
+                                    The project will be
+                                    <a href="https://github.com/DialThetti/xBlrrer">open source</a> as it is developed,
+                                    and I will continue to report as the game grows.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
+        </main>
+        <script>
+            function expand(link) {
+                const more = link.parentElement.querySelector('.more');
+                if (more.classList.contains('hide')) {
+                    more.classList.remove('hide');
+                    link.text = 'Read less';
+                } else {
+                    more.classList.add('hide');
+                    link.text = 'Read more';
+                }
+            }
+            [...document.querySelectorAll('.blog-entry-text')]
+                .filter((entry) => entry.querySelector('.more') != null)
+                .forEach((entry) => {
+                    entry.querySelector('.more').classList.add('hide');
+                    const readMore = document.createElement('a');
+                    readMore.text = 'Read more';
+                    readMore.className = 'read-more';
+                    readMore.addEventListener('click', () => expand(readMore));
+                    entry.appendChild(readMore);
+                });
+            document.querySelectorAll('article').forEach((article) => {
+                const hr = document.createElement('hr');
+                article.append(hr);
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.materialboxed');
+                var instances = M.Materialbox.init(elems, {});
+            });
+        </script>
     </body>
 </html>

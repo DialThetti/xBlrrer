@@ -18,8 +18,7 @@ export default class Emitter extends Trait {
     }
 
     update(us: Entity, context: Context): void {
-        if(this.enabled == false)
-        {
+        if (this.enabled == false) {
             return;
         }
         this.cooldown -= context.deltaTime;

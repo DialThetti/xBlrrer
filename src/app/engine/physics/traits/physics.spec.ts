@@ -7,14 +7,14 @@ import Physics from './physics';
 import Collidable from '../collidable';
 
 describe('Physics', () => {
-    let trait = new Physics();
+    const trait = new Physics();
 
     it('should be named "physics"', () => {
         expect(trait.name).to.equal('physics');
     });
 
     describe('update', () => {
-        let entity = {} as Entity;
+        const entity = {} as Entity;
 
         beforeEach(() => {
             entity.vel = new Vector(1, -1);
