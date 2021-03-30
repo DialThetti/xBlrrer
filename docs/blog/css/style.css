@@ -1,3 +1,62 @@
-body{
-    background-color: #555b6d;
+@font-face {
+    font-family: pixeBoy;
+    src: url(../font/PressStart2P.ttf);
+}
+:root {
+    --grey: #555b6d;
+    --primary: #7a5239;
+}
+body {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #efefef;
+}
+sidenav {
+    width: 300px;
+    background-color: var(--grey);
+    color: #efefef;
+    display: block;
+    padding: 10px;
+}
+blockquote {
+    border-left-color: var(--primary);
+}
+main {
+    display: block;
+    overflow-y: auto;
+}
+@media all and (min-width: 996px) {
+    main {
+        width: calc(100% - 300px);
+    }
+}
+a {
+    cursor: pointer;
+    color: var(--primary);
+}
+.row {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+dt {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.3rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.6rem;
+}
+h4 {
+    font-size: 1.3rem;
+}
+h5 {
+    font-size: 1rem;
+    font-weight: bold;
 }
