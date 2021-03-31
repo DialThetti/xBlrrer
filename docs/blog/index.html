@@ -7,9 +7,10 @@
         />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./blog/styles.css" />
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
         <meta content="utf-8" http-equiv="encoding" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
         <sidenav class="hide-on-med-and-down">
@@ -18,16 +19,74 @@
         <main>
             <div class="row">
                 <div class="col s12">
-                    <article class="blog-entry">
-                        <div class="blog-entry-title">
-                            <h2>Day 2: Engine</h2>
-                            <label>30.03.2021 from DialThetti</label>
-                        </div>
-                        <div class="tags right">
-                            <div class="chip">Architecture</div>
-                            <div class="chip">Engine</div>
-                        </div>
-                        <div class="blog-entry-text">
+                    <blog-entry
+                        title="Day 3: Blog Improvements"
+                        author="DialThetti"
+                        date="31.03.2021"
+                        tags="Blog, Angular"
+                    >
+                        <span slot="preview">
+                            <blockquote>
+                                <i>
+                                    Wait, you said you wanted to work on a game, now there is a new entry without game
+                                    related news. Whats wrong with you?</i
+                                >
+                            </blockquote>
+                        </span>
+                        <span slot="full">
+                            Yesterday I realised how much copying and pasting I have to do to create a blog entry. It's
+                            not very useful in the long run. So I decided to create a
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="blank"
+                                >web component</a
+                            >
+                            for individual blog entries.
+                            <h3>What is a web component?</h3>
+                            <p>
+                                Anyone who has written HTML knows DOM elements like <code>&lt;div&gt;</code> and
+                                <code>&lt;img&gt;</code>. With a web component, you can create your own HTML tags. This
+                                way, I don't have to copy the entire structure over and over again, but can simply use
+                                the following blog:
+                            </p>
+
+                            <pre class="black green-text">
+
+    &lt;blog-entry
+        title=&quot;Day 3: Blog Improvements&quot;
+        author=&quot;DialThetti&quot;
+        date=&quot;31.03.2021&quot;
+        tags=&quot;Blog, Angular&quot;
+    &gt;
+        &lt;span slot=&quot;preview&quot;&gt;
+        ...
+        &lt;/span&gt;
+        &lt;span slot=&quot;full&quot;&gt;
+        ...
+        &lt;/span&gt;
+    &lt;/blog-entry&gt;
+
+</pre
+                            >
+                            <h3>How does it work?</h3>
+                            <p>
+                                To make this blog entry web component work, I created a new
+                                <a href="https://github.com/DialThetti/blog-utils" target="blank">repository</a>
+                                . This contains an
+                                <a href="https://angular.io/" target="blank">Angular</a>
+                                project. Angular is a TypeScript-based web framework. With it I can easily create
+                                components, define input and output, and write encapsulated Javascript logic. I don't
+                                have to worry about the site as a whole when I create a web component, just the
+                                component itself, because all the functionality stays in that component. You can compare
+                                it roughly with the old iframes.
+                            </p>
+                            <p>
+                                For more information on how to build your own web components with angular, I recommend
+                                this <a href="https://angular.io/guide/elements">guide</a>.
+                            </p>
+                        </span>
+                    </blog-entry>
+
+                    <blog-entry title="Day 2: Engine" author="DialThetti" date="30.03.2021" tags="Architecture, Engine">
+                        <span slot="preview">
                             <h3>Why an Engine</h3>
                             <blockquote>
                                 <i>
@@ -36,79 +95,74 @@
                                     not using these magical wonders?
                                 </i>
                             </blockquote>
-                            <div class="more">
-                                <p>
-                                    This is a good question. First of, i dont have the
-                                    <a href="https://elderscrolls.fandom.com/wiki/Thu%27um">Thu'um</a>, which is
-                                    required to make a sucessful game:
-                                </p>
-                                <p class="center">
-                                    <i>IT JUST WORKS</i>
-                                </p>
-                                <p>
-                                    I have to follow more traditional ways of game making. I would like to know what
-                                    happens under the bonnet when i develop a game. In addition, this project should
-                                    also be a kind of showpiece to make my skills presentable.
-                                </p>
-                                <p>
-                                    I would also like to be able to reuse the basic building blocks of the game, be it
-                                    for another platformer or a top down RPG like 'The legend of Zelda'. That is, all
-                                    the basic elements like tiles, timer, sound and file input/output can be bundled and
-                                    neatly decapsulated. This means I never have to start from scratch again with the
-                                    next project.
-                                </p>
-                                <p>
-                                    Since I am only a single developer, I have to try to have tools check my quality. A
-                                    clean division of the project is also beneficial for this.
-                                </p>
-                                <p>
-                                    On the subject of third-party libraries: Of course I can use a third-party system
-                                    and pray that with 2-3 clicks and wizards what I want will happen. But I want to
-                                    know what happens internally. I want a small system, without overhead and
-                                    unnecessary dependencies.
-                                </p>
-                                <p>
-                                    As a basic structure, I have thought of the following:
-                                    <img
-                                        class="materialboxed"
-                                        src="img/day_2/structure.png"
-                                        data-caption="Rough structure of the game and engine"
-                                        style="margin: auto; max-width:100%"
-                                    />
-                                </p>
-                                <p>
-                                    Even if layer architectures can lead to problems now and then, I would still use
-                                    these 3 layers:
-                                </p>
-                                <dl>
-                                    <dt>Engine layer</dt>
-                                    <dd>on which all game-unspecific classes, functions and algorithms are located</dd>
-                                    <dt>Extensions layer</dt>
-                                    <dd>
-                                        which provides extended functionalities, and can be added or omitted depending
-                                        on the game
-                                    </dd>
-                                    <dt>Game layer</dt>
-                                    <dd>
-                                        where the specific levels, entities and mechanics reside. These should be so
-                                        specific that they cannot be reused
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="blog-entry">
-                        <div class="blog-entry-title">
-                            <h2>Day 1: Initium Novum</h2>
-                            <label>29.03.2021 from DialThetti</label>
-                        </div>
-                        <div class="tags right">
-                            <div class="chip">Typescript</div>
-                            <div class="chip">Engine</div>
-                            <div class="chip">CI/CD</div>
-                            <div class="chip">Open Source</div>
-                        </div>
-                        <div class="blog-entry-text">
+                        </span>
+                        <span slot="full">
+                            <p>
+                                This is a good question. First of, I dont have the
+                                <a href="https://elderscrolls.fandom.com/wiki/Thu%27um" target="blank">Thu'um</a>, which
+                                is required to make a sucessful game:
+                            </p>
+                            <p class="center">
+                                <i>IT JUST WORKS</i>
+                            </p>
+                            <p>
+                                I have to follow more traditional ways of game making. I would like to know what happens
+                                under the bonnet when i develop a game. In addition, this project should also be a kind
+                                of showpiece to make my skills presentable.
+                            </p>
+                            <p>
+                                I would also like to be able to reuse the basic building blocks of the game, be it for
+                                another platformer or a top down RPG like 'The legend of Zelda'. That is, all the basic
+                                elements like tiles, timer, sound and file input/output can be bundled and neatly
+                                decapsulated. This means I never have to start from scratch again with the next project.
+                            </p>
+                            <p>
+                                Since I am only a single developer, I have to try to have tools check my quality. A
+                                clean division of the project is also beneficial for this.
+                            </p>
+                            <p>
+                                On the subject of third-party libraries: Of course I can use a third-party system and
+                                pray that with 2-3 clicks and wizards what I want will happen. But I want to know what
+                                happens internally. I want a small system, without overhead and unnecessary
+                                dependencies.
+                            </p>
+                            <p>
+                                As a basic structure, I have thought of the following:
+                                <img
+                                    class="materialboxed"
+                                    src="img/day_2/structure.png"
+                                    data-caption="Rough structure of the game and engine"
+                                    style="margin: auto; max-width: 100%"
+                                />
+                            </p>
+                            <p>
+                                Even if layer architectures can lead to problems now and then, I would still use these 3
+                                layers:
+                            </p>
+                            <dl>
+                                <dt>Engine layer</dt>
+                                <dd>on which all game-unspecific classes, functions and algorithms are located</dd>
+                                <dt>Extensions layer</dt>
+                                <dd>
+                                    which provides extended functionalities, and can be added or omitted depending on
+                                    the game
+                                </dd>
+                                <dt>Game layer</dt>
+                                <dd>
+                                    where the specific levels, entities and mechanics reside. These should be so
+                                    specific that they cannot be reused
+                                </dd>
+                            </dl>
+                        </span>
+                    </blog-entry>
+
+                    <blog-entry
+                        title="Day 1: Initium Novum"
+                        author="DialThetti"
+                        date="29.03.2021"
+                        tags="Typescript,Engine,CI/CD,Open Source"
+                    >
+                        <span slot="preview">
                             <h3>Yet another Platformer</h3>
                             <p>
                                 After a long period of extreme programming, I decided to take the project of developing
@@ -117,71 +171,44 @@
                                     >Meth Meth Method on Youtube</a
                                 >, implementing Super Mario Bros. in Javascript and HTML 5.
                             </p>
-                            <div class="more">
-                                <p>
-                                    Right from the start, I thought Typescript might have some advantages, and adopted
-                                    his steps in Typescript. In the process, I managed to make one or two abstractions
-                                    and/or revisions, so that I ended up with a modular code state. In this, I could
-                                    replace the game (here Super Mario) on an engine at will.
-                                </p>
-                                <p>
-                                    I decided to remove all Super Mario resources and build a new game inspired by
-                                    various platformers on the engine.
-                                </p>
-                                <p>
-                                    For this, however, it was important to have a stable engine. After weeks of
-                                    refactorings and try and error, I had a working code, but neither tests nor a build
-                                    path. So this should be my first step. A combination of
-                                    <a href="https://github.com/">Github</a> workflows and
-                                    <a href="https://sonarcloud.io">sonarcloud</a> should give me enough confidence
-                                    about my code to start the project.
-                                </p>
-                                <p>
-                                    At the moment I have 1.2k lines of typescript code, with a still too low test
-                                    coverage, but the worst mistakes are already removed, so I can start the actual game
-                                    soon.
-                                </p>
-                                <p>
-                                    The project will be
-                                    <a href="https://github.com/DialThetti/xBlrrer">open source</a> as it is developed,
-                                    and I will continue to report as the game grows.
-                                </p>
-                            </div>
-                        </div>
-                    </article>
+                        </span>
+                        <span slot="full">
+                            <p>
+                                Right from the start, I thought Typescript might have some advantages, and adopted his
+                                steps in Typescript. In the process, I managed to make one or two abstractions and/or
+                                revisions, so that I ended up with a modular code state. In this, I could replace the
+                                game (here Super Mario) on an engine at will.
+                            </p>
+                            <p>
+                                I decided to remove all Super Mario resources and build a new game inspired by various
+                                platformers on the engine.
+                            </p>
+                            <p>
+                                For this, however, it was important to have a stable engine. After weeks of refactorings
+                                and try and error, I had a working code, but neither tests nor a build path. So this
+                                should be my first step. A combination of
+                                <a href="https://github.com/">Github</a> workflows and
+                                <a href="https://sonarcloud.io">sonarcloud</a> should give me enough confidence about my
+                                code to start the project.
+                            </p>
+                            <p>
+                                At the moment I have 1.2k lines of typescript code, with a still too low test coverage,
+                                but the worst mistakes are already removed, so I can start the actual game soon.
+                            </p>
+                            <p>
+                                The project will be
+                                <a href="https://github.com/DialThetti/xBlrrer">open source</a> as it is developed, and
+                                I will continue to report as the game grows.
+                            </p>
+                        </span>
+                    </blog-entry>
                 </div>
             </div>
         </main>
-        <script>
-            function expand(link) {
-                const more = link.parentElement.querySelector('.more');
-                if (more.classList.contains('hide')) {
-                    more.classList.remove('hide');
-                    link.text = 'Read less';
-                } else {
-                    more.classList.add('hide');
-                    link.text = 'Read more';
-                }
-            }
-            [...document.querySelectorAll('.blog-entry-text')]
-                .filter((entry) => entry.querySelector('.more') != null)
-                .forEach((entry) => {
-                    entry.querySelector('.more').classList.add('hide');
-                    const readMore = document.createElement('a');
-                    readMore.text = 'Read more';
-                    readMore.className = 'read-more';
-                    readMore.addEventListener('click', () => expand(readMore));
-                    entry.appendChild(readMore);
-                });
-            document.querySelectorAll('article').forEach((article) => {
-                const hr = document.createElement('hr');
-                article.append(hr);
-            });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.materialboxed');
-                var instances = M.Materialbox.init(elems, {});
-            });
-        </script>
+        <script src="js/blog/runtime.js" defer></script>
+        <script src="js/blog/polyfills.js" defer></script>
+        <script src="js/blog/vendor.js" defer></script>
+        <script src="js/blog/main.js" defer></script>
     </body>
 </html>
