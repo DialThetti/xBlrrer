@@ -1,6 +1,6 @@
 import Vector from '../engine/math/vector';
 
-export default interface LevelSpec {
+export default interface TiledLevelSpec {
     tileSet: string;
     background?: string;
     estimateTime: number;
