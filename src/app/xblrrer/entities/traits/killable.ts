@@ -1,6 +1,6 @@
-import EntityImpl from '../entity';
 import { EntityState } from '../../../engine/entities/entity.state';
 import Trait, { Context } from '../../../engine/entities/trait';
+import EntityImpl from '../../../platformer/entities/entity';
 
 export default class Killable extends Trait {
     dead = false;

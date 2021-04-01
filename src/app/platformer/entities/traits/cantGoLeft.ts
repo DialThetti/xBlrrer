@@ -1,5 +1,5 @@
-import Vector from '../../../engine/math/vector';
 import Trait from '../../../engine/entities/trait';
+import Vector from '../../../engine/math/vector';
 
 export default class CantGoLeft extends Trait {
     posOnScreen: Vector;

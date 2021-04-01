@@ -1,6 +1,6 @@
 import Entity from '../../../engine/entities/entity';
 import TraitCtnr from '../../../engine/entities/trait.container';
-import CantGoLeft from '../../../platformer/entities/traits/cantGoLeft';
+import CantGoLeft from '../../entities/traits/cantGoLeft';
 
 export default class LeftWallCollider {
     check(entity: Entity & TraitCtnr): void {

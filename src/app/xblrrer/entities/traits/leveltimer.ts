@@ -1,7 +1,7 @@
 import Entity from '../../../engine/entities/entity';
 import Trait, { Context } from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
-import Level from '../../world/level';
+import Level from '../../../platformer/level';
 
 export default class LevelTimer extends Trait {
     totalTime = 300;

@@ -1,19 +1,17 @@
 import ActivateOnSight from '../../engine/entities/activateOnSight';
+import Emitter from '../../engine/entities/emitter';
 import TraitCtnr from '../../engine/entities/trait.container';
-import CantGoLeft from './traits/cantGoLeft';
+import * as physics from '../../engine/physics/traits/traits';
+import CantGoLeft from '../../platformer/entities/traits/cantGoLeft';
+import Crouch from './traits/crouch';
 import Go from './traits/go';
 import Jump from './traits/jump';
 import Killable from './traits/killable';
+import LevelTimer from './traits/leveltimer';
+import Player from './traits/player';
 import PlayerController from './traits/playerController';
 import Stomp from './traits/stomp';
 import Walk from './traits/walk.ai';
-import * as physics from '../../engine/physics/traits/traits';
-import Emitter from '../../engine/entities/emitter';
-import { Context } from '../../engine/entities/trait';
-import Level from '../world/level';
-import Player from './traits/player';
-import LevelTimer from './traits/leveltimer';
-import Crouch from './traits/crouch';
 
 export interface Traits extends physics.Traits {
     go: Go;
@@ -47,8 +45,4 @@ export function getTraits(e: TraitCtnr): Partial<Traits> {
         crouch: e.getTrait(Crouch),
         ...physics.getTraits(e),
     };
-}
-
-export interface MarioTraitContext extends Context {
-    level: Level;
 }

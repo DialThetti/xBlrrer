@@ -1,10 +1,10 @@
 import { drawRect } from '../../../../engine/rendering/helper';
 import { debug } from '../../../../engine/debug';
 import Camera from '../../../../engine/world/camera';
-import Level from '../../../world/level';
 import { PositionedTile } from '../../../../engine/physics/collider/tile.collider.layer';
 import RenderLayer from '../../../../engine/rendering/layers/renderLayer';
 import TileCollider from '../../../../engine/physics/collider/tile.collider';
+import Level from '../../../../platformer/level';
 
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;
@@ -24,7 +24,7 @@ export default class CollisionLayer implements RenderLayer {
     }
 
     drawEntityFrames(context: CanvasRenderingContext2D, camera: Camera): void {
-        this.level.entities.forEach(entity =>
+        this.level.entities.forEach((entity) =>
             drawRect(
                 context,
                 entity.bounds.left - camera.pos.x,

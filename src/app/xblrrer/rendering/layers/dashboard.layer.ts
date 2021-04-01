@@ -23,9 +23,6 @@ export default class DashboardLayer implements RenderLayer {
     }
 
     withZero(count: number, length: number): string {
-        return count
-            .toFixed()
-            .toString()
-            .padStart(length, '0');
+        return count.toFixed().toString().padStart(length, '0');
     }
 }

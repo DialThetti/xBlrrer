@@ -6,15 +6,15 @@ import CameraLayer from '../../../engine/rendering/layers/camera.layer';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import ScrollSpyLayer from '../../../engine/rendering/layers/scrollSpy.layer';
 import Camera from '../../../engine/world/camera';
+import EntityImpl from '../../../platformer/entities/entity';
+import Level from '../../../platformer/level';
+import LevelLoader from '../../../platformer/loader/level.loader';
 import Scene from '../../../scenes/scene';
-import EntityImpl from '../../entities/entity';
 import LevelTimer from '../../entities/traits/leveltimer';
 import Player from '../../entities/traits/player';
 import PlayerController from '../../entities/traits/playerController';
 import setupKeyboard from '../../io/input';
-import LevelLoader from '../../io/level.loader';
 import DashboardLayer from '../../rendering/layers/dashboard.layer';
-import Level from '../../world/level';
 
 export default class GameScene implements Scene {
     isLoadingScene = false;
@@ -65,21 +65,6 @@ export default class GameScene implements Scene {
         this.level = level;
         this.renderer = renderer;
         this.player = player;
-        /*        new Timer(deltaTime => {
-            level.update(deltaTime, camera);
-            renderer.draw(this.context, camera, player);
-        }).start();
-
-        window.testingCheatsEnabled = (enabled): void => {
-            if (enabled) {
-                window.camera = camera;
-                setupMouseControl(this.canvas, player, camera);
-            } else {
-                window.camera = null;
-                removeMouseControl();
-            }
-        };
-        */
     }
 
     update(deltaTime: number): void {

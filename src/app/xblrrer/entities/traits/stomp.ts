@@ -1,8 +1,8 @@
-import EntityImpl from '../entity';
 import Trait from '../../../engine/entities/trait';
-import Killable from './killable';
 import { SfxEvent } from '../../../engine/events/events';
+import EntityImpl from '../../../platformer/entities/entity';
 import { StompEvent } from '../../events/events';
+import Killable from './killable';
 
 export default class Stomp extends Trait {
     bounceSpeed = 400;

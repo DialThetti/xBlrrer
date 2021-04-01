@@ -6,8 +6,8 @@ export default class EntityFactory {
         const prefabs = [MarioPrefab];
         const factories = await Promise.all(
             prefabs
-                .map(prefabClass => new prefabClass())
-                .map(async prefab => ({ name: prefab.name, factory: await prefab.create() })),
+                .map((prefabClass) => new prefabClass())
+                .map(async (prefab) => ({ name: prefab.name, factory: await prefab.create() })),
         );
         setEntityRepo(factories.reduce((result, element) => ({ ...result, [element.name]: element.factory }), {}));
     }

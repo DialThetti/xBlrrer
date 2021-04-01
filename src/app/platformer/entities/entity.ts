@@ -1,14 +1,14 @@
-import BoundingBox from '../../engine/math/boundingBox';
-import Vector from '../../engine/math/vector';
-import { MarioTraitContext, Traits } from './traits';
+import Entity from '../../engine/entities/entity';
 import { EntityState } from '../../engine/entities/entity.state';
 import Trait from '../../engine/entities/trait';
-import Entity from '../../engine/entities/entity';
-import { Side } from '../../engine/world/tiles/side';
-import { PositionedTile } from '../../engine/physics/collider/tile.collider.layer';
 import TraitCtnr from '../../engine/entities/trait.container';
 import EventBuffer from '../../engine/events/eventBuffer';
-import Tile from '../../engine/world/tiles/tile';
+import BoundingBox from '../../engine/math/boundingBox';
+import Vector from '../../engine/math/vector';
+import { PositionedTile } from '../../engine/physics/collider/tile.collider.layer';
+import { Side } from '../../engine/world/tiles/side';
+import { Traits } from '../../xblrrer/entities/traits';
+import { PlatformerTraitContext } from './traits/traits';
 
 export default class EntityImpl implements Entity, TraitCtnr {
     pos = new Vector(0, 0);
@@ -24,20 +24,20 @@ export default class EntityImpl implements Entity, TraitCtnr {
 
     traits: Partial<Traits> = {};
 
-    standingOn: Set<String> = new Set();
+    standingOn: Set<string> = new Set();
 
     events = new EventBuffer();
 
     collide(target: EntityImpl): void {
-        this.getTraits().forEach(trait => trait.collides(this, target));
+        this.getTraits().forEach((trait) => trait.collides(this, target));
     }
 
-    update(context: MarioTraitContext): void {
-        this.getTraits().forEach(trait => trait.update(this, context));
+    update(context: PlatformerTraitContext): void {
+        this.getTraits().forEach((trait) => trait.update(this, context));
         this.lifeTime += context.deltaTime;
         this.getTraits()
-            .filter(e => e.finalize)
-            .forEach(e => {
+            .filter((e) => e.finalize)
+            .forEach((e) => {
                 e.finalize();
                 e.finalize = undefined;
             });
@@ -46,16 +46,16 @@ export default class EntityImpl implements Entity, TraitCtnr {
 
     obstruct(side: Side, match: PositionedTile): void {
         if (side === Side.BOTTOM) {
-            match.tile.types.forEach(e => this.standingOn.add(e));
+            match.tile.types.forEach((e) => this.standingOn.add(e));
         }
-        this.getTraits().forEach(trait => trait.obstruct(this, side, match));
+        this.getTraits().forEach((trait) => trait.obstruct(this, side, match));
     }
 
     addTrait(trait: Trait): void {
         this.traits[trait.name] = trait;
     }
     addTraits(traits: Trait[]): void {
-        traits.forEach(t => this.addTrait(t));
+        traits.forEach((t) => this.addTrait(t));
     }
 
     getTrait<T extends Trait>(trait: new () => T): T {
@@ -67,6 +67,6 @@ export default class EntityImpl implements Entity, TraitCtnr {
     draw(context: CanvasRenderingContext2D): void {} // eslint-disable-line
 
     private getTraits(): Trait[] {
-        return Object.keys(this.traits).map(key => this.traits[key]);
+        return Object.keys(this.traits).map((key) => this.traits[key]);
     }
 }

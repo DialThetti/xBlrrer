@@ -1,12 +1,12 @@
-import EntityImpl from '../entity';
-import Trait, { Context } from '../../../engine/entities/trait';
-import Jump from './jump';
-import Killable from './killable';
 import { debug } from '../../../engine/debug';
 import Entity from '../../../engine/entities/entity';
-import { Side } from '../../../engine/world/tiles/side';
+import Trait, { Context } from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
+import { Side } from '../../../engine/world/tiles/side';
+import EntityImpl from '../../../platformer/entities/entity';
 import Crouch from './crouch';
+import Jump from './jump';
+import Killable from './killable';
 
 export default class Go extends Trait {
     dir = 0;

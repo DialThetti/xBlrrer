@@ -1,17 +1,13 @@
 import { cross, intRange } from '../../../engine/math/math';
-import Vector from '../../../engine/math/vector';
 import Camera from '../../../engine/world/camera';
-import Level from '../../world/level';
 import Entity from '../../../engine/entities/entity';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import Range from '../../../engine/math/range.interface';
-import CantGoLeft from '../../entities/traits/cantGoLeft';
 import TraitCtnr from '../../../engine/entities/trait.container';
 import TileColliderLayer from '../../../engine/physics/collider/tile.collider.layer';
 import TileMath from '../../../engine/world/tiles/tile.math';
 import TileSet from '../../../engine/rendering/tileSet';
-import Matrix from '../../../engine/math/matrix';
-import Tile from '../../../engine/world/tiles/tile';
+import Level from '../../level';
 
 export default class BackgroundLayer implements RenderLayer {
     layers: TileColliderLayer[];

@@ -1,11 +1,9 @@
-import Entity from '../../../engine/entities/entity';
 import Compositor from '../../../engine/rendering/compositor.layer';
-import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import SingleColorLayer from '../../../engine/rendering/layers/singleColor.layer';
 import SpriteLayer from '../../../engine/rendering/layers/sprite.layer';
 import Camera from '../../../engine/world/camera';
+import EntityImpl from '../../../platformer/entities/entity';
 import Scene from '../../../scenes/scene';
-import EntityImpl from '../../entities/entity';
 import LoadingPrefab from '../../entities/prefabs/Loading.prefab';
 
 export default class LoadingScene implements Scene {

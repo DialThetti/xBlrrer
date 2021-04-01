@@ -2,7 +2,7 @@ import Entity from '../../../engine/entities/entity';
 import { SfxEvent } from '../../../engine/events/events';
 import { TwoDimTileCollisionHandler } from '../../../engine/physics/collider/tile.collider';
 import TileColliderLayer, { PositionedTile } from '../../../engine/physics/collider/tile.collider.layer';
-import Player from '../../entities/traits/player';
+import Player from '../../../xblrrer/entities/traits/player';
 
 function collectCoin(entity: Entity, match: PositionedTile, tiles: TileColliderLayer): void {
     if (entity.hasTrait(Player)) {

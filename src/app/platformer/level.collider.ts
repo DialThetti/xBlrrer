@@ -1,10 +1,8 @@
-import Entity from '../../engine/entities/entity';
-import Matrix from '../../engine/math/matrix';
-import EntityCollider from '../../engine/physics/collider/entity.collider';
-import TileCollider from '../../engine/physics/collider/tile.collider';
-import Tile from '../../engine/world/tiles/tile';
-import EntityImpl from '../entities/entity';
-import LeftWallCollider from '../physics/collider/leftWall.collider';
+import Entity from '../engine/entities/entity';
+import Matrix from '../engine/math/matrix';
+import EntityCollider from '../engine/physics/collider/entity.collider';
+import TileCollider from '../engine/physics/collider/tile.collider';
+import Tile from '../engine/world/tiles/tile';
 import Level from './level';
 
 export default class LevelCollider {

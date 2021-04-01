@@ -4,7 +4,7 @@ import Scene from './scene';
 export default class SceneMachine {
     scenes: { [name: string]: { scene: Scene; loaded: boolean } } = {};
     loadingScene: Scene;
-    currentSceneName: string = 'loadingScene';
+    currentSceneName = 'loadingScene';
     constructor(private context: CanvasRenderingContext2D) {}
     public addScene(sceneProvider: () => Scene): SceneMachine {
         const scene = sceneProvider();
@@ -19,13 +19,13 @@ export default class SceneMachine {
         await this.loadingScene.load();
     }
     public start(): void {
-        new Timer(deltaTime => {
+        new Timer((deltaTime) => {
             this.currentScene.update(deltaTime);
             this.currentScene.draw(this.context, deltaTime);
         }).start();
     }
 
-    public async setScene(name: string, withLoading: boolean = true): Promise<void> {
+    public async setScene(name: string, withLoading = true): Promise<void> {
         if (withLoading) {
             this.currentSceneName = 'loadingScene';
         }

@@ -1,18 +1,17 @@
-import Vector from '../../../engine/math/vector';
-import SpriteSheet from '../../../engine/rendering/spriteSheet';
-import EntityImpl from '../entity';
-import CantGoLeft from '../traits/cantGoLeft';
-import Go from '../traits/go';
-import Player from '../traits/player';
-import Jump from '../traits/jump';
-import Killable from '../traits/killable';
-import Stomp from '../traits/stomp';
 import EntityPrefab from '../../../engine/entities/entity.prefab';
-import Solid from '../../../engine/physics/traits/solid';
+import Trait from '../../../engine/entities/trait';
+import Vector from '../../../engine/math/vector';
 import Gravity from '../../../engine/physics/traits/gravity';
 import Physics from '../../../engine/physics/traits/physics';
-import Trait from '../../../engine/entities/trait';
+import Solid from '../../../engine/physics/traits/solid';
+import SpriteSheet from '../../../engine/rendering/spriteSheet';
+import EntityImpl from '../../../platformer/entities/entity';
 import Crouch from '../traits/crouch';
+import Go from '../traits/go';
+import Jump from '../traits/jump';
+import Killable from '../traits/killable';
+import Player from '../traits/player';
+import Stomp from '../traits/stomp';
 
 export default class MarioPrefab extends EntityPrefab {
     constructor() {
@@ -27,7 +26,6 @@ export default class MarioPrefab extends EntityPrefab {
             new Go(),
             new Stomp(),
             new Killable('dead', 0),
-            //    new CantGoLeft(),
             new Crouch(),
             new Player(),
         ];

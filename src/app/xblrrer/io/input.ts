@@ -13,13 +13,13 @@ export default function setupKeyboard(playerFigure: Entity & TraitCtnr): Keyboar
     const isPressed = (keyState): boolean => keyState === KeyState.PRESSED;
 
     return new KeyboardState()
-        .addMapping('Space', keyState => (isPressed(keyState) ? jump.start() : jump.cancel()))
-        .addMapping('ShiftLeft', keyState => (go.running = isPressed(keyState)))
-        .addMapping('KeyS', keyState => {
+        .addMapping('Space', (keyState) => (isPressed(keyState) ? jump.start() : jump.cancel()))
+        .addMapping('ShiftLeft', (keyState) => (go.running = isPressed(keyState)))
+        .addMapping('KeyS', (keyState) => {
             jump.down = isPressed(keyState);
             isPressed(keyState) ? crouch.start() : crouch.cancel();
             if (!isPressed(keyState)) playerFigure.bypassPlatform = false;
         })
-        .addMapping('KeyD', keyState => (go.dir += isPressed(keyState) ? 1 : -1))
-        .addMapping('KeyA', keyState => (go.dir -= isPressed(keyState) ? 1 : -1));
+        .addMapping('KeyD', (keyState) => (go.dir += isPressed(keyState) ? 1 : -1))
+        .addMapping('KeyA', (keyState) => (go.dir -= isPressed(keyState) ? 1 : -1));
 }

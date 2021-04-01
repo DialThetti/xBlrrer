@@ -1,8 +1,7 @@
-import EntityImpl from '../entity';
 import Trait, { Context } from '../../../engine/entities/trait';
-import { Side } from '../../../engine/world/tiles/side';
 import { SfxEvent } from '../../../engine/events/events';
-import Solid from '../../../engine/physics/traits/solid';
+import { Side } from '../../../engine/world/tiles/side';
+import EntityImpl from '../../../platformer/entities/entity';
 
 export default class Jump extends Trait {
     private jumpHeight = 1; /*in blocks*/

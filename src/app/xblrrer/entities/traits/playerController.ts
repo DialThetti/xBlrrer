@@ -1,9 +1,9 @@
-import Vector from '../../../engine/math/vector';
-import Level from '../../world/level';
-import CantGoLeft from './cantGoLeft';
-import Killable from './killable';
 import Trait from '../../../engine/entities/trait';
-import EntityImpl from '../entity';
+import Vector from '../../../engine/math/vector';
+import EntityImpl from '../../../platformer/entities/entity';
+import CantGoLeft from '../../../platformer/entities/traits/cantGoLeft';
+import Level from '../../../platformer/level';
+import Killable from './killable';
 
 export default class PlayerController extends Trait {
     player: EntityImpl;

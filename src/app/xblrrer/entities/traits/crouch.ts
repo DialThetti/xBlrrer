@@ -3,7 +3,7 @@ import Trait, { Context } from '../../../engine/entities/trait';
 import Vector from '../../../engine/math/vector';
 import { PositionedTile } from '../../../engine/physics/collider/tile.collider.layer';
 import { Side } from '../../../engine/world/tiles/side';
-import EntityImpl from '../entity';
+import EntityImpl from '../../../platformer/entities/entity';
 
 export default class Crouch extends Trait {
     private d = false;
