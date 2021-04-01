@@ -16,10 +16,10 @@ export default class Game {
     async start(): Promise<void> {
         const sceneMachine = new SceneMachine(this.context)
             .addScene(() => new LoadingScene())
-            .addScene(() => new GameScene('1-?'));
+            .addScene(() => new GameScene('forest-1'));
         await sceneMachine.load();
         sceneMachine.start();
-        sceneMachine.setScene('1-?');
+        sceneMachine.setScene('forest-1');
         console.log('scenes running');
     }
 }

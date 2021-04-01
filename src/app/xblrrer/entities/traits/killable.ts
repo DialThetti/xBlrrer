@@ -1,6 +1,6 @@
 import { EntityState } from '../../../engine/entities/entity.state';
 import Trait, { Context } from '../../../engine/entities/trait';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 
 export default class Killable extends Trait {
     dead = false;
@@ -17,13 +17,13 @@ export default class Killable extends Trait {
             this.dead = true;
         };
     }
-    revive(entity: EntityImpl): void {
+    revive(entity: PlatformerEntity): void {
         this.dead = false;
 
         this.deadTime = 0;
         entity.state = EntityState.ACTIVE;
     }
-    update(entity: EntityImpl, context: Context): void {
+    update(entity: PlatformerEntity, context: Context): void {
         if (!this.dead) {
             return;
         }

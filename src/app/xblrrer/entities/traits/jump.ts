@@ -1,7 +1,7 @@
 import Trait, { Context } from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
 import { Side } from '../../../engine/world/tiles/side';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 
 export default class Jump extends Trait {
     private jumpHeight = 1; /*in blocks*/
@@ -37,7 +37,7 @@ export default class Jump extends Trait {
             this.gliding = false;
         }
     }
-    update(entity: EntityImpl, context: Context): void {
+    update(entity: PlatformerEntity, context: Context): void {
         if (!this.down && this.gliding && entity.vel.y < 0) {
             entity.vel.y = 0;
         }
@@ -67,7 +67,7 @@ export default class Jump extends Trait {
         this.time += absY * context.deltaTime;
         this.onGround--;
     }
-    obstruct(entity: EntityImpl, side: Side): void {
+    obstruct(entity: PlatformerEntity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.onGround = 1;
             if (this.gliding) {

@@ -10,12 +10,12 @@ import Collidable from '../engine/physics/collidable';
 import Camera from '../engine/world/camera';
 import Tile from '../engine/world/tiles/tile';
 import PlayerController from '../xblrrer/entities/traits/playerController';
-import EntityImpl from './entities/entity';
+import PlatformerEntity from './entities/platformer.entity';
 import LevelCollider from './level.collider';
 
 export default class Level implements Collidable {
     name: string;
-    entities = new Set<EntityImpl>();
+    entities = new Set<PlatformerEntity>();
     gravity = new Vector(0, 1500);
 
     time = 0;
@@ -60,13 +60,13 @@ export default class Level implements Collidable {
             e.events.process(Names.playSFX, ({ name, blocking }: { name: string; blocking: boolean }): void =>
                 this.audioBoard.playAudio(name, blocking),
             );
-            e.events.process(Names.spawn, (payload: { entity: EntityImpl }) => {
+            e.events.process(Names.spawn, (payload: { entity: PlatformerEntity }) => {
                 this.entities.add(payload.entity);
             });
         });
     }
 
-    private getEntities(state: EntityState): EntityImpl[] {
+    private getEntities(state: EntityState): PlatformerEntity[] {
         return [...this.entities].filter((e) => e.state === state);
     }
 

@@ -10,7 +10,7 @@ import { Side } from '../../engine/world/tiles/side';
 import { Traits } from '../../xblrrer/entities/traits';
 import { PlatformerTraitContext } from './traits/traits';
 
-export default class EntityImpl implements Entity, TraitCtnr {
+export default class PlatformerEntity implements Entity, TraitCtnr {
     pos = new Vector(0, 0);
     vel = new Vector(0, 0);
     size = new Vector(16, 16);
@@ -28,7 +28,7 @@ export default class EntityImpl implements Entity, TraitCtnr {
 
     events = new EventBuffer();
 
-    collide(target: EntityImpl): void {
+    collide(target: PlatformerEntity): void {
         this.getTraits().forEach((trait) => trait.collides(this, target));
     }
 

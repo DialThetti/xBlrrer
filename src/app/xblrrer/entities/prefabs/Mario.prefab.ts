@@ -5,7 +5,7 @@ import Gravity from '../../../engine/physics/traits/gravity';
 import Physics from '../../../engine/physics/traits/physics';
 import Solid from '../../../engine/physics/traits/solid';
 import SpriteSheet from '../../../engine/rendering/spriteSheet';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 import Crouch from '../traits/crouch';
 import Go from '../traits/go';
 import Jump from '../traits/jump';
@@ -30,9 +30,9 @@ export default class MarioPrefab extends EntityPrefab {
             new Player(),
         ];
     }
-    entityFac = (): EntityImpl => new EntityImpl();
+    entityFac = (): PlatformerEntity => new PlatformerEntity();
 
-    routeFrame(entity: EntityImpl, sprite: SpriteSheet): string {
+    routeFrame(entity: PlatformerEntity, sprite: SpriteSheet): string {
         const go = entity.getTrait(Go);
         const jump = entity.getTrait(Jump);
         const crouch = entity.getTrait(Crouch);
@@ -53,7 +53,7 @@ export default class MarioPrefab extends EntityPrefab {
         return 'idle';
     }
 
-    flipped(f: EntityImpl): boolean {
+    flipped(f: PlatformerEntity): boolean {
         const go = f.getTrait(Go);
         return go.lastDir == -1;
     }

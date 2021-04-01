@@ -6,14 +6,14 @@ import CameraLayer from '../../../engine/rendering/layers/camera.layer';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import ScrollSpyLayer from '../../../engine/rendering/layers/scrollSpy.layer';
 import Camera from '../../../engine/world/camera';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 import Level from '../../../platformer/level';
-import LevelLoader from '../../../platformer/loader/level.loader';
 import Scene from '../../../scenes/scene';
 import LevelTimer from '../../entities/traits/leveltimer';
 import Player from '../../entities/traits/player';
 import PlayerController from '../../entities/traits/playerController';
 import setupKeyboard from '../../io/input';
+import LevelLoader from '../../loader/level.loader';
 import DashboardLayer from '../../rendering/layers/dashboard.layer';
 
 export default class GameScene implements Scene {
@@ -26,8 +26,8 @@ export default class GameScene implements Scene {
 
     constructor(public name: string) {}
 
-    createPlayerEnv(player: EntityImpl, level: Level): EntityImpl {
-        const playerEnv = new EntityImpl();
+    createPlayerEnv(player: PlatformerEntity, level: Level): PlatformerEntity {
+        const playerEnv = new PlatformerEntity();
         const playerControl = new PlayerController(level);
         const levelTimer = new LevelTimer(level);
         playerEnv.state = EntityState.ACTIVE;
@@ -71,8 +71,10 @@ export default class GameScene implements Scene {
         this.level.update(deltaTime, this.camera);
     }
 
-    draw(context: CanvasRenderingContext2D, deltaTime: number): void {
+    draw(context: CanvasRenderingContext2D): void {
         this.renderer.draw(context, this.camera, this.player);
     }
-    async start(): Promise<void> {}
+    async start(): Promise<void> {
+        // resetting not required here
+    }
 }

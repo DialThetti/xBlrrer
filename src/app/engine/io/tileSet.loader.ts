@@ -4,6 +4,9 @@ import TileSet from '../rendering/tileSet';
 import Loader from './loader';
 import { loadImage, loadJson } from './loaders';
 
+/**
+ * @deprecated The class should not be used
+ */
 export default class TileSetLoader implements Loader<TileSet> {
     constructor(private name: string) {}
 

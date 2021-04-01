@@ -1,0 +1,8 @@
+{
+    "bgm": "overground",
+    "tiledMapPath": "./tiled/dev.tmx",
+    "estimateTime": 999,
+    "startPosition": { "x": 2, "y": 54 },
+
+    "entities": []
+}

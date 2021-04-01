@@ -1,5 +1,3 @@
-import { Context } from '../engine/entities/trait';
-
 export default interface Scene {
     name: string;
     isLoadingScene: boolean;

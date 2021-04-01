@@ -2,7 +2,7 @@ import EntityPrefab from '../../../engine/entities/entity.prefab';
 import Trait from '../../../engine/entities/trait';
 import Vector from '../../../engine/math/vector';
 import SpriteSheet from '../../../engine/rendering/spriteSheet';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 
 export default class LoadingPrefab extends EntityPrefab {
     constructor() {
@@ -11,9 +11,9 @@ export default class LoadingPrefab extends EntityPrefab {
         this.offset = new Vector(0, 0);
         this.traits = (): Trait[] => [];
     }
-    entityFac = (): EntityImpl => new EntityImpl();
+    entityFac = (): PlatformerEntity => new PlatformerEntity();
 
-    routeFrame(entity: EntityImpl, sprite: SpriteSheet): string {
+    routeFrame(entity: PlatformerEntity, sprite: SpriteSheet): string {
         return sprite.getAnimation('loading')(entity.lifeTime * 60);
     }
 }

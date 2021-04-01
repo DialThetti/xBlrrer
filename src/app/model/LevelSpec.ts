@@ -1,5 +1,8 @@
 import Vector from '../engine/math/vector';
 
+/**
+ * @deprecated The class should not be used
+ */
 export default interface TiledLevelSpec {
     tileSet: string;
     background?: string;

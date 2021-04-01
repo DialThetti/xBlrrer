@@ -1,7 +1,7 @@
 import Event from '../../engine/events/event';
-import EntityImpl from '../../platformer/entities/entity';
+import PlatformerEntity from '../../platformer/entities/platformer.entity';
 
-export class StompEvent implements Event<{ us: EntityImpl; them: EntityImpl }> {
+export class StompEvent implements Event<{ us: PlatformerEntity; them: PlatformerEntity }> {
     name = 'stomp';
-    constructor(public payload: { us: EntityImpl; them: EntityImpl }) {}
+    constructor(public payload: { us: PlatformerEntity; them: PlatformerEntity }) {}
 }

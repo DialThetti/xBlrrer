@@ -1,12 +1,12 @@
 import Trait from '../../../engine/entities/trait';
 import Vector from '../../../engine/math/vector';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 import CantGoLeft from '../../../platformer/entities/traits/cantGoLeft';
 import Level from '../../../platformer/level';
 import Killable from './killable';
 
 export default class PlayerController extends Trait {
-    player: EntityImpl;
+    player: PlatformerEntity;
     checkPoint: Vector;
     coins = 0;
     points = 0;
@@ -16,7 +16,7 @@ export default class PlayerController extends Trait {
     setCheckpoint(v: Vector): void {
         this.checkPoint = v;
     }
-    setPlayer(player: EntityImpl): void {
+    setPlayer(player: PlatformerEntity): void {
         this.player = player;
     }
 

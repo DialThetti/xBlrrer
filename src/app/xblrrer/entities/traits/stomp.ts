@@ -1,6 +1,6 @@
 import Trait from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
-import EntityImpl from '../../../platformer/entities/entity';
+import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 import { StompEvent } from '../../events/events';
 import Killable from './killable';
 
@@ -13,11 +13,15 @@ export default class Stomp extends Trait {
         super('stomper');
     }
 
-    fromAbove(entity: EntityImpl, target: EntityImpl): boolean {
+    fromAbove(
+        entity: PlatformerEntity,
+
+        target: PlatformerEntity,
+    ): boolean {
         return entity.vel.y > target.vel.y;
     }
 
-    collides(us: EntityImpl, them: EntityImpl): void {
+    collides(us: PlatformerEntity, them: PlatformerEntity): void {
         const killable = them.getTrait(Killable);
         if (us.getTrait(Killable).finalize || us.getTrait(Killable).dead) return;
         if (!killable || killable.dead) {
@@ -31,7 +35,7 @@ export default class Stomp extends Trait {
         }
     }
 
-    bounce(us: EntityImpl, them: EntityImpl): void {
+    bounce(us: PlatformerEntity, them: PlatformerEntity): void {
         this.finalize = (): void => {
             us.bounds.bottom = them.bounds.top;
             us.vel.y = -this.bounceSpeed;

@@ -1,16 +1,18 @@
 import { expect } from 'chai';
 import Trait from '../../engine/entities/trait';
-import Entity from './entity';
+import PlatformerEntity from './platformer.entity';
 class TestE extends Trait {
     counter = 0;
     constructor() {
         super('test');
     }
-    doStuff() {}
+    doStuff() {
+        // noop
+    }
 }
 describe('Entity', () => {
     describe('Traits', () => {
-        const e = new Entity();
+        const e = new PlatformerEntity();
         it('should be addable', () => {
             e.addTrait(new TestE());
             expect(Object.keys(e.traits).length).to.equal(1);
