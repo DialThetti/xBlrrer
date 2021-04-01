@@ -28,28 +28,28 @@ describe('Solid', () => {
             expect(entity.vel.x).to.equal(4);
             expect(entity.vel.y).to.equal(2);
         });
-        it('should obduct BOTTOM', () => {
+        it('should obstruct BOTTOM', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.BOTTOM, match);
             expect(entity.vel.x).to.equal(4);
             expect(entity.vel.y).to.equal(0);
             expect(entity.bounds.top).to.equal(-5);
         });
-        it('should obduct TOP', () => {
+        it('should obstruct TOP', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.TOP, match);
             expect(entity.vel.x).to.equal(4);
             expect(entity.vel.y).to.equal(0);
             expect(entity.bounds.top).to.equal(2);
         });
-        it('should obduct LEFT', () => {
+        it('should obstruct LEFT', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.LEFT, match);
             expect(entity.vel.x).to.equal(0);
             expect(entity.vel.y).to.equal(2);
             expect(entity.bounds.left).to.equal(4);
         });
-        it('should obduct RIGHT', () => {
+        it('should obstruct RIGHT', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.RIGHT, match);
             expect(entity.vel.x).to.equal(0);

@@ -30,7 +30,7 @@ describe('TileCollider', () => {
             collider.checkX({ vel: { x: 0 } } as Entity);
             verify(spyed.get(anything(), anything())).never();
         });
-        it('should do consult layer if entity is moving', () => {
+        it('should consult layer if entity is moving', () => {
             const m = new Matrix<Tile>();
             m.set(1, 1, { name: 'a', types: [] } as Tile);
             collider.addGrid(m);
@@ -49,7 +49,7 @@ describe('TileCollider', () => {
             collider.checkY({ vel: { y: 0 } } as Entity);
             verify(spyed.get(anything(), anything())).never();
         });
-        it('should do consult layer if entity is moving', () => {
+        it('should consult layer if entity is moving', () => {
             const m = new Matrix<Tile>();
             m.set(-1, -1, { name: 'a', types: [] } as Tile);
             collider.addGrid(m);
