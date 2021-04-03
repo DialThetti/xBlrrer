@@ -2,9 +2,9 @@ import Loader from '../../engine/io/loader';
 import { loadXML } from '../../engine/io/loaders';
 import Matrix from '../../engine/math/matrix';
 import Tile from '../../engine/world/tiles/tile';
-import { Layer, TiledMap } from '../model/tiled.map';
-import { TiledTile } from '../model/tileset.model';
-import TileCreator from './tile-creator';
+import { Layer, TiledMap } from '../model/tiled-map.model';
+import { TiledTile } from '../model/tiled-tile-set.model';
+import TileMatrixCreator from './tile-matrix-creator';
 import TiledTilesetLoader from './tiled-tileset.loader';
 
 export class TiledMapLoader implements Loader<TiledMap> {
@@ -40,7 +40,7 @@ export class TiledMapLoader implements Loader<TiledMap> {
             layers: this.createLayers(map),
             tileSize: parseInt(w),
         } as TiledMap;
-        tiledMap.matixes = this.createLevelSpec(tiledMap, tilesets[0].tileset.tileMatrix);
+        tiledMap.matixes = this.createTileMatrixes(tiledMap, tilesets[0].tileset.tileMatrix);
         return tiledMap;
     }
 
@@ -60,7 +60,8 @@ export class TiledMapLoader implements Loader<TiledMap> {
             return { chunks, id: parseInt(a.getAttribute('id')), name: a.getAttribute('name') };
         });
     }
-    createLevelSpec(map: TiledMap, tileProps: { [id: number]: TiledTile }): Matrix<Tile>[] {
-        return new TileCreator().createTiles(map, tileProps);
+    createTileMatrixes(map: TiledMap, tileProps: { [id: number]: TiledTile }): Matrix<Tile>[] {
+        const tileCreator = new TileMatrixCreator(tileProps);
+        return map.layers.map((layer) => tileCreator.create(layer));
     }
 }

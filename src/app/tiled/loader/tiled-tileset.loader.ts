@@ -1,8 +1,7 @@
 import Loader from '../../engine/io/loader';
 import { loadImage, loadJson } from '../../engine/io/loaders';
-import SpriteSheet from '../../engine/rendering/spriteSheet';
 import TileSet from '../../engine/rendering/tileSet';
-import { TiledTile, TiledTileSet } from '../model/tileset.model';
+import { TiledTile, TiledTileSet } from '../model/tiled-tile-set.model';
 
 export default class TiledTilesetLoader
     implements Loader<{ spriteSheet: TileSet; tileMatrix: { [id: number]: TiledTile } }> {
