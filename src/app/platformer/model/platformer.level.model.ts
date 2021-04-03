@@ -1,5 +1,5 @@
 import Vector from '../../engine/math/vector';
-import { TiledMap } from '../../tiled/model/tiled.map';
+import { TiledMap } from '../../tiled/model/tiled-map.model';
 
 export default interface PlatformerLevel {
     tiledMapPath: string;

@@ -1,6 +1,6 @@
 {
     "bgm": "overground",
-    "tiledMapPath": "./tiled/dev.tmx",
+    "tiledMapPath": "./tiled/forest.json",
     "estimateTime": 999,
     "startPosition": { "x": 2, "y": 54 },
 

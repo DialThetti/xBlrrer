@@ -24,7 +24,7 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
 
         await new EntityFactory().prepare();
 
-        const backgroundSprites = levelSpec.tiledMap.spriteSheet;
+        const backgroundSprites = levelSpec.tiledMap.tileset;
 
         const level = new Level(levelSpec.tiledMap.tileSize);
         level.name = this.levelName;
@@ -41,12 +41,12 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         const player = entityRepo['mario']() as PlatformerEntity;
         player.state = EntityState.ACTIVE;
 
-        level.tiles = levelSpec.tiledMap.matixes[2];
+        level.tiles = levelSpec.tiledMap.layers[2];
         // new TileCreator(level).createTiles(levelSpec);
         level.startPosition = levelSpec.startPosition;
         level.estimateTime = levelSpec.estimateTime;
         level.bgm = levelSpec.bgm;
-        level.collider.tileCollider.layers = levelSpec.tiledMap.matixes.map(
+        level.collider.tileCollider.layers = levelSpec.tiledMap.layers.map(
             (a) => new TileColliderLayer(a, level.tilesize),
         );
         const bl = new BackgroundLayer(level, backgroundSprites);
