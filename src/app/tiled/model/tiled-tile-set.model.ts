@@ -20,5 +20,5 @@ export interface TiledTileSet {
 
 export interface TiledTile {
     id: number;
-    properties: { name: string; type: string; value: any }[];
+    properties: { name: string; type: string; value: unknown }[];
 }

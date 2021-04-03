@@ -26,13 +26,13 @@ export default class TileMatrixCreator {
     private setTile(tiles: Matrix<Tile>, id: number, tile: TiledTile, x: number, y: number): void {
         const tags = this.booleanTags.filter((tag) => this.hasEnabled(tile, tag));
 
-        if (tile && tile.properties.some((t) => t.name === 'other' && t.value.includes('respawn'))) {
+        if (tile && tile.properties.some((t) => t.name === 'other' && (t.value as string).includes('respawn'))) {
             tags.push('respawn');
         }
         tiles.set(x, y, new Tile(`${id}`, tags));
     }
 
     hasEnabled(tile: TiledTile, key: string) {
-        return tile && tile.properties.some((t) => t.name === key && t.value === true);
+        return tile && tile.properties.some((t) => t.name === key && (t.value as boolean) === true);
     }
 }
