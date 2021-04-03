@@ -2,10 +2,10 @@ import Loader from '../../engine/io/loader';
 import { loadXML } from '../../engine/io/loaders';
 import Matrix from '../../engine/math/matrix';
 import Tile from '../../engine/world/tiles/tile';
-import TileCreator from './TileCreator';
 import { Layer, TiledMap } from '../model/tiled.map';
-import TiledTilesetLoader from './tiled.tileset.loader';
 import { TiledTile } from '../model/tileset.model';
+import TileCreator from './tile-creator';
+import TiledTilesetLoader from './tiled-tileset.loader';
 
 export class TiledMapLoader implements Loader<TiledMap> {
     directory: string;

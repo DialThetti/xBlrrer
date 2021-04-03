@@ -21,13 +21,13 @@ export default class TileCreator {
 
     private setTile(tiles: Matrix<Tile>, id: number, tile: TiledTile, x: number, y: number): void {
         const tags = [];
-        if (this.hasEnabled(tile,'solid')) {
+        if (this.hasEnabled(tile, 'solid')) {
             tags.push('solid');
         }
-        if (this.hasEnabled(tile,'platform')) {
+        if (this.hasEnabled(tile, 'platform')) {
             tags.push('platform');
         }
-        if (this.hasEnabled(tile,'onlyCrouch')) {
+        if (this.hasEnabled(tile, 'onlyCrouch')) {
             tags.push('onlyCrouch');
         }
         if (tile && tile.properties.some((t) => t.name === 'other' && t.value.includes('respawn'))) {
