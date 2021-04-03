@@ -21,7 +21,7 @@ describe('TileMatrixCreator', () => {
         tileMatrixCreator = new TileMatrixCreator(tileProps);
     });
     it('should be created', () => {
-        expect(tileMatrixCreator).not.to.be.null;
+        expect(tileMatrixCreator).not.to.be.undefined;
     });
     describe('create', () => {
         const layer: Layer = {

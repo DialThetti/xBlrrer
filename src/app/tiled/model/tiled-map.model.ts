@@ -6,7 +6,7 @@ export class TiledMap {
     spriteSheet: TileSet;
     tileSize: number;
     matixes: Matrix<Tile>[];
-
+    renderOrder: string;
     layers: Layer[];
 }
 

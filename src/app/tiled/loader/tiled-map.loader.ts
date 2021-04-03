@@ -1,66 +1,70 @@
 import Loader from '../../engine/io/loader';
-import { loadXML } from '../../engine/io/loaders';
+import { loadJson } from '../../engine/io/loaders';
 import Matrix from '../../engine/math/matrix';
 import Tile from '../../engine/world/tiles/tile';
-import { Layer, TiledMap } from '../model/tiled-map.model';
+import { Chunk, Layer, TiledMap } from '../model/tiled-map.model';
 import { TiledTile } from '../model/tiled-tile-set.model';
+import TmxData, { TmxChunk } from '../model/tmx.data';
 import TileMatrixCreator from './tile-matrix-creator';
 import TiledTilesetLoader from './tiled-tileset.loader';
 
-export class TiledMapLoader implements Loader<TiledMap> {
+export default class TiledMapLoader implements Loader<TiledMap> {
     directory: string;
 
     constructor(private path: string) {
         this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
     }
-    async load(): Promise<TiledMap> {
-        const xml = await loadXML(this.path);
-        return this.map(xml);
+    public async load(): Promise<TiledMap> {
+        const json = await loadJson<TmxData>(this.path);
+        return this.map(json);
     }
 
-    async map(xml: XMLDocument): Promise<TiledMap> {
-        const map = xml.getElementsByTagName('map')[0];
-        const w = map.getAttribute('tilewidth');
-        const h = map.getAttribute('tileheight');
-        const renderOrder = map.getAttribute('renderorder');
+    private async map(tmx: TmxData): Promise<TiledMap> {
+        const w = tmx.tilewidth;
+        const h = tmx.tileheight;
+        if (w !== h) {
+            console.warn('tiles are not squared. May cause issues');
+        }
+        const renderOrder = tmx.renderorder;
         const tilesets = await Promise.all(
-            [...map.getElementsByTagName('tileset')]
-                .map((a) => ({
-                    startId: parseInt(a.getAttribute('firstgid')),
-                    source: a.getAttribute('source'),
-                }))
-                .map(async (a) => ({
-                    ...a,
-                    tileset: await new TiledTilesetLoader(this.directory + a.source, a.startId).load(),
-                })),
+            [...tmx.tilesets].map(async (tileset) => ({
+                tileset: await new TiledTilesetLoader(this.directory + tileset.source, tileset.firstgid).load(),
+            })),
         );
 
         const tiledMap = {
             spriteSheet: tilesets[0].tileset.spriteSheet,
-            layers: this.createLayers(map),
-            tileSize: parseInt(w),
+            renderOrder,
+            layers: this.createLayers(tmx),
+            tileSize: w,
         } as TiledMap;
         tiledMap.matixes = this.createTileMatrixes(tiledMap, tilesets[0].tileset.tileMatrix);
         return tiledMap;
     }
 
-    createLayers(map: HTMLMapElement): Layer[] {
-        return [...map.getElementsByTagName('layer')].map((a) => {
-            const data = a.getElementsByTagName('data')[0];
-            const chunks = [...data.getElementsByTagName('chunk')].map((chunk) => {
-                const r = {
-                    x: parseInt(chunk.getAttribute('x')),
-                    y: parseInt(chunk.getAttribute('y')),
-                    width: parseInt(chunk.getAttribute('width')),
-                    height: parseInt(chunk.getAttribute('height')),
-                    elements: chunk.textContent.split(',\n').map((l) => l.split(',').map((i) => parseInt(i))),
-                };
-                return r;
-            });
-            return { chunks, id: parseInt(a.getAttribute('id')), name: a.getAttribute('name') };
+    private createLayers(tmx: TmxData): Layer[] {
+        return [...tmx.layers].map((layer) => {
+            const chunks = [...layer.chunks].map((chunk) => this.toChunk(chunk));
+            return { chunks, id: layer.id, name: layer.name };
         });
     }
-    createTileMatrixes(map: TiledMap, tileProps: { [id: number]: TiledTile }): Matrix<Tile>[] {
+
+    private toChunk(chunk: TmxChunk): Chunk {
+        const elements: number[][] = [];
+        for (let i = 0; i < chunk.data.length; i += chunk.width) {
+            const temparray = chunk.data.slice(i, i + chunk.width);
+            elements.push(temparray);
+        }
+        return {
+            x: chunk.x,
+            y: chunk.y,
+            width: chunk.width,
+            height: chunk.height,
+            elements,
+        };
+    }
+
+    private createTileMatrixes(map: TiledMap, tileProps: { [id: number]: TiledTile }): Matrix<Tile>[] {
         const tileCreator = new TileMatrixCreator(tileProps);
         return map.layers.map((layer) => tileCreator.create(layer));
     }
