@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { Layer } from '../model/tiled-map.model';
-import { TiledTile } from '../model/tiled-tile-set.model';
+import { TmxLayer } from '../model/tmx.model';
+import { TsxTileModel } from '../model/tsx.model';
 import TileMatrixCreator from './tile-matrix-creator';
 describe('TileMatrixCreator', () => {
     let tileMatrixCreator: TileMatrixCreator;
@@ -9,14 +9,14 @@ describe('TileMatrixCreator', () => {
             1: {
                 id: 1,
                 properties: [{ name: 'solid', type: 'boolean', value: true }],
-            } as TiledTile,
+            } as TsxTileModel,
             2: {
                 id: 2,
                 properties: [
                     { name: 'other', type: 'string', value: 'respawn' },
                     { name: 'solid', type: 'boolean', value: false },
                 ],
-            } as TiledTile,
+            } as TsxTileModel,
         };
         tileMatrixCreator = new TileMatrixCreator(tileProps);
     });
@@ -24,23 +24,19 @@ describe('TileMatrixCreator', () => {
         expect(tileMatrixCreator).not.to.be.undefined;
     });
     describe('create', () => {
-        const layer: Layer = {
+        const layer = {
             chunks: [
                 {
                     x: 2,
                     y: 0,
                     width: 3,
                     height: 3,
-                    elements: [
-                        [0, 1, 0],
-                        [1, 2, 1],
-                        [2, 3, 2],
-                    ],
+                    data: [0, 1, 0, 1, 2, 1, 2, 3, 2],
                 },
             ],
             id: 0,
             name: 'name',
-        };
+        } as TmxLayer;
         it('should create a matrix out of a layer', () => {
             const matrix = tileMatrixCreator.create(layer);
             expect(matrix).not.to.be.null;

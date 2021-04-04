@@ -1,4 +1,4 @@
-export interface TiledTileSet {
+export interface TsxModel {
     columns: number;
 
     image: string;
@@ -15,10 +15,10 @@ export interface TiledTileSet {
     tilewidth: number;
     type: string;
     version: string;
-    tiles?: TiledTile[];
+    tiles?: TsxTileModel[];
 }
 
-export interface TiledTile {
+export interface TsxTileModel {
     id: number;
     properties: { name: string; type: string; value: unknown }[];
 }

@@ -1,4 +1,4 @@
-export default interface TmxData {
+export interface TmxModel {
     compressionlevel: number;
     height: number;
     infinite: false;
