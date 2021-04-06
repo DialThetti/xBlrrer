@@ -18,7 +18,9 @@ export default class Crouch extends Trait {
             this.resetSize(entity);
         }
         if (this.requestEnd) {
-            if (!this.lockDown) this.end(entity);
+            if (!this.lockDown) {
+                this.end(entity);
+            }
         }
         this.lockDown = false;
     }
@@ -30,13 +32,14 @@ export default class Crouch extends Trait {
             entity.offset.set(this.memoOffset.x, this.memoOffset.y);
             this.memoSize = undefined;
             this.memoOffset = undefined;
-            this._down = false;
-            this.requestEnd = false;
         }
+        this._down = false;
+        this.requestEnd = true;
     }
 
     start(): void {
         this._down = true;
+        this.requestEnd = false;
     }
 
     cancel(): void {

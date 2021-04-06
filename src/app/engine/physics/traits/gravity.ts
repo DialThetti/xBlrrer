@@ -1,9 +1,9 @@
-import Trait, { Context } from '../../entities/trait';
 import Entity from '../../entities/entity';
+import Trait, { Context } from '../../entities/trait';
 import Vector from '../../math/vector';
 
 export default class Gravity extends Trait {
-    constructor(private gravity = new Vector(0, 1500)) {
+    constructor(public gravity = new Vector(0, 1500)) {
         super('gravity');
     }
 

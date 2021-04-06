@@ -1,5 +1,5 @@
 import { setEntityRepo } from '../../engine/entities/entity.repo';
-import MarioPrefab from './prefabs/Mario.prefab';
+import MarioPrefab from './prefabs/Crow.prefab';
 
 export default class EntityFactory {
     async prepare(): Promise<void> {

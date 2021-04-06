@@ -4,6 +4,7 @@ import TraitCtnr from '../../engine/entities/trait.container';
 import * as physics from '../../engine/physics/traits/traits';
 import CantGoLeft from '../../platformer/entities/traits/cantGoLeft';
 import Crouch from './traits/crouch';
+import Glide from './traits/glide';
 import Go from './traits/go';
 import Jump from './traits/jump';
 import Killable from './traits/killable';
@@ -26,6 +27,7 @@ export interface Traits extends physics.Traits {
     player: Player;
     levelTimer: LevelTimer;
     crouch: Crouch;
+    glide: Glide;
 }
 
 export function getTraits(e: TraitCtnr): Partial<Traits> {
@@ -38,7 +40,7 @@ export function getTraits(e: TraitCtnr): Partial<Traits> {
         cantGoLeft: e.getTrait(CantGoLeft),
         playerController: e.getTrait(PlayerController),
         player: e.getTrait(Player),
-
+        glide: e.getTrait(Glide),
         activateOnSight: e.getTrait(ActivateOnSight),
         emitter: e.getTrait(Emitter),
         levelTimer: e.getTrait(LevelTimer),

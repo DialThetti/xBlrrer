@@ -7,6 +7,7 @@ import Solid from '../../../engine/physics/traits/solid';
 import SpriteSheet from '../../../engine/rendering/spriteSheet';
 import PlatformerEntity from '../../../platformer/entities/platformer.entity';
 import Crouch from '../traits/crouch';
+import Glide from '../traits/glide';
 import Go from '../traits/go';
 import Jump from '../traits/jump';
 import Killable from '../traits/killable';
@@ -25,6 +26,7 @@ export default class MarioPrefab extends EntityPrefab {
             new Jump(),
             new Go(),
             new Stomp(),
+            new Glide(),
             new Killable('dead', 0),
             new Crouch(),
             new Player(),
@@ -36,13 +38,15 @@ export default class MarioPrefab extends EntityPrefab {
         const go = entity.getTrait(Go);
         const jump = entity.getTrait(Jump);
         const crouch = entity.getTrait(Crouch);
+        const glide = entity.getTrait(Glide);
+
         if (crouch.down) {
             return 'crouch';
         }
+        if (glide?.gliding) {
+            return 'fall-1';
+        }
         if (jump.falling) {
-            if (jump.gliding) {
-                return 'fall-1';
-            }
             const direction = entity.vel.y < 0 ? 'jump' : 'fall';
             return sprite.getAnimation(direction)(entity.vel.y);
         }
@@ -55,6 +59,6 @@ export default class MarioPrefab extends EntityPrefab {
 
     flipped(f: PlatformerEntity): boolean {
         const go = f.getTrait(Go);
-        return go.lastDir == -1;
+        return go.facingDirection == -1;
     }
 }
