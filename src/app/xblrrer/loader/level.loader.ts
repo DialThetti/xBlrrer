@@ -1,9 +1,11 @@
 import { entityRepo } from '../../engine/entities/entity.repo';
 import { EntityState } from '../../engine/entities/entity.state';
 import Loader from '../../engine/io/loader';
+import { loadImage } from '../../engine/io/loaders';
 import { addHandler } from '../../engine/physics/collider/tile.collider';
 import TileColliderLayer from '../../engine/physics/collider/tile.collider.layer';
 import Compositor from '../../engine/rendering/compositor.layer';
+import ParallaxLayer from '../../engine/rendering/layers/parallax.layer';
 import SingleColorLayer from '../../engine/rendering/layers/singleColor.layer';
 import SpriteLayer from '../../engine/rendering/layers/sprite.layer';
 import PlatformerEntity from '../../platformer/entities/platformer.entity';
@@ -51,7 +53,13 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         );
         const bl = new BackgroundLayer(level, backgroundSprites);
 
-        composition.layers.push(bl, new SpriteLayer(level.entities), new CollisionLayer(level));
+        const pl = [
+            new ParallaxLayer({ img: await loadImage('img/parallax.4.png'), y: 0 }, 9),
+            new ParallaxLayer({ img: await loadImage('img/parallax.3.png'), y: 0 }, 6),
+            new ParallaxLayer({ img: await loadImage('img/parallax.2.png'), y: 0 }, 3),
+            new ParallaxLayer({ img: await loadImage('img/parallax.1.png'), y: 0 }, 1),
+        ];
+        composition.layers.push(...pl, bl, new SpriteLayer(level.entities), new CollisionLayer(level));
         // prepare collider
         addHandler('brick', createBrickTileHandler());
         addHandler('coin', createCoinTileHandler());
