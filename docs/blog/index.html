@@ -7,29 +7,103 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="./js/fontawesome.min.js"></script>
         <link rel="stylesheet" href="./css/style.css" />
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
         <meta content="utf-8" http-equiv="encoding" />
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <meta name="author" content="DialThetti">
-        <meta name="keywords" content="TypeScript, Game Dev">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <meta name="author" content="DialThetti" />
+        <meta name="keywords" content="TypeScript, Game Dev" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog.">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/">
-        <meta property="og:title" content="Dev Blog: xBlrrer">
-        <meta property="og:description" content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog.">
-        <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png">
-
-
+        <meta
+            name="description"
+            content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/" />
+        <meta property="og:title" content="Dev Blog: xBlrrer" />
+        <meta
+            property="og:description"
+            content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog."
+        />
+        <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png" />
     </head>
     <body>
         <sidenav class="hide-on-med-and-down">
             <h1><i>xBlrrer</i> - Devblog</h1>
+            <div class="bottom center">
+                <a class="waves-effect waves-light btn discord-btn" target="blank" href="https://discord.gg/T9HAHrDM"
+                    ><i class="fab fa-discord"></i>Join on Discord</a
+                >
+            </div>
         </sidenav>
         <main>
+            <div class=" hide-on-large-only">
+                <nav>
+                    <div class="nav-wrapper">
+                       <i> <em>xBlrrer</em> - Devblog</i>
+                    </div>
+                </nav>
+                <div class="fixed-action-btn toolbar">
+                    <a class="btn-floating btn-large">
+                        <i class="large material-icons"><i class="fa fa-plus"></i></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="btn-floating"><i class="fab fa-discord"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="row">
+               
+
                 <div class="col s12">
+                    <blog-entry
+                        title="Day 4: Meet the Protagonist"
+                        author="DialThetti"
+                        date="7.04.2021"
+                        tags="Character Design, Pixelart"
+                    >
+                        <span slot="preview">
+                            <p>
+                                After the easter holidays and not having finished as much as I wanted, I finally took
+                                the first step and animated the main character.
+                            </p></span
+                        >
+                        <span slot="full">
+                            <p>
+                                During the conception phase of the character I asked my friend Wyrvern#8013 to design a
+                                human crow. This was what he sent back to me.
+                            </p>
+                            <img
+                                class="materialboxed"
+                                src="img/day_4/prototype.png"
+                                data-caption="Rough structure of the game and engine"
+                                style="margin: auto; max-width: 100%"
+                            />
+                            <p>
+                                I liked the design. And I set about animating it. I 'borrowed' the spritesheet from
+                                Starbound, because the animations looked very clean and good there, and added the new
+                                skin pixel by pixel.
+                            </p>
+                            <p>
+                                And now he can walk! I still have to make more animations for jumping and gliding, but
+                                the first attempts in the prototype already look good.
+                            </p>
+                            <img
+                            class="materialboxed"
+                            src="img/day_4/walking.gif"
+                            data-caption="Rough structure of the game and engine"
+                            style="margin: auto; max-width: 100%"
+                        />
+                            <p>
+                                I currently spam my guild's group chat when I've made new changes, which disrupts some
+                                conversations. So I decided to create a new Discord channel for all those who have
+                                questions and/or comments. Feel free to drop by, I'd be happy to hear from you.
+                            </p>
+                        </span>
+                    </blog-entry>
                     <blog-entry
                         title="Day 3: Blog Improvements"
                         author="DialThetti"
@@ -221,5 +295,13 @@
         <script src="js/blog/polyfills.js" defer></script>
         <script src="js/blog/vendor.js" defer></script>
         <script src="js/blog/main.js" defer></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.fixed-action-btn');
+                var instances = M.FloatingActionButton.init(elems, {
+                    toolbarEnabled: true,
+                });
+            });
+        </script>
     </body>
 </html>
