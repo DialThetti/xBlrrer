@@ -8,6 +8,7 @@
         "dev": "webpack serve --config webpack.config.dev.js",
         "build": "webpack --config webpack.config.js ",
         "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
+        "test:watch": "nyc mocha --watch -r ts-node/register src/**/*.spec.ts",
         "format": "npx prettier --write 'src/**/*.ts'",
         "lint": "npx eslint --fix 'src/**/*.ts'"
     },
