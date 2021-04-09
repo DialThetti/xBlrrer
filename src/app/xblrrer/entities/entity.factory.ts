@@ -1,9 +1,9 @@
 import { setEntityRepo } from '../../engine/entities/entity.repo';
-import MarioPrefab from './prefabs/Crow.prefab';
+import CrowPrefab from './prefabs/Crow.prefab';
 
 export default class EntityFactory {
     async prepare(): Promise<void> {
-        const prefabs = [MarioPrefab];
+        const prefabs = [CrowPrefab];
         const factories = await Promise.all(
             prefabs
                 .map((prefabClass) => new prefabClass())

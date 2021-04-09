@@ -24,7 +24,7 @@ export function createBrickTileHandler(): TwoDimTileCollisionHandler {
             } else if (entity.vel.y < 0) {
                 if (entity.bounds.top < match.y.to) {
                     entity.obstruct(Side.TOP, match);
-                    // Todo add handling for small mario
+
                     tiles.setByRange(match.x, match.y, undefined);
                 }
             }

@@ -3,6 +3,11 @@
     "tiledMapPath": "./tiled/forest.json",
     "estimateTime": 999,
     "startPosition": { "x": 2, "y": 54 },
-
+    "parallax": [
+        { "img": "img/parallax.4.png", "speed": 9 },
+        { "img": "img/parallax.3.png", "speed": 6 },
+        { "img": "img/parallax.2.png", "speed": 3 },
+        { "img": "img/parallax.1.png", "speed": 1 }
+    ],
     "entities": []
 }

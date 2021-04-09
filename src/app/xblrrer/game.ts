@@ -1,6 +1,6 @@
 import SceneMachine from '../scenes/scene.machine';
-import GameScene from './scenes/loadingScene/game.scene';
 import LoadingScene from './scenes/loadingScene/loading.scene';
+import GameScene from './scenes/platformScene/game.scene';
 
 declare const window: any; // eslint-disable-line
 
@@ -14,9 +14,10 @@ export default class Game {
     }
 
     async start(): Promise<void> {
-        const sceneMachine = new SceneMachine(this.context)
-            .addScene(() => new LoadingScene())
-            .addScene(() => new GameScene('forest-1'));
+        const sceneMachine = new SceneMachine(this.context).addScenes([
+            () => new LoadingScene(),
+            () => new GameScene('forest-1'),
+        ]);
         await sceneMachine.load();
         sceneMachine.start();
         sceneMachine.setScene('forest-1');

@@ -14,9 +14,9 @@ import Killable from '../traits/killable';
 import Player from '../traits/player';
 import Stomp from '../traits/stomp';
 
-export default class MarioPrefab extends EntityPrefab {
+export default class CrowPrefab extends EntityPrefab {
     constructor() {
-        super('mario', 'mario');
+        super('crow', 'crow');
         this.size = new Vector(16, 32);
         this.offset = new Vector(8, 0);
         this.traits = (): Trait[] => [

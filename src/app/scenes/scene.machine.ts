@@ -6,18 +6,16 @@ export default class SceneMachine {
     loadingScene: Scene;
     currentSceneName = 'loadingScene';
     constructor(private context: CanvasRenderingContext2D) {}
-    public addScene(sceneProvider: () => Scene): SceneMachine {
-        const scene = sceneProvider();
-        if (scene.isLoadingScene) {
-            this.loadingScene = scene;
-        } else {
-            this.scenes[scene.name] = { scene, loaded: false };
-        }
+
+    public addScenes(sceneProvider: (() => Scene)[]): SceneMachine {
+        sceneProvider.forEach((s) => this.addScene(s));
         return this;
     }
+
     public async load(): Promise<void> {
         await this.loadingScene.load();
     }
+
     public start(): void {
         new Timer((deltaTime) => {
             this.currentScene.update(deltaTime);
@@ -39,10 +37,21 @@ export default class SceneMachine {
         await sceneBlob.scene.start();
         this.currentSceneName = name;
     }
+
     private get currentScene(): Scene {
         if (this.currentSceneName === 'loadingScene') {
             return this.loadingScene;
         }
         return this.scenes[this.currentSceneName].scene;
+    }
+
+    private addScene(sceneProvider: () => Scene): SceneMachine {
+        const scene = sceneProvider();
+        if (scene.isLoadingScene) {
+            this.loadingScene = scene;
+        } else {
+            this.scenes[scene.name] = { scene, loaded: false };
+        }
+        return this;
     }
 }

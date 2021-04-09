@@ -3,7 +3,6 @@ import Vector from '../../engine/math/vector';
 export default interface PlatformerLevelData {
     tiledMapPath: string;
 
-    background?: string;
     estimateTime: number;
     bgm?: string;
 

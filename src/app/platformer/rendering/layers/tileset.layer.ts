@@ -9,7 +9,7 @@ import Camera from '../../../engine/world/camera';
 import TileMath from '../../../engine/world/tiles/tile.math';
 import Level from '../../level';
 
-export default class BackgroundLayer implements RenderLayer {
+export default class TilesetLayer implements RenderLayer {
     layers: TileColliderLayer[];
     buffer: HTMLCanvasElement;
     bufferContext: CanvasRenderingContext2D;

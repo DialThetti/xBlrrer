@@ -1,8 +1,8 @@
-import Camera from '../../world/camera';
 import Entity from '../../entities/entity';
+import Camera from '../../world/camera';
 import RenderLayer from './renderLayer';
 
-export default class SpriteLayer implements RenderLayer {
+export default class EntityLayer implements RenderLayer {
     bufferContext: CanvasRenderingContext2D;
     buffer: HTMLCanvasElement;
     constructor(private entities: Set<Entity>, private width = 64, private height = 64) {

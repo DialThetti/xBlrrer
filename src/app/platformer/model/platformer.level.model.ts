@@ -4,7 +4,8 @@ import { TiledMap } from '../../tiled/model/tiled-map.model';
 export default interface PlatformerLevel {
     tiledMapPath: string;
 
-    background?: string;
+    parallax?: { img: string; speed: number }[];
+
     estimateTime: number;
     bgm?: string;
 
