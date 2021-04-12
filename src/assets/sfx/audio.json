@@ -1,0 +1,7 @@
+{
+    "fx": {
+        "jump": {
+            "url": "./sfx/jump.wav"
+        } 
+    }
+}

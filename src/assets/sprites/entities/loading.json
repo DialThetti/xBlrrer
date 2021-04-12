@@ -1,0 +1,33 @@
+{
+    "imageURL": "./img/loading.png",
+
+    "frames": [
+        { "name": "loading-1", "rect": [0, 0, 32, 32] },
+        { "name": "loading-2", "rect": [32, 0, 32, 32] },
+        { "name": "loading-3", "rect": [64, 0, 32, 32] },
+        { "name": "loading-4", "rect": [96, 0, 32, 32] },
+        { "name": "loading-5", "rect": [128, 0, 32, 32] },
+        { "name": "loading-6", "rect": [0, 32, 32, 32] },
+        { "name": "loading-7", "rect": [32, 32, 32, 32] },
+        { "name": "loading-8", "rect": [64, 32, 32, 32] },
+        { "name": "loading-9", "rect": [96, 32, 32, 32] }
+    ],
+
+    "animations": [
+        {
+            "name": "loading",
+            "frameLen": 8,
+            "frames": [
+                "loading-1",
+                "loading-2",
+                "loading-3",
+                "loading-4",
+                "loading-5",
+                "loading-6",
+                "loading-7",
+                "loading-8",
+                "loading-9"
+            ]
+        }
+    ]
+}
