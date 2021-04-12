@@ -6,6 +6,7 @@ import { TsxModel, TsxTileModel } from '../model/tsx.model';
 
 export default class TiledTilesetLoader implements Loader<TiledTileset> {
     directory: string;
+    onlyRequiredIds: number[];
     loader = () => loadJson<TsxModel>(this.path);
     imageLoader = (path) => loadImage(path);
     createTileSet = (img: HTMLImageElement, tsxModel: TsxModel) =>
@@ -15,6 +16,11 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
         this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
     }
 
+    filteredBy(ids: number[]): TiledTilesetLoader {
+        this.onlyRequiredIds = ids;
+        return this;
+    }
+
     async load(): Promise<TiledTileset> {
         const tsxModel = await this.loader();
 
@@ -22,13 +28,26 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
         const tileset = this.createTileSet(img, tsxModel);
         const tileMatrix: { [id: number]: TsxTileModel } = {};
         for (let index = 0; index < tsxModel.tilecount; index++) {
+            const id = index + this.idOffset;
+            if (this.onlyRequiredIds && !this.onlyRequiredIds.includes(id)) {
+                continue;
+            }
             const x = index % tsxModel.columns;
             const y = Math.floor(index / tsxModel.columns);
-            tileset.defineTile(`${index + this.idOffset}`, x, y);
+
+            tileset.defineTile(`${id}`, x, y);
             if (tsxModel.tiles) {
                 tileMatrix[index + this.idOffset] = tsxModel.tiles[index];
             }
         }
+        this.finalize();
         return { tileset, tileMatrix };
+    }
+
+    finalize() {
+        delete this.createTileSet;
+        delete this.loader;
+        delete this.onlyRequiredIds;
+        delete this.imageLoader;
     }
 }
