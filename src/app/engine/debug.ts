@@ -1,18 +1,18 @@
 import Entity from './entities/entity';
 import Camera from './world/camera';
 
-export let debug = false;
+export let debugSettings = { enabled: false, hitboxesOnly: false };
 let initializedOnce = false;
 
 export function setupMouseControl(canvas: HTMLCanvasElement, playerFigure: Entity, camera: Camera): void {
     let lastEvent;
-    debug = true;
+    debugSettings.enabled = true;
     if (initializedOnce) {
         return;
     }
     ['mousedown', 'mousemove'].forEach((n) => {
         canvas.addEventListener(n, (ev: MouseEvent) => {
-            if (!debug) {
+            if (!debugSettings.enabled) {
                 return;
             }
             if (ev.buttons === 1) {
@@ -36,5 +36,5 @@ export function setupMouseControl(canvas: HTMLCanvasElement, playerFigure: Entit
 }
 
 export function removeMouseControl(): void {
-    debug = false;
+    debugSettings.enabled = false;
 }

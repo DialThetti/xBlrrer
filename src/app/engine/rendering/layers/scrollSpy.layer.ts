@@ -1,11 +1,11 @@
-import { debug } from '../../debug';
+import { debugSettings } from '../../debug';
 import Camera from '../../world/camera';
 import { drawRect } from '../helper';
 
 export default class ScrollSpyLayer {
     constructor(private cameraToDraw: Camera) {}
     draw(context: CanvasRenderingContext2D, fromCamera: Camera): void {
-        if (!debug) {
+        if (!debugSettings.enabled) {
             return;
         }
         drawRect(

@@ -1,4 +1,4 @@
-import { debug } from '../../../../engine/debug';
+import { debugSettings } from '../../../../engine/debug';
 import TileCollider from '../../../../engine/physics/collider/tile.collider';
 import { PositionedTile } from '../../../../engine/physics/collider/tile.collider.layer';
 import { drawRect } from '../../../../engine/rendering/helper';
@@ -53,7 +53,7 @@ export default class CollisionLayer implements RenderLayer {
         );
     }
     draw(context: CanvasRenderingContext2D, camera: Camera): void {
-        if (!debug) {
+        if (!debugSettings.enabled) {
             return;
         }
         this.drawTileFrames(context, camera);

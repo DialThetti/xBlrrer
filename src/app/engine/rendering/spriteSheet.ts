@@ -1,6 +1,6 @@
-import { drawRect } from './helper';
-import { debug } from '../debug';
+import { debugSettings } from '../debug';
 import { FrameAnimation } from './animation';
+import { drawRect } from './helper';
 import ImageContainer from './image.container';
 
 export default class SpriteSheet extends ImageContainer {
@@ -18,10 +18,10 @@ export default class SpriteSheet extends ImageContainer {
         if (image) {
             context.drawImage(image, x, y);
         } else {
-            if (debug) {
-                drawRect(context, x, y, 16, 16, 'magenta', { filled: true });
+            if (debugSettings.enabled) {
+                drawRect(context, x, y, this.w, this.h, 'magenta', { filled: true });
             } else {
-                context.clearRect(x, y, 16, 16);
+                context.clearRect(x, y, this.w, this.h);
             }
         }
     }
