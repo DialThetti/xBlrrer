@@ -1,6 +1,6 @@
 import Trait from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Killable from '../../../platformer/entities/traits/killable';
 import { StompEvent } from '../../events/events';
 

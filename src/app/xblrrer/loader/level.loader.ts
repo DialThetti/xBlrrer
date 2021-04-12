@@ -8,10 +8,10 @@ import Compositor from '../../engine/rendering/compositor.layer';
 import EntityLayer from '../../engine/rendering/layers/entity.layer';
 import ParallaxLayer from '../../engine/rendering/layers/parallax.layer';
 import SingleColorLayer from '../../engine/rendering/layers/singleColor.layer';
-import PlatformerEntity from '../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../platformer/entities/platformer-entity';
 import Level from '../../platformer/level';
-import LevelSpecLoader from '../../platformer/loader/platformer.level.loader';
-import { createBrickTileHandler } from '../../platformer/physics/collider/brickTile.handler';
+import LevelSpecLoader from '../../platformer/loader/platformer-level.loader';
+import { createBrickTileHandler } from '../../platformer/physics/collider/brickTile-handler';
 import CollisionLayer from '../../platformer/rendering/layers/debug/collision.layer';
 import TilesetLayer from '../../platformer/rendering/layers/tileset.layer';
 import EntityFactory from '../entities/entity.factory';
@@ -53,7 +53,7 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
 
         composition.layers.push(
             ...(await Promise.all(
-                levelSpec.parallax?.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.speed)),
+                levelSpec.parallax?.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.y, a.speed)),
             )),
         );
         composition.layers.push(new TilesetLayer(level, tileset));

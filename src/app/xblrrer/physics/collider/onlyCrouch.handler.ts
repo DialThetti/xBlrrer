@@ -1,5 +1,5 @@
 import { TwoDimTileCollisionHandler } from '../../../engine/physics/collider/tile.collider';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Crouch from '../../entities/traits/crouch';
 
 export function createOnlyCrouchTileHandler(): TwoDimTileCollisionHandler {

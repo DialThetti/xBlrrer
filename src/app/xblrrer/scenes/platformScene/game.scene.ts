@@ -7,15 +7,13 @@ import CameraLayer from '../../../engine/rendering/layers/camera.layer';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import ScrollSpyLayer from '../../../engine/rendering/layers/scrollSpy.layer';
 import Camera from '../../../engine/world/camera';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
-import PlayerController from '../../../platformer/entities/traits/playercontroller';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
+import PlayerController from '../../../platformer/entities/traits/player-controller';
 import Level from '../../../platformer/level';
 import Scene from '../../../scenes/scene';
 import LevelTimer from '../../entities/traits/leveltimer';
-import Player from '../../entities/traits/player';
 import setupKeyboard from '../../io/input';
 import LevelLoader from '../../loader/level.loader';
-import DashboardLayer from '../../rendering/layers/dashboard.layer';
 
 declare const window: any; // eslint-disable-line
 export default class GameScene implements Scene {
@@ -56,12 +54,12 @@ export default class GameScene implements Scene {
         renderer.layers.push(
             new CameraLayer(camera),
             new ScrollSpyLayer(camera),
-            new DashboardLayer(font, () => ({
+            /*     new DashboardLayer(font, () => ({
                 ...player.getTrait(Player),
                 time: playerEnv.getTrait(LevelTimer).restTime,
                 level: level.name,
                 coins: player.getTrait(Player).coins,
-            })),
+            })),*/
         );
         this.camera = camera;
         this.level = level;
@@ -70,6 +68,9 @@ export default class GameScene implements Scene {
 
         window.testingCheatsEnabled = (enabled): void => {
             debugSettings.enabled = enabled;
+        };
+        window.hitboxesOnly = (enabled): void => {
+            debugSettings.hitboxesOnly = enabled;
         };
     }
 

@@ -2,7 +2,7 @@ import EntityPrefab from '../../../engine/entities/entity.prefab';
 import Trait from '../../../engine/entities/trait';
 import Vector from '../../../engine/math/vector';
 import SpriteSheet from '../../../engine/rendering/spriteSheet';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 
 export default class LoadingPrefab extends EntityPrefab {
     constructor() {

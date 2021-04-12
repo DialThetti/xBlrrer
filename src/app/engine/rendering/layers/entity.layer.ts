@@ -1,15 +1,13 @@
 import Entity from '../../entities/entity';
 import Camera from '../../world/camera';
+import { Canvas, createCanvas, RenderContext } from '../render.utils';
 import RenderLayer from './renderLayer';
 
 export default class EntityLayer implements RenderLayer {
-    bufferContext: CanvasRenderingContext2D;
-    buffer: HTMLCanvasElement;
+    bufferContext: RenderContext;
+    buffer: Canvas;
     constructor(private entities: Set<Entity>, private width = 64, private height = 64) {
-        this.buffer = document.createElement('canvas');
-        this.buffer.width = width;
-        this.buffer.height = height;
-        this.bufferContext = this.buffer.getContext('2d');
+        this.createBuffer(width, height);
     }
 
     draw(context: CanvasRenderingContext2D, camera: Camera): void {
@@ -24,5 +22,10 @@ export default class EntityLayer implements RenderLayer {
                     Math.floor(entity.pos.y - camera.pos.y),
                 );
             });
+    }
+
+    createBuffer(width: number, height: number): void {
+        this.buffer = createCanvas(width, height);
+        this.bufferContext = this.buffer.getContext('2d');
     }
 }

@@ -1,7 +1,7 @@
 import Entity from '../../../engine/entities/entity';
 import Trait from '../../../engine/entities/trait';
 import Vector from '../../../engine/math/vector';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 
 export default class Crouch extends Trait {
     private _down = false;

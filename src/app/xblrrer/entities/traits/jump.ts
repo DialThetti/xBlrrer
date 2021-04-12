@@ -1,11 +1,11 @@
 import Trait, { Context } from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
 import { Side } from '../../../engine/world/tiles/side';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Crouch from './crouch';
 
 export default class Jump extends Trait {
-    private jumpHeight = 1; /*in blocks*/
+    private jumpHeight = 2; /*in blocks*/
     private duration = this.jumpHeight / 12;
     private velocity = 200;
     private engageTime = 0;

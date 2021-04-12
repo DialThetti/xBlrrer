@@ -5,7 +5,7 @@ import Gravity from '../../../engine/physics/traits/gravity';
 import Physics from '../../../engine/physics/traits/physics';
 import Solid from '../../../engine/physics/traits/solid';
 import SpriteSheet from '../../../engine/rendering/spriteSheet';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Killable from '../../../platformer/entities/traits/killable';
 import Crouch from '../traits/crouch';
 import Glide from '../traits/glide';

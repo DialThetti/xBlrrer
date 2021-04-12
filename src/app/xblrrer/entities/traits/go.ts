@@ -3,7 +3,7 @@ import Entity from '../../../engine/entities/entity';
 import Trait, { Context } from '../../../engine/entities/trait';
 import { SfxEvent } from '../../../engine/events/events';
 import { Side } from '../../../engine/world/tiles/side';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Killable from '../../../platformer/entities/traits/killable';
 import Crouch from './crouch';
 import Jump from './jump';
@@ -29,6 +29,7 @@ export default class Go extends Trait {
     }
 
     update(entity: PlatformerEntity, context: Context): void {
+        if (entity.bounds.left < 0) entity.bounds.left = 0;
         const jump = entity.getTrait(Jump);
         const killable = entity.getTrait(Killable);
         const crouch = entity.getTrait(Crouch);

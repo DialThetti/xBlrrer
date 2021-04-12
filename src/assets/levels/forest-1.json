@@ -1,13 +1,13 @@
 {
     "bgm": "overground",
-    "tiledMapPath": "./tiled/forest.json",
+    "tiledMapPath": "./tiled/forest-1.json",
     "estimateTime": 999,
-    "startPosition": { "x": 2, "y": 54 },
+    "startPosition": { "x": 2, "y": 10 },
     "parallax": [
-        { "img": "img/forest/parallax.4.png", "speed": 9 },
-        { "img": "img/forest/parallax.3.png", "speed": 6 },
-        { "img": "img/forest/parallax.2.png", "speed": 3 },
-        { "img": "img/forest/parallax.1.png", "speed": 1 }
+        { "img": "img/forest/bakcground_day1.png", "speed": 9, "y": 0 },
+        { "img": "img/forest/bakcground_day2.png", "speed": 6, "y": 0 },
+        { "img": "img/forest/bakcground_day3.png", "speed": 3, "y": 0 },
+        { "img": "img/forest/back_lvl.png", "speed": 1, "y": 0 }
     ],
     "entities": []
 }

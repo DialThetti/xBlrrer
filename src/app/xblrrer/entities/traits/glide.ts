@@ -1,7 +1,7 @@
 import Trait, { Context } from '../../../engine/entities/trait';
 import Gravity from '../../../engine/physics/traits/gravity';
 import { Side } from '../../../engine/world/tiles/side';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 
 export default class Glide extends Trait {
     gliding = false;

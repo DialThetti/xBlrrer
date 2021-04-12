@@ -14,31 +14,33 @@ export default function setupKeyboard(playerFigure: Entity & TraitCtnr): Keyboar
 
     const isPressed = (keyState): boolean => keyState === KeyState.PRESSED;
 
-    return new KeyboardState()
-        .addMapping('Space', (keyState) => {
-            if (isPressed(keyState)) {
-                if (glide && jump.falling) {
-                    glide.start();
+    return (
+        new KeyboardState()
+            .addMapping('Space', (keyState) => {
+                if (isPressed(keyState)) {
+                    if (glide && jump.falling) {
+                        glide.start();
+                    } else {
+                        jump.start();
+                    }
                 } else {
-                    jump.start();
+                    if (glide && glide.gliding) {
+                        glide.cancel();
+                    } else {
+                        jump.cancel();
+                    }
                 }
-            } else {
-                if (glide && glide.gliding) {
-                    glide.cancel();
+            })
+            //   .addMapping('ShiftLeft', (keyState) => (go.running = isPressed(keyState)))
+            .addMapping('KeyS', (keyState) => {
+                if (isPressed(keyState)) {
+                    if (!jump.falling) crouch.start();
                 } else {
-                    jump.cancel();
+                    crouch.cancel();
                 }
-            }
-        })
-        .addMapping('ShiftLeft', (keyState) => (go.running = isPressed(keyState)))
-        .addMapping('KeyS', (keyState) => {
-            if (isPressed(keyState)) {
-                if (!jump.falling) crouch.start();
-            } else {
-                crouch.cancel();
-            }
-            if (!isPressed(keyState)) playerFigure.bypassPlatform = false;
-        })
-        .addMapping('KeyD', (keyState) => go.right(isPressed(keyState)))
-        .addMapping('KeyA', (keyState) => go.left(isPressed(keyState)));
+                if (!isPressed(keyState)) playerFigure.bypassPlatform = false;
+            })
+            .addMapping('KeyD', (keyState) => go.right(isPressed(keyState)))
+            .addMapping('KeyA', (keyState) => go.left(isPressed(keyState)))
+    );
 }

@@ -2,7 +2,7 @@ import Compositor from '../../../engine/rendering/compositor.layer';
 import SpriteLayer from '../../../engine/rendering/layers/entity.layer';
 import SingleColorLayer from '../../../engine/rendering/layers/singleColor.layer';
 import Camera from '../../../engine/world/camera';
-import PlatformerEntity from '../../../platformer/entities/platformer.entity';
+import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Scene from '../../../scenes/scene';
 import LoadingPrefab from '../../entities/prefabs/Loading.prefab';
 
