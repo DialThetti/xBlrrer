@@ -1,9 +1,9 @@
+import SpriteSheetLoader from '../io/spriteSheet.loader';
 import Vector from '../math/vector';
 import SpriteSheet from '../rendering/spriteSheet';
-import Trait from './trait';
 import Entity from './entity';
+import Trait from './trait';
 import TraitCtnr from './trait.container';
-import SpriteSheetLoader from '../io/spriteSheet.loader';
 
 export default abstract class EntityPrefab {
     public size: Vector;

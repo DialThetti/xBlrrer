@@ -1,7 +1,8 @@
 import { FrameAnimation } from './animation';
+import { Canvas, createCanvas } from './render.utils';
 
 export default abstract class ImageContainer {
-    private images: { [name: string]: HTMLCanvasElement } = {};
+    images: { [name: string]: Canvas } = {};
     protected animations: { [name: string]: FrameAnimation };
 
     constructor(protected img: HTMLImageElement) {
@@ -10,9 +11,7 @@ export default abstract class ImageContainer {
     }
 
     protected define(name: string, posX: number, posY: number, width: number, height: number, flipped = false): void {
-        const buffer = document.createElement('canvas');
-        buffer.width = width;
-        buffer.height = height;
+        const buffer = createCanvas(width, height);
 
         const context = buffer.getContext('2d');
         if (flipped) {
@@ -23,11 +22,17 @@ export default abstract class ImageContainer {
         this.images[name] = buffer;
     }
 
+    isCanvasBlank(canvas: Canvas): boolean {
+        return !canvas
+            .getContext('2d')
+            .getImageData(0, 0, canvas.width, canvas.height)
+            .data.some((channel) => channel !== 0);
+    }
     public defineAnim(name: string, anim: FrameAnimation): void {
         this.animations[name] = anim;
     }
 
-    protected getImage(name: string): HTMLCanvasElement {
+    protected getImage(name: string): Canvas {
         return this.images[name];
     }
 }

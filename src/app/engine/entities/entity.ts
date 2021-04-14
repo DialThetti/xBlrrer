@@ -1,9 +1,9 @@
+import EventEmitter from '../events/eventBuffer';
 import BoundingBox from '../math/boundingBox';
 import Vector from '../math/vector';
-import { Side } from '../world/tiles/side';
 import { PositionedTile } from '../physics/collider/tile.collider.layer';
+import { Side } from '../world/tiles/side';
 import { EntityState } from './entity.state';
-import EventEmitter from '../events/eventBuffer';
 import TraitCtnr from './trait.container';
 
 export default interface Entity extends TraitCtnr {
