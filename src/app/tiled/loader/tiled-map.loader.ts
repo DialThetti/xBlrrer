@@ -28,7 +28,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
             console.warn('tiles are not squared. May cause issues');
         }
 
-        const tilesets = await Promise.all([...tmx.tilesets].map(async (tileset) => await this.tilesetLoader(tileset)));
+        const tilesets = await Promise.all([...tmx.tilesets].map(async (tileset) => this.tilesetLoader(tileset)));
         // TODO merge tilesets
         const tiledMap = {
             tileset: tilesets[0].tileset,

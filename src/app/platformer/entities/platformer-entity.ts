@@ -21,7 +21,7 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
 
     bounds = new BoundingBox(this.pos, this.size, this.offset);
 
-    traits: Trait[] = [];
+    traits: { [name: string]: Trait } = {};
 
     standingOn: Set<string> = new Set();
 
@@ -63,7 +63,9 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
     hasTrait<T extends Trait>(trait: new () => T): boolean {
         return this.traits[new trait().name] != null;
     }
-    draw(context: CanvasRenderingContext2D): void {} // eslint-disable-line
+    draw(context: CanvasRenderingContext2D): void {
+        // entity has no rendering.
+    }
 
     private getTraits(): Trait[] {
         return Object.keys(this.traits).map((key) => this.traits[key]);

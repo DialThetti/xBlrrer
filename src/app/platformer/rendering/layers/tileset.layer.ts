@@ -7,6 +7,7 @@ import { drawRect } from '../../../engine/rendering/helper';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import TileSet from '../../../engine/rendering/tileSet';
 import Camera from '../../../engine/world/camera';
+import Tile from '../../../engine/world/tiles/tile';
 import TileMath from '../../../engine/world/tiles/tile.math';
 import Level from '../../level';
 
@@ -57,13 +58,7 @@ export default class TilesetLayer implements RenderLayer {
     }
 
     private redraw(rangeX: Range, rangeY: Range): void {
-        const currentFrameTileRange = {
-            xStart: rangeX.from,
-            xEnd: rangeX.to + 1,
-            yStart: rangeY.from,
-            yEnd: rangeY.to + 1,
-        };
-        const currentHash = JSON.stringify(currentFrameTileRange);
+        const currentHash = JSON.stringify({ rangeX, rangeY });
         if (this.screenFrameTileRangeHash === currentHash) {
             return;
         }
@@ -71,76 +66,48 @@ export default class TilesetLayer implements RenderLayer {
         this.screenFrameTileRangeHash = currentHash;
         this.bufferContext.clearRect(0, 0, this.buffer.width, this.buffer.height);
 
-        for (const resolver of this.layers) {
-            for (let x = currentFrameTileRange.xStart; x < currentFrameTileRange.xEnd + 1; x++) {
-                for (let y = currentFrameTileRange.yStart; y < currentFrameTileRange.yEnd + 1; y++) {
-                    const match = resolver.getByIndex(x, y);
-                    if (!match) {
-                        continue;
-                    }
-                    const tile = match.tile;
-                    if (debugSettings.hitboxesOnly) {
-                        if (tile.types.includes('solid')) {
-                            const s = this.tileSet.tilesize;
-                            drawRect(
-                                this.bufferContext,
-                                s * (x - currentFrameTileRange.xStart),
-                                s * (y - currentFrameTileRange.yStart),
-                                s,
-                                s,
-                                'grey',
-                                { filled: true },
-                            );
-                            drawRect(
-                                this.bufferContext,
-                                s * (x - currentFrameTileRange.xStart),
-                                s * (y - currentFrameTileRange.yStart),
-                                s,
-                                s,
-                                'black',
-                            );
-                        }
-                        if (tile.types.includes('platform')) {
-                            const s = this.tileSet.tilesize;
-                            drawRect(
-                                this.bufferContext,
-                                s * (x - currentFrameTileRange.xStart),
-                                s * (y - currentFrameTileRange.yStart),
-                                s,
-                                4,
-                                'grey',
-                                { filled: true },
-                            );
-                            drawRect(
-                                this.bufferContext,
-                                s * (x - currentFrameTileRange.xStart),
-                                s * (y - currentFrameTileRange.yStart),
-                                s,
-                                4,
-                                'black',
-                            );
-                        }
-                        continue;
-                    }
-                    if (this.tileSet.isAnimatedTile(tile.name)) {
-                        //Animation found for block
-                        this.tileSet.drawAnim(
-                            tile.name,
-                            this.bufferContext,
-                            x - currentFrameTileRange.xStart,
-                            y - currentFrameTileRange.yStart,
-                            this.level.time * 60 /*to frames*/,
-                        );
-                    } else {
-                        this.tileSet.drawTile(
-                            tile.name,
-                            this.bufferContext,
-                            x - currentFrameTileRange.xStart,
-                            y - currentFrameTileRange.yStart,
-                        );
-                    }
+        this.layers.forEach((layer) => this.renderLayer(layer, rangeX, rangeY));
+    }
+
+    private renderLayer(layer: TileColliderLayer, rangeX: Range, rangeY: Range): void {
+        for (let x = rangeX.from; x < rangeX.to + 1; x++) {
+            for (let y = rangeY.from; y < rangeY.to + 1; y++) {
+                const match = layer.getByIndex(x, y);
+                if (!match) {
+                    continue;
+                }
+                const tile = match.tile;
+                if (debugSettings.hitboxesOnly) {
+                    this.renderHitbox(tile, x - rangeX.from, y - rangeY.from);
+                } else {
+                    this.renderTile(tile, x - rangeX.from, y - rangeY.from);
                 }
             }
+        }
+    }
+    private renderTile(tile: Tile, x: number, y: number): void {
+        if (this.tileSet.isAnimatedTile(tile.name)) {
+            //Animation found for block
+            this.tileSet.drawAnim(tile.name, this.bufferContext, x, y, this.level.time * 60 /*to frames*/);
+        } else {
+            this.tileSet.drawTile(tile.name, this.bufferContext, x, y);
+        }
+    }
+
+    private renderHitbox(tile: Tile, x: number, y: number): void {
+        if (tile.types.includes('solid')) {
+            const s = this.tileSet.tilesize;
+            drawRect(this.bufferContext, s * x, s * y, s, s, 'grey', {
+                filled: true,
+            });
+            drawRect(this.bufferContext, s * x, s * y, s, s, 'black');
+        }
+        if (tile.types.includes('platform')) {
+            const s = this.tileSet.tilesize;
+            drawRect(this.bufferContext, s * x, s * y, s, 4, 'grey', {
+                filled: true,
+            });
+            drawRect(this.bufferContext, s * x, s * y, s, 4, 'black');
         }
     }
 
