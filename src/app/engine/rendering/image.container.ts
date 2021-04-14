@@ -19,6 +19,10 @@ export default abstract class ImageContainer {
             context.translate(-width, 0);
         }
         context.drawImage(this.img, Math.floor(posX), Math.floor(posY), width, height, 0, 0, width, height);
+        if (this.isCanvasBlank(buffer)) {
+            // the sprite is empty, so no need to save it
+            return;
+        }
         this.images[name] = buffer;
     }
 
