@@ -33,28 +33,8 @@ export default class TilesetLayer implements RenderLayer {
     }
 
     draw(context: CanvasRenderingContext2D, camera: Camera, playerFigure: Entity & TraitCtnr): void {
-        this.updateCameraPosition(camera, playerFigure);
         this.redraw(this.toRange(camera.pos.x, camera.size.x), this.toRange(camera.pos.y, camera.size.y));
         context.drawImage(this.buffer, -camera.pos.x % this.level.tilesize, -camera.pos.y % this.level.tilesize);
-    }
-
-    private updateCameraPosition(camera: Camera, playerFigure: Entity & TraitCtnr): void {
-        const xDif = playerFigure.pos.x - (camera.pos.x + camera.size.x - camera.edge.x - playerFigure.size.x);
-
-        const yDif = playerFigure.pos.y - (camera.pos.y + camera.size.y - camera.edge.y - playerFigure.size.y);
-
-        const xDifMin = playerFigure.pos.x - (camera.pos.x + camera.edge.x);
-        const yDifMin = playerFigure.pos.y - (camera.pos.y + camera.edge.y);
-        camera.pos.x += Math.max(xDif, 0);
-        if (camera.yAllowed) camera.pos.y += Math.max(yDif, 0);
-
-        // if backward is allowed
-
-        camera.pos.x += Math.min(xDifMin, 0);
-
-        if (camera.yAllowed) camera.pos.y += Math.min(yDifMin, 0);
-
-        camera.pos.set(Math.floor(Math.max(camera.pos.x, 0)), Math.floor(Math.max(camera.pos.y, 0)));
     }
 
     private redraw(rangeX: Range, rangeY: Range): void {
