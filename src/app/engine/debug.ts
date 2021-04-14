@@ -1,7 +1,11 @@
 import Entity from './entities/entity';
 import Camera from './world/camera';
 
-export let debugSettings = { enabled: false, hitboxesOnly: false };
+export let debugSettings = {
+    enabled: false,
+    hitboxesOnly: false,
+    showFPS: false,
+};
 let initializedOnce = false;
 
 export function setupMouseControl(canvas: HTMLCanvasElement, playerFigure: Entity, camera: Camera): void {

@@ -1,3 +1,5 @@
+import { debugSettings } from './debug';
+
 export default class Timer {
     lastTime = 0;
     accumulatedTime = 0;
@@ -21,7 +23,9 @@ export default class Timer {
             this.accumulatedTime -= this.deltaTime;
         }
         if (absoluteTime - this.lastTimeFps > 1000) {
-            console.log('FPS', this.fps);
+            if (debugSettings.showFPS) {
+                console.log('FPS', this.fps);
+            }
             this.fps = 0;
             this.lastTimeFps = absoluteTime;
         }
