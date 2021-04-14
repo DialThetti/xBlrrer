@@ -20,9 +20,6 @@ export default class CollisionLayer implements RenderLayer {
         this.tileCollider.layers[0].getByIndex = (x: number, y: number): PositionedTile => {
             if (debugSettings.enabled) {
                 this.resolvedTiles.push({ x, y });
-                if (this.resolvedTiles.length > 100) {
-                    debugger;
-                }
             }
             return getByIndexOrigin.call(this.tileCollider.layers[0], x, y);
         };

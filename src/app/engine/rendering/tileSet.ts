@@ -1,6 +1,7 @@
 import { debugSettings } from '../debug';
 import { drawRect } from './helper';
 import ImageContainer from './image.container';
+import { RenderContext } from './render.utils';
 
 export default class TileSet extends ImageContainer {
     tilesize: number;
@@ -17,18 +18,18 @@ export default class TileSet extends ImageContainer {
         return !!this.animations[name];
     }
 
-    public drawAnim(name: string, context: CanvasRenderingContext2D, x: number, y: number, distance: number): void {
+    public drawAnim(name: string, context: RenderContext, x: number, y: number, distance: number): void {
         const anim = this.animations[name];
         if (anim) {
             this.drawTile(anim(distance), context, Math.floor(x), Math.floor(y));
         }
     }
 
-    public drawTile(name: string, context: CanvasRenderingContext2D, x: number, y: number): void {
+    public drawTile(name: string, context: RenderContext, x: number, y: number): void {
         this.draw(name, context, Math.floor(this.width * x), Math.floor(this.height * y));
     }
 
-    private draw(name: string, context: CanvasRenderingContext2D, x: number, y: number): void {
+    private draw(name: string, context: RenderContext, x: number, y: number): void {
         const tileImage = this.getImage(name);
         if (tileImage) {
             context.drawImage(tileImage, x, y);

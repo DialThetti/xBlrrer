@@ -14,3 +14,4 @@ export function createCanvas(width: number, height: number): Canvas {
 }
 
 export type Canvas = OffscreenCanvas | HTMLCanvasElement;
+export type RenderContext = OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D;

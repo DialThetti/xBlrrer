@@ -5,6 +5,7 @@ import Range from '../../../engine/math/range.interface';
 import TileColliderLayer from '../../../engine/physics/collider/tile.collider.layer';
 import { drawRect } from '../../../engine/rendering/helper';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
+import { Canvas, createCanvas, RenderContext } from '../../../engine/rendering/render.utils';
 import TileSet from '../../../engine/rendering/tileSet';
 import Camera from '../../../engine/world/camera';
 import Tile from '../../../engine/world/tiles/tile';
@@ -13,10 +14,10 @@ import Level from '../../level';
 
 export default class TilesetLayer implements RenderLayer {
     layers: TileColliderLayer[];
-    buffer: HTMLCanvasElement;
-    bufferContext: CanvasRenderingContext2D;
+    private buffer: Canvas;
+    private bufferContext: RenderContext;
 
-    math: TileMath;
+    private math: TileMath;
     screenFrameTileRangeHash: string;
 
     constructor(private level: Level, private tileSet: TileSet) {
@@ -38,34 +39,38 @@ export default class TilesetLayer implements RenderLayer {
     }
 
     private redraw(rangeX: Range, rangeY: Range): void {
-        const currentHash = JSON.stringify({ rangeX, rangeY });
-        if (this.screenFrameTileRangeHash === currentHash) {
+        if (!this.hasChanged(rangeX, rangeY)) {
             return;
         }
-
-        this.screenFrameTileRangeHash = currentHash;
         this.bufferContext.clearRect(0, 0, this.buffer.width, this.buffer.height);
-
         this.layers.forEach((layer) => this.renderLayer(layer, rangeX, rangeY));
     }
 
+    private hasChanged(rangeX: Range, rangeY: Range): boolean {
+        const currentHash = JSON.stringify({ rangeX, rangeY });
+        if (this.screenFrameTileRangeHash === currentHash) {
+            return false;
+        }
+        this.screenFrameTileRangeHash = currentHash;
+        return true;
+    }
+
     private renderLayer(layer: TileColliderLayer, rangeX: Range, rangeY: Range): void {
-        for (let x = rangeX.from; x < rangeX.to + 1; x++) {
-            for (let y = rangeY.from; y < rangeY.to + 1; y++) {
+        for (let x = rangeX.from; x <= rangeX.to; x++) {
+            for (let y = rangeY.from; y <= rangeY.to; y++) {
                 const match = layer.getByIndex(x, y);
                 if (!match) {
                     continue;
                 }
-                const tile = match.tile;
                 if (debugSettings.hitboxesOnly) {
-                    this.renderHitbox(tile, x - rangeX.from, y - rangeY.from);
+                    this.renderHitbox(match.tile, x - rangeX.from, y - rangeY.from);
                 } else {
-                    this.renderTile(tile, x - rangeX.from, y - rangeY.from);
+                    this.renderTile(match.tile, x - rangeX.from, y - rangeY.from);
                 }
             }
         }
     }
-    private renderTile(tile: Tile, x: number, y: number): void {
+    renderTile(tile: Tile, x: number, y: number): void {
         if (this.tileSet.isAnimatedTile(tile.name)) {
             //Animation found for block
             this.tileSet.drawAnim(tile.name, this.bufferContext, x, y, this.level.time * 60 /*to frames*/);
@@ -74,16 +79,15 @@ export default class TilesetLayer implements RenderLayer {
         }
     }
 
-    private renderHitbox(tile: Tile, x: number, y: number): void {
+    renderHitbox(tile: Tile, x: number, y: number): void {
+        const s = this.tileSet.tilesize;
         if (tile.types.includes('solid')) {
-            const s = this.tileSet.tilesize;
             drawRect(this.bufferContext, s * x, s * y, s, s, 'grey', {
                 filled: true,
             });
             drawRect(this.bufferContext, s * x, s * y, s, s, 'black');
         }
         if (tile.types.includes('platform')) {
-            const s = this.tileSet.tilesize;
             drawRect(this.bufferContext, s * x, s * y, s, 4, 'grey', {
                 filled: true,
             });
@@ -91,12 +95,9 @@ export default class TilesetLayer implements RenderLayer {
         }
     }
 
-    private createBackgroundLayer(extraSize: number): HTMLCanvasElement {
-        const buffer = document.createElement('canvas');
-        buffer.width = 256 * 2 + extraSize;
-        buffer.height = 224 * 2 + extraSize;
+    createBackgroundLayer(extraSize: number): Canvas {
+        const buffer = createCanvas(256 * 2 + extraSize, 224 * 2 + extraSize);
         this.screenFrameTileRangeHash = '';
-
         return buffer;
     }
 }

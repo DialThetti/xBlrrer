@@ -1,5 +1,7 @@
+import { RenderContext } from './render.utils';
+
 export function drawRect(
-    context: CanvasRenderingContext2D,
+    context: RenderContext,
     x: number,
     y: number,
     w: number,
