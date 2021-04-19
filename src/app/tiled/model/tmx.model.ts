@@ -1,8 +1,13 @@
-export interface TmxModel {
+export interface InfiniteTmxModel extends TmxModel<InfiniteTmxLayer> {}
+
+export interface FiniteTmxModel extends TmxModel<FiniteTmxLayer> {}
+
+export interface TmxModel<T extends TmxLayer> {
     compressionlevel: number;
     height: number;
-    infinite: false;
-    layers: TmxLayer[];
+    width: number;
+    infinite: boolean;
+    layers: T[];
     nextlayerid: number;
     nextobjectid: number;
     orientation: 'orthogonal';
@@ -18,22 +23,16 @@ export interface TmxModel {
     tilewidth: number;
     type: 'map' | string;
     version: number;
-    width: number;
 }
 
-export interface TmxLayer {
+export interface FiniteTmxLayer extends TmxLayer {
+    data: number[];
+}
+
+export interface InfiniteTmxLayer extends TmxLayer {
     chunks: TmxChunk[];
-    height: number;
-    id: number;
-    name: string;
-    opacity: number;
     startx: number;
     starty: number;
-    type: 'tilelayer' | string;
-    visible: boolean;
-    width: number;
-    x: number;
-    y: number;
 }
 
 export interface TmxChunk {
@@ -42,4 +41,24 @@ export interface TmxChunk {
     width: number;
     x: number;
     y: number;
+}
+
+export interface TmxLayer {
+    height: number;
+    id: number;
+    name: string;
+    opacity: number;
+    type: 'tilelayer' | string;
+    visible: boolean;
+    width: number;
+    x: number;
+    y: number;
+}
+
+export function isInfiniteLayer(layer: TmxLayer): layer is InfiniteTmxLayer {
+    return 'chunks' in layer;
+}
+
+export function isFiniteLayer(layer: TmxLayer): layer is FiniteTmxLayer {
+    return 'data' in layer;
 }

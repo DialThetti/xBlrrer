@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { TmxLayer } from '../model/tmx.model';
+import { InfiniteTmxLayer } from '../model/tmx.model';
 import { TsxTileModel } from '../model/tsx.model';
 import TileMatrixCreator from './tile-matrix-creator';
 describe('TileMatrixCreator', () => {
@@ -36,7 +36,7 @@ describe('TileMatrixCreator', () => {
             ],
             id: 0,
             name: 'name',
-        } as TmxLayer;
+        } as InfiniteTmxLayer;
         it('should create a matrix out of a layer', () => {
             const matrix = tileMatrixCreator.create(layer);
             expect(matrix).not.to.be.null;

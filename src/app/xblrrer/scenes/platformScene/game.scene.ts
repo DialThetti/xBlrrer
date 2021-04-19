@@ -3,7 +3,6 @@ import Entity from '../../../engine/entities/entity';
 import { EntityState } from '../../../engine/entities/entity.state';
 import FontLoader from '../../../engine/io/font.loader';
 import AudioBoardLoader from '../../../engine/io/sfx/audioboard.loader';
-import CameraLayer from '../../../engine/rendering/layers/camera.layer';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import ScrollSpyLayer from '../../../engine/rendering/layers/scrollSpy.layer';
 import Camera from '../../../engine/world/camera';
@@ -52,8 +51,8 @@ export default class GameScene implements Scene {
         level.entities.add(playerEnv);
         level.audioBoard = audioBoard;
         renderer.layers.push(
-            new CameraLayer(camera),
-            new ScrollSpyLayer(camera),
+            //     new CameraLayer(camera),
+            new ScrollSpyLayer(),
             /*     new DashboardLayer(font, () => ({
                 ...player.getTrait(Player),
                 time: playerEnv.getTrait(LevelTimer).restTime,

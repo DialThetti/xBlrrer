@@ -1,0 +1,8 @@
+{
+    "bgm": "overground",
+    "tiledMapPath": "./tiled/dev/transition.json",
+    "estimateTime": 999,
+    "startPosition": { "x": 2, "y": 10 },
+    "parallax": [],
+    "entities": []
+}

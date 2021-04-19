@@ -3,17 +3,17 @@ import Camera from '../../world/camera';
 import { drawRect } from '../helper';
 
 export default class ScrollSpyLayer {
-    constructor(private cameraToDraw: Camera) {}
-    draw(context: CanvasRenderingContext2D, fromCamera: Camera): void {
+    constructor(private tilesize = 16, private width = 32, private height = 28) {}
+    draw(context: CanvasRenderingContext2D, cameraToDraw: Camera): void {
         if (!debugSettings.enabled) {
             return;
         }
         drawRect(
             context,
-            this.cameraToDraw.pos.x - fromCamera.pos.x + fromCamera.edge.x,
-            this.cameraToDraw.pos.y - fromCamera.pos.y + fromCamera.edge.y,
-            this.cameraToDraw.size.x - fromCamera.edge.x * 2,
-            this.cameraToDraw.size.y - fromCamera.edge.y * 2,
+            cameraToDraw.edge.x,
+            cameraToDraw.edge.y,
+            cameraToDraw.size.x - cameraToDraw.edge.x * 2,
+            cameraToDraw.size.y - cameraToDraw.edge.y * 2,
             'green',
         );
     }

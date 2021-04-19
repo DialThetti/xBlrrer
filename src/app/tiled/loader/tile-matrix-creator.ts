@@ -1,25 +1,38 @@
 import Matrix from '../../engine/math/matrix';
 import Tile from '../../engine/world/tiles/tile';
-import { TmxLayer } from '../model/tmx.model';
+import { FiniteTmxLayer, InfiniteTmxLayer, isFiniteLayer, isInfiniteLayer } from '../model/tmx.model';
 import { TsxTileModel } from '../model/tsx.model';
 
 export default class TileMatrixCreator {
     booleanTags = ['solid', 'platform', 'onlyCrouch'];
     constructor(private tileProps: { [id: number]: TsxTileModel }) {}
 
-    public create(layer: TmxLayer): Matrix<Tile> {
+    public create(layer: InfiniteTmxLayer | FiniteTmxLayer): Matrix<Tile> {
         const tiles = new Matrix<Tile>();
-        layer.chunks.forEach((chunk) => {
-            for (let x = 0; x < chunk.width; x++) {
-                for (let y = 0; y < chunk.height; y++) {
-                    const id = chunk.data[y * chunk.width + x];
+        if (isInfiniteLayer(layer)) {
+            layer.chunks.forEach((chunk) => {
+                for (let x = 0; x < chunk.width; x++) {
+                    for (let y = 0; y < chunk.height; y++) {
+                        const id = chunk.data[y * chunk.width + x];
+                        if (id === 0) {
+                            continue;
+                        }
+                        this.setTile(tiles, id, this.tileProps[id], x + chunk.x, y + chunk.y);
+                    }
+                }
+            });
+        }
+        if (isFiniteLayer(layer)) {
+            for (let x = 0; x < layer.width; x++) {
+                for (let y = 0; y < layer.height; y++) {
+                    const id = layer.data[y * layer.width + x];
                     if (id === 0) {
                         continue;
                     }
-                    this.setTile(tiles, id, this.tileProps[id], x + chunk.x, y + chunk.y);
+                    this.setTile(tiles, id, this.tileProps[id], x + layer.x, y + layer.y);
                 }
             }
-        });
+        }
         return tiles;
     }
 

@@ -6,4 +6,6 @@ export interface TiledMap {
     tileset: TileSet;
     tileSize: number;
     layers: Matrix<Tile>[];
+    width: number;
+    height: number;
 }

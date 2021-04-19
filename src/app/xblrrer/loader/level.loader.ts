@@ -29,7 +29,8 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
 
         const level = new Level(levelSpec.tiledMap.tileSize);
         level.name = this.levelName;
-
+        level.width = levelSpec.tiledMap.width;
+        level.height = levelSpec.tiledMap.height;
         if (levelSpec.entities) {
             levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
                 const entity = entityRepo[name]() as PlatformerEntity;

@@ -17,7 +17,8 @@ export default class Level implements Collidable {
     name: string;
     entities = new Set<PlatformerEntity>();
     gravity = new Vector(0, 1500);
-
+    width: number;
+    height: number;
     time = 0;
     estimateTime: number;
     startPosition: Vector;
@@ -78,8 +79,10 @@ export default class Level implements Collidable {
             const top = playerFigure.bounds.top - camera.box.top - camera.edge.y;
             camera.pos.y += Math.max(bottom, Math.min(top, 0));
         }
-
-        camera.pos.set(Math.floor(Math.max(camera.pos.x, 0)), Math.floor(Math.max(camera.pos.y, 0)));
+        camera.pos.set(
+            Math.floor(Math.max(0, Math.min(this.tilesize * this.width - camera.size.x, camera.pos.x))),
+            Math.floor(Math.max(0, Math.min(this.tilesize * this.height - camera.size.y, camera.pos.y))),
+        );
     }
 
     private getEntities(state: EntityState): PlatformerEntity[] {
