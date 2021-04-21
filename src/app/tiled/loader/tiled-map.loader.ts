@@ -1,6 +1,8 @@
 import Loader from '../../engine/io/loader';
 import { loadJson } from '../../engine/io/loaders';
+import BoundingBox from '../../engine/math/boundingBox';
 import Matrix from '../../engine/math/matrix';
+import Vector from '../../engine/math/vector';
 import { distinct, flatMap } from '../../engine/polyfill';
 import Tile from '../../engine/world/tiles/tile';
 import { TiledMap } from '../model/tiled-map.model';
@@ -34,14 +36,16 @@ export default class TiledMapLoader implements Loader<TiledMap> {
         const tilesets = await Promise.all([...tmx.tilesets].map(async (tileset) => this.tilesetLoader(tileset, ids)));
         delete this.tilesetLoader;
         const tileset = this.merge(tilesets);
+        let viewPorts = this.getViewPorts(tmx);
         const tiledMap = {
             tileset: tileset.tileset,
             tileSize: w,
+            viewPorts,
         } as TiledMap;
         tiledMap.layers = this.createTileMatrixes(tmx, tileset.tileMatrix);
         if (tmx.infinite) {
-            tiledMap.width = tmx.width * tmx.layers[0].width;
-            tiledMap.height = tmx.width * tmx.layers[0].height;
+            tiledMap.width = tmx.width * (tmx.layers[0] as Tmx.InfiniteTmxLayer).width;
+            tiledMap.height = tmx.width * (tmx.layers[0] as Tmx.InfiniteTmxLayer).height;
         } else {
             tiledMap.width = tmx.width;
             tiledMap.height = tmx.height;
@@ -54,6 +58,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
             flatMap(
                 tmx.layers
                     .filter((layer) => layer.visible)
+                    .filter((layer) => layer.type === 'tilelayer')
                     .map((layer) => {
                         if ('chunks' in layer) {
                             return distinct(
@@ -68,12 +73,33 @@ export default class TiledMapLoader implements Loader<TiledMap> {
         );
     }
 
+    getViewPorts(tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>): BoundingBox[] {
+        const x = flatMap(
+            tmx.layers
+                .filter((layer) => layer.visible)
+                .filter((layer) => layer.type === 'objectgroup')
+                .map((layer) =>
+                    (layer as Tmx.TmxObjectLayer).objects.map(
+                        (o) => new BoundingBox(new Vector(o.x, o.y), new Vector(o.width, o.height)),
+                    ),
+                ),
+        );
+        if (x.length == 0) {
+            return [
+                new BoundingBox(new Vector(0, 0), new Vector(tmx.width * tmx.tilewidth, tmx.height * tmx.tileheight)),
+            ];
+        }
+        return x;
+    }
     createTileMatrixes(
         tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>,
         tileProps: { [id: number]: TsxTileModel },
     ): Matrix<Tile>[] {
         const tileCreator = new TileMatrixCreator(tileProps);
-        return tmx.layers.filter((a) => a.visible).map((layer) => tileCreator.create(layer));
+        return tmx.layers
+            .filter((a) => a.visible)
+            .filter((layer) => layer.type === 'tilelayer')
+            .map((layer) => tileCreator.create(layer as Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer));
     }
 
     merge(tilesets: TiledTileset[]): TiledTileset {

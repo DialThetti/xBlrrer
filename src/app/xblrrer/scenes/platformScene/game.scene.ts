@@ -3,8 +3,6 @@ import Entity from '../../../engine/entities/entity';
 import { EntityState } from '../../../engine/entities/entity.state';
 import FontLoader from '../../../engine/io/font.loader';
 import AudioBoardLoader from '../../../engine/io/sfx/audioboard.loader';
-import BoundingBox from '../../../engine/math/boundingBox';
-import Vector from '../../../engine/math/vector';
 import CameraLayer from '../../../engine/rendering/layers/camera.layer';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
 import ScrollSpyLayer from '../../../engine/rendering/layers/scrollSpy.layer';
@@ -40,7 +38,7 @@ export default class GameScene implements Scene {
         return playerEnv;
     }
     async load(): Promise<void> {
-        const { level, player, renderer } = await new LevelLoader(this.name).load();
+        const { level, player, renderer, viewPorts } = await new LevelLoader(this.name).load();
         const audioContext = new AudioContext();
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
@@ -48,17 +46,7 @@ export default class GameScene implements Scene {
         const input = setupKeyboard(player);
         input.listenTo(window);
 
-        const camera = new MetroidCamera([
-            new BoundingBox(new Vector(0, 0), new Vector(32 * level.tilesize, 28 * level.tilesize)),
-
-            new BoundingBox(new Vector(32 * level.tilesize, 0), new Vector(32 * level.tilesize, 32 * level.tilesize)),
-        ]); /*
-            new Camera(
-                new BoundingBox(
-                    new Vector(0, 0),
-                    new Vector(level.width * level.tilesize, level.height * level.tilesize),
-                ),
-            );*/
+        const camera = new MetroidCamera(viewPorts);
         const playerEnv = this.createPlayerEnv(player, level);
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);

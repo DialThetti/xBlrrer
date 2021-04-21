@@ -7,7 +7,7 @@ export interface TmxModel<T extends TmxLayer> {
     height: number;
     width: number;
     infinite: boolean;
-    layers: T[];
+    layers: (T | TmxObjectLayer)[];
     nextlayerid: number;
     nextobjectid: number;
     orientation: 'orthogonal';
@@ -51,6 +51,28 @@ export interface TmxLayer {
     type: 'tilelayer' | string;
     visible: boolean;
     width: number;
+    x: number;
+    y: number;
+}
+
+export interface TmxObjectLayer {
+    draworder: 'topdown';
+    id: number;
+    name: string;
+    objects: {
+        height: number;
+        id: number;
+        name: string;
+        rotation: number;
+        type: string;
+        visible: boolean;
+        width: number;
+        x: number;
+        y: number;
+    }[];
+    opacity: number;
+    type: 'objectgroup';
+    visible: boolean;
     x: number;
     y: number;
 }

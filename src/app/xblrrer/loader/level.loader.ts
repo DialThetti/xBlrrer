@@ -2,6 +2,7 @@ import { entityRepo } from '../../engine/entities/entity.repo';
 import { EntityState } from '../../engine/entities/entity.state';
 import Loader from '../../engine/io/loader';
 import { loadImage } from '../../engine/io/loaders';
+import BoundingBox from '../../engine/math/boundingBox';
 import { addHandler } from '../../engine/physics/collider/tile.collider';
 import TileColliderLayer from '../../engine/physics/collider/tile.collider.layer';
 import Compositor from '../../engine/rendering/compositor.layer';
@@ -20,7 +21,7 @@ import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.hand
 export default class LevelLoader implements Loader<{ level: Level; player: PlatformerEntity }> {
     constructor(private levelName: string) {}
 
-    async load(): Promise<{ level: Level; player: PlatformerEntity; renderer: Compositor }> {
+    async load(): Promise<{ level: Level; player: PlatformerEntity; renderer: Compositor; viewPorts: BoundingBox[] }> {
         const levelSpec = await new LevelSpecLoader(this.levelName).load();
 
         await new EntityFactory().prepare();
@@ -64,6 +65,6 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         addHandler('brick', createBrickTileHandler());
         addHandler('onlyCrouch', createOnlyCrouchTileHandler());
 
-        return { level, player, renderer: composition };
+        return { level, player, renderer: composition, viewPorts: levelSpec.tiledMap.viewPorts };
     }
 }
