@@ -50,7 +50,17 @@ describe('SceneMachine', () => {
     describe('setScene', () => {
         it('should switch to s1 without loading', async () => {
             sceneMachine.addScenes([
-                () => ({ isLoadingScene: false, name: 's1', load: () => {}, start: () => {} } as Scene),
+                () =>
+                    ({
+                        isLoadingScene: false,
+                        name: 's1',
+                        load: () => {
+                            /* NOOP */
+                        },
+                        start: () => {
+                            /* NOOP */
+                        },
+                    } as Scene),
                 () => ({ isLoadingScene: true, name: 's2' } as Scene),
             ]);
             await sceneMachine.setScene('s1', false);
@@ -59,7 +69,17 @@ describe('SceneMachine', () => {
         it('should switch to s1 with loading', (done) => {
             sceneMachine.currentSceneName = 'other';
             sceneMachine.addScenes([
-                () => ({ isLoadingScene: false, name: 's1', load: () => {}, start: () => {} } as Scene),
+                () =>
+                    ({
+                        isLoadingScene: false,
+                        name: 's1',
+                        load: () => {
+                            /* NOOP */
+                        },
+                        start: () => {
+                            /* NOOP */
+                        },
+                    } as Scene),
                 () => ({ isLoadingScene: true, name: 's2' } as Scene),
             ]);
             sceneMachine.setScene('s1').then(() => {

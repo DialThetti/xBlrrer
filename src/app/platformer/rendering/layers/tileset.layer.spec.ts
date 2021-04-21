@@ -36,7 +36,7 @@ describe('TilesetLayer', () => {
     let tilesetLayer;
     let level: Level;
     let tileSet: TileSet;
-    let layers: TileColliderLayer[] = [];
+    const layers: TileColliderLayer[] = [];
 
     beforeEach(() => {
         level = mock<Level>();

@@ -35,7 +35,7 @@ export default class Level implements Collidable {
 
     update(deltaTime: number, camera: Camera): void {
         const context = { deltaTime, level: this, collidable: this, camera };
-        this.updateCameraPosition(camera, this.findPlayer());
+        camera.update(this.findPlayer(), deltaTime);
         this.activateEntititesOnSight(context);
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => e.update(context));
@@ -65,24 +65,6 @@ export default class Level implements Collidable {
                 this.entities.add(payload.entity);
             });
         });
-    }
-
-    private updateCameraPosition(camera: Camera, playerFigure: Entity): void {
-        if (camera.xAllowed) {
-            const right = playerFigure.bounds.right - camera.box.right + camera.edge.x;
-            const left = playerFigure.bounds.left - camera.box.left - camera.edge.x;
-            camera.pos.x += Math.max(right, Math.min(left, 0));
-        }
-        // if backward is allowed
-        if (camera.yAllowed) {
-            const bottom = playerFigure.bounds.bottom - camera.box.bottom + camera.edge.y;
-            const top = playerFigure.bounds.top - camera.box.top - camera.edge.y;
-            camera.pos.y += Math.max(bottom, Math.min(top, 0));
-        }
-        camera.pos.set(
-            Math.floor(Math.max(0, Math.min(this.tilesize * this.width - camera.size.x, camera.pos.x))),
-            Math.floor(Math.max(0, Math.min(this.tilesize * this.height - camera.size.y, camera.pos.y))),
-        );
     }
 
     private getEntities(state: EntityState): PlatformerEntity[] {

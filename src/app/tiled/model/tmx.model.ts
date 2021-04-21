@@ -1,6 +1,6 @@
-export interface InfiniteTmxModel extends TmxModel<InfiniteTmxLayer> {}
+export type InfiniteTmxModel = TmxModel<InfiniteTmxLayer>;
 
-export interface FiniteTmxModel extends TmxModel<FiniteTmxLayer> {}
+export type FiniteTmxModel = TmxModel<FiniteTmxLayer>;
 
 export interface TmxModel<T extends TmxLayer> {
     compressionlevel: number;

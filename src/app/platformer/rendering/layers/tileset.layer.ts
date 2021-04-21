@@ -34,8 +34,8 @@ export default class TilesetLayer implements RenderLayer {
     }
 
     draw(context: CanvasRenderingContext2D, camera: Camera, playerFigure: Entity & TraitCtnr): void {
-        this.redraw(this.toRange(camera.pos.x, camera.size.x), this.toRange(camera.pos.y, camera.size.y));
-        context.drawImage(this.buffer, -camera.pos.x % this.level.tilesize, -camera.pos.y % this.level.tilesize);
+        this.redraw(this.toRange(camera.box.left, camera.size.x), this.toRange(camera.box.top, camera.size.y));
+        context.drawImage(this.buffer, -camera.box.left % this.level.tilesize, -camera.box.top % this.level.tilesize);
     }
 
     private redraw(rangeX: Range, rangeY: Range): void {

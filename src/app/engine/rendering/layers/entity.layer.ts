@@ -18,8 +18,8 @@ export default class EntityLayer implements RenderLayer {
                 entity.draw(this.bufferContext);
                 context.drawImage(
                     this.buffer,
-                    Math.floor(entity.pos.x - camera.pos.x),
-                    Math.floor(entity.pos.y - camera.pos.y),
+                    Math.floor(entity.pos.x - camera.box.left),
+                    Math.floor(entity.pos.y - camera.box.top),
                 );
             });
     }

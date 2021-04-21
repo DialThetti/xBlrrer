@@ -6,7 +6,7 @@ export default class ParallaxLayer implements RenderLayer {
 
     draw(context: CanvasRenderingContext2D, camera: Camera): void {
         const screenWidth = 256 * 2;
-        const offset = Math.floor((-camera.pos.x / this.scrollSpeed) % this.img.width);
+        const offset = Math.floor((-camera.box.left / this.scrollSpeed) % this.img.width);
         if (offset + this.img.width < screenWidth) {
             context.drawImage(this.img, offset + this.img.width, this.y);
         }

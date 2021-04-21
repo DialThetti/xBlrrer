@@ -29,8 +29,8 @@ export default class CollisionLayer implements RenderLayer {
         this.level.entities.forEach((entity) =>
             drawRect(
                 context,
-                entity.bounds.left - camera.pos.x,
-                entity.bounds.top - camera.pos.y,
+                entity.bounds.left - camera.box.left,
+                entity.bounds.top - camera.box.top,
                 entity.size.x,
                 entity.size.y,
                 'red',
@@ -41,8 +41,8 @@ export default class CollisionLayer implements RenderLayer {
         this.resolvedTiles.forEach(({ x, y }) =>
             drawRect(
                 context,
-                x * this.tileSize - camera.pos.x,
-                y * this.tileSize - camera.pos.y,
+                x * this.tileSize - camera.box.left,
+                y * this.tileSize - camera.box.top,
                 this.tileSize,
                 this.tileSize,
                 'blue',
