@@ -63,6 +63,14 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
     hasTrait<T extends Trait>(trait: new () => T): boolean {
         return this.traits[new trait().name] != null;
     }
+
+    removeTraitByName(name: string): boolean {
+        if (!this.traits[name]) {
+            return false;
+        }
+        delete this.traits[name];
+        return true;
+    }
     draw(context: CanvasRenderingContext2D): void {
         // entity has no rendering.
     }

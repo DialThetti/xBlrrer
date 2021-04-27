@@ -1,9 +1,9 @@
 import Loader from '../../engine/io/loader';
 import { loadImage, loadJson } from '../../engine/io/loaders';
+import { createAnim } from '../../engine/rendering/animation';
 import TileSet from '../../engine/rendering/tileSet';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import { TsxModel, TsxTileModel } from '../model/tsx.model';
-
 export default class TiledTilesetLoader implements Loader<TiledTileset> {
     directory: string;
     onlyRequiredIds: number[];
@@ -38,6 +38,18 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
             tileset.defineTile(`${id}`, x, y);
             if (tsxModel.tiles) {
                 tileMatrix[index + this.idOffset] = tsxModel.tiles[index];
+                if (tsxModel.tiles[index]?.animation) {
+                    console.debug('add 1 animation ' + id);
+                    debugger;
+                    tileset.defineAnim(
+                        `${id}`,
+                        createAnim(
+                            tsxModel.tiles[index]?.animation.map((a) => '' + (a.tileid + this.idOffset)),
+                            tsxModel.tiles[index]?.animation[0].duration / 1000,
+                            true,
+                        ),
+                    );
+                }
             }
         }
         this.finalize();

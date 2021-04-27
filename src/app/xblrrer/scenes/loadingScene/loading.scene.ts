@@ -1,6 +1,9 @@
+import BoundingBox from '../../../engine/math/boundingBox';
+import Vector from '../../../engine/math/vector';
 import Compositor from '../../../engine/rendering/compositor.layer';
 import SpriteLayer from '../../../engine/rendering/layers/entity.layer';
 import SingleColorLayer from '../../../engine/rendering/layers/singleColor.layer';
+import { SCREEN_SIZE } from '../../../engine/screen.settings';
 import Camera from '../../../engine/world/camera';
 import PlatformerEntity from '../../../platformer/entities/platformer-entity';
 import Scene from '../../../scenes/scene';
@@ -30,6 +33,13 @@ export default class LoadingScene implements Scene {
         this.loadingAnimation.lifeTime += deltaTime;
     }
     draw(context: CanvasRenderingContext2D): void {
-        this.bg.draw(context, new Camera(), null);
+        this.bg.draw(
+            context,
+            new Camera(
+                new BoundingBox(new Vector(0, 0), new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height)),
+                new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height),
+            ),
+            null,
+        );
     }
 }

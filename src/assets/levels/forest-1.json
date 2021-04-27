@@ -1,13 +1,12 @@
 {
     "bgm": "overground",
-    "tiledMapPath": "./tiled/forest-1.json",
+    "tiledMapPath": "./tiled/forest/forest_world.json",
     "estimateTime": 999,
-    "startPosition": { "x": 2, "y": 10 },
+    "startPosition": { "x": 90, "y": 55 },
     "parallax": [
         { "img": "img/forest/bakcground_day1.png", "speed": 9, "y": 0 },
         { "img": "img/forest/bakcground_day2.png", "speed": 6, "y": 0 },
-        { "img": "img/forest/bakcground_day3.png", "speed": 3, "y": 0 },
-        { "img": "img/forest/back_lvl.png", "speed": 1, "y": 0 }
+        { "img": "img/forest/bakcground_day3.png", "speed": 3, "y": 0 }
     ],
     "entities": []
 }

@@ -21,4 +21,8 @@ export interface TsxModel {
 export interface TsxTileModel {
     id: number;
     properties: { name: string; type: string; value: unknown }[];
+    animation?: {
+        duration: number;
+        tileid: number;
+    }[];
 }

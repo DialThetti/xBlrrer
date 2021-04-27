@@ -20,8 +20,8 @@ export default class TilesetLayer implements RenderLayer {
     private math: TileMath;
     screenFrameTileRangeHash: string;
 
-    constructor(private level: Level, private tileSet: TileSet) {
-        this.layers = level.collider.tileCollider.layers;
+    constructor(private level: Level, private tileSet: TileSet, onlyFront = false) {
+        this.layers = level.collider.tileCollider.layers.filter((a) => (a.name == 'FRONT') == onlyFront);
         this.buffer = this.createBackgroundLayer(level.tilesize);
         this.bufferContext = this.buffer.getContext('2d');
         this.math = new TileMath(level.tilesize);
@@ -49,7 +49,7 @@ export default class TilesetLayer implements RenderLayer {
     private hasChanged(rangeX: Range, rangeY: Range): boolean {
         const currentHash = JSON.stringify({ rangeX, rangeY });
         if (this.screenFrameTileRangeHash === currentHash) {
-            return false;
+            //     return false;
         }
         this.screenFrameTileRangeHash = currentHash;
         return true;
@@ -73,7 +73,7 @@ export default class TilesetLayer implements RenderLayer {
     renderTile(tile: Tile, x: number, y: number): void {
         if (this.tileSet.isAnimatedTile(tile.name)) {
             //Animation found for block
-            this.tileSet.drawAnim(tile.name, this.bufferContext, x, y, this.level.time * 60 /*to frames*/);
+            this.tileSet.drawAnim(tile.name, this.bufferContext, x, y, this.level.time);
         } else {
             this.tileSet.drawTile(tile.name, this.bufferContext, x, y);
         }

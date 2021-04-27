@@ -26,6 +26,7 @@ export default class TileMatrixCreator {
             for (let x = 0; x < layer.width; x++) {
                 for (let y = 0; y < layer.height; y++) {
                     const id = layer.data[y * layer.width + x];
+
                     if (id === 0) {
                         continue;
                     }

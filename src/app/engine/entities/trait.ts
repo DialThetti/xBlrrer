@@ -1,8 +1,9 @@
 import Collidable from '../physics/collidable';
+import { PositionedTile } from '../physics/collider/tile.collider.layer';
 import Camera from '../world/camera';
 import { Side } from '../world/tiles/side';
-import { PositionedTile } from '../physics/collider/tile.collider.layer';
 import Entity from './entity';
+import { traitRegistry } from './trait-registry';
 
 /**
  * A Trait is a single property hold by an entity to handle a single behavior like Solidity or Gravity.
@@ -16,7 +17,9 @@ export default abstract class Trait {
      * Creating a trait requires a unique name to make it distinct to others. The name should be kebab-case
      * @param name kebab-cased name of the trait. Should be unique for the whole system.
      */
-    constructor(public name: string) {}
+    constructor(public name: string) {
+        traitRegistry.addTrait(this);
+    }
 
     /**
      * Called whenever an entity is updated, so the Trait can modify the entity while updating.

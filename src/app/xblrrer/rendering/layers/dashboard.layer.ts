@@ -1,25 +1,16 @@
 import Font from '../../../engine/rendering/font';
+import { drawRect } from '../../../engine/rendering/helper';
 import RenderLayer from '../../../engine/rendering/layers/renderLayer';
+import { SCREEN_SIZE } from '../../../engine/screen.settings';
+import Level from '../../../platformer/level';
 
 export default class DashboardLayer implements RenderLayer {
-    constructor(
-        private font: Font,
-        private stats: () => { time: number; level: string; score: number; coins: number },
-    ) {}
+    constructor(private font: Font, private level: Level) {}
 
     draw(context: CanvasRenderingContext2D): void {
-        const statsNow = this.stats();
-        // Points
-        this.font.print('SANCHEZ', context, 8, 4);
-        this.font.print(this.withZero(statsNow.score, 6), context, 8, 8 + 4);
-        // Coins
-        this.font.print(`@x${this.withZero(statsNow.coins, 2)}`, context, 75, 8 + 4);
-        // World
-        this.font.print('WORLD', context, 150, 4);
-        this.font.print(statsNow.level, context, 150 + 8, 8 + 4);
-        // Time
-        this.font.print('TIME', context, 208, 4);
-        this.font.print(this.withZero(statsNow.time, 3), context, 208 + 8, 8 + 4);
+        drawRect(context, 0, 23 * this.level.tilesize, SCREEN_SIZE.width, 5 * this.level.tilesize, 'black', {
+            filled: true,
+        });
     }
 
     withZero(count: number, length: number): string {

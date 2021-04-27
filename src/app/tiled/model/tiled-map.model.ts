@@ -6,7 +6,7 @@ import Tile from '../../engine/world/tiles/tile';
 export interface TiledMap {
     tileset: TileSet;
     tileSize: number;
-    layers: Matrix<Tile>[];
+    layers: { matrix: Matrix<Tile>; name: string }[];
     width: number;
     height: number;
     viewPorts: BoundingBox[];

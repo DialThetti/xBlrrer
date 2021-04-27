@@ -4,6 +4,8 @@ import BoundingBox from '../../engine/math/boundingBox';
 import Matrix from '../../engine/math/matrix';
 import Vector from '../../engine/math/vector';
 import { distinct, flatMap } from '../../engine/polyfill';
+import { mergeImageContainer } from '../../engine/rendering/image.container';
+import TileSet from '../../engine/rendering/tileSet';
 import Tile from '../../engine/world/tiles/tile';
 import { TiledMap } from '../model/tiled-map.model';
 import { TiledTileset } from '../model/tiled-tileset.model';
@@ -16,8 +18,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
     directory: string;
 
     loader = () => loadJson<Tmx.TmxModel<any>>(this.path);
-    tilesetLoader = (tileset, ids) =>
-        new TiledTilesetLoader(this.directory + tileset.source, tileset.firstgid).filteredBy(ids).load();
+    tilesetLoader = (tileset, ids) => new TiledTilesetLoader(this.directory + tileset.source, tileset.firstgid).load();
     constructor(private path: string) {
         this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
     }
@@ -94,20 +95,22 @@ export default class TiledMapLoader implements Loader<TiledMap> {
     createTileMatrixes(
         tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>,
         tileProps: { [id: number]: TsxTileModel },
-    ): Matrix<Tile>[] {
+    ): { matrix: Matrix<Tile>; name: string }[] {
         const tileCreator = new TileMatrixCreator(tileProps);
         return tmx.layers
             .filter((a) => a.visible)
             .filter((layer) => layer.type === 'tilelayer')
-            .map((layer) => tileCreator.create(layer as Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer));
+            .map((layer) => ({
+                name: layer.name,
+                matrix: tileCreator.create(layer as Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer),
+            }));
     }
 
     merge(tilesets: TiledTileset[]): TiledTileset {
         const t = {} as TiledTileset;
 
         return tilesets.reduce((o, c) => {
-            const t = o.tileset;
-            t.images = { ...t.images, ...c.tileset.images };
+            const t = mergeImageContainer(o.tileset, c.tileset) as TileSet;
             return { tileMatrix: { ...o.tileMatrix, ...c.tileMatrix }, tileset: t };
         });
     }

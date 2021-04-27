@@ -7,7 +7,7 @@ import TileMath from '../../world/tiles/tile.math';
 
 export default class TileColliderLayer {
     private math: TileMath;
-    constructor(protected tiles: Matrix<Tile>, private tilesize: number) {
+    constructor(protected tiles: { matrix: Matrix<Tile>; name: string }, private tilesize: number) {
         this.math = new TileMath(tilesize);
     }
     /**
@@ -34,7 +34,9 @@ export default class TileColliderLayer {
      * @param tile
      */
     setByRange(x: Range, y: Range, tile: Tile): void {
-        cross(this.math.toIndexRange(x), this.math.toIndexRange(y)).forEach(([x, y]) => this.tiles.set(x, y, tile));
+        cross(this.math.toIndexRange(x), this.math.toIndexRange(y)).forEach(([x, y]) =>
+            this.tiles.matrix.set(x, y, tile),
+        );
     }
     /**
      * Get a tile by index. Note: this is the only method not scaled by tilesize
@@ -43,7 +45,7 @@ export default class TileColliderLayer {
      * @returns
      */
     getByIndex(x: number, y: number): PositionedTile {
-        const tile = this.tiles.get(x, y);
+        const tile = this.tiles.matrix.get(x, y);
         if (!tile) {
             return null;
         }
@@ -67,6 +69,10 @@ export default class TileColliderLayer {
             y = { from: y, to: y + 1 } as Range;
         }
         this.setByRange(x, y, null);
+    }
+
+    get name(): string {
+        return this.tiles.name;
     }
 }
 

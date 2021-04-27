@@ -1,4 +1,3 @@
-import { debugSettings } from '../../../engine/debug';
 import Entity from '../../../engine/entities/entity';
 import { EntityState } from '../../../engine/entities/entity.state';
 import FontLoader from '../../../engine/io/font.loader';
@@ -12,9 +11,11 @@ import PlayerController from '../../../platformer/entities/traits/player-control
 import Level from '../../../platformer/level';
 import MetroidCamera from '../../../platformer/world/metroid.camera';
 import Scene from '../../../scenes/scene';
+import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
 import setupKeyboard from '../../io/input';
 import LevelLoader from '../../loader/level.loader';
+import DashboardLayer from '../../rendering/layers/dashboard.layer';
 
 declare const window: any; // eslint-disable-line
 export default class GameScene implements Scene {
@@ -32,6 +33,8 @@ export default class GameScene implements Scene {
         const playerControl = new PlayerController(level);
         const levelTimer = new LevelTimer(level);
         playerEnv.state = EntityState.ACTIVE;
+
+        player.pos.set(level.startPosition.x * level.tilesize, level.startPosition.y * level.tilesize);
         playerControl.setPlayer(player);
         playerControl.setCheckpoint(level.startPosition);
         playerEnv.addTraits([playerControl, levelTimer]);
@@ -51,27 +54,13 @@ export default class GameScene implements Scene {
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);
         level.audioBoard = audioBoard;
-        renderer.layers.push(
-            new CameraLayer(camera),
-            new ScrollSpyLayer(),
-            /*     new DashboardLayer(font, () => ({
-                ...player.getTrait(Player),
-                time: playerEnv.getTrait(LevelTimer).restTime,
-                level: level.name,
-                coins: player.getTrait(Player).coins,
-            })),*/
-        );
+        renderer.layers.push(new CameraLayer(camera), new ScrollSpyLayer(), new DashboardLayer(font, level));
         this.camera = camera;
         this.level = level;
         this.renderer = renderer;
         this.player = player;
 
-        window.testingCheatsEnabled = (enabled): void => {
-            debugSettings.enabled = enabled;
-        };
-        window.hitboxesOnly = (enabled): void => {
-            debugSettings.hitboxesOnly = enabled;
-        };
+        addDebugToLevel(level);
     }
 
     update(deltaTime: number): void {

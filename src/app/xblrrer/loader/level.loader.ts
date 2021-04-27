@@ -42,7 +42,7 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         const player = entityRepo['crow']() as PlatformerEntity;
         player.state = EntityState.ACTIVE;
 
-        level.tiles = levelSpec.tiledMap.layers[2];
+        //   level.tiles = levelSpec.tiledMap.layers[2].matrix;
         level.startPosition = levelSpec.startPosition;
         level.estimateTime = levelSpec.estimateTime;
         level.bgm = levelSpec.bgm;
@@ -60,6 +60,7 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         );
         composition.layers.push(new TilesetLayer(level, tileset));
         composition.layers.push(new EntityLayer(level.entities));
+        composition.layers.push(new TilesetLayer(level, tileset, true));
         composition.layers.push(new CollisionLayer(level));
         // prepare collider
         addHandler('brick', createBrickTileHandler());

@@ -3,11 +3,12 @@ import { Canvas, createCanvas } from './render.utils';
 
 export default abstract class ImageContainer {
     images: { [name: string]: Canvas } = {};
-    protected animations: { [name: string]: FrameAnimation };
-
+    animations: { [name: string]: FrameAnimation };
+    private clearImage: Canvas;
     constructor(protected img: HTMLImageElement) {
         this.images = {};
         this.animations = {};
+        this.clearImage = createCanvas(1, 1);
     }
 
     protected define(name: string, posX: number, posY: number, width: number, height: number, flipped = false): void {
@@ -21,6 +22,7 @@ export default abstract class ImageContainer {
         context.drawImage(this.img, Math.floor(posX), Math.floor(posY), width, height, 0, 0, width, height);
         if (this.isCanvasBlank(buffer)) {
             // the sprite is empty, so no need to save it
+            this.images[name] = this.clearImage;
             return;
         }
         this.images[name] = buffer;
@@ -39,4 +41,10 @@ export default abstract class ImageContainer {
     protected getImage(name: string): Canvas {
         return this.images[name];
     }
+}
+
+export function mergeImageContainer(t: ImageContainer, c: ImageContainer): ImageContainer {
+    t.images = { ...t.images, ...c.images };
+    t.animations = { ...t.animations, ...c.animations };
+    return t;
 }

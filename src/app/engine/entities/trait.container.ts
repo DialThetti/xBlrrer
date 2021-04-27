@@ -18,4 +18,10 @@ export default interface TraitCtnr {
      * @param t
      */
     hasTrait<T extends Trait>(t: new () => T): boolean;
+
+    /**
+     * Returns a trait from the trait list.
+     * @param name Returns ```true``` if the trait was removed successfully, if not found or not removable for any reason ```false```.
+     */
+    removeTraitByName(name: string): boolean;
 }

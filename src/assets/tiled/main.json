@@ -7135,7 +7135,7 @@
                 {
                  "name":"platform",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"solid",
@@ -7149,7 +7149,7 @@
                 {
                  "name":"platform",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"solid",
@@ -19824,7 +19824,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -20706,7 +20706,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -20720,7 +20720,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {

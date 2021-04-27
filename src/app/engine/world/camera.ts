@@ -5,14 +5,24 @@ import { SCREEN_SIZE } from '../screen.settings';
 
 export default class Camera {
     protected pos_ = new Vector(0, 0);
-    size = new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height);
+
     edge = new Vector((256 * 2 - 32) / 2, 64);
 
-    constructor(private totalMovementBounds = new BoundingBox(new Vector(0, 0), new Vector(32, 28))) {
+    constructor(
+        private totalMovementBounds = new BoundingBox(
+            new Vector(0, 0),
+            new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height),
+        ),
+        public size = new Vector(SCREEN_SIZE.width, 23 * 16),
+    ) {
         this.pos_.set(totalMovementBounds.left, totalMovementBounds.top);
     }
     public get box(): BoundingBox {
         return new BoundingBox(this.pos_, this.size);
+    }
+
+    get viewPort(): BoundingBox {
+        return this.totalMovementBounds;
     }
 
     update(playerFigure: Entity, deltaTime: number): void {

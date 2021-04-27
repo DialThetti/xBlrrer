@@ -17,10 +17,11 @@ export default class Game {
         const sceneMachine = new SceneMachine(this.context).addScenes([
             () => new LoadingScene(),
             () => new GameScene('transition'),
+            () => new GameScene('forest-1'),
         ]);
         await sceneMachine.load();
         sceneMachine.start();
-        sceneMachine.setScene('transition');
+        sceneMachine.setScene('forest-1');
         console.log('scenes running');
     }
 }

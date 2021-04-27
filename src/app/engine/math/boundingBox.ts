@@ -1,7 +1,7 @@
 import Vector from './vector';
 
 export default class BoundingBox {
-    constructor(private pos: Vector, private size: Vector, private offset: Vector = new Vector(0, 0)) {}
+    constructor(public pos: Vector, public size: Vector, private offset: Vector = new Vector(0, 0)) {}
 
     overlaps(box: BoundingBox): boolean {
         return this.bottom > box.top && this.top < box.bottom && this.left < box.right && this.right > box.left;
@@ -37,9 +37,5 @@ export default class BoundingBox {
 
     set right(x: number) {
         this.pos.x = x - (this.size.x + this.offset.x);
-    }
-
-    get position(): Vector {
-        return new Vector(this.left, this.top);
     }
 }

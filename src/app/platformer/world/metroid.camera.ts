@@ -1,3 +1,4 @@
+import { debugSettings } from '../../engine/debug';
 import Entity from '../../engine/entities/entity';
 import BoundingBox from '../../engine/math/boundingBox';
 import Vector from '../../engine/math/vector';
@@ -5,7 +6,7 @@ import Camera from '../../engine/world/camera';
 
 export default class MetroidCamera extends Camera {
     cameras: Camera[];
-    currentCamIndex = 0;
+    currentCamIndex = -1;
     transition: Transition;
     constructor(viewPorts: BoundingBox[]) {
         super();
@@ -26,7 +27,7 @@ export default class MetroidCamera extends Camera {
         this.currentCam.update(playerFigure, deltaTime);
         if (this.transition != null) {
             if (this.transition.delta == 0) {
-                this.transition.targetPosition = this.currentCam.box.position;
+                this.transition.targetPosition = this.currentCam.box.pos;
             }
             const delta = this.transition.get(1.5 * deltaTime);
             this.currentCam.box.left = delta.x;
@@ -36,11 +37,28 @@ export default class MetroidCamera extends Camera {
     }
 
     private updateCurrentCam(playerFigure: Entity): void {
-        const x = this.cameras.findIndex((a) => a.box.overlaps(playerFigure.bounds));
-        if (x != -1) {
-            if (x != this.currentCamIndex)
-                this.transition = new Transition(this.currentCam.box.position, this.cameras[x].box.position);
-            this.currentCamIndex = x;
+        const potentionallyNewCam = this.cameras
+            .map((a) => a.viewPort)
+            .findIndex((a) => a.overlaps(playerFigure.bounds));
+        if (potentionallyNewCam != -1) {
+            if (potentionallyNewCam != this.currentCamIndex) {
+                console.debug(`[camera] Switching cameras from ${this.currentCamIndex} to ${potentionallyNewCam}`);
+                if (this.currentCamIndex !== -1)
+                    this.transition = new Transition(
+                        this.currentCam.box.pos,
+                        this.cameras[potentionallyNewCam].box.pos,
+                    );
+            }
+
+            this.currentCamIndex = potentionallyNewCam;
+        } else {
+            if (debugSettings.enabled) {
+                console.debug(`[camera] no new Camera found!`);
+                console.log(playerFigure.bounds);
+                console.log(this.cameras.map((a) => a.box));
+
+                debugger;
+            }
         }
     }
 }

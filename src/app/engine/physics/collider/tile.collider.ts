@@ -25,7 +25,7 @@ export default class TileCollider {
     }
 
     addGrid(tiles: Matrix<Tile>): void {
-        this.layers.push(new TileColliderLayer(tiles, this.tileSize));
+        this.layers.push(new TileColliderLayer({ matrix: tiles, name: '' }, this.tileSize));
     }
 
     checkX(entity: Entity): void {
