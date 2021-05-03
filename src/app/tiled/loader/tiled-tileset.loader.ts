@@ -40,7 +40,6 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
                 tileMatrix[index + this.idOffset] = tsxModel.tiles[index];
                 if (tsxModel.tiles[index]?.animation) {
                     console.debug('add 1 animation ' + id);
-                    debugger;
                     tileset.defineAnim(
                         `${id}`,
                         createAnim(

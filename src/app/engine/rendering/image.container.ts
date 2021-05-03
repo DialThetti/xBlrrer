@@ -1,5 +1,5 @@
 import { FrameAnimation } from './animation';
-import { Canvas, createCanvas } from './render.utils';
+import { Canvas, createCanvas, RenderContext } from './render.utils';
 
 export default abstract class ImageContainer {
     images: { [name: string]: Canvas } = {};
@@ -20,19 +20,12 @@ export default abstract class ImageContainer {
             context.translate(-width, 0);
         }
         context.drawImage(this.img, Math.floor(posX), Math.floor(posY), width, height, 0, 0, width, height);
-        if (this.isCanvasBlank(buffer)) {
-            // the sprite is empty, so no need to save it
-            this.images[name] = this.clearImage;
-            return;
-        }
+
         this.images[name] = buffer;
     }
 
-    isCanvasBlank(canvas: Canvas): boolean {
-        return !canvas
-            .getContext('2d')
-            .getImageData(0, 0, canvas.width, canvas.height)
-            .data.some((channel) => channel !== 0);
+    isCanvasBlank(context: RenderContext, width: number, height: number): boolean {
+        return !context.getImageData(0, 0, width, height).data.some((channel) => channel !== 0);
     }
     public defineAnim(name: string, anim: FrameAnimation): void {
         this.animations[name] = anim;

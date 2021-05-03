@@ -13,8 +13,8 @@ import PlatformerEntity from '../../platformer/entities/platformer-entity';
 import Level from '../../platformer/level';
 import LevelSpecLoader from '../../platformer/loader/platformer-level.loader';
 import { createBrickTileHandler } from '../../platformer/physics/collider/brickTile-handler';
+import ChunkedTilesetLayer from '../../platformer/rendering/layers/chunked.tileset.layer';
 import CollisionLayer from '../../platformer/rendering/layers/debug/collision.layer';
-import TilesetLayer from '../../platformer/rendering/layers/tileset.layer';
 import EntityFactory from '../entities/entity.factory';
 import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.handler';
 
@@ -34,11 +34,15 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         level.height = levelSpec.tiledMap.height;
         if (levelSpec.entities) {
             levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
-                const entity = entityRepo[name]() as PlatformerEntity;
-                entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
-                //       level.entities.add(entity);
+                for (let index = 0; index < 10; index++) {
+                    const entity = entityRepo[name]() as PlatformerEntity;
+
+                    entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
+                    level.entities.add(entity);
+                }
             });
         }
+        console.log(Object.keys(entityRepo));
         const player = entityRepo['crow']() as PlatformerEntity;
         player.state = EntityState.ACTIVE;
 
@@ -58,9 +62,25 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
                 levelSpec.parallax?.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.y, a.speed)),
             )),
         );
-        composition.layers.push(new TilesetLayer(level, tileset));
+        composition.layers.push(
+            new ChunkedTilesetLayer(
+                levelSpec.tiledMap.layers.filter((a) => a.name !== 'FRONT').map((a) => a.matrix),
+                levelSpec.tiledMap.tileset,
+                level.width,
+                level.height,
+            ),
+        );
+        //  composition.layers.push(new TilesetLayer(level, tileset));
         composition.layers.push(new EntityLayer(level.entities));
-        composition.layers.push(new TilesetLayer(level, tileset, true));
+        //  composition.layers.push(new TilesetLayer(level, tileset, true));
+        composition.layers.push(
+            new ChunkedTilesetLayer(
+                levelSpec.tiledMap.layers.filter((a) => a.name === 'FRONT').map((a) => a.matrix),
+                levelSpec.tiledMap.tileset,
+                level.width,
+                level.height,
+            ),
+        );
         composition.layers.push(new CollisionLayer(level));
         // prepare collider
         addHandler('brick', createBrickTileHandler());
