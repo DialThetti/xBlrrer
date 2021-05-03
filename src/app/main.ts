@@ -1,4 +1,4 @@
-import Game from './xblrrer/game';
+import Game from './game/xblrrer/game';
 
 declare const window: any; // eslint-disable-line
 

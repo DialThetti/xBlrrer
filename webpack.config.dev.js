@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
     entry: './src/app/main.ts',
@@ -8,11 +10,17 @@ module.exports = {
     },
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+    devtool: 'source-map',
 
     resolve: {
         // Add '.ts' as resolvable extensions.
         extensions: ['*', '.webpack.js', '.web.js', '.ts', '.js'],
+
+        plugins: [
+            new TsconfigPathsPlugin({
+                /* options: see below */
+            }),
+        ],
     },
 
     module: {
@@ -27,9 +35,7 @@ module.exports = {
     watch: true,
     plugins: [
         new CopyPlugin({
-            patterns: [
-                { from: 'src/assets' }
-            ]
+            patterns: [{ from: 'src/assets' }],
         }),
         new webpack.LoaderOptionsPlugin({
             debug: true,
