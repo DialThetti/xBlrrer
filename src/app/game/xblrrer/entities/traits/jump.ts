@@ -1,53 +1,87 @@
 import Trait, { Context } from '@engine/core/entities/trait';
+import Event from '@engine/core/events/event';
+import EventBuffer from '@engine/core/events/eventBuffer';
 import { SfxEvent } from '@engine/core/events/events';
 import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Crouch from './crouch';
 
-export default class Jump extends Trait {
-    private jumpHeight = 2; /*in blocks*/
-    private duration = this.jumpHeight / 12;
-    private velocity = 200;
-    private engageTime = 0;
-    private onGround = 0;
-    private requestTime = 0;
-    private gracePeriod = 0.1;
+class JumpButtonPressed implements Event<void> {
+    name = 'JumpButtonPressed';
+    payload = null;
+}
 
+class JumpButtonReleased implements Event<void> {
+    name = 'JumpButtonReleased';
+    payload = null;
+}
+
+class CountDown {
+    private currentVal: number;
+
+    constructor(private startVal: number) {
+        this.currentVal = startVal;
+    }
+
+    decrease(val: number): void {
+        this.currentVal -= val;
+    }
+    reset() {
+        this.currentVal = this.startVal;
+    }
+    toZero() {
+        this.currentVal = 0;
+    }
+    notZero() {
+        return this.currentVal > 0;
+    }
+}
+export default class Jump extends Trait {
+    private eventBuffer = new EventBuffer();
+    private velocity = 220;
+    private raisingTime = new CountDown(0.15);
+
+    private onGround = 0;
     time = 0;
 
     constructor() {
         super('jump');
+        this.raisingTime.toZero();
     }
     start(): void {
-        this.requestTime = this.gracePeriod;
-        this.time = 0;
+        this.eventBuffer.emit(new JumpButtonPressed());
     }
     cancel(): void {
-        this.engageTime = 0;
-        this.requestTime = 0;
+        this.eventBuffer.emit(new JumpButtonReleased());
     }
     update(entity: PlatformerEntity, context: Context): void {
-        const crouch = entity.getTrait(Crouch);
-        if (this.requestTime > 0) {
+        this.eventBuffer.process('JumpButtonReleased', () => {
+            this.raisingTime.toZero();
+            if (entity.vel.y < 0) {
+                entity.vel.y = -this.velocity / 2;
+            }
+        });
+        this.eventBuffer.process('JumpButtonPressed', () => {
+            const crouch = entity.getTrait(Crouch);
+
             if (crouch?.down) {
                 if (entity.standingOn.has('platform')) {
                     entity.bypassPlatform = true;
                 }
-                this.cancel();
+                this.raisingTime.toZero();
                 return;
             }
             if (!this.falling) {
                 entity.bypassPlatform = true;
-                this.engageTime = this.duration;
-                this.requestTime = 0;
+                this.raisingTime.reset();
                 entity.events.emit(new SfxEvent({ name: 'jump' }));
             }
-            this.requestTime -= context.deltaTime;
-        }
-        if (this.engageTime > 0) {
+        });
+
+        if (this.raisingTime.notZero()) {
             entity.bypassPlatform = false;
             entity.vel.y = -this.velocity;
-            this.engageTime -= context.deltaTime;
+            this.raisingTime.decrease(context.deltaTime);
         }
         const absY = Math.abs(entity.vel.y);
         this.time += absY * context.deltaTime;

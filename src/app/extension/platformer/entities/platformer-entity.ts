@@ -28,13 +28,18 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
     events = new EventBuffer();
 
     collide(target: PlatformerEntity): void {
-        this.getTraits().forEach((trait) => trait.collides(this, target));
+        this.getTraits()
+            .filter((trait) => trait.enabled)
+            .forEach((trait) => trait.collides(this, target));
     }
 
     update(context: PlatformerTraitContext): void {
-        this.getTraits().forEach((trait) => trait.update(this, context));
+        this.getTraits()
+            .filter((trait) => trait.enabled)
+            .forEach((trait) => trait.update(this, context));
         this.lifeTime += context.deltaTime;
         this.getTraits()
+            .filter((trait) => trait.enabled)
             .filter((e) => e.finalize)
             .forEach((e) => {
                 e.finalize();
@@ -47,7 +52,9 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
         if (side === Side.BOTTOM) {
             match.tile.types.forEach((e) => this.standingOn.add(e));
         }
-        this.getTraits().forEach((trait) => trait.obstruct(this, side, match));
+        this.getTraits()
+            .filter((trait) => trait.enabled)
+            .forEach((trait) => trait.obstruct(this, side, match));
     }
 
     addTrait(trait: Trait): void {

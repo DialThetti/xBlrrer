@@ -14,4 +14,9 @@ export default class Vector {
     getScaledBy(n: number): Vector {
         return new Vector(this.x * n, this.y * n);
     }
+
+    static UP = new Vector(0, -1);
+    static DOWN = new Vector(0, 1);
+    static LEFT = new Vector(-1, 0);
+    static RIGHT = new Vector(1, 0);
 }

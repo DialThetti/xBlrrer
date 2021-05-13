@@ -6,31 +6,32 @@ import Glide from '../entities/traits/glide';
 import Go from '../entities/traits/go';
 import Jump from '../entities/traits/jump';
 
-export default function setupKeyboard(playerFigure: Entity & TraitCtnr): KeyboardState {
-    const go = playerFigure.getTrait(Go);
-    const jump = playerFigure.getTrait(Jump);
-    const crouch = playerFigure.getTrait(Crouch);
-    const glide = playerFigure.getTrait(Glide);
+export default class PlatformerKeyboard extends KeyboardState {
+    constructor(private playerFigure: Entity & TraitCtnr) {
+        super();
 
-    const isPressed = (keyState): boolean => keyState === KeyState.PRESSED;
+        const go = playerFigure.getTrait(Go);
+        const jump = playerFigure.getTrait(Jump);
+        const crouch = playerFigure.getTrait(Crouch);
+        const glide = playerFigure.getTrait(Glide);
 
-    return (
-        new KeyboardState()
-            .addMapping('Space', (keyState) => {
-                if (isPressed(keyState)) {
-                    if (glide && jump.falling) {
-                        glide.start();
-                    } else {
-                        jump.start();
-                    }
+        const isPressed = (keyState): boolean => keyState === KeyState.PRESSED;
+
+        this.addMapping('Space', (keyState) => {
+            if (isPressed(keyState)) {
+                if (glide && jump.falling) {
+                    glide.start();
                 } else {
-                    if (glide && glide.gliding) {
-                        glide.cancel();
-                    } else {
-                        jump.cancel();
-                    }
+                    jump.start();
                 }
-            })
+            } else {
+                if (glide && glide.gliding) {
+                    glide.cancel();
+                } else {
+                    jump.cancel();
+                }
+            }
+        })
             //   .addMapping('ShiftLeft', (keyState) => (go.running = isPressed(keyState)))
             .addMapping('KeyS', (keyState) => {
                 if (isPressed(keyState)) {
@@ -41,6 +42,6 @@ export default function setupKeyboard(playerFigure: Entity & TraitCtnr): Keyboar
                 if (!isPressed(keyState)) playerFigure.bypassPlatform = false;
             })
             .addMapping('KeyD', (keyState) => go.right(isPressed(keyState)))
-            .addMapping('KeyA', (keyState) => go.left(isPressed(keyState)))
-    );
+            .addMapping('KeyA', (keyState) => go.left(isPressed(keyState)));
+    }
 }

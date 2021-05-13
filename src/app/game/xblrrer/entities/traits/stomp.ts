@@ -5,7 +5,7 @@ import Killable from '@extension/platformer/entities/traits/killable';
 import { StompEvent } from '../../events/events';
 
 export default class Stomp extends Trait {
-    bounceSpeed = 400;
+    bounceSpeed = 150;
     quereBounce = false;
     stomped = false;
 

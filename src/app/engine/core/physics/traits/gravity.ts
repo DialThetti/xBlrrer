@@ -8,9 +8,6 @@ export default class Gravity extends Trait {
     }
 
     update(entity: Entity, context: Context): void {
-        if (!this.enabled) {
-            return;
-        }
         const scaled = this.gravity.getScaledBy(context.deltaTime);
         entity.vel.add(scaled);
     }

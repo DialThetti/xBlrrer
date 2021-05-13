@@ -9,9 +9,6 @@ export default class Solid extends Trait {
     }
 
     obstruct(entity: Entity, side: Side, match: PositionedTile): void {
-        if (!this.enabled) {
-            return;
-        }
         switch (side) {
             case Side.BOTTOM:
                 entity.bounds.top = match.y.from - entity.size.y;

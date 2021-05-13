@@ -3,6 +3,9 @@ import Entity from '@engine/core/entities/entity';
 import BoundingBox from '@engine/core/math/boundingBox';
 import Vector from '@engine/core/math/vector';
 import Camera from '@engine/core/world/camera';
+import { PlatformerTraitContext } from '../entities/traits/traits';
+import { PauseGameEvent, ResumeGameEvent } from '../events/events';
+import Level from '../level';
 
 export default class MetroidCamera extends Camera {
     cameras: Camera[];
@@ -21,33 +24,38 @@ export default class MetroidCamera extends Camera {
         return this.cameras[this.currentCamIndex];
     }
 
-    update(playerFigure: Entity, deltaTime: number): void {
-        this.updateCurrentCam(playerFigure);
+    update(playerFigure: Entity, context: PlatformerTraitContext): void {
+        this.updateCurrentCam(playerFigure, context.level);
 
-        this.currentCam.update(playerFigure, deltaTime);
+        this.currentCam.update(playerFigure, context);
         if (this.transition != null) {
             if (this.transition.delta == 0) {
                 this.transition.targetPosition = this.currentCam.box.pos;
             }
-            const delta = this.transition.get(1.5 * deltaTime);
+            const delta = this.transition.get(1.5 * context.deltaTime);
             this.currentCam.box.left = delta.x;
             this.currentCam.box.top = delta.y;
-            if (this.transition.delta >= 1) this.transition = null;
+            if (this.transition.delta >= 1) {
+                this.transition = null;
+                context.level.eventBuffer.emit(new ResumeGameEvent());
+            }
         }
     }
 
-    private updateCurrentCam(playerFigure: Entity): void {
+    private updateCurrentCam(playerFigure: Entity, level: Level): void {
         const potentionallyNewCam = this.cameras
             .map((a) => a.viewPort)
             .findIndex((a) => a.overlaps(playerFigure.bounds));
         if (potentionallyNewCam != -1) {
             if (potentionallyNewCam != this.currentCamIndex) {
                 console.debug(`[camera] Switching cameras from ${this.currentCamIndex} to ${potentionallyNewCam}`);
-                if (this.currentCamIndex !== -1)
+                if (this.currentCamIndex !== -1) {
                     this.transition = new Transition(
                         this.currentCam.box.pos,
                         this.cameras[potentionallyNewCam].box.pos,
                     );
+                    level.eventBuffer.emit(new PauseGameEvent());
+                }
             }
 
             this.currentCamIndex = potentionallyNewCam;

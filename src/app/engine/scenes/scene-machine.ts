@@ -2,10 +2,13 @@ import Timer from '@engine/core/timer';
 import Scene from './scene';
 
 export default class SceneMachine {
+    public static INSTANCE: SceneMachine;
     private scenes: { [name: string]: { scene: Scene; loaded: boolean } } = {};
     private loadingScene: Scene;
     private currentSceneName = 'loadingScene';
-    constructor(private context: CanvasRenderingContext2D) {}
+    constructor(private context: CanvasRenderingContext2D) {
+        SceneMachine.INSTANCE = this;
+    }
 
     public async load(): Promise<void> {
         await this.loadingScene.load();

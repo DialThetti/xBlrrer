@@ -4,7 +4,7 @@ import { FiniteTmxLayer, InfiniteTmxLayer, isFiniteLayer, isInfiniteLayer } from
 import { TsxTileModel } from '../model/tsx.model';
 
 export default class TileMatrixCreator {
-    booleanTags = ['solid', 'platform', 'onlyCrouch'];
+    booleanTags = ['solid', 'platform', 'onlyCrouch', 'deadly'];
     constructor(private tileProps: { [id: number]: TsxTileModel }) {}
 
     public create(layer: InfiniteTmxLayer | FiniteTmxLayer): Matrix<Tile> {

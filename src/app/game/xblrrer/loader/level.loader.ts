@@ -16,6 +16,7 @@ import { createBrickTileHandler } from '@extension/platformer/physics/collider/b
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.tileset.layer';
 import CollisionLayer from '@extension/platformer/rendering/layers/debug/collision.layer';
 import EntityFactory from '../entities/entity.factory';
+import { createDeatlyHandler } from '../physics/collider/deadly.handler';
 import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.handler';
 
 export default class LevelLoader implements Loader<{ level: Level; player: PlatformerEntity }> {
@@ -34,12 +35,10 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         level.height = levelSpec.tiledMap.height;
         if (levelSpec.entities) {
             levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
-                for (let index = 0; index < 10; index++) {
-                    const entity = entityRepo[name]() as PlatformerEntity;
+                const entity = entityRepo[name]() as PlatformerEntity;
 
-                    entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
-                    level.entities.add(entity);
-                }
+                entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
+                level.entities.add(entity);
             });
         }
         console.log(Object.keys(entityRepo));
@@ -57,11 +56,13 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         const composition = new Compositor();
         composition.layers.push(new SingleColorLayer('#6B88FE'));
 
-        composition.layers.push(
-            ...(await Promise.all(
-                levelSpec.parallax?.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.y, a.speed)),
-            )),
-        );
+        if (levelSpec.parallax) {
+            composition.layers.push(
+                ...(await Promise.all(
+                    levelSpec.parallax.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.y, a.speed)),
+                )),
+            );
+        }
         composition.layers.push(
             new ChunkedTilesetLayer(
                 levelSpec.tiledMap.layers.filter((a) => a.name !== 'FRONT').map((a) => a.matrix),
@@ -85,6 +86,7 @@ export default class LevelLoader implements Loader<{ level: Level; player: Platf
         // prepare collider
         addHandler('brick', createBrickTileHandler());
         addHandler('onlyCrouch', createOnlyCrouchTileHandler());
+        addHandler('deadly', createDeatlyHandler());
 
         return { level, player, renderer: composition, viewPorts: levelSpec.tiledMap.viewPorts };
     }

@@ -2,6 +2,7 @@ import ActivateOnSight from '@engine/core/entities/activateOnSight';
 import Entity from '@engine/core/entities/entity';
 import { EntityState } from '@engine/core/entities/entity.state';
 import { Context } from '@engine/core/entities/trait';
+import EventBuffer from '@engine/core/events/eventBuffer';
 import { Names } from '@engine/core/events/events';
 import AudioBoard from '@engine/core/io/sfx/audioboard';
 import Matrix from '@engine/core/math/matrix';
@@ -29,13 +30,17 @@ export default class Level implements Collidable {
 
     bgm: string;
 
+    eventBuffer: EventBuffer = new EventBuffer();
+    paused = false;
     constructor(public tilesize: number) {
         this.collider = new LevelCollider(this);
     }
 
     update(deltaTime: number, camera: Camera): void {
-        const context = { deltaTime, level: this, collidable: this, camera };
-        camera.update(this.findPlayer(), deltaTime);
+        this.eventBuffer.process('PauseGame', () => (this.paused = true));
+        this.eventBuffer.process('ResumeGame', () => (this.paused = false));
+        const context = { deltaTime: this.paused ? 0 : deltaTime, level: this, collidable: this, camera };
+        camera.update(this.findPlayer(), { ...context, deltaTime });
         this.activateEntititesOnSight(context);
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => e.update(context));

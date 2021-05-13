@@ -1,8 +1,8 @@
-import { entityRepo } from './entity.repo';
+import { SpawnEvent } from '../events/events';
 import Entity from './entity';
+import { entityRepo } from './entity.repo';
 import { EntityState } from './entity.state';
 import Trait, { Context } from './trait';
-import { SpawnEvent } from '../events/events';
 
 export default class Emitter extends Trait {
     private cooldown = 0;
@@ -18,9 +18,6 @@ export default class Emitter extends Trait {
     }
 
     update(us: Entity, context: Context): void {
-        if (this.enabled == false) {
-            return;
-        }
         this.cooldown -= context.deltaTime;
         if (this.cooldown <= 0) {
             if (this.repeating) {

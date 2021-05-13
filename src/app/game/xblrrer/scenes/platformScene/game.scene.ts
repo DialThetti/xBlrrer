@@ -13,7 +13,7 @@ import Level from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
-import setupKeyboard from '../../io/input';
+import PlatformerKeyboard from '../../io/input';
 import LevelLoader from '../../loader/level.loader';
 import DashboardLayer from '../../rendering/layers/dashboard.layer';
 
@@ -46,7 +46,7 @@ export default class GameScene implements Scene {
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
         const font = await new FontLoader('./img/font.png').load();
-        const input = setupKeyboard(player);
+        const input = new PlatformerKeyboard(player);
         input.listenTo(window);
 
         const camera = new MetroidCamera(viewPorts);

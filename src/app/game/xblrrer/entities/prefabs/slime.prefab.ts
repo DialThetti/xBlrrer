@@ -9,6 +9,7 @@ import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { PlatformerTraitContext } from '@extension/platformer/entities/traits/traits';
+import Stomp from '../traits/stomp';
 
 class Interval {
     currentTime = 0;
@@ -62,6 +63,24 @@ class SlimeJumping extends Trait {
             entity.vel.x = 0;
         }
     }
+    collides(us: PlatformerEntity, them: PlatformerEntity): void {
+        const stomper = them.getTrait(Stomp);
+        const themKillable = them.getTrait(Killable);
+        const usKillable = us.getTrait(Killable);
+        if (usKillable.dead) {
+            return;
+        }
+        if (stomper) {
+            if (stomper.fromAbove(them, us)) {
+                if (usKillable) {
+                    this.enabled = false;
+                    usKillable.kill();
+                }
+            } else {
+                themKillable.kill();
+            }
+        }
+    }
 }
 
 class RandomChangeDirection extends Trait {
@@ -109,7 +128,7 @@ class SlimePrefab extends EntityPrefab {
             new Gravity(),
             new Solid(),
             new Physics(),
-            new Killable(),
+            new Killable('dead', 0),
             jumpTrait(),
             new directionTrait(),
         ];

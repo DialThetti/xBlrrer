@@ -1,4 +1,5 @@
 import Entity from '../entities/entity';
+import { Context } from '../entities/trait';
 import BoundingBox from '../math/boundingBox';
 import Vector from '../math/vector';
 import { SCREEN_SIZE } from '../screen.settings';
@@ -25,7 +26,7 @@ export default class Camera {
         return this.totalMovementBounds;
     }
 
-    update(playerFigure: Entity, deltaTime: number): void {
+    update(playerFigure: Entity, context: Context): void {
         const right = playerFigure.bounds.right - this.box.right + this.edge.x;
         const left = playerFigure.bounds.left - this.box.left - this.edge.x;
         this.pos_.x += Math.max(right, Math.min(left, 0));

@@ -1,6 +1,6 @@
 {
     "bgm": "overground",
-    "tiledMapPath": "./tiled/forest/forest_world.json",
+    "tiledMapPath": "tiled/tmx/forest_world.json",
     "estimateTime": 999,
     "startPosition": { "x": 90, "y": 55 },
     "parallax": [
