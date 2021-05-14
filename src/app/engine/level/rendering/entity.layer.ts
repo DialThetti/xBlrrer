@@ -1,7 +1,7 @@
-import Entity from '../../entities/entity';
-import Camera from '../../world/camera';
-import { Canvas, createCanvas, RenderContext } from '../render.utils';
-import RenderLayer from './renderLayer';
+import Entity from '@engine/core/entities/entity';
+import { Canvas, createCanvas, RenderContext } from '@engine/core/rendering/render.utils';
+import Level from '@engine/level/level';
+import RenderLayer from '@engine/level/rendering/renderLayer';
 
 export default class EntityLayer implements RenderLayer {
     bufferContext: RenderContext;
@@ -10,7 +10,8 @@ export default class EntityLayer implements RenderLayer {
         this.createBuffer(width, height);
     }
 
-    draw(context: CanvasRenderingContext2D, camera: Camera): void {
+    draw(context: CanvasRenderingContext2D, level: Level): void {
+        const { camera } = level;
         [...this.entities]
             .filter((entity) => entity.bounds.overlaps(camera.box))
             .forEach((entity) => {

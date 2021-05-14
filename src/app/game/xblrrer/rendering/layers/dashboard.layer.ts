@@ -1,11 +1,11 @@
 import Font from '@engine/core/rendering/font';
 import { drawRect } from '@engine/core/rendering/helper';
-import RenderLayer from '@engine/core/rendering/layers/renderLayer';
 import { SCREEN_SIZE } from '@engine/core/screen.settings';
-import Level from '@extension/platformer/level';
+import RenderLayer from '@engine/level/rendering/renderLayer';
+import PlatformerLevel from '@extension/platformer/level';
 
 export default class DashboardLayer implements RenderLayer {
-    constructor(private font: Font, private level: Level) {}
+    constructor(private font: Font, private level: PlatformerLevel) {}
 
     draw(context: CanvasRenderingContext2D): void {
         drawRect(context, 0, 23 * this.level.tilesize, SCREEN_SIZE.width, 5 * this.level.tilesize, 'black', {

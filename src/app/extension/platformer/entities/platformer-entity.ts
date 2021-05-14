@@ -5,8 +5,8 @@ import TraitCtnr from '@engine/core/entities/trait.container';
 import EventBuffer from '@engine/core/events/eventBuffer';
 import BoundingBox from '@engine/core/math/boundingBox';
 import Vector from '@engine/core/math/vector';
-import { PositionedTile } from '@engine/core/physics/collider/tile.collider.layer';
 import { Side } from '@engine/core/world/tiles/side';
+import { PositionedTile } from '@engine/level/level-layer';
 import { PlatformerTraitContext } from './traits/traits';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {

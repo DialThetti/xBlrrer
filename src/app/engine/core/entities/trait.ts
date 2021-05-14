@@ -1,5 +1,5 @@
+import { PositionedTile } from '@engine/level/level-layer';
 import Collidable from '../physics/collidable';
-import { PositionedTile } from '../physics/collider/tile.collider.layer';
 import Camera from '../world/camera';
 import { Side } from '../world/tiles/side';
 import Entity from './entity';

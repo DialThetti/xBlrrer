@@ -1,6 +1,6 @@
 import Trait from '@engine/core/entities/trait';
 import Vector from '@engine/core/math/vector';
-import Level from '../../level';
+import PlatformerLevel from '../../level';
 import PlatformerEntity from '../platformer-entity';
 import CantGoLeft from './cantGoLeft';
 import Killable from './killable';
@@ -8,7 +8,7 @@ import Killable from './killable';
 export default class PlayerController extends Trait {
     player: PlatformerEntity;
     checkPoint: Vector;
-    constructor(private level?: Level) {
+    constructor(private level?: PlatformerLevel) {
         super('playerController');
     }
     setCheckpoint(v: Vector): void {

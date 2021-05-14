@@ -1,6 +1,7 @@
 import FontLoader from '@engine/core/io/font.loader';
-import RenderLayer from '@engine/core/rendering/layers/renderLayer';
 import Camera from '@engine/core/world/camera';
+import Level from '@engine/level/level';
+import RenderLayer from '@engine/level/rendering/renderLayer';
 import Scene from '@engine/scenes/scene';
 import SceneMachine from '@engine/scenes/scene-machine';
 import MenuKeyboard from './input';
@@ -27,7 +28,7 @@ export default class MainMenuScene implements Scene {
 
     update(deltaTime: number): void {}
     draw(context: CanvasRenderingContext2D): void {
-        this.layer.draw(context, this.camera, null);
+        this.layer.draw(context, { camera: this.camera } as Level);
     }
 
     get option(): number {

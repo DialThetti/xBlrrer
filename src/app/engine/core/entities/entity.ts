@@ -1,7 +1,7 @@
+import { PositionedTile } from '@engine/level/level-layer';
 import EventEmitter from '../events/eventBuffer';
 import BoundingBox from '../math/boundingBox';
 import Vector from '../math/vector';
-import { PositionedTile } from '../physics/collider/tile.collider.layer';
 import { RenderContext } from '../rendering/render.utils';
 import { Side } from '../world/tiles/side';
 import { EntityState } from './entity.state';

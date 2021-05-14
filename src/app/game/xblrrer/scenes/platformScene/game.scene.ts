@@ -2,14 +2,15 @@ import Entity from '@engine/core/entities/entity';
 import { EntityState } from '@engine/core/entities/entity.state';
 import FontLoader from '@engine/core/io/font.loader';
 import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
-import CameraLayer from '@engine/core/rendering/layers/camera.layer';
-import RenderLayer from '@engine/core/rendering/layers/renderLayer';
-import ScrollSpyLayer from '@engine/core/rendering/layers/scrollSpy.layer';
 import Camera from '@engine/core/world/camera';
+import * as EngineLevel from '@engine/level/level';
+import { LEVEL_RENDERER } from '@engine/level/level-renderer';
 import Scene from '@engine/scenes/scene';
+import CameraLayer from '@extension/debug/layer/camera.layer';
+import ScrollSpyLayer from '@extension/debug/layer/scrollSpy.layer';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlayerController from '@extension/platformer/entities/traits/player-controller';
-import Level from '@extension/platformer/level';
+import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
@@ -21,14 +22,13 @@ declare const window: any; // eslint-disable-line
 export default class GameScene implements Scene {
     isLoadingScene = false;
     camera: Camera;
-    level: Level;
+    level: PlatformerLevel;
 
-    renderer: RenderLayer;
     player: Entity;
 
     constructor(public name: string) {}
 
-    createPlayerEnv(player: PlatformerEntity, level: Level): PlatformerEntity {
+    createPlayerEnv(player: PlatformerEntity, level: PlatformerLevel): PlatformerEntity {
         const playerEnv = new PlatformerEntity();
         const playerControl = new PlayerController(level);
         const levelTimer = new LevelTimer(level);
@@ -54,10 +54,10 @@ export default class GameScene implements Scene {
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);
         level.audioBoard = audioBoard;
-        renderer.layers.push(new CameraLayer(camera), new ScrollSpyLayer(), new DashboardLayer(font, level));
+        renderer.push(new CameraLayer(camera), new ScrollSpyLayer(), new DashboardLayer(font, level));
         this.camera = camera;
         this.level = level;
-        this.renderer = renderer;
+        renderer.forEach((l) => LEVEL_RENDERER.addLayer(l));
         this.player = player;
 
         addDebugToLevel(level);
@@ -68,7 +68,7 @@ export default class GameScene implements Scene {
     }
 
     draw(context: CanvasRenderingContext2D): void {
-        this.renderer.draw(context, this.camera, this.player);
+        LEVEL_RENDERER.render(context, { camera: this.camera } as EngineLevel.default);
     }
     async start(): Promise<void> {
         // resetting not required here

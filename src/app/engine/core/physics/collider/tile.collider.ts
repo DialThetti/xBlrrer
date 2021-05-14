@@ -1,9 +1,9 @@
+import Level from '@engine/level/level';
+import { PositionedTile } from '@engine/level/level-layer';
 import Entity from '../../entities/entity';
-import Matrix from '../../math/matrix';
-import Tile from '../../world/tiles/tile';
 import { createPlatformTileHandler } from './handler/platformTile.handler';
 import { createSolidTileHandler } from './handler/solidTile.handler';
-import TileColliderLayer, { PositionedTile } from './tile.collider.layer';
+import TileColliderLayer from './tile.collider.layer';
 
 export type TwoDimTileCollisionHandler = {
     x: (e: Entity, m: PositionedTile, tiles: TileColliderLayer) => void;
@@ -19,14 +19,7 @@ export function addHandler(name: string, handler: TwoDimTileCollisionHandler): v
     handlers[name] = handler;
 }
 export default class TileCollider {
-    layers: TileColliderLayer[];
-    constructor(private tileSize: number) {
-        this.layers = [];
-    }
-
-    addGrid(tiles: Matrix<Tile>): void {
-        this.layers.push(new TileColliderLayer({ matrix: tiles, name: '' }, this.tileSize));
-    }
+    constructor(private level: Level, private tileSize: number) {}
 
     checkX(entity: Entity): void {
         const box = entity.bounds;
@@ -34,7 +27,7 @@ export default class TileCollider {
             return;
         }
         const x = entity.vel.x > 0 ? box.right : box.left;
-        for (const resolver of this.layers) {
+        for (const resolver of this.level.levelLayer) {
             resolver
                 .get({ from: x, to: x }, { from: box.top, to: box.bottom })
                 .forEach((match) => this.handle('x', entity, match, resolver));
@@ -47,7 +40,7 @@ export default class TileCollider {
             return;
         }
         const y = entity.vel.y > 0 ? box.bottom : box.top;
-        for (const resolver of this.layers) {
+        for (const resolver of this.level.levelLayer) {
             resolver
                 .get({ from: box.left, to: box.right }, { from: y, to: y })
                 .forEach((match) => this.handle('y', entity, match, resolver));

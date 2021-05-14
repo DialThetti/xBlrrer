@@ -1,7 +1,7 @@
+import { PositionedTile } from '@engine/level/level-layer';
 import Entity from '../../../entities/entity';
 import { Side } from '../../../world/tiles/side';
 import { TwoDimTileCollisionHandler } from '../tile.collider';
-import { PositionedTile } from '../tile.collider.layer';
 
 export function createSolidTileHandler(): TwoDimTileCollisionHandler {
     return {

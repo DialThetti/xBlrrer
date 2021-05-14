@@ -1,22 +1,15 @@
-import Entity from '@engine/core/entities/entity';
-import TraitCtnr from '@engine/core/entities/trait.container';
 import Matrix from '@engine/core/math/matrix';
-import RenderLayer from '@engine/core/rendering/layers/renderLayer';
 import { Canvas, createCanvas } from '@engine/core/rendering/render.utils';
 import TileSet from '@engine/core/rendering/tileSet';
-import Camera from '@engine/core/world/camera';
 import Tile from '@engine/core/world/tiles/tile';
+import Level from '@engine/level/level';
+import RenderLayer from '@engine/level/rendering/renderLayer';
 
 export default class ChunkedTilesetLayer implements RenderLayer {
     private chunks: Matrix<Canvas> = new Matrix();
-    constructor(
-        private tiles: Matrix<Tile>[],
-        private tileset: TileSet,
-        private width: number,
-        private height: number,
-        private chunkSize: number = 32,
-    ) {}
-    draw(context: CanvasRenderingContext2D, camera: Camera, playerFigure: Entity & TraitCtnr): void {
+    constructor(private tiles: Matrix<Tile>[], private tileset: TileSet, private chunkSize: number = 32) {}
+    draw(context: CanvasRenderingContext2D, level: Level): void {
+        const { camera } = level;
         const xRange = { from: this.toChunkPosition(camera.box.left), to: this.toChunkPosition(camera.box.right) + 1 };
         const yRange = { from: this.toChunkPosition(camera.box.top), to: this.toChunkPosition(camera.box.bottom) + 1 };
         for (let x = xRange.from; x < xRange.to; x++) {

@@ -1,27 +1,26 @@
 import { debugSettings } from '@engine/core/debug';
 import TileCollider from '@engine/core/physics/collider/tile.collider';
-import { PositionedTile } from '@engine/core/physics/collider/tile.collider.layer';
 import { drawRect } from '@engine/core/rendering/helper';
-import RenderLayer from '@engine/core/rendering/layers/renderLayer';
 import Camera from '@engine/core/world/camera';
-import Level from '../../../level';
-
+import * as EngineLevel from '@engine/level/level';
+import { PositionedTile } from '@engine/level/level-layer';
+import RenderLayer from '@engine/level/rendering/renderLayer';
+import PlatformerLevel from '../../../level';
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;
     tileCollider: TileCollider;
     resolvedTiles: { x: number; y: number }[] = [];
-    constructor(private level: Level) {
+    constructor(private level: PlatformerLevel) {
         this.resolvedTiles = [];
         this.tileCollider = level.collider.tileCollider;
         this.tileSize = level.tilesize;
+        const getByIndexOrigin = level.levelLayer[0].getByIndex;
 
-        const getByIndexOrigin = this.tileCollider.layers[0].getByIndex;
-
-        this.tileCollider.layers[0].getByIndex = (x: number, y: number): PositionedTile => {
+        level.levelLayer[0].getByIndex = (x: number, y: number): PositionedTile => {
             if (debugSettings.enabled) {
                 this.resolvedTiles.push({ x, y });
             }
-            return getByIndexOrigin.call(this.tileCollider.layers[0], x, y);
+            return getByIndexOrigin.call(level.levelLayer[0], x, y);
         };
     }
 
@@ -49,12 +48,12 @@ export default class CollisionLayer implements RenderLayer {
             ),
         );
     }
-    draw(context: CanvasRenderingContext2D, camera: Camera): void {
+    draw(context: CanvasRenderingContext2D, level: EngineLevel.default): void {
         if (!debugSettings.enabled) {
             return;
         }
-        this.drawTileFrames(context, camera);
-        this.drawEntityFrames(context, camera);
+        this.drawTileFrames(context, level.camera);
+        this.drawEntityFrames(context, level.camera);
         this.resolvedTiles.length = 0;
     }
 }

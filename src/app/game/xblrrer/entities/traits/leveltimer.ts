@@ -1,14 +1,14 @@
 import Entity from '@engine/core/entities/entity';
 import Trait, { Context } from '@engine/core/entities/trait';
 import { SfxEvent } from '@engine/core/events/events';
-import Level from '@extension/platformer/level';
+import PlatformerLevel from '@extension/platformer/level';
 
 export default class LevelTimer extends Trait {
     totalTime = 300;
     currentTime = 0;
     hurried = false;
 
-    constructor(level?: Level) {
+    constructor(level?: PlatformerLevel) {
         super('leveltimer');
         if (level) this.totalTime = level.estimateTime;
     }

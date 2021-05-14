@@ -5,7 +5,7 @@ import Vector from '@engine/core/math/vector';
 import Camera from '@engine/core/world/camera';
 import { PlatformerTraitContext } from '../entities/traits/traits';
 import { PauseGameEvent, ResumeGameEvent } from '../events/events';
-import Level from '../level';
+import PlatformerLevel from '../level';
 
 export default class MetroidCamera extends Camera {
     cameras: Camera[];
@@ -42,7 +42,7 @@ export default class MetroidCamera extends Camera {
         }
     }
 
-    private updateCurrentCam(playerFigure: Entity, level: Level): void {
+    private updateCurrentCam(playerFigure: Entity, level: PlatformerLevel): void {
         const potentionallyNewCam = this.cameras
             .map((a) => a.viewPort)
             .findIndex((a) => a.overlaps(playerFigure.bounds));
@@ -64,8 +64,6 @@ export default class MetroidCamera extends Camera {
                 console.debug(`[camera] no new Camera found!`);
                 console.log(playerFigure.bounds);
                 console.log(this.cameras.map((a) => a.box));
-
-                debugger;
             }
         }
     }

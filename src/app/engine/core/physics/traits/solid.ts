@@ -1,7 +1,7 @@
+import { PositionedTile } from '@engine/level/level-layer';
 import Entity from '../../entities/entity';
 import Trait from '../../entities/trait';
 import { Side } from '../../world/tiles/side';
-import { PositionedTile } from '../collider/tile.collider.layer';
 
 export default class Solid extends Trait {
     constructor() {

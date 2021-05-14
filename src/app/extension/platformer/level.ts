@@ -5,16 +5,15 @@ import { Context } from '@engine/core/entities/trait';
 import EventBuffer from '@engine/core/events/eventBuffer';
 import { Names } from '@engine/core/events/events';
 import AudioBoard from '@engine/core/io/sfx/audioboard';
-import Matrix from '@engine/core/math/matrix';
 import Vector from '@engine/core/math/vector';
 import Collidable from '@engine/core/physics/collidable';
 import Camera from '@engine/core/world/camera';
-import Tile from '@engine/core/world/tiles/tile';
+import Level from '@engine/level/level';
 import PlatformerEntity from './entities/platformer-entity';
 import PlayerController from './entities/traits/player-controller';
 import LevelCollider from './level.collider';
 
-export default class Level implements Collidable {
+export default class PlatformerLevel extends Level implements Collidable {
     name: string;
     entities = new Set<PlatformerEntity>();
     gravity = new Vector(0, 1500);
@@ -26,6 +25,9 @@ export default class Level implements Collidable {
 
     audioBoard: AudioBoard;
 
+    /**
+     * @deprecated
+     */
     collider: LevelCollider;
 
     bgm: string;
@@ -33,7 +35,9 @@ export default class Level implements Collidable {
     eventBuffer: EventBuffer = new EventBuffer();
     paused = false;
     constructor(public tilesize: number) {
+        super();
         this.collider = new LevelCollider(this);
+        debugger;
     }
 
     update(deltaTime: number, camera: Camera): void {
@@ -93,13 +97,10 @@ export default class Level implements Collidable {
     }
 
     checkX(entity: Entity): void {
+        debugger;
         this.collider.checkX(entity);
     }
     checkY(entity: Entity): void {
         this.collider.checkY(entity);
-    }
-
-    set tiles(tiles: Matrix<Tile>) {
-        this.collider.tiles = tiles;
     }
 }

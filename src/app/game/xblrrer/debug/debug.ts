@@ -1,10 +1,10 @@
 import { debugSettings } from '@engine/core/debug';
 import { traitRegistry } from '@engine/core/entities/trait-registry';
-import Level from '@extension/platformer/level';
+import PlatformerLevel from '@extension/platformer/level';
 
 declare const window: any; // eslint-disable-line
 
-export function addDebugToLevel(level: Level): void {
+export function addDebugToLevel(level: PlatformerLevel): void {
     if (window) {
         window.addTrait = (name) => {
             level.findPlayer().addTraits([traitRegistry.byName(name)]);

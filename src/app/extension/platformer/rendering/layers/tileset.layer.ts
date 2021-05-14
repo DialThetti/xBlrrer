@@ -1,27 +1,23 @@
 import { debugSettings } from '@engine/core/debug';
-import Entity from '@engine/core/entities/entity';
-import TraitCtnr from '@engine/core/entities/trait.container';
 import Range from '@engine/core/math/range.interface';
 import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import { drawRect } from '@engine/core/rendering/helper';
-import RenderLayer from '@engine/core/rendering/layers/renderLayer';
 import { Canvas, createCanvas, RenderContext } from '@engine/core/rendering/render.utils';
 import TileSet from '@engine/core/rendering/tileSet';
-import Camera from '@engine/core/world/camera';
 import Tile from '@engine/core/world/tiles/tile';
 import TileMath from '@engine/core/world/tiles/tile.math';
-import Level from '../../level';
+import * as EngineLevel from '@engine/level/level';
+import RenderLayer from '@engine/level/rendering/renderLayer';
+import PlatformerLevel from '../../level';
 
 export default class TilesetLayer implements RenderLayer {
-    layers: TileColliderLayer[];
     private buffer: Canvas;
     private bufferContext: RenderContext;
 
     private math: TileMath;
     screenFrameTileRangeHash: string;
 
-    constructor(private level: Level, private tileSet: TileSet, onlyFront = false) {
-        this.layers = level.collider.tileCollider.layers.filter((a) => (a.name == 'FRONT') == onlyFront);
+    constructor(private level: PlatformerLevel, private tileSet: TileSet, onlyFront = false) {
         this.buffer = this.createBackgroundLayer(level.tilesize);
         this.bufferContext = this.buffer.getContext('2d');
         this.math = new TileMath(level.tilesize);
@@ -33,17 +29,25 @@ export default class TilesetLayer implements RenderLayer {
         return { from, to: bWidth + from };
     }
 
-    draw(context: CanvasRenderingContext2D, camera: Camera, playerFigure: Entity & TraitCtnr): void {
-        this.redraw(this.toRange(camera.box.left, camera.size.x), this.toRange(camera.box.top, camera.size.y));
-        context.drawImage(this.buffer, -camera.box.left % this.level.tilesize, -camera.box.top % this.level.tilesize);
+    draw(context: CanvasRenderingContext2D, level: EngineLevel.default): void {
+        this.redraw(
+            level,
+            this.toRange(level.camera.box.left, level.camera.size.x),
+            this.toRange(level.camera.box.top, level.camera.size.y),
+        );
+        context.drawImage(
+            this.buffer,
+            -level.camera.box.left % this.level.tilesize,
+            -level.camera.box.top % this.level.tilesize,
+        );
     }
 
-    private redraw(rangeX: Range, rangeY: Range): void {
+    private redraw(level: EngineLevel.default, rangeX: Range, rangeY: Range): void {
         if (!this.hasChanged(rangeX, rangeY)) {
             return;
         }
         this.bufferContext.clearRect(0, 0, this.buffer.width, this.buffer.height);
-        this.layers.forEach((layer) => this.renderLayer(layer, rangeX, rangeY));
+        level.levelLayer.forEach((layer) => this.renderLayer(layer, rangeX, rangeY));
     }
 
     private hasChanged(rangeX: Range, rangeY: Range): boolean {

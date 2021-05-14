@@ -1,5 +1,5 @@
-import Trait, { Context } from '../../entities/trait';
 import Entity from '../../entities/entity';
+import Trait, { Context } from '../../entities/trait';
 
 export default class Physics extends Trait {
     constructor() {
@@ -7,6 +7,7 @@ export default class Physics extends Trait {
     }
 
     update(e: Entity, context: Context): void {
+        debugger;
         if (!context.collidable || !this.enabled) {
             return;
         }

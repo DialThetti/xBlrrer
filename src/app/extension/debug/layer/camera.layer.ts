@@ -1,7 +1,7 @@
-import { debugSettings } from '../../debug';
-import Camera from '../../world/camera';
-import { drawRect } from '../helper';
-import RenderLayer from './renderLayer';
+import RenderLayer from '@engine/level/rendering/renderLayer';
+import { debugSettings } from '../../../engine/core/debug';
+import { drawRect } from '../../../engine/core/rendering/helper';
+import Camera from '../../../engine/core/world/camera';
 
 export default class CameraLayer implements RenderLayer {
     constructor(private cameraToDraw: Camera) {}

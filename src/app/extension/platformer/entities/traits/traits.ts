@@ -1,6 +1,6 @@
 import { Context } from '@engine/core/entities/trait';
-import Level from '../../level';
+import PlatformerLevel from '../../level';
 
 export interface PlatformerTraitContext extends Context {
-    level: Level;
+    level: PlatformerLevel;
 }

@@ -1,7 +1,8 @@
 import Entity from '@engine/core/entities/entity';
 import { TwoDimTileCollisionHandler } from '@engine/core/physics/collider/tile.collider';
-import TileColliderLayer, { PositionedTile } from '@engine/core/physics/collider/tile.collider.layer';
+import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import { Side } from '@engine/core/world/tiles/side';
+import { PositionedTile } from '@engine/level/level-layer';
 
 export function createBrickTileHandler(): TwoDimTileCollisionHandler {
     return {
