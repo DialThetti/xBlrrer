@@ -4,8 +4,8 @@ import TileCollider from '@engine/core/physics/collider/tile.collider';
 import PlatformerLevel from './level';
 
 export default class LevelCollider {
-    tileCollider: TileCollider;
-    entityCollider: EntityCollider;
+    private tileCollider: TileCollider;
+    private entityCollider: EntityCollider;
 
     constructor(level: PlatformerLevel) {
         this.entityCollider = new EntityCollider(level.entities);
@@ -17,5 +17,9 @@ export default class LevelCollider {
     }
     checkY(entity: Entity): void {
         this.tileCollider.checkY(entity);
+    }
+
+    check(entity: Entity): void {
+        this.entityCollider.check(entity);
     }
 }

@@ -2,8 +2,6 @@ import Entity from '@engine/core/entities/entity';
 import { EntityState } from '@engine/core/entities/entity.state';
 import FontLoader from '@engine/core/io/font.loader';
 import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
-import Camera from '@engine/core/world/camera';
-import * as EngineLevel from '@engine/level/level';
 import { LEVEL_RENDERER } from '@engine/level/level-renderer';
 import Scene from '@engine/scenes/scene';
 import CameraLayer from '@extension/debug/layer/camera.layer';
@@ -21,7 +19,6 @@ import DashboardLayer from '../../rendering/layers/dashboard.layer';
 declare const window: any; // eslint-disable-line
 export default class GameScene implements Scene {
     isLoadingScene = false;
-    camera: Camera;
     level: PlatformerLevel;
 
     player: Entity;
@@ -55,8 +52,9 @@ export default class GameScene implements Scene {
         level.entities.add(playerEnv);
         level.audioBoard = audioBoard;
         renderer.push(new CameraLayer(camera), new ScrollSpyLayer(), new DashboardLayer(font, level));
-        this.camera = camera;
+        level.camera = camera;
         this.level = level;
+
         renderer.forEach((l) => LEVEL_RENDERER.addLayer(l));
         this.player = player;
 
@@ -64,11 +62,11 @@ export default class GameScene implements Scene {
     }
 
     update(deltaTime: number): void {
-        this.level.update(deltaTime, this.camera);
+        this.level.update(deltaTime);
     }
 
     draw(context: CanvasRenderingContext2D): void {
-        LEVEL_RENDERER.render(context, { camera: this.camera } as EngineLevel.default);
+        LEVEL_RENDERER.render(context, this.level);
     }
     async start(): Promise<void> {
         // resetting not required here

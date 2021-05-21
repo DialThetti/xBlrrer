@@ -1,5 +1,5 @@
+import Level from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
-import Collidable from '../physics/collidable';
 import Camera from '../world/camera';
 import { Side } from '../world/tiles/side';
 import Entity from './entity';
@@ -50,5 +50,5 @@ export default abstract class Trait {
 export interface Context {
     deltaTime: number;
     camera: Camera;
-    collidable: Collidable;
+    level: Level;
 }

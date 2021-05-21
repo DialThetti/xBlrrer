@@ -1,5 +1,4 @@
 import { debugSettings } from '@engine/core/debug';
-import TileCollider from '@engine/core/physics/collider/tile.collider';
 import { drawRect } from '@engine/core/rendering/helper';
 import Camera from '@engine/core/world/camera';
 import * as EngineLevel from '@engine/level/level';
@@ -8,11 +7,9 @@ import RenderLayer from '@engine/level/rendering/renderLayer';
 import PlatformerLevel from '../../../level';
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;
-    tileCollider: TileCollider;
     resolvedTiles: { x: number; y: number }[] = [];
     constructor(private level: PlatformerLevel) {
         this.resolvedTiles = [];
-        this.tileCollider = level.collider.tileCollider;
         this.tileSize = level.tilesize;
         const getByIndexOrigin = level.levelLayer[0].getByIndex;
 
