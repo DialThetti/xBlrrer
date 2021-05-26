@@ -1,3 +1,4 @@
+import { RenderContext } from 'feather-engine-core';
 import SpriteSheetLoader from '../io/spriteSheet.loader';
 import Vector from '../math/vector';
 import SpriteSheet from '../rendering/spriteSheet';
@@ -25,7 +26,7 @@ export default abstract class EntityPrefab {
             f.size.set(this.size.x, this.size.y);
             f.offset.set(this.offset.x, this.offset.y);
             f.addTraits(this.traits());
-            f.draw = (context: CanvasRenderingContext2D): void => {
+            f.draw = (context: RenderContext): void => {
                 if (!sprite) {
                     return;
                 }

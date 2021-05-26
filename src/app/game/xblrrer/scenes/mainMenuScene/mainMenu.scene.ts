@@ -4,6 +4,7 @@ import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import Scene from '@engine/scenes/scene';
 import SceneMachine from '@engine/scenes/scene-machine';
+import { KeyboardInput, RenderContext } from 'feather-engine-core';
 import MenuKeyboard from './input';
 import MainMenuLayer from './layer/mainmenu.layer';
 
@@ -14,20 +15,18 @@ export default class MainMenuScene implements Scene {
     layer: RenderLayer;
     _option = 0;
     camera = new Camera();
-    input: MenuKeyboard;
 
     async load(): Promise<void> {
         const font = await new FontLoader('./img/font.png').load();
         this.layer = new MainMenuLayer(font, this);
-        this.input = new MenuKeyboard(this);
     }
 
     async start(): Promise<void> {
-        this.input.listenTo(window);
+        KeyboardInput.addKeyListener(new MenuKeyboard(this));
     }
 
     update(deltaTime: number): void {}
-    draw(context: CanvasRenderingContext2D): void {
+    draw(context: RenderContext): void {
         this.layer.draw(context, { camera: this.camera } as Level);
     }
 

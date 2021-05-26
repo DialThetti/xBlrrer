@@ -2,12 +2,12 @@ import { debugSettings } from '@engine/core/debug';
 import Range from '@engine/core/math/range.interface';
 import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import { drawRect } from '@engine/core/rendering/helper';
-import { Canvas, createCanvas, RenderContext } from '@engine/core/rendering/render.utils';
 import TileSet from '@engine/core/rendering/tileSet';
 import Tile from '@engine/core/world/tiles/tile';
 import TileMath from '@engine/core/world/tiles/tile.math';
 import * as EngineLevel from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
+import { Canvas, CanvasRenderer, RenderContext } from 'feather-engine-core';
 import PlatformerLevel from '../../level';
 
 export default class TilesetLayer implements RenderLayer {
@@ -18,8 +18,8 @@ export default class TilesetLayer implements RenderLayer {
     screenFrameTileRangeHash: string;
 
     constructor(private level: PlatformerLevel, private tileSet: TileSet, onlyFront = false) {
-        this.buffer = this.createBackgroundLayer(level.tilesize);
-        this.bufferContext = this.buffer.getContext('2d');
+        this.createBackgroundLayer(level.tilesize);
+
         this.math = new TileMath(level.tilesize);
     }
 
@@ -29,7 +29,7 @@ export default class TilesetLayer implements RenderLayer {
         return { from, to: bWidth + from };
     }
 
-    draw(context: CanvasRenderingContext2D, level: EngineLevel.default): void {
+    draw(context: RenderContext, level: EngineLevel.default): void {
         this.redraw(
             level,
             this.toRange(level.camera.box.left, level.camera.size.x),
@@ -99,9 +99,9 @@ export default class TilesetLayer implements RenderLayer {
         }
     }
 
-    createBackgroundLayer(extraSize: number): Canvas {
-        const buffer = createCanvas(256 * 2 + extraSize, 224 * 2 + extraSize);
+    createBackgroundLayer(extraSize: number): void {
+        this.bufferContext = CanvasRenderer.createRenderContext(256 * 2 + extraSize, 224 * 2 + extraSize);
+        this.buffer = this.bufferContext.canvas;
         this.screenFrameTileRangeHash = '';
-        return buffer;
     }
 }

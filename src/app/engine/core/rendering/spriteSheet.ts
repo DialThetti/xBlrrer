@@ -1,3 +1,4 @@
+import { RenderContext } from 'feather-engine-core';
 import { debugSettings } from '../debug';
 import { FrameAnimation } from './animation';
 import { drawRect } from './helper';
@@ -13,7 +14,7 @@ export default class SpriteSheet extends ImageContainer {
         super.define(name + '_switched', posX, posY, width, height, true);
     }
 
-    public draw(name: string, context: CanvasRenderingContext2D, x: number, y: number, flipped = false): void {
+    public draw(name: string, context: RenderContext, x: number, y: number, flipped = false): void {
         const image = this.getImage(name + (flipped ? '_switched' : ''));
         if (image) {
             context.drawImage(image, x, y);

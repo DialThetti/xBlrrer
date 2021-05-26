@@ -1,7 +1,7 @@
-import { RenderContext } from './render.utils';
+import { RenderContext } from 'feather-engine-core';
 
 export function drawRect(
-    context: RenderContext,
+    context: RenderContext | CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
     x: number,
     y: number,
     w: number,

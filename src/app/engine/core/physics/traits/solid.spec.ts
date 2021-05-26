@@ -1,16 +1,15 @@
-import { expect } from 'chai';
+import { PositionedTile } from '../../../level/level-layer';
 import Entity from '../../entities/entity';
-import Vector from '../../math/vector';
-import Solid from './solid';
-import { PositionedTile } from '../collider/tile.collider.layer';
-import { Side } from '../../world/tiles/side';
 import BoundingBox from '../../math/boundingBox';
+import Vector from '../../math/vector';
+import { Side } from '../../world/tiles/side';
+import Solid from './solid';
 
 describe('Solid', () => {
     const trait = new Solid();
 
     it('should be named "solid"', () => {
-        expect(trait.name).to.equal('solid');
+        expect(trait.name).toEqual('solid');
     });
 
     describe('obstruct', () => {
@@ -25,36 +24,36 @@ describe('Solid', () => {
         it('should do nothing if disabled', () => {
             trait.enabled = false;
             trait.obstruct(entity, Side.BOTTOM, match);
-            expect(entity.vel.x).to.equal(4);
-            expect(entity.vel.y).to.equal(2);
+            expect(entity.vel.x).toEqual(4);
+            expect(entity.vel.y).toEqual(2);
         });
         it('should obstruct BOTTOM', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.BOTTOM, match);
-            expect(entity.vel.x).to.equal(4);
-            expect(entity.vel.y).to.equal(0);
-            expect(entity.bounds.top).to.equal(-5);
+            expect(entity.vel.x).toEqual(4);
+            expect(entity.vel.y).toEqual(0);
+            expect(entity.bounds.top).toEqual(-5);
         });
         it('should obstruct TOP', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.TOP, match);
-            expect(entity.vel.x).to.equal(4);
-            expect(entity.vel.y).to.equal(0);
-            expect(entity.bounds.top).to.equal(2);
+            expect(entity.vel.x).toEqual(4);
+            expect(entity.vel.y).toEqual(0);
+            expect(entity.bounds.top).toEqual(2);
         });
         it('should obstruct LEFT', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.LEFT, match);
-            expect(entity.vel.x).to.equal(0);
-            expect(entity.vel.y).to.equal(2);
-            expect(entity.bounds.left).to.equal(4);
+            expect(entity.vel.x).toEqual(0);
+            expect(entity.vel.y).toEqual(2);
+            expect(entity.bounds.left).toEqual(4);
         });
         it('should obstruct RIGHT', () => {
             trait.enabled = true;
             trait.obstruct(entity, Side.RIGHT, match);
-            expect(entity.vel.x).to.equal(0);
-            expect(entity.vel.y).to.equal(2);
-            expect(entity.bounds.left).to.equal(-3);
+            expect(entity.vel.x).toEqual(0);
+            expect(entity.vel.y).toEqual(2);
+            expect(entity.bounds.left).toEqual(-3);
         });
     });
 });

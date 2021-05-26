@@ -1,14 +1,14 @@
 import Matrix from '@engine/core/math/matrix';
-import { Canvas, createCanvas } from '@engine/core/rendering/render.utils';
 import TileSet from '@engine/core/rendering/tileSet';
 import Tile from '@engine/core/world/tiles/tile';
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
+import { Canvas, CanvasRenderer, RenderContext } from 'feather-engine-core';
 
 export default class ChunkedTilesetLayer implements RenderLayer {
     private chunks: Matrix<Canvas> = new Matrix();
     constructor(private tiles: Matrix<Tile>[], private tileset: TileSet, private chunkSize: number = 32) {}
-    draw(context: CanvasRenderingContext2D, level: Level): void {
+    draw(context: RenderContext, level: Level): void {
         const { camera } = level;
         const xRange = { from: this.toChunkPosition(camera.box.left), to: this.toChunkPosition(camera.box.right) + 1 };
         const yRange = { from: this.toChunkPosition(camera.box.top), to: this.toChunkPosition(camera.box.bottom) + 1 };
@@ -28,8 +28,11 @@ export default class ChunkedTilesetLayer implements RenderLayer {
 
     prepareChunk(x: number, y: number): void {
         console.debug(`[chunks] load chunk ${x} ${y}`);
-        const chunk = createCanvas(this.chunkSize * this.tileset.tilesize, this.chunkSize * this.tileset.tilesize);
-        const context = chunk.getContext('2d');
+        const context = CanvasRenderer.createRenderContext(
+            this.chunkSize * this.tileset.tilesize,
+            this.chunkSize * this.tileset.tilesize,
+        );
+        const chunk = context.canvas;
         const xRange = { from: x * this.chunkSize, to: (x + 1) * this.chunkSize };
         const yRange = { from: y * this.chunkSize, to: (y + 1) * this.chunkSize };
 

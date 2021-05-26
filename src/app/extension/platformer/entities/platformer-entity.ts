@@ -7,6 +7,7 @@ import BoundingBox from '@engine/core/math/boundingBox';
 import Vector from '@engine/core/math/vector';
 import { Side } from '@engine/core/world/tiles/side';
 import { PositionedTile } from '@engine/level/level-layer';
+import { RenderContext } from 'feather-engine-core';
 import { PlatformerTraitContext } from './traits/traits';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {
@@ -78,7 +79,7 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
         delete this.traits[name];
         return true;
     }
-    draw(context: CanvasRenderingContext2D): void {
+    draw(context: RenderContext): void {
         // entity has no rendering.
     }
 

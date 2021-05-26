@@ -1,10 +1,10 @@
-import { expect } from 'chai';
+import { anything, spy, verify } from 'ts-mockito';
+import { PositionedTile } from '../../../../level/level-layer';
 import Entity from '../../../entities/entity';
-import TileColliderLayer, { PositionedTile } from '../tile.collider.layer';
-import { createSolidTileHandler } from './solidTile.handler';
-import { spy, anything, verify } from 'ts-mockito';
 import Vector from '../../../math/vector';
 import { Side } from '../../../world/tiles/side';
+import TileColliderLayer from '../tile.collider.layer';
+import { createSolidTileHandler } from './solidTile.handler';
 
 describe('createSolidTileHandler', () => {
     const handler = createSolidTileHandler();
@@ -20,7 +20,7 @@ describe('createSolidTileHandler', () => {
         spyedInstance = spy(entity);
     });
     it('should create a handler', () => {
-        expect(handler).not.to.be.null;
+        expect(handler).not.toBeNull();
     });
     describe('x', () => {
         it('should do nothing if x == 0', () => {

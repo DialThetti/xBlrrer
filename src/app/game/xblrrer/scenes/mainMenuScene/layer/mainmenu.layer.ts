@@ -2,12 +2,13 @@ import Font from '@engine/core/rendering/font';
 import { drawRect } from '@engine/core/rendering/helper';
 import { SCREEN_SIZE } from '@engine/core/screen.settings';
 import RenderLayer from '@engine/level/rendering/renderLayer';
+import { RenderContext } from 'feather-engine-core';
 import MainMenuScene from '../mainMenu.scene';
 
 export default class MainMenuLayer implements RenderLayer {
     constructor(private font: Font, private mainMenu: MainMenuScene) {}
 
-    draw(context: CanvasRenderingContext2D): void {
+    draw(context: RenderContext): void {
         drawRect(context, 0, 0, SCREEN_SIZE.width, SCREEN_SIZE.height, 'black', {
             filled: true,
         });

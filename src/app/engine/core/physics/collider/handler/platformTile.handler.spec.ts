@@ -1,9 +1,9 @@
-import { expect } from 'chai';
+import { anything, spy, verify } from 'ts-mockito';
+import { PositionedTile } from '../../../../level/level-layer';
 import Entity from '../../../entities/entity';
-import TileColliderLayer, { PositionedTile } from '../tile.collider.layer';
-import { spy, anything, verify } from 'ts-mockito';
 import Vector from '../../../math/vector';
 import { Side } from '../../../world/tiles/side';
+import TileColliderLayer from '../tile.collider.layer';
 import { createPlatformTileHandler } from './platformTile.handler';
 
 describe('createPlatformTileHandler', () => {
@@ -20,7 +20,7 @@ describe('createPlatformTileHandler', () => {
         spyedInstance = spy(entity);
     });
     it('should create a handler', () => {
-        expect(handler).not.to.be.null;
+        expect(handler).not.toBeNull();
     });
     describe('x', () => {
         it('should do nothing', () => {

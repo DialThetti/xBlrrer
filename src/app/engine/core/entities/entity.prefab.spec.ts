@@ -1,10 +1,9 @@
+import { mock } from 'ts-mockito';
+import Vector from '../math/vector';
 import Entity from './entity';
 import EntityPrefab from './entity.prefab';
-import { mock } from 'ts-mockito';
-import TraitCtnr from './trait.container';
-import { expect } from 'chai';
 import Trait from './trait';
-import Vector from '../math/vector';
+import TraitCtnr from './trait.container';
 
 describe('EntityPrefab', () => {
     let entityPrefab: EntityPrefab;
@@ -28,27 +27,27 @@ describe('EntityPrefab', () => {
         entity.offset = new Vector(0, 0);
     });
     it('should be created', () => {
-        expect(entityPrefab).to.not.be.null;
+        expect(entityPrefab).not.toBeNull();
     });
     describe('flip', () => {
         it('should be false if x>0', () => {
             const flipped = entityPrefab.flipped({ vel: { x: 1 } } as Entity);
-            expect(flipped).to.be.false;
+            expect(flipped).toBeFalsy();
         });
         it('should be true if x<0', () => {
             const flipped = entityPrefab.flipped({ vel: { x: -1 } } as Entity);
-            expect(flipped).to.be.true;
+            expect(flipped).toBeTruthy();
         });
     });
     describe('create', () => {
         let entityFac;
         it('should create a constructor function for an Entity', async () => {
             entityFac = await entityPrefab.create();
-            expect(entityFac).not.to.be.null;
+            expect(entityFac).not.toBeNull();
         });
         it('should create a constructor that can create an Entity', () => {
             const entity: Entity & TraitCtnr = entityFac();
-            expect(entity).not.to.be.null;
+            expect(entity).not.toBeNull();
         });
     });
 });

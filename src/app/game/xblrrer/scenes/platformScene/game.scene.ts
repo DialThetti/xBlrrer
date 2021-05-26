@@ -10,13 +10,13 @@ import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlayerController from '@extension/platformer/entities/traits/player-controller';
 import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
+import { KeyboardInput, RenderContext } from 'feather-engine-core';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
-import PlatformerKeyboard from '../../io/input';
 import LevelLoader from '../../loader/level.loader';
 import DashboardLayer from '../../rendering/layers/dashboard.layer';
+import PlatformerKeyListener from './input';
 
-declare const window: any; // eslint-disable-line
 export default class GameScene implements Scene {
     isLoadingScene = false;
     level: PlatformerLevel;
@@ -43,8 +43,8 @@ export default class GameScene implements Scene {
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
         const font = await new FontLoader('./img/font.png').load();
-        const input = new PlatformerKeyboard(player);
-        input.listenTo(window);
+        KeyboardInput.clearKeyListeners();
+        KeyboardInput.addKeyListener(new PlatformerKeyListener(player));
 
         const camera = new MetroidCamera(viewPorts);
         const playerEnv = this.createPlayerEnv(player, level);
@@ -65,7 +65,7 @@ export default class GameScene implements Scene {
         this.level.update(deltaTime);
     }
 
-    draw(context: CanvasRenderingContext2D): void {
+    draw(context: RenderContext): void {
         LEVEL_RENDERER.render(context, this.level);
     }
     async start(): Promise<void> {

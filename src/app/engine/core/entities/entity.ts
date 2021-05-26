@@ -1,8 +1,8 @@
 import { PositionedTile } from '@engine/level/level-layer';
+import { RenderContext } from 'feather-engine-core';
 import EventEmitter from '../events/eventBuffer';
 import BoundingBox from '../math/boundingBox';
 import Vector from '../math/vector';
-import { RenderContext } from '../rendering/render.utils';
 import { Side } from '../world/tiles/side';
 import { EntityState } from './entity.state';
 import TraitCtnr from './trait.container';

@@ -9,6 +9,7 @@ import SingleColorLayer from '@engine/level/rendering/singleColor.layer';
 import Scene from '@engine/scenes/scene';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import LoadingPrefab from '@game/xblrrer/entities/prefabs/Loading.prefab';
+import { RenderContext } from 'feather-engine-core';
 
 export default class LoadingScene implements Scene {
     name = 'loadingScene';
@@ -33,7 +34,7 @@ export default class LoadingScene implements Scene {
     update(deltaTime: number): void {
         this.loadingAnimation.lifeTime += deltaTime;
     }
-    draw(context: CanvasRenderingContext2D): void {
+    draw(context: RenderContext): void {
         this.bg.forEach((l) =>
             l.draw(context, {
                 camera: new Camera(

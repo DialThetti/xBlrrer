@@ -1,4 +1,4 @@
-import Timer from '@engine/core/timer';
+import { FeatherEngine, GameLoop, OnDraw, OnUpdate } from 'feather-engine-core';
 import Scene from './scene';
 
 export default class SceneMachine {
@@ -6,7 +6,7 @@ export default class SceneMachine {
     private scenes: { [name: string]: { scene: Scene; loaded: boolean } } = {};
     private loadingScene: Scene;
     private currentSceneName = 'loadingScene';
-    constructor(private context: CanvasRenderingContext2D) {
+    constructor() {
         SceneMachine.INSTANCE = this;
     }
 
@@ -15,10 +15,20 @@ export default class SceneMachine {
     }
 
     public start(): void {
-        new Timer((deltaTime) => {
-            this.currentScene.update(deltaTime);
-            this.currentScene.draw(this.context, deltaTime);
-        }).start();
+        GameLoop.register([
+            {
+                update: (deltaTime) => {
+                    this.currentScene.update(deltaTime);
+                },
+            } as OnUpdate,
+            {
+                draw: (renderingContext) => {
+                    this.currentScene.draw(renderingContext);
+                },
+            } as OnDraw,
+        ]);
+        FeatherEngine.init({ canvasId: 'screen' });
+        FeatherEngine.start();
     }
 
     public async setScene(name: string, withLoading = true): Promise<void> {

@@ -4,6 +4,7 @@ import Camera from '@engine/core/world/camera';
 import * as EngineLevel from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
+import { RenderContext } from 'feather-engine-core';
 import PlatformerLevel from '../../../level';
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;
@@ -21,7 +22,7 @@ export default class CollisionLayer implements RenderLayer {
         };
     }
 
-    drawEntityFrames(context: CanvasRenderingContext2D, camera: Camera): void {
+    drawEntityFrames(context: RenderContext, camera: Camera): void {
         this.level.entities.forEach((entity) =>
             drawRect(
                 context,
@@ -33,7 +34,7 @@ export default class CollisionLayer implements RenderLayer {
             ),
         );
     }
-    drawTileFrames(context: CanvasRenderingContext2D, camera: Camera): void {
+    drawTileFrames(context: RenderContext, camera: Camera): void {
         this.resolvedTiles.forEach(({ x, y }) =>
             drawRect(
                 context,
@@ -45,7 +46,7 @@ export default class CollisionLayer implements RenderLayer {
             ),
         );
     }
-    draw(context: CanvasRenderingContext2D, level: EngineLevel.default): void {
+    draw(context: RenderContext, level: EngineLevel.default): void {
         if (!debugSettings.enabled) {
             return;
         }

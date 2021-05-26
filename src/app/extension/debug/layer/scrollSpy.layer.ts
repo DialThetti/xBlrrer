@@ -1,10 +1,11 @@
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
+import { RenderContext } from 'feather-engine-core';
 import { debugSettings } from '../../../engine/core/debug';
 import { drawRect } from '../../../engine/core/rendering/helper';
 
 export default class ScrollSpyLayer implements RenderLayer {
-    draw(context: CanvasRenderingContext2D, level: Level): void {
+    draw(context: RenderContext, level: Level): void {
         if (!debugSettings.enabled) {
             return;
         }

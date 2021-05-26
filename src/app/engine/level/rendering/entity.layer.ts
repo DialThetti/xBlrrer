@@ -1,7 +1,7 @@
 import Entity from '@engine/core/entities/entity';
-import { Canvas, createCanvas, RenderContext } from '@engine/core/rendering/render.utils';
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
+import { Canvas, CanvasRenderer, RenderContext } from 'feather-engine-core';
 
 export default class EntityLayer implements RenderLayer {
     bufferContext: RenderContext;
@@ -10,7 +10,7 @@ export default class EntityLayer implements RenderLayer {
         this.createBuffer(width, height);
     }
 
-    draw(context: CanvasRenderingContext2D, level: Level): void {
+    draw(context: RenderContext, level: Level): void {
         const { camera } = level;
         [...this.entities]
             .filter((entity) => entity.bounds.overlaps(camera.box))
@@ -26,7 +26,7 @@ export default class EntityLayer implements RenderLayer {
     }
 
     createBuffer(width: number, height: number): void {
-        this.buffer = createCanvas(width, height);
-        this.bufferContext = this.buffer.getContext('2d');
+        this.bufferContext = CanvasRenderer.createRenderContext(width, height);
+        this.buffer = this.bufferContext.canvas;
     }
 }

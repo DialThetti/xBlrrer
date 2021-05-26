@@ -1,8 +1,7 @@
-import Matrix from '@engine/math/matrix';
-import TileSet from '@engine/rendering/tileSet';
-import Tile from '@engine/world/tiles/tile';
-import { expect } from 'chai';
 import { mock } from 'ts-mockito';
+import Matrix from '../../../engine/core/math/matrix';
+import TileSet from '../../../engine/core/rendering/tileSet';
+import Tile from '../../../engine/core/world/tiles/tile';
 import { mockLoader } from '../../../testing/loader.util';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import { InfiniteTmxLayer, TmxModel } from '../model/tmx.model';
@@ -15,8 +14,8 @@ describe('TiledMapLoader', () => {
         tiledMapLoader = new TiledMapLoader('./test-assets/test-tilemap.tmx');
     });
     it('should be created correctly', () => {
-        expect(tiledMapLoader).not.to.be.undefined;
-        expect(tiledMapLoader.directory).to.equals('./test-assets/');
+        expect(tiledMapLoader).not.toBeUndefined();
+        expect(tiledMapLoader.directory).toEqual('./test-assets/');
     });
     describe('load', () => {
         let layers;
@@ -42,9 +41,9 @@ describe('TiledMapLoader', () => {
         });
         it('should work', async () => {
             const tiledMap = await tiledMapLoader.load();
-            expect(tiledMap).not.to.be.undefined;
-            expect(tiledMap.layers[0]).to.equal(layers);
-            expect(tiledMap.tileset).to.equal(tileset);
+            expect(tiledMap).not.toBeUndefined();
+            expect(tiledMap.layers[0]).toBe(layers);
+            expect(tiledMap.tileset).toBe(tileset);
         });
     });
 });

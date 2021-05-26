@@ -30,6 +30,7 @@ export default class Glide extends Trait {
             case Side.BOTTOM:
             case Side.TOP:
                 this.cancel();
+                break;
             default:
         }
     }

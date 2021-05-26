@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { InfiniteTmxLayer } from '../model/tmx.model';
 import { TsxTileModel } from '../model/tsx.model';
 import TileMatrixCreator from './tile-matrix-creator';
@@ -21,7 +20,7 @@ describe('TileMatrixCreator', () => {
         tileMatrixCreator = new TileMatrixCreator(tileProps);
     });
     it('should be created', () => {
-        expect(tileMatrixCreator).not.to.be.undefined;
+        expect(tileMatrixCreator).not.toBeUndefined();
     });
     describe('create', () => {
         const layer = {
@@ -39,15 +38,15 @@ describe('TileMatrixCreator', () => {
         } as InfiniteTmxLayer;
         it('should create a matrix out of a layer', () => {
             const matrix = tileMatrixCreator.create(layer);
-            expect(matrix).not.to.be.null;
-            expect(matrix.get(2, 0)).to.be.undefined;
-            expect(matrix.get(3, 0).name).to.equal('1');
-            expect(matrix.get(3, 0).types).to.contain('solid');
-            expect(matrix.get(3, 1).name).to.equal('2');
-            expect(matrix.get(3, 1).types).to.contain('respawn');
-            expect(matrix.get(3, 1).types).not.to.contain('solid');
-            expect(matrix.get(3, 2).name).to.equal('3');
-            expect(matrix.get(3, 2).types).to.be.empty;
+            expect(matrix).not.toBeNull();
+            expect(matrix.get(2, 0)).toBeUndefined();
+            expect(matrix.get(3, 0).name).toEqual('1');
+            expect(matrix.get(3, 0).types).toContain('solid');
+            expect(matrix.get(3, 1).name).toEqual('2');
+            expect(matrix.get(3, 1).types).toContain('respawn');
+            expect(matrix.get(3, 1).types).not.toContain('solid');
+            expect(matrix.get(3, 2).name).toEqual('3');
+            expect(matrix.get(3, 2).types.length).toBe(0);
         });
     });
 });

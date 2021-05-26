@@ -1,14 +1,13 @@
-import { expect } from 'chai';
+import { anything, spy, verify } from 'ts-mockito';
 import Entity from '../../entities/entity';
 import EntityCollider from './entity.collider';
-import { spy, anything, verify } from 'ts-mockito';
 describe('EntityCollider', () => {
     let collider: EntityCollider;
-    const a = ({
+    const a = {
         collide: () => {
             /*noop*/
         },
-    } as unknown) as Entity;
+    } as unknown as Entity;
 
     beforeEach(() => {
         const set = new Set<Entity>();
@@ -16,7 +15,7 @@ describe('EntityCollider', () => {
         collider = new EntityCollider(set);
     });
     it('should be created', () => {
-        expect(collider).not.to.be.null;
+        expect(collider).not.toBeNull();
     });
 
     describe('check', () => {
@@ -26,23 +25,23 @@ describe('EntityCollider', () => {
             verify(spyedInstance.collide(anything())).never();
         });
         it('should collide with other instances entities', () => {
-            const entity = ({
+            const entity = {
                 bounds: { overlaps: () => true },
                 collide: () => {
                     /*noop*/
                 },
-            } as unknown) as Entity;
+            } as unknown as Entity;
             const spyedInstance = spy(entity);
             collider.check(entity);
             verify(spyedInstance.collide(anything())).once();
         });
         it('should not collide with other instances entities if not overlapping', () => {
-            const entity = ({
+            const entity = {
                 bounds: { overlaps: () => false },
                 collide: () => {
                     /*noop*/
                 },
-            } as unknown) as Entity;
+            } as unknown as Entity;
             const spyedInstance = spy(entity);
             collider.check(entity);
             verify(spyedInstance.collide(anything())).never();

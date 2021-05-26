@@ -1,7 +1,7 @@
+import { RenderContext } from 'feather-engine-core';
 import { debugSettings } from '../debug';
 import { drawRect } from './helper';
 import ImageContainer from './image.container';
-import { RenderContext } from './render.utils';
 
 export default class TileSet extends ImageContainer {
     tilesize: number;

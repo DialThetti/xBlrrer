@@ -1,4 +1,4 @@
-import { RenderContext } from '@engine/core/rendering/render.utils';
+import { RenderContext } from 'feather-engine-core';
 import Level from './level';
 import RenderLayer from './rendering/renderLayer';
 

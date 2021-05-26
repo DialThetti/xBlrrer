@@ -6,16 +6,10 @@ import GameScene from './scenes/platformScene/game.scene';
 declare const window: any; // eslint-disable-line
 
 export default class Game {
-    canvas: HTMLCanvasElement;
-    context: CanvasRenderingContext2D;
-
-    constructor(private canvasId: string) {
-        this.canvas = document.getElementById(this.canvasId) as HTMLCanvasElement;
-        this.context = this.canvas.getContext('2d');
-    }
+    constructor(private canvasId: string) {}
 
     async start(): Promise<void> {
-        const sceneMachine = new SceneMachine(this.context).addScenes([
+        const sceneMachine = new SceneMachine().addScenes([
             () => new LoadingScene(),
             () => new MainMenuScene(),
             () => new GameScene('transition'),

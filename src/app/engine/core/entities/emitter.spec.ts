@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { mock, spy, verify, anything } from 'ts-mockito';
+import { anything, mock, spy, verify } from 'ts-mockito';
 import Emitter from './emitter';
 import Entity from './entity';
 import { Context } from './trait';
@@ -13,7 +12,7 @@ describe('Emmiter', () => {
     });
 
     it('should be created', () => {
-        expect(emitter).to.not.be.null;
+        expect(emitter).not.toBeNull();
     });
     describe('update', () => {
         it('should not emit if time below interval', () => {
