@@ -1,7 +1,7 @@
+import { Vector } from 'feather-engine-core';
 import { anything, spy, verify } from 'ts-mockito';
 import { PositionedTile } from '../../../../level/level-layer';
 import Entity from '../../../entities/entity';
-import Vector from '../../../math/vector';
 import { Side } from '../../../world/tiles/side';
 import TileColliderLayer from '../tile.collider.layer';
 import { createSolidTileHandler } from './solidTile.handler';
@@ -11,12 +11,12 @@ describe('createSolidTileHandler', () => {
     let entity;
     let spyedInstance;
     beforeEach(() => {
-        entity = ({
+        entity = {
             obstruct: () => {
                 /* noop */
             },
             bounds: { left: -1, right: 1, bottom: 1, top: -1 },
-        } as unknown) as Entity;
+        } as unknown as Entity;
         spyedInstance = spy(entity);
     });
     it('should create a handler', () => {

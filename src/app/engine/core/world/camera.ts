@@ -1,7 +1,6 @@
+import { BoundingBox, Vector } from 'feather-engine-core';
 import Entity from '../entities/entity';
 import { Context } from '../entities/trait';
-import BoundingBox from '../math/boundingBox';
-import Vector from '../math/vector';
 import { SCREEN_SIZE } from '../screen.settings';
 
 export default class Camera {

@@ -1,5 +1,3 @@
-import BoundingBox from '@engine/core/math/boundingBox';
-import Vector from '@engine/core/math/vector';
 import { SCREEN_SIZE } from '@engine/core/screen.settings';
 import Camera from '@engine/core/world/camera';
 import Level from '@engine/level/level';
@@ -9,7 +7,7 @@ import SingleColorLayer from '@engine/level/rendering/singleColor.layer';
 import Scene from '@engine/scenes/scene';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import LoadingPrefab from '@game/xblrrer/entities/prefabs/Loading.prefab';
-import { RenderContext } from 'feather-engine-core';
+import { BoundingBox, RenderContext, Vector } from 'feather-engine-core';
 
 export default class LoadingScene implements Scene {
     name = 'loadingScene';

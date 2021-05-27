@@ -1,7 +1,7 @@
 import Entity from '@engine/core/entities/entity';
 import Trait from '@engine/core/entities/trait';
-import Vector from '@engine/core/math/vector';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import { Vector } from 'feather-engine-core';
 
 export default class Crouch extends Trait {
     private _down = false;

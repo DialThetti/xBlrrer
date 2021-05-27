@@ -1,7 +1,6 @@
-import BoundingBox from '@engine/core/math/boundingBox';
-import Matrix from '@engine/core/math/matrix';
 import TileSet from '@engine/core/rendering/tileSet';
 import Tile from '@engine/core/world/tiles/tile';
+import { BoundingBox, Matrix } from 'feather-engine-core';
 
 export interface TiledMap {
     tileset: TileSet;

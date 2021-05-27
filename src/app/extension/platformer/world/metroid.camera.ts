@@ -1,8 +1,7 @@
 import { debugSettings } from '@engine/core/debug';
 import Entity from '@engine/core/entities/entity';
-import BoundingBox from '@engine/core/math/boundingBox';
-import Vector from '@engine/core/math/vector';
 import Camera from '@engine/core/world/camera';
+import { BoundingBox, Vector } from 'feather-engine-core';
 import { PlatformerTraitContext } from '../entities/traits/traits';
 import { PauseGameEvent, ResumeGameEvent } from '../events/events';
 import PlatformerLevel from '../level';

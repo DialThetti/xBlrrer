@@ -1,6 +1,5 @@
 import EntityPrefab from '@engine/core/entities/entity.prefab';
 import Trait, { Context } from '@engine/core/entities/trait';
-import Vector from '@engine/core/math/vector';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
@@ -9,6 +8,7 @@ import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { PlatformerTraitContext } from '@extension/platformer/entities/traits/traits';
+import { Vector } from 'feather-engine-core';
 import Stomp from '../traits/stomp';
 
 class Interval {

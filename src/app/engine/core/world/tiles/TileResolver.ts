@@ -1,4 +1,4 @@
-import Matrix from '../../math/matrix';
+import { Matrix } from 'feather-engine-core';
 import Tile from './tile';
 import TileMath from './tile.math';
 

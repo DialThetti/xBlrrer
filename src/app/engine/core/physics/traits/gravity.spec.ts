@@ -1,6 +1,6 @@
+import { Vector } from 'feather-engine-core';
 import Entity from '../../entities/entity';
 import { Context } from '../../entities/trait';
-import Vector from '../../math/vector';
 import Gravity from './gravity';
 
 describe('Gravity', () => {

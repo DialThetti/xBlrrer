@@ -1,7 +1,6 @@
+import { BoundingBox, Vector } from 'feather-engine-core';
 import { PositionedTile } from '../../../level/level-layer';
 import Entity from '../../entities/entity';
-import BoundingBox from '../../math/boundingBox';
-import Vector from '../../math/vector';
 import { Side } from '../../world/tiles/side';
 import Solid from './solid';
 

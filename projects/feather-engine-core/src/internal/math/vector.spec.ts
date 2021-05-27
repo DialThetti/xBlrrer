@@ -1,7 +1,7 @@
 import Vector from './vector';
 
 describe('Vector', () => {
-    let vector;
+    let vector: Vector;
     it('should create an Vector', () => {
         vector = new Vector(0, 0);
         expect(vector).not.toEqual(null);

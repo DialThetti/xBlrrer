@@ -1,6 +1,5 @@
 import { entityRepo } from '@engine/core/entities/entity.repo';
 import { EntityState } from '@engine/core/entities/entity.state';
-import BoundingBox from '@engine/core/math/boundingBox';
 import { addHandler } from '@engine/core/physics/collider/tile.collider';
 import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import EntityLayer from '@engine/level/rendering/entity.layer';
@@ -13,7 +12,7 @@ import LevelSpecLoader from '@extension/platformer/loader/platformer-level.loade
 import { createBrickTileHandler } from '@extension/platformer/physics/collider/brickTile-handler';
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.tileset.layer';
 import CollisionLayer from '@extension/platformer/rendering/layers/debug/collision.layer';
-import { Loader, loadImage } from 'feather-engine-core';
+import { BoundingBox, Loader, loadImage } from 'feather-engine-core';
 import EntityFactory from '../entities/entity.factory';
 import { createDeatlyHandler } from '../physics/collider/deadly.handler';
 import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.handler';

@@ -1,5 +1,5 @@
 import Trait from '@engine/core/entities/trait';
-import Vector from '@engine/core/math/vector';
+import { Vector } from 'feather-engine-core';
 
 export default class CantGoLeft extends Trait {
     posOnScreen: Vector;

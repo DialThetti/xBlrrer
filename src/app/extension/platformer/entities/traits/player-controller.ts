@@ -1,5 +1,5 @@
 import Trait from '@engine/core/entities/trait';
-import Vector from '@engine/core/math/vector';
+import { Vector } from 'feather-engine-core';
 import PlatformerLevel from '../../level';
 import PlatformerEntity from '../platformer-entity';
 import CantGoLeft from './cantGoLeft';

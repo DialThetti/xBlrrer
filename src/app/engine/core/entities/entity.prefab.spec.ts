@@ -1,5 +1,5 @@
+import { Vector } from 'feather-engine-core';
 import { mock } from 'ts-mockito';
-import Vector from '../math/vector';
 import Entity from './entity';
 import EntityPrefab from './entity.prefab';
 import Trait from './trait';

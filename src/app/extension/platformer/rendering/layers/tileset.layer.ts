@@ -1,5 +1,4 @@
 import { debugSettings } from '@engine/core/debug';
-import Range from '@engine/core/math/range.interface';
 import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import { drawRect } from '@engine/core/rendering/helper';
 import TileSet from '@engine/core/rendering/tileSet';
@@ -7,7 +6,7 @@ import Tile from '@engine/core/world/tiles/tile';
 import TileMath from '@engine/core/world/tiles/tile.math';
 import * as EngineLevel from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { Canvas, CanvasRenderer, RenderContext } from 'feather-engine-core';
+import { Canvas, CanvasRenderer, Range, RenderContext } from 'feather-engine-core';
 import PlatformerLevel from '../../level';
 
 export default class TilesetLayer implements RenderLayer {

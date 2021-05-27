@@ -1,9 +1,7 @@
-import { cross } from '@engine/core/math/math';
-import Matrix from '@engine/core/math/matrix';
-import Range from '@engine/core/math/range.interface';
 import { notNull } from '@engine/core/polyfill';
 import Tile from '@engine/core/world/tiles/tile';
 import TileMath from '@engine/core/world/tiles/tile.math';
+import { cross, Matrix, Range } from 'feather-engine-core';
 
 export default class LevelLayer {
     private math: TileMath;

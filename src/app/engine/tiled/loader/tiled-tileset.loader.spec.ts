@@ -17,7 +17,7 @@ describe('TiledTilesetLoader', () => {
         let tileset;
 
         beforeEach(() => {
-            tiledTilesetLoader.loader = mockLoader<TsxModel>(({
+            tiledTilesetLoader.loader = mockLoader<TsxModel>({
                 tilecount: 1,
                 tiles: [
                     {
@@ -25,15 +25,15 @@ describe('TiledTilesetLoader', () => {
                         properties: [],
                     },
                 ],
-            } as unknown) as TsxModel);
+            } as unknown as TsxModel);
             img = mock<HTMLImageElement>({} as HTMLImageElement);
             tiledTilesetLoader.imageLoader = mockLoader(img);
             tiledTilesetLoader.createTileSet = () =>
-                (({
+                ({
                     defineTile: () => {
                         /*NOOP*/
                     },
-                } as unknown) as TileSet);
+                } as unknown as TileSet);
         });
         it('should work', async () => {
             const tiledTileset = await tiledTilesetLoader.load();

@@ -5,5 +5,6 @@ export * from './internal/gameloop/gameloop';
 export * from './internal/gameloop/gameloop-listeners';
 export * from './internal/io/loaders';
 export * from './internal/renderer/canvas-renderer';
+export * from './math';
 export { FeatherEngine, EngineConfig };
 export { Loader };

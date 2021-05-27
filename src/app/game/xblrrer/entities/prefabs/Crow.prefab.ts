@@ -1,12 +1,12 @@
 import EntityPrefab from '@engine/core/entities/entity.prefab';
 import Trait from '@engine/core/entities/trait';
-import Vector from '@engine/core/math/vector';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
 import SpriteSheet from '@engine/core/rendering/spriteSheet';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
+import { Vector } from 'feather-engine-core';
 import Crouch from '../traits/crouch';
 import Glide from '../traits/glide';
 import Go from '../traits/go';

@@ -1,5 +1,5 @@
-import Vector from '@engine/core/math/vector';
 import { TiledMap } from '@engine/tiled/model/tiled-map.model';
+import { Vector } from 'feather-engine-core';
 
 export default interface PlatformerLevel {
     tiledMapPath: string;

@@ -1,4 +1,4 @@
-import Vector from '@engine/core/math/vector';
+import { Vector } from 'feather-engine-core';
 
 export default interface PlatformerLevelData {
     tiledMapPath: string;

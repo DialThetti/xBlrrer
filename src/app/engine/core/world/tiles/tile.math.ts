@@ -1,4 +1,4 @@
-import Range from '../../math/range.interface';
+import { Range } from 'feather-engine-core';
 
 export default class TileMath {
     constructor(private tilesize: number) {}

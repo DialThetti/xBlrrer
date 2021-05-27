@@ -1,6 +1,5 @@
-import { RenderContext } from 'feather-engine-core';
+import { RenderContext, Vector } from 'feather-engine-core';
 import SpriteSheetLoader from '../io/spriteSheet.loader';
-import Vector from '../math/vector';
 import SpriteSheet from '../rendering/spriteSheet';
 import Entity from './entity';
 import Trait from './trait';

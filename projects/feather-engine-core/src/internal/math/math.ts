@@ -1,5 +1,5 @@
 export function cross<U, V>(xArr: U[], yArr: V[]): [U, V][] {
-    return xArr.reduce((acc, x) => acc.concat(yArr.map((y) => [x, y])), []);
+    return xArr.reduce((acc, x) => acc.concat(yArr.map((y) => [x, y])), [] as [U, V][]);
 }
 
 export function intRange(start: number, end: number): number[] {
