@@ -1,7 +1,6 @@
-import Loader from '@engine/core/io/loader';
-import { loadImage, loadJson } from '@engine/core/io/loaders';
 import { createAnim } from '@engine/core/rendering/animation';
 import TileSet from '@engine/core/rendering/tileSet';
+import { Loader, loadImage, loadJson } from 'feather-engine-core';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import { TsxModel, TsxTileModel } from '../model/tsx.model';
 export default class TiledTilesetLoader implements Loader<TiledTileset> {

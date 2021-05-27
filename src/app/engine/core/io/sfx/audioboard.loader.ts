@@ -1,6 +1,5 @@
+import { Loader, loadJson } from 'feather-engine-core';
 import AudioSpec from '../../../../model/AudioSpec';
-import Loader from '../loader';
-import { loadJson } from '../loaders';
 import AudioLoader from './audio.loader';
 import AudioBoard from './audioboard';
 

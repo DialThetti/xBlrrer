@@ -1,5 +1,3 @@
-import Loader from '@engine/core/io/loader';
-import { loadJson } from '@engine/core/io/loaders';
 import BoundingBox from '@engine/core/math/boundingBox';
 import Matrix from '@engine/core/math/matrix';
 import Vector from '@engine/core/math/vector';
@@ -7,6 +5,7 @@ import { distinct, flatMap } from '@engine/core/polyfill';
 import { mergeImageContainer } from '@engine/core/rendering/image.container';
 import TileSet from '@engine/core/rendering/tileSet';
 import Tile from '@engine/core/world/tiles/tile';
+import { Loader, loadJson } from 'feather-engine-core';
 import { TiledMap } from '../model/tiled-map.model';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import * as Tmx from '../model/tmx.model';

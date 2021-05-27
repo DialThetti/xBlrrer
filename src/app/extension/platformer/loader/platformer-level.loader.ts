@@ -1,6 +1,5 @@
-import Loader from '@engine/core/io/loader';
-import { loadJson } from '@engine/core/io/loaders';
 import TiledMapLoader from '@engine/tiled/loader/tiled-map.loader';
+import { Loader, loadJson } from 'feather-engine-core';
 import PlatformerLevelData from '../model/platformer-level.interface';
 import PlatformerLevel from '../model/platformer-level.model';
 

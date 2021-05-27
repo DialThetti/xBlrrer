@@ -1,8 +1,7 @@
+import { Loader, loadImage, loadJson } from 'feather-engine-core';
 import SpriteSheetSpec from '../../../model/SpriteSheetSpec';
 import { createAnim } from '../rendering/animation';
 import SpriteSheet from '../rendering/spriteSheet';
-import Loader from './loader';
-import { loadImage, loadJson } from './loaders';
 
 export default class SpriteSheetLoader implements Loader<SpriteSheet> {
     constructor(private name: string) {}

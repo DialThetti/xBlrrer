@@ -1,4 +1,4 @@
-import Loader from '../loader';
+import { Loader } from 'feather-engine-core';
 
 export default class AudioLoader implements Loader<AudioBuffer> {
     constructor(private context: AudioContext, private audioURL: string) {}

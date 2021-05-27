@@ -1,5 +1,4 @@
-import { loadImage } from './loaders';
-import Loader from './loader';
+import { Loader, loadImage } from 'feather-engine-core';
 import Font from '../rendering/font';
 
 export default class FontLoader implements Loader<Font> {
