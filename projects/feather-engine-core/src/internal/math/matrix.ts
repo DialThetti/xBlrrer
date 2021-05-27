@@ -11,15 +11,7 @@ export default class Matrix<T> {
     get(x: number, y: number): T | undefined {
         return this.grid[x] ? this.grid[x][y] : undefined;
     }
-    /**
-     * @deprecated
-     * @returns
-     */
-    stream(): { x: number; y: number; value: T }[] {
-        const l: any[] = [];
-        this.forEach((x, y, value) => l.push({ x, y, value }));
-        return l;
-    }
+
     forEach(func: (x: number, y: number, obj: T) => void): void {
         this.grid.forEach((column, x) => {
             column.forEach((obj, y) => {
