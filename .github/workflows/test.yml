@@ -51,11 +51,6 @@ jobs:
               with:
                   name: feather-engine-core-coverage
                   path: projects/feather-engine-core/coverage
-            - run: ls -la
-            - name: in fec
-              run: ls -la
-              working-directory: projects/feather-engine-core
-
             - name: Clean install
               run: npm ci
             - name: Build
