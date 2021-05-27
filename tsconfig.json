@@ -58,8 +58,6 @@
     },
     "include": ["src/**/*", "jest.config.js"],
     "exclude": ["./node_modules", "**/*.spec.ts"],
-    "awesomeTypescriptLoaderOptions": {
-        /* ... */
-    },
+
     "types": ["mocha", "node", "chai", "ts-mockito"]
 }
