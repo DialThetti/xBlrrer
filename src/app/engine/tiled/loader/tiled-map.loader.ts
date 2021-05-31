@@ -1,8 +1,7 @@
 import { distinct, flatMap } from '@engine/core/polyfill';
-import { mergeImageContainer } from '@engine/core/rendering/image.container';
-import TileSet from '@engine/core/rendering/tileSet';
 import Tile from '@engine/core/world/tiles/tile';
 import { BoundingBox, Loader, loadJson, Matrix, Vector } from 'feather-engine-core';
+import { mergeImageContainer, TileSet } from 'feather-engine-graphics';
 import { TiledMap } from '../model/tiled-map.model';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import * as Tmx from '../model/tmx.model';

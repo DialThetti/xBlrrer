@@ -1,10 +1,10 @@
 import { debugSettings } from '@engine/core/debug';
-import { drawRect } from '@engine/core/rendering/helper';
 import Camera from '@engine/core/world/camera';
 import * as EngineLevel from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import { RenderContext } from 'feather-engine-core';
+import { drawRect } from 'feather-engine-graphics';
 import PlatformerLevel from '../../../level';
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;

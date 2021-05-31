@@ -1,6 +1,6 @@
-import { drawRect } from '@engine/core/rendering/helper';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
+import { drawRect } from 'feather-engine-graphics';
 
 export default class SingleColorLayer implements RenderLayer {
     constructor(private color: string) {}

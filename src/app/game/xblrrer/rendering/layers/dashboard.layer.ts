@@ -1,8 +1,7 @@
-import Font from '@engine/core/rendering/font';
-import { drawRect } from '@engine/core/rendering/helper';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import PlatformerLevel from '@extension/platformer/level';
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
+import { drawRect, Font } from 'feather-engine-graphics';
 
 export default class DashboardLayer implements RenderLayer {
     constructor(private font: Font, private level: PlatformerLevel) {}

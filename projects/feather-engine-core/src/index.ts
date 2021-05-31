@@ -1,4 +1,4 @@
-import FeatherEngine, { EngineConfig } from './internal/game-engine';
+import FeatherEngine, { EngineConfig } from './internal/feather-engine';
 import Loader from './internal/io/loader';
 export { KeyboardInput, KeyListener } from './internal/controls/input-listener';
 export * from './internal/gameloop/gameloop';

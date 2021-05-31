@@ -1,4 +1,4 @@
-import FeatherEngine from '../game-engine';
+import FeatherEngine from '../feather-engine';
 import { info, warn } from '../logger';
 import { RenderContext } from '../renderer/canvas-renderer';
 import { GameLoopListener, OnDraw, OnInput, OnUpdate } from './gameloop-listeners';

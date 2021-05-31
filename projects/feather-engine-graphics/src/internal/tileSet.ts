@@ -1,5 +1,4 @@
-import { RenderContext } from 'feather-engine-core';
-import { debugSettings } from '../debug';
+import { FeatherEngine, RenderContext } from 'feather-engine-core';
 import { drawRect } from './helper';
 import ImageContainer from './image.container';
 
@@ -34,7 +33,7 @@ export default class TileSet extends ImageContainer {
         if (tileImage) {
             context.drawImage(tileImage, x, y);
         } else {
-            if (debugSettings.enabled) {
+            if (FeatherEngine.debugSettings.enabled) {
                 drawRect(context, x, y, this.width, this.height, 'magenta', { filled: true });
             } else {
                 context.clearRect(x, y, this.width, this.height);

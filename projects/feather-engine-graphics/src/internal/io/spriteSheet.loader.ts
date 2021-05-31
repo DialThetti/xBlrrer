@@ -1,13 +1,13 @@
 import { Loader, loadImage, loadJson } from 'feather-engine-core';
-import SpriteSheetSpec from '../../../model/SpriteSheetSpec';
-import { createAnim } from '../rendering/animation';
-import SpriteSheet from '../rendering/spriteSheet';
+import { createAnim } from '../animation';
+import SpriteSheetModel from '../model/sprite-sheet-model';
+import SpriteSheet from '../spriteSheet';
 
 export default class SpriteSheetLoader implements Loader<SpriteSheet> {
     constructor(private name: string) {}
 
     async load(): Promise<SpriteSheet> {
-        const sheetSpec = await loadJson<SpriteSheetSpec>(`./sprites/${this.name}.json`);
+        const sheetSpec = await loadJson<SpriteSheetModel>(`./sprites/${this.name}.json`);
         const img = await loadImage(sheetSpec.imageURL);
 
         const sprites = new SpriteSheet(img, sheetSpec.tileW, sheetSpec.tileH);
@@ -20,11 +20,7 @@ export default class SpriteSheetLoader implements Loader<SpriteSheet> {
 
         if (sheetSpec.animations) {
             sheetSpec.animations.forEach((animSpec) => {
-                const animation = createAnim(
-                    animSpec.frames,
-                    animSpec.frameLen,
-                    'loop' in animSpec ? animSpec.loop : true,
-                );
+                const animation = createAnim(animSpec.frames, animSpec.frameLen, animSpec?.loop ?? false);
                 sprites.defineAnim(animSpec.name, animation);
             });
         }

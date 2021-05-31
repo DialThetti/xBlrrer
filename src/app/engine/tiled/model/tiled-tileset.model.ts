@@ -1,4 +1,4 @@
-import TileSet from '@engine/core/rendering/tileSet';
+import { TileSet } from 'feather-engine-graphics';
 import { TsxTileModel } from './tsx.model';
 
 export interface TiledTileset {

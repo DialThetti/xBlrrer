@@ -1,7 +1,6 @@
-import Font from '@engine/core/rendering/font';
-import { drawRect } from '@engine/core/rendering/helper';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
+import { drawRect, Font } from 'feather-engine-graphics';
 import MainMenuScene from '../mainMenu.scene';
 
 export default class MainMenuLayer implements RenderLayer {

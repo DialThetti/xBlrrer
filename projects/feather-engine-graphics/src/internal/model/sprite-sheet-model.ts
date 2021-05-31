@@ -1,10 +1,11 @@
-import TileSpec from './TileSpec';
-
-export default interface SpriteSheetSpec {
+export default interface SpriteSheetModel {
     imageURL: string;
     tileW: number;
     tileH: number;
-    tiles: TileSpec[];
+    tiles: {
+        name: string;
+        index: number[];
+    }[];
     animations?: [
         {
             name: string;

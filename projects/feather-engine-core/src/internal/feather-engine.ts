@@ -7,6 +7,13 @@ export interface EngineConfig {
     width: number;
     height: number;
 }
+
+export interface DebugSettings {
+    enabled: boolean;
+    hitboxesOnly: boolean;
+    showFPS: boolean;
+}
+
 export default class FeatherEngine {
     private initialized = false;
 
@@ -14,6 +21,12 @@ export default class FeatherEngine {
 
     private renderer: CanvasRenderer | null = null;
     private static instance = new FeatherEngine();
+
+    private debugSettings: DebugSettings = {
+        enabled: false,
+        hitboxesOnly: false,
+        showFPS: false,
+    };
 
     public static init(engineConfig: EngineConfig): void {
         FeatherEngine.instance.init(engineConfig);
@@ -30,6 +43,10 @@ export default class FeatherEngine {
         const height = FeatherEngine.instance.config?.height;
 
         return { width: width ?? 0, height: height ?? 0 };
+    }
+
+    public static get debugSettings(): DebugSettings {
+        return FeatherEngine.instance.debugSettings;
     }
 
     private init(engineConfig: EngineConfig): void {

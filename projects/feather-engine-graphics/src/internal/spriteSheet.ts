@@ -1,5 +1,4 @@
-import { RenderContext } from 'feather-engine-core';
-import { debugSettings } from '../debug';
+import { FeatherEngine, RenderContext } from 'feather-engine-core';
 import { FrameAnimation } from './animation';
 import { drawRect } from './helper';
 import ImageContainer from './image.container';
@@ -19,7 +18,7 @@ export default class SpriteSheet extends ImageContainer {
         if (image) {
             context.drawImage(image, x, y);
         } else {
-            if (debugSettings.enabled) {
+            if (FeatherEngine.debugSettings.enabled) {
                 drawRect(context, x, y, this.w, this.h, 'magenta', { filled: true });
             } else {
                 context.clearRect(x, y, this.w, this.h);
@@ -29,6 +28,9 @@ export default class SpriteSheet extends ImageContainer {
 
     getAnimation(name: string): FrameAnimation {
         const anim = this.animations[name];
-        return anim ? anim : (): string => '';
+        if (anim) {
+            return anim;
+        }
+        return () => '';
     }
 }

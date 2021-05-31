@@ -1,6 +1,5 @@
 import Entity from '@engine/core/entities/entity';
 import { EntityState } from '@engine/core/entities/entity.state';
-import FontLoader from '@engine/core/io/font.loader';
 import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
 import { LEVEL_RENDERER } from '@engine/level/level-renderer';
 import Scene from '@engine/scenes/scene';
@@ -11,12 +10,12 @@ import PlayerController from '@extension/platformer/entities/traits/player-contr
 import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { KeyboardInput, RenderContext } from 'feather-engine-core';
+import { FontLoader } from 'feather-engine-graphics';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
 import LevelLoader from '../../loader/level.loader';
 import DashboardLayer from '../../rendering/layers/dashboard.layer';
 import PlatformerKeyListener from './input';
-
 export default class GameScene implements Scene {
     isLoadingScene = false;
     level: PlatformerLevel;
