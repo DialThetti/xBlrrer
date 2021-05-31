@@ -26,7 +26,7 @@ export default class SpriteSheet extends ImageContainer {
         }
     }
 
-    getAnimation(name: string): FrameAnimation {
+    public getAnimation(name: string): FrameAnimation {
         const anim = this.animations[name];
         if (anim) {
             return anim;
