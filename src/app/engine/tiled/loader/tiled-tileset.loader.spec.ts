@@ -1,6 +1,6 @@
+import { TileSet } from 'feather-engine-graphics';
 import { mock } from 'ts-mockito';
 import { mockLoader } from '../../../testing/loader.util';
-import TileSet from '../../core/rendering/tileSet';
 import { TsxModel } from '../model/tsx.model';
 import TiledTilesetLoader from './tiled-tileset.loader';
 

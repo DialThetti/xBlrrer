@@ -1,6 +1,6 @@
 import { Matrix } from 'feather-engine-core';
+import { TileSet } from 'feather-engine-graphics';
 import { mock } from 'ts-mockito';
-import TileSet from '../../../engine/core/rendering/tileSet';
 import Tile from '../../../engine/core/world/tiles/tile';
 import { mockLoader } from '../../../testing/loader.util';
 import { TiledTileset } from '../model/tiled-tileset.model';
