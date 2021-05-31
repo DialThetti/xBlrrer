@@ -1,7 +1,6 @@
-import { BoundingBox, Vector } from 'feather-engine-core';
+import { BoundingBox, FeatherEngine, Vector } from 'feather-engine-core';
 import Entity from '../entities/entity';
 import { Context } from '../entities/trait';
-import { SCREEN_SIZE } from '../screen.settings';
 
 export default class Camera {
     protected pos_ = new Vector(0, 0);
@@ -11,9 +10,9 @@ export default class Camera {
     constructor(
         private totalMovementBounds = new BoundingBox(
             new Vector(0, 0),
-            new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height),
+            new Vector(FeatherEngine.screenSize.width, FeatherEngine.screenSize.height),
         ),
-        public size = new Vector(SCREEN_SIZE.width, 23 * 16),
+        public size = new Vector(FeatherEngine.screenSize.width, 23 * 16),
     ) {
         this.pos_.set(totalMovementBounds.left, totalMovementBounds.top);
     }

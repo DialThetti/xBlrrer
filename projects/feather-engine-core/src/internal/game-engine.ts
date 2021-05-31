@@ -4,9 +4,12 @@ import { CanvasRenderer } from './renderer/canvas-renderer';
 
 export interface EngineConfig {
     canvasId: string;
+    width: number;
+    height: number;
 }
 export default class FeatherEngine {
     private initialized = false;
+
     private config: EngineConfig | null = null;
 
     private renderer: CanvasRenderer | null = null;
@@ -20,6 +23,13 @@ export default class FeatherEngine {
     }
     public static get Renderer(): CanvasRenderer {
         return FeatherEngine.instance.renderer as CanvasRenderer;
+    }
+
+    public static get screenSize(): { width: number; height: number } {
+        const width = FeatherEngine.instance.config?.width;
+        const height = FeatherEngine.instance.config?.height;
+
+        return { width: width ?? 0, height: height ?? 0 };
     }
 
     private init(engineConfig: EngineConfig): void {

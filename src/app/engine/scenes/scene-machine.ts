@@ -27,7 +27,7 @@ export default class SceneMachine {
                 },
             } as OnDraw,
         ]);
-        FeatherEngine.init({ canvasId: 'screen' });
+        FeatherEngine.init({ canvasId: 'screen', width: 256 * 2, height: 224 * 2 });
         FeatherEngine.start();
     }
 

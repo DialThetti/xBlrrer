@@ -1,4 +1,3 @@
-import { SCREEN_SIZE } from '@engine/core/screen.settings';
 import Camera from '@engine/core/world/camera';
 import Level from '@engine/level/level';
 import EntityLayer from '@engine/level/rendering/entity.layer';
@@ -7,7 +6,7 @@ import SingleColorLayer from '@engine/level/rendering/singleColor.layer';
 import Scene from '@engine/scenes/scene';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import LoadingPrefab from '@game/xblrrer/entities/prefabs/Loading.prefab';
-import { BoundingBox, RenderContext, Vector } from 'feather-engine-core';
+import { BoundingBox, FeatherEngine, RenderContext, Vector } from 'feather-engine-core';
 
 export default class LoadingScene implements Scene {
     name = 'loadingScene';
@@ -36,8 +35,11 @@ export default class LoadingScene implements Scene {
         this.bg.forEach((l) =>
             l.draw(context, {
                 camera: new Camera(
-                    new BoundingBox(new Vector(0, 0), new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height)),
-                    new Vector(SCREEN_SIZE.width, SCREEN_SIZE.height),
+                    new BoundingBox(
+                        new Vector(0, 0),
+                        new Vector(FeatherEngine.screenSize.width, FeatherEngine.screenSize.height),
+                    ),
+                    new Vector(FeatherEngine.screenSize.width, FeatherEngine.screenSize.height),
                 ),
             } as Level),
         );
