@@ -1,6 +1,6 @@
-import { debugSettings } from '@engine/core/debug';
 import { traitRegistry } from '@engine/core/entities/trait-registry';
 import PlatformerLevel from '@extension/platformer/level';
+import { FeatherEngine } from 'feather-engine-core';
 
 declare const window: any; // eslint-disable-line
 
@@ -14,10 +14,10 @@ export function addDebugToLevel(level: PlatformerLevel): void {
             level.findPlayer().removeTraitByName(name);
         };
         window.testingCheatsEnabled = (enabled): void => {
-            debugSettings.enabled = enabled;
+            FeatherEngine.debugSettings.enabled = enabled;
         };
         window.hitboxesOnly = (enabled): void => {
-            debugSettings.hitboxesOnly = enabled;
+            FeatherEngine.debugSettings.hitboxesOnly = enabled;
         };
     }
 }

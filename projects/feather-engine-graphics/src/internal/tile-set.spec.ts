@@ -1,5 +1,5 @@
 import { CanvasRenderer, FeatherEngine, RenderContext } from 'feather-engine-core';
-import { mock, spy } from 'ts-mockito';
+import { mock } from 'ts-mockito';
 import TileSet from './tile-set';
 
 describe('TileSet', () => {
@@ -7,7 +7,6 @@ describe('TileSet', () => {
     let img = mock(HTMLImageElement);
 
     let renderContext: RenderContext;
-    let renderContextSpy: RenderContext;
     let args: number[] = [];
     beforeEach(() => {
         args = [];
@@ -20,7 +19,6 @@ describe('TileSet', () => {
         } as unknown as RenderContext;
         CanvasRenderer.createRenderContext = (w, h) => renderContext;
         tileSet = new TileSet(img, 10, 10);
-        renderContextSpy = spy(renderContext);
     });
     describe('defineTile', () => {
         it('should define a tile', () => {

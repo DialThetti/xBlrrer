@@ -1,10 +1,10 @@
-import { debugSettings } from '@engine/core/debug';
 import Entity from '@engine/core/entities/entity';
 import Trait, { Context } from '@engine/core/entities/trait';
 import { SfxEvent } from '@engine/core/events/events';
 import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
+import { FeatherEngine } from 'feather-engine-core';
 import Crouch from './crouch';
 import Jump from './jump';
 
@@ -54,7 +54,7 @@ export default class Go extends Trait {
         } else if (entity.vel.x !== 0) {
             this.decelToStand(entity, context.deltaTime);
         } else {
-            if (debugSettings.enabled && this.distance !== 0) {
+            if (FeatherEngine.debugSettings.enabled && this.distance !== 0) {
                 console.log('Standing at', Math.round(entity.pos.x / 16), Math.round(entity.pos.y / 16));
             }
             this.distance = 0;

@@ -1,5 +1,5 @@
 import { CanvasRenderer, FeatherEngine, RenderContext } from 'feather-engine-core';
-import { mock, spy } from 'ts-mockito';
+import { mock } from 'ts-mockito';
 import SpriteSheet from './sprite-sheet';
 
 describe('SpriteSheet', () => {
@@ -7,7 +7,6 @@ describe('SpriteSheet', () => {
     let img = mock(HTMLImageElement);
 
     let renderContext: RenderContext;
-    let renderContextSpy: RenderContext;
     beforeEach(() => {
         renderContext = {
             scale: (x: number, y: number) => null,
@@ -18,7 +17,6 @@ describe('SpriteSheet', () => {
         } as unknown as RenderContext;
         CanvasRenderer.createRenderContext = (w, h) => renderContext;
         spriteSheet = new SpriteSheet(img, 10, 10);
-        renderContextSpy = spy(renderContext);
     });
     describe('define', () => {
         it('should define a sprite', () => {

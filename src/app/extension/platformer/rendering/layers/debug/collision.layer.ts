@@ -1,9 +1,8 @@
-import { debugSettings } from '@engine/core/debug';
 import Camera from '@engine/core/world/camera';
 import * as EngineLevel from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { RenderContext } from 'feather-engine-core';
+import { FeatherEngine, RenderContext } from 'feather-engine-core';
 import { drawRect } from 'feather-engine-graphics';
 import PlatformerLevel from '../../../level';
 export default class CollisionLayer implements RenderLayer {
@@ -15,7 +14,7 @@ export default class CollisionLayer implements RenderLayer {
         const getByIndexOrigin = level.levelLayer[0].getByIndex;
 
         level.levelLayer[0].getByIndex = (x: number, y: number): PositionedTile => {
-            if (debugSettings.enabled) {
+            if (FeatherEngine.debugSettings.enabled) {
                 this.resolvedTiles.push({ x, y });
             }
             return getByIndexOrigin.call(level.levelLayer[0], x, y);
@@ -47,7 +46,7 @@ export default class CollisionLayer implements RenderLayer {
         );
     }
     draw(context: RenderContext, level: EngineLevel.default): void {
-        if (!debugSettings.enabled) {
+        if (!FeatherEngine.debugSettings.enabled) {
             return;
         }
         this.drawTileFrames(context, level.camera);

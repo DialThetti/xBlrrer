@@ -1,7 +1,6 @@
-import { debugSettings } from '@engine/core/debug';
 import Entity from '@engine/core/entities/entity';
 import Camera from '@engine/core/world/camera';
-import { BoundingBox, Vector } from 'feather-engine-core';
+import { BoundingBox, FeatherEngine, Vector } from 'feather-engine-core';
 import { PlatformerTraitContext } from '../entities/traits/traits';
 import { PauseGameEvent, ResumeGameEvent } from '../events/events';
 import PlatformerLevel from '../level';
@@ -59,7 +58,7 @@ export default class MetroidCamera extends Camera {
 
             this.currentCamIndex = potentionallyNewCam;
         } else {
-            if (debugSettings.enabled) {
+            if (FeatherEngine.debugSettings.enabled) {
                 console.debug(`[camera] no new Camera found!`);
                 console.log(playerFigure.bounds);
                 console.log(this.cameras.map((a) => a.box));

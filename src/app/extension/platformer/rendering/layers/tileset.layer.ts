@@ -1,10 +1,9 @@
-import { debugSettings } from '@engine/core/debug';
 import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import Tile from '@engine/core/world/tiles/tile';
 import TileMath from '@engine/core/world/tiles/tile.math';
 import * as EngineLevel from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { Canvas, CanvasRenderer, Range, RenderContext } from 'feather-engine-core';
+import { Canvas, CanvasRenderer, FeatherEngine, Range, RenderContext } from 'feather-engine-core';
 import { drawRect, TileSet } from 'feather-engine-graphics';
 import PlatformerLevel from '../../level';
 
@@ -64,7 +63,7 @@ export default class TilesetLayer implements RenderLayer {
                 if (!match) {
                     continue;
                 }
-                if (debugSettings.hitboxesOnly) {
+                if (FeatherEngine.debugSettings.hitboxesOnly) {
                     this.renderHitbox(match.tile, x - rangeX.from, y - rangeY.from);
                 } else {
                     this.renderTile(match.tile, x - rangeX.from, y - rangeY.from);

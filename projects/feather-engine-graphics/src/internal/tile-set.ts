@@ -1,6 +1,6 @@
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
 import { drawRect } from './helper';
-import ImageContainer from './image.container';
+import ImageContainer from './image-container';
 
 export default class TileSet extends ImageContainer {
     tilesize: number;

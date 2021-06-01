@@ -20,7 +20,7 @@ export default class SpriteSheetLoader implements Loader<SpriteSheet> {
 
         if (sheetSpec.animations) {
             sheetSpec.animations.forEach((animSpec) => {
-                const animation = createAnim(animSpec.frames, animSpec.frameLen, animSpec?.loop ?? false);
+                const animation = createAnim(animSpec.frames, animSpec.frameLen, animSpec?.loop ?? true);
                 sprites.defineAnim(animSpec.name, animation);
             });
         }

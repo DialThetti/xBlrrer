@@ -1,7 +1,7 @@
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
 import { FrameAnimation } from './animation';
 import { drawRect } from './helper';
-import ImageContainer from './image.container';
+import ImageContainer from './image-container';
 
 export default class SpriteSheet extends ImageContainer {
     constructor(img: HTMLImageElement, private w: number, private h: number) {
