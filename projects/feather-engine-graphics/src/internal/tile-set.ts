@@ -1,10 +1,10 @@
-import { FeatherEngine, RenderContext } from 'feather-engine-core';
+import { Canvas, FeatherEngine, RenderContext } from 'feather-engine-core';
 import { drawRect } from './helper';
 import ImageContainer from './image-container';
 
 export default class TileSet extends ImageContainer {
     tilesize: number;
-    constructor(img: HTMLImageElement, private width: number, private height: number) {
+    constructor(img: Canvas, private width: number, private height: number) {
         super(img);
         this.tilesize = height;
     }
@@ -29,9 +29,9 @@ export default class TileSet extends ImageContainer {
     }
 
     private draw(name: string, context: RenderContext, x: number, y: number): void {
-        const tileImage = this.getImage(name);
-        if (tileImage) {
-            context.drawImage(tileImage, x, y);
+        const image = this.getImage(name);
+        if (image) {
+            context.drawImage(image.img, image.x, image.y, image.width, image.height, x, y, image.width, image.height);
         } else {
             if (FeatherEngine.debugSettings.enabled) {
                 drawRect(context, x, y, this.width, this.height, 'magenta', { filled: true });

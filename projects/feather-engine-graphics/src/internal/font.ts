@@ -1,8 +1,8 @@
-import { RenderContext } from 'feather-engine-core';
+import { Canvas, RenderContext } from 'feather-engine-core';
 import SpriteSheet from './sprite-sheet';
 
 export default class Font extends SpriteSheet {
-    constructor(img: HTMLImageElement, w: number, h: number) {
+    constructor(img: Canvas, w: number, h: number) {
         super(img, w, h);
     }
 

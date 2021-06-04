@@ -4,6 +4,7 @@ export { KeyboardInput, KeyListener } from './internal/controls/input-listener';
 export * from './internal/gameloop/gameloop';
 export * from './internal/gameloop/gameloop-listeners';
 export * from './internal/io/loaders';
+export * from './internal/logger';
 export * from './internal/renderer/canvas-renderer';
 export * from './math';
 export { FeatherEngine, EngineConfig };

@@ -1,4 +1,4 @@
-import { Loader, loadImage, loadJson } from 'feather-engine-core';
+import { Canvas, Loader, loadImage, loadJson } from 'feather-engine-core';
 import { createAnim, TileSet } from 'feather-engine-graphics';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import { TsxModel, TsxTileModel } from '../model/tsx.model';
@@ -7,8 +7,7 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
     onlyRequiredIds: number[];
     loader = () => loadJson<TsxModel>(this.path);
     imageLoader = (path) => loadImage(path);
-    createTileSet = (img: HTMLImageElement, tsxModel: TsxModel) =>
-        new TileSet(img, tsxModel.tilewidth, tsxModel.tileheight);
+    createTileSet = (img: Canvas, tsxModel: TsxModel) => new TileSet(img, tsxModel.tilewidth, tsxModel.tileheight);
 
     constructor(private path: string, private idOffset: number) {
         this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);

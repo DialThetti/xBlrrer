@@ -1,37 +1,51 @@
-import { Canvas, CanvasRenderer } from 'feather-engine-core';
+import { Canvas, CanvasRenderer, error } from 'feather-engine-core';
 import { FrameAnimation } from './animation';
 
+interface ImagePosReferences {
+    img: Canvas;
+    pos: { [name: string]: { x: number; y: number; height: number; width: number } };
+}
 export default abstract class ImageContainer {
-    images: { [name: string]: Canvas } = {};
     animations: { [name: string]: FrameAnimation };
-    constructor(protected img: HTMLImageElement) {
-        this.images = {};
+
+    ref: ImagePosReferences[] = [];
+    constructor(protected img: Canvas, private flippable = false) {
         this.animations = {};
+
+        this.ref = [{ img, pos: {} }];
+        if (flippable) {
+            const mirrored = CanvasRenderer.createRenderContext(img.width, img.height);
+            mirrored.scale(-1, 1);
+            mirrored.translate(-img.width, 0);
+            mirrored.drawImage(this.img, 0, 0);
+            this.ref.push({ img: mirrored.canvas, pos: {} });
+        }
     }
 
     protected define(name: string, posX: number, posY: number, width: number, height: number, flipped = false): void {
-        const context = CanvasRenderer.createRenderContext(width, height);
-
-        if (flipped) {
-            context.scale(-1, 1);
-            context.translate(-width, 0);
+        if (!flipped) {
+            this.ref[0].pos[name] = { x: posX, y: posY, width, height };
+        } else {
+            if (!this.flippable) {
+                error(this, 'This imagecontainer is not flippable, however, a flipped tile was tried to defined.');
+            }
+            this.ref[1].pos[name] = { x: this.ref[1].img.width - width - posX, y: posY, width, height };
         }
-        context.drawImage(this.img, Math.floor(posX), Math.floor(posY), width, height, 0, 0, width, height);
-
-        this.images[name] = context.canvas;
     }
 
     public defineAnim(name: string, anim: FrameAnimation): void {
         this.animations[name] = anim;
     }
 
-    protected getImage(name: string): Canvas {
-        return this.images[name];
+    protected getImage(name: string): { img: Canvas; x: number; y: number; height: number; width: number } | undefined {
+        const r = this.ref.filter((a) => !!a.pos[name])[0];
+        if (!r) return undefined;
+        return { img: r.img, ...r.pos[name] };
     }
 }
 
 export function mergeImageContainer(t: ImageContainer, c: ImageContainer): ImageContainer {
-    t.images = { ...t.images, ...c.images };
     t.animations = { ...t.animations, ...c.animations };
+    t.ref = [...t.ref, ...c.ref];
     return t;
 }

@@ -1,3 +1,5 @@
+import { Canvas } from '../renderer/canvas-renderer';
+
 export async function loadJson<T>(url: string): Promise<T> {
     try {
         const file = await fetch(url);
@@ -10,7 +12,7 @@ export async function loadJson<T>(url: string): Promise<T> {
     return {} as T;
 }
 
-export async function loadImage(url: string): Promise<HTMLImageElement> {
+export async function loadImage(url: string): Promise<Canvas> {
     const img = new Image();
     img.src = url;
     await img.decode();

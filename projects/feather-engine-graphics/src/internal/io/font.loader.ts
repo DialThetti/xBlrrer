@@ -1,11 +1,11 @@
-import { Loader, loadImage } from 'feather-engine-core';
+import { Canvas, Loader, loadImage } from 'feather-engine-core';
 import Font from '../font';
 
 export default class FontLoader implements Loader<Font> {
     private CHARS = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
     constructor(private fontPath: string) {}
     async load(): Promise<Font> {
-        const img = await this.loadImage();
+        const img = await loadImage(this.fontPath);
         const size = 8;
         const rowLen = img.width;
         const fontSpriteSheet = this.createNewFont(img, 8, 8);
@@ -17,11 +17,8 @@ export default class FontLoader implements Loader<Font> {
 
         return fontSpriteSheet;
     }
-    private async loadImage(): Promise<HTMLImageElement> {
-        return await loadImage(this.fontPath);
-    }
 
-    private createNewFont(img: HTMLImageElement, w: number, h: number): Font {
+    private createNewFont(img: Canvas, w: number, h: number): Font {
         return new Font(img, w, h);
     }
 }

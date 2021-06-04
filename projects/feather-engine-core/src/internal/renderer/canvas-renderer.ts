@@ -1,4 +1,4 @@
-export type Canvas = OffscreenCanvas | HTMLCanvasElement;
+export type Canvas = OffscreenCanvas | HTMLCanvasElement | HTMLImageElement;
 
 export class CanvasRenderer {
     private canvas: HTMLCanvasElement;
@@ -42,7 +42,7 @@ export interface RenderContext {
     canvas: Canvas;
     clearRect(x: number, y: number, w: number, h: number): void;
     drawImage(
-        tileImage: OffscreenCanvas | HTMLCanvasElement | HTMLImageElement,
+        tileImage: Canvas,
         x: number,
         y: number,
         w?: number,
