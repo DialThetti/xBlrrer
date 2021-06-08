@@ -30,7 +30,7 @@ export class KeyboardInput implements OnInput {
     private static get instance() {
         if (!KeyboardInput._instance) {
             KeyboardInput._instance = new KeyboardInput();
-            GameLoop.register([KeyboardInput._instance as OnInput]);
+            GameLoop.register(KeyboardInput._instance as OnInput);
         }
         return KeyboardInput._instance;
     }

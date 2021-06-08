@@ -15,7 +15,7 @@ export default class SceneMachine {
     }
 
     public start(): void {
-        GameLoop.register([
+        GameLoop.register(
             {
                 update: (deltaTime) => {
                     this.currentScene.update(deltaTime);
@@ -26,7 +26,7 @@ export default class SceneMachine {
                     this.currentScene.draw(renderingContext);
                 },
             } as OnDraw,
-        ]);
+        );
         FeatherEngine.init({ canvasId: 'screen', width: 256 * 2, height: 224 * 2 });
         FeatherEngine.start();
     }

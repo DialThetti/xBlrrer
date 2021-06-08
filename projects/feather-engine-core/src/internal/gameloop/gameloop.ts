@@ -25,8 +25,8 @@ export class GameLoop {
      * They will get notified whenever a new GameLoop Cycle happens
      * @param listeners
      */
-    public static register(listeners: GameLoopListener[]): void {
-        GameLoop.instance.register(listeners);
+    public static register(...listeners: GameLoopListener[]): void {
+        GameLoop.instance.register(...listeners);
     }
     /**
      * Starts the main GameLoop.
@@ -45,7 +45,7 @@ export class GameLoop {
         GameLoop.instance.cancel();
     }
 
-    private register(listeners: GameLoopListener[]): void {
+    private register(...listeners: GameLoopListener[]): void {
         listeners.forEach((l) => {
             let registered = false;
             if (typeof (l as OnInput).handleInput === 'function') {
