@@ -1,4 +1,5 @@
-import { RenderContext } from 'feather-engine-core';
+import { Canvas, RenderContext } from 'feather-engine-core';
+import { mock } from 'ts-mockito';
 import Font from './font';
 describe('Font', () => {
     let args: any[][] = [];
@@ -9,7 +10,8 @@ describe('Font', () => {
         renderContext = {
             drawImage: (c: HTMLCanvasElement, ...a: number[]) => null,
         } as unknown as RenderContext;
-        font = new Font({} as HTMLImageElement, 10, 10);
+        const img = mock<Canvas>();
+        font = new Font(img, 10, 10);
         font.draw = (...a) => args.push(a);
     });
     it('should print text', () => {

@@ -8,7 +8,7 @@ export default class SpriteSheetLoader implements Loader<SpriteSheet> {
 
     async load(): Promise<SpriteSheet> {
         const sheetSpec = await this.loadSheetSpec();
-        const img = await loadImage(sheetSpec.imageURL);
+        const img = await this.loadImage(sheetSpec);
 
         const sprites = this.createNewSpriteSheet(img, sheetSpec.tileW, sheetSpec.tileH);
 
@@ -27,6 +27,10 @@ export default class SpriteSheetLoader implements Loader<SpriteSheet> {
         return sprites;
     }
 
+    //For test purposes
+    async loadImage(sheetSpec: SpriteSheetModel): Promise<Canvas> {
+        return await loadImage(sheetSpec.imageURL);
+    }
     private async loadSheetSpec(): Promise<SpriteSheetModel> {
         return loadJson<SpriteSheetModel>(`./sprites/${this.name}.json`);
     }

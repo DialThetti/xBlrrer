@@ -3,7 +3,7 @@ import SpriteSheet from './sprite-sheet';
 
 export default class Font extends SpriteSheet {
     constructor(img: Canvas, w: number, h: number) {
-        super(img, w, h);
+        super(img, w, h, false);
     }
 
     print(text: string, context: RenderContext, x: number, y: number): void {

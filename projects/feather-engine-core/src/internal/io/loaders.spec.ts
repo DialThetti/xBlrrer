@@ -29,7 +29,7 @@ describe('loadJson', () => {
 describe('loadImage', () => {
     it('should load a resource if it exists', async (done) => {
         const response = await loadImage('http://localhost/a');
-        expect(response.src).toBe('http://localhost/a');
+        expect((response as HTMLImageElement).src).toBe('http://localhost/a');
         done();
     });
 });

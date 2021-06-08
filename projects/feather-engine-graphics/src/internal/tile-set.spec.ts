@@ -23,9 +23,9 @@ describe('TileSet', () => {
     describe('defineTile', () => {
         it('should define a tile', () => {
             tileSet.defineTile('a', 2, 0);
-            expect(Object.keys(tileSet.images).length).toBe(1);
-            expect(tileSet.images['a']).toBeTruthy();
-            expect(args).toStrictEqual([20, 0, 10, 10, 0, 0, 10, 10]);
+            expect(Object.keys(tileSet.ref[0].pos).length).toBe(1);
+            expect(tileSet.ref[0].pos['a']).toBeTruthy();
+            expect(tileSet.ref[0].pos['a']).toStrictEqual({ height: 10, width: 10, x: 20, y: 0 });
         });
     });
     describe('drawTile', () => {
@@ -33,7 +33,7 @@ describe('TileSet', () => {
             const img = {} as HTMLCanvasElement;
             let a = false;
             renderContext.drawImage = (c, x, y) => (a = true);
-            tileSet.images['a'] = {} as HTMLCanvasElement;
+            tileSet.ref[0].pos['a'] = {} as any;
             tileSet.drawTile('a', renderContext, 0, 0);
             expect(a).toBeTruthy();
         });
@@ -70,7 +70,7 @@ describe('TileSet', () => {
             let a = false;
             tileSet.animations['a'] = () => 'a';
             renderContext.drawImage = (c, x, y) => (a = true);
-            tileSet.images['a'] = {} as HTMLCanvasElement;
+            tileSet.ref[0].pos['a'] = {} as any;
             tileSet.drawAnim('a', renderContext, 0, 0, 0);
             expect(a).toBeTruthy();
         });

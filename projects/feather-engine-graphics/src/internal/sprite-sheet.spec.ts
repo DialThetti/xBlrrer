@@ -21,9 +21,9 @@ describe('SpriteSheet', () => {
     describe('define', () => {
         it('should define a sprite', () => {
             spriteSheet.define('a', 0, 0, 10, 10);
-            expect(Object.keys(spriteSheet.images).length).toBe(2);
-            expect(spriteSheet.images['a']).toBeTruthy();
-            expect(spriteSheet.images['a_switched']).toBeTruthy();
+            expect(Object.keys(spriteSheet.ref[0]).length).toBe(2);
+            expect(spriteSheet.ref[0].pos['a']).toBeTruthy();
+            expect(spriteSheet.ref[1].pos['a_switched']).toBeTruthy();
         });
     });
     describe('draw', () => {
@@ -31,7 +31,7 @@ describe('SpriteSheet', () => {
             const img = {} as HTMLCanvasElement;
             let a = false;
             renderContext.drawImage = (c, x, y) => (a = true);
-            spriteSheet.images['a'] = {} as HTMLCanvasElement;
+            spriteSheet.ref[0].pos['a'] = {} as any;
             spriteSheet.draw('a', renderContext, 0, 0, false);
             expect(a).toBeTruthy();
         });
@@ -39,7 +39,7 @@ describe('SpriteSheet', () => {
             const img = {} as HTMLCanvasElement;
             let a = false;
             renderContext.drawImage = (c, x, y) => (a = true);
-            spriteSheet.images['a_switched'] = {} as HTMLCanvasElement;
+            spriteSheet.ref[1].pos['a_switched'] = {} as any;
             spriteSheet.draw('a', renderContext, 0, 0, true);
             expect(a).toBeTruthy();
         });
