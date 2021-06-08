@@ -1,7 +1,7 @@
-import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import Tile from '@engine/core/world/tiles/tile';
 import TileMath from '@engine/core/world/tiles/tile.math';
 import * as EngineLevel from '@engine/level/level';
+import LevelLayer from '@engine/level/level-layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import { Canvas, CanvasRenderer, FeatherEngine, Range, RenderContext } from 'feather-engine-core';
 import { drawRect, TileSet } from 'feather-engine-graphics';
@@ -56,7 +56,7 @@ export default class TilesetLayer implements RenderLayer {
         return true;
     }
 
-    private renderLayer(layer: TileColliderLayer, rangeX: Range, rangeY: Range): void {
+    private renderLayer(layer: LevelLayer, rangeX: Range, rangeY: Range): void {
         for (let x = rangeX.from; x <= rangeX.to; x++) {
             for (let y = rangeY.from; y <= rangeY.to; y++) {
                 const match = layer.getByIndex(x, y);

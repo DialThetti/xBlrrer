@@ -1,13 +1,12 @@
 import Level from '@engine/level/level';
-import { PositionedTile } from '@engine/level/level-layer';
+import LevelLayer, { PositionedTile } from '@engine/level/level-layer';
 import Entity from '../../entities/entity';
 import { createPlatformTileHandler } from './handler/platformTile.handler';
 import { createSolidTileHandler } from './handler/solidTile.handler';
-import TileColliderLayer from './tile.collider.layer';
 
 export type TwoDimTileCollisionHandler = {
-    x: (e: Entity, m: PositionedTile, tiles: TileColliderLayer) => void;
-    y: (e: Entity, m: PositionedTile, tiles: TileColliderLayer) => void;
+    x: (e: Entity, m: PositionedTile, tiles: LevelLayer) => void;
+    y: (e: Entity, m: PositionedTile, tiles: LevelLayer) => void;
 };
 
 const handlers = {
@@ -47,7 +46,7 @@ export default class TileCollider {
         }
     }
 
-    handle(dimension: 'x' | 'y', entity: Entity, match: PositionedTile, tiles: TileColliderLayer): void {
+    handle(dimension: 'x' | 'y', entity: Entity, match: PositionedTile, tiles: LevelLayer): void {
         if (!match.tile.types) {
             return;
         }

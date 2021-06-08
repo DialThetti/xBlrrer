@@ -128,7 +128,7 @@ class SlimePrefab extends EntityPrefab {
             new Gravity(),
             new Solid(),
             new Physics(),
-            new Killable('dead', 0),
+            new Killable('dead', 1, 0),
             jumpTrait(),
             new directionTrait(),
         ];

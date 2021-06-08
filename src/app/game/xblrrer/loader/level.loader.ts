@@ -1,7 +1,7 @@
 import { entityRepo } from '@engine/core/entities/entity.repo';
 import { EntityState } from '@engine/core/entities/entity.state';
 import { addHandler } from '@engine/core/physics/collider/tile.collider';
-import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
+import LevelLayer from '@engine/level/level-layer';
 import EntityLayer from '@engine/level/rendering/entity.layer';
 import ParallaxLayer from '@engine/level/rendering/parallax.layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
@@ -14,7 +14,7 @@ import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.
 import CollisionLayer from '@extension/platformer/rendering/layers/debug/collision.layer';
 import { BoundingBox, Loader, loadImage } from 'feather-engine-core';
 import EntityFactory from '../entities/entity.factory';
-import { createDeatlyHandler } from '../physics/collider/deadly.handler';
+import { createDeadlyHandler } from '../physics/collider/deadly.handler';
 import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.handler';
 
 export default class LevelLoader implements Loader<{ level: PlatformerLevel; player: PlatformerEntity }> {
@@ -52,9 +52,7 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         level.estimateTime = levelSpec.estimateTime;
         level.bgm = levelSpec.bgm;
 
-        const layers: TileColliderLayer[] = levelSpec.tiledMap.layers.map(
-            (layer) => new TileColliderLayer(layer, level.tilesize),
-        );
+        const layers: LevelLayer[] = levelSpec.tiledMap.layers.map((layer) => new LevelLayer(layer, level.tilesize));
         level.levelLayer = layers;
         // Render Layer initialization
         const composition = [];
@@ -84,7 +82,7 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         // prepare collider
         addHandler('brick', createBrickTileHandler());
         addHandler('onlyCrouch', createOnlyCrouchTileHandler());
-        addHandler('deadly', createDeatlyHandler());
+        addHandler('deadly', createDeadlyHandler());
 
         return { level, player, renderer: composition, viewPorts: levelSpec.tiledMap.viewPorts };
     }

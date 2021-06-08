@@ -1,8 +1,7 @@
 import Entity from '@engine/core/entities/entity';
 import { TwoDimTileCollisionHandler } from '@engine/core/physics/collider/tile.collider';
-import TileColliderLayer from '@engine/core/physics/collider/tile.collider.layer';
 import { Side } from '@engine/core/world/tiles/side';
-import { PositionedTile } from '@engine/level/level-layer';
+import LevelLayer, { PositionedTile } from '@engine/level/level-layer';
 
 export function createBrickTileHandler(): TwoDimTileCollisionHandler {
     return {
@@ -17,7 +16,7 @@ export function createBrickTileHandler(): TwoDimTileCollisionHandler {
                 }
             }
         },
-        y: (entity: Entity, match: PositionedTile, tiles: TileColliderLayer): void => {
+        y: (entity: Entity, match: PositionedTile, tiles: LevelLayer): void => {
             if (entity.vel.y > 0) {
                 if (entity.bounds.bottom > match.y.from) {
                     entity.obstruct(Side.BOTTOM, match);
