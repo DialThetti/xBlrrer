@@ -10,7 +10,7 @@ export default class SpriteSheet extends ImageContainer {
 
     public define(name: string, posX: number, posY: number, width: number, height: number): void {
         super.define(name, posX, posY, width, height, false);
-        super.define(name + '_switched', posX, posY, width, height, true);
+        if (this.flippable) super.define(name + '_switched', posX, posY, width, height, true);
     }
 
     public draw(name: string, context: RenderContext, x: number, y: number, flipped = false): void {
