@@ -12,12 +12,10 @@ export default class Game {
         const sceneMachine = new SceneMachine().addScenes([
             () => new LoadingScene(),
             () => new MainMenuScene(),
-            () => new GameScene('transition'),
-            () => new GameScene('forest'),
+            () => new GameScene(),
         ]);
         await sceneMachine.load();
         sceneMachine.start();
         sceneMachine.setScene(MainMenuScene.NAME);
-        console.log('scenes running');
     }
 }

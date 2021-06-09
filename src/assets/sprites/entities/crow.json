@@ -42,8 +42,36 @@
             "rect": [224, 32, 32, 32]
         },
         {
+            "name": "jump-1",
+            "rect": [0, 64, 32, 32]
+        },
+        {
+            "name": "jump-2",
+            "rect": [32, 64, 32, 32]
+        },
+        {
+            "name": "jump-3",
+            "rect": [64, 64, 32, 32]
+        },
+        {
+            "name": "jump-4",
+            "rect": [96, 64, 32, 32]
+        },
+        {
             "name": "fall-1",
-            "rect": [64, 8, 24, 24]
+            "rect": [128, 64, 32, 32]
+        },
+        {
+            "name": "fall-2",
+            "rect": [160, 64, 32, 32]
+        },
+        {
+            "name": "fall-3",
+            "rect": [192, 64, 32, 32]
+        },
+        {
+            "name": "fall-4",
+            "rect": [224, 64, 32, 32]
         }
     ],
 
@@ -56,14 +84,14 @@
         {
             "name": "jump",
             "loop": false,
-            "frameLen": 18,
-            "frames": ["run-1"]
+            "frameLen": 12,
+            "frames": ["jump-1", "jump-2", "jump-3", "jump-4"]
         },
         {
             "name": "fall",
             "loop": false,
-            "frameLen": 18,
-            "frames": ["run-1"]
+            "frameLen": 12,
+            "frames": ["fall-1", "fall-2", "fall-3", "fall-4"]
         }
     ]
 }

@@ -18,8 +18,7 @@ class JumpButtonReleased implements Event<void> {
 
 class CountDown {
     private currentVal: number;
-
-    constructor(private startVal: number) {
+    constructor(public readonly startVal: number) {
         this.currentVal = startVal;
     }
 
@@ -35,6 +34,9 @@ class CountDown {
     notZero() {
         return this.currentVal > 0;
     }
+    get delta(): number {
+        return this.startVal - this.currentVal;
+    }
 }
 export default class Jump extends Trait {
     private eventBuffer = new EventBuffer();
@@ -42,7 +44,9 @@ export default class Jump extends Trait {
     private raisingTime = new CountDown(0.15);
 
     private onGround = 0;
-    time = 0;
+    distance = 0;
+
+    private lastDir = 0;
 
     constructor() {
         super('jump');
@@ -83,19 +87,30 @@ export default class Jump extends Trait {
             entity.vel.y = -this.velocity;
             this.raisingTime.decrease(context.deltaTime);
         }
+        const dir = Math.sign(entity.vel.y);
+        if (this.lastDir != dir) {
+            this.distance = 0;
+        }
+        this.lastDir = dir;
+
         const absY = Math.abs(entity.vel.y);
-        this.time += absY * context.deltaTime;
+        this.distance += absY * context.deltaTime;
         this.onGround--;
     }
     obstruct(entity: PlatformerEntity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.onGround = 1;
-            this.time = 0;
+            this.distance = 0;
         } else if (side === Side.TOP) {
             this.cancel();
+            this.distance = 0;
         }
     }
     get falling(): boolean {
         return this.onGround < 0;
+    }
+
+    get timeOfCurrentPhase(): number {
+        return this.distance;
     }
 }

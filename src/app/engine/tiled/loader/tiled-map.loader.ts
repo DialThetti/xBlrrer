@@ -90,7 +90,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
     createTileMatrixes(
         tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>,
         tileProps: { [id: number]: TsxTileModel },
-    ): { matrix: Matrix<Tile>; name: string }[] {
+    ): { matrix: Matrix<Tile>; name: string; frontLayer: boolean; dynamic: boolean }[] {
         const tileCreator = new TileMatrixCreator(tileProps);
         return tmx.layers
             .filter((a) => a.visible)
@@ -98,7 +98,13 @@ export default class TiledMapLoader implements Loader<TiledMap> {
             .map((layer) => ({
                 name: layer.name,
                 matrix: tileCreator.create(layer as Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer),
+                frontLayer: this.hasEnabled(layer as Tmx.TmxLayer, 'frontLayer'),
+                dynamic: this.hasEnabled(layer as Tmx.TmxLayer, 'dynamic'),
             }));
+    }
+
+    hasEnabled(layer: Tmx.TmxLayer, key: string) {
+        return layer && layer.properties.some((t) => t.name === key && (t.value as boolean) === true);
     }
 
     merge(tilesets: TiledTileset[]): TiledTileset {

@@ -3,8 +3,9 @@ import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import Scene from '@engine/scenes/scene';
 import SceneMachine from '@engine/scenes/scene-machine';
-import { KeyboardInput, RenderContext } from 'feather-engine-core';
+import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
 import { FontLoader } from 'feather-engine-graphics';
+import { xBlrrerSaveData } from '../platformScene/save-data';
 import MenuKeyboard from './input';
 import MainMenuLayer from './layer/mainmenu.layer';
 
@@ -40,6 +41,19 @@ export default class MainMenuScene implements Scene {
     }
 
     submit(): void {
-        SceneMachine.INSTANCE.setScene('forest');
+        const sav = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>();
+        switch (this.option) {
+            case 0:
+                sav.loadCurrentData(0);
+                break;
+            case 1:
+                sav.clearData();
+                sav.pushData(this.newGame());
+        }
+        SceneMachine.INSTANCE.setScene('game');
+    }
+
+    newGame(): Partial<xBlrrerSaveData> {
+        return { stage: { name: 'forest' } };
     }
 }

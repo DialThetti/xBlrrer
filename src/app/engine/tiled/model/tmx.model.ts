@@ -51,6 +51,7 @@ export interface TmxLayer {
     type: 'tilelayer' | string;
     visible: boolean;
     width: number;
+    properties: { name: string; type: string; value: unknown }[];
     x: number;
     y: number;
 }

@@ -26,7 +26,6 @@ export default class ChunkedTilesetLayer implements RenderLayer {
     }
 
     prepareChunk(x: number, y: number): void {
-        console.debug(`[chunks] load chunk ${x} ${y}`);
         const context = CanvasRenderer.createRenderContext(
             this.chunkSize * this.tileset.tilesize,
             this.chunkSize * this.tileset.tilesize,

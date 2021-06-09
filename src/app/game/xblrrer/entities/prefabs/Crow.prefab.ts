@@ -40,20 +40,20 @@ export default class CrowPrefab extends EntityPrefab {
         const crouch = entity.getTrait(Crouch);
         const glide = entity.getTrait(Glide);
         const killable = entity.getTrait(Killable);
-
+        if (killable.invulnable) {
+            if (Math.floor(killable.invulnabilityTime * 10) % 2 == 0) return '';
+        }
         if (crouch.down) {
             return 'crouch';
         }
         if (glide?.gliding) {
             return 'fall-1';
         }
-        if (killable.invulnable) {
-            console.log(Math.floor(killable.invulnabilityTime * 10) % 2);
-            if (Math.floor(killable.invulnabilityTime * 10) % 2 == 0) return '';
-        }
+
         if (jump.falling) {
             const direction = entity.vel.y < 0 ? 'jump' : 'fall';
-            return sprite.getAnimation(direction)(entity.vel.y);
+            const x = sprite.getAnimation(direction)(jump.timeOfCurrentPhase);
+            return x;
         }
 
         if (go.distance !== 0 && entity.vel.x !== 0) {

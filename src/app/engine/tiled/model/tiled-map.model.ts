@@ -5,7 +5,7 @@ import { TileSet } from 'feather-engine-graphics';
 export interface TiledMap {
     tileset: TileSet;
     tileSize: number;
-    layers: { matrix: Matrix<Tile>; name: string }[];
+    layers: { matrix: Matrix<Tile>; name: string; frontLayer: boolean; dynamic: boolean }[];
     width: number;
     height: number;
     viewPorts: BoundingBox[];

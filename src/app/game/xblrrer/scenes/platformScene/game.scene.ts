@@ -9,20 +9,23 @@ import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlayerController from '@extension/platformer/entities/traits/player-controller';
 import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
-import { KeyboardInput, RenderContext } from 'feather-engine-core';
+import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
 import { FontLoader } from 'feather-engine-graphics';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
 import LevelLoader from '../../loader/level.loader';
 import DashboardLayer from '../../rendering/layers/dashboard.layer';
 import PlatformerKeyListener from './input';
+import { xBlrrerSaveData } from './save-data';
 export default class GameScene implements Scene {
+    public static NAME = 'game';
+    name = GameScene.NAME;
     isLoadingScene = false;
     level: PlatformerLevel;
 
     player: Entity;
 
-    constructor(public name: string) {}
+    constructor() {}
 
     createPlayerEnv(player: PlatformerEntity, level: PlatformerLevel): PlatformerEntity {
         const playerEnv = new PlatformerEntity();
@@ -37,7 +40,9 @@ export default class GameScene implements Scene {
         return playerEnv;
     }
     async load(): Promise<void> {
-        const { level, player, renderer, viewPorts } = await new LevelLoader(this.name).load();
+        let saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
+
+        const { level, player, renderer, viewPorts } = await new LevelLoader(saveData.stage.name).load();
         const audioContext = new AudioContext();
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
@@ -46,6 +51,9 @@ export default class GameScene implements Scene {
         KeyboardInput.addKeyListener(new PlatformerKeyListener(player));
 
         const camera = new MetroidCamera(viewPorts);
+        if (saveData.position) {
+            level.startPosition.set(saveData.position.x / level.tilesize, saveData.position.y / level.tilesize);
+        }
         const playerEnv = this.createPlayerEnv(player, level);
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);

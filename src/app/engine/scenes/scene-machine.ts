@@ -1,4 +1,4 @@
-import { FeatherEngine, GameLoop, OnDraw, OnUpdate } from 'feather-engine-core';
+import { FeatherEngine, GameLoop, info, OnDraw, OnUpdate } from 'feather-engine-core';
 import Scene from './scene';
 
 export default class SceneMachine {
@@ -33,15 +33,15 @@ export default class SceneMachine {
 
     public async setScene(name: string, withLoading = true): Promise<void> {
         if (withLoading) {
-            console.info(`[Scene Machine] switch to Loadingscreen`);
+            info(this, `Switch to Loadingscreen`);
             this.currentSceneName = 'loadingScene';
         }
         const sceneBlob = this.scenes[name];
         if (!sceneBlob.loaded) {
-            console.info(`[Scene Machine] loading Scene ${name}`);
+            info(this, `Loading Scene ${name}`);
             await sceneBlob.scene.load();
             sceneBlob.loaded = true;
-            console.info(`[Scene Machine] Scene ${name} loaded`);
+            info(this, `Scene ${name} loaded`);
         }
         await sceneBlob.scene.start();
         this.currentSceneName = name;

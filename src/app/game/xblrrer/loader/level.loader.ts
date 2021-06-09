@@ -12,7 +12,8 @@ import LevelSpecLoader from '@extension/platformer/loader/platformer-level.loade
 import { createBrickTileHandler } from '@extension/platformer/physics/collider/brickTile-handler';
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.tileset.layer';
 import CollisionLayer from '@extension/platformer/rendering/layers/debug/collision.layer';
-import { BoundingBox, Loader, loadImage } from 'feather-engine-core';
+import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
+import { BoundingBox, Loader, loadImage, Vector } from 'feather-engine-core';
 import EntityFactory from '../entities/entity.factory';
 import { createDeadlyHandler } from '../physics/collider/deadly.handler';
 import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.handler';
@@ -44,11 +45,10 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
                 level.entities.add(entity);
             });
         }
-        console.log(Object.keys(entityRepo));
         const player = entityRepo['crow']() as PlatformerEntity;
         player.state = EntityState.ACTIVE;
 
-        level.startPosition = levelSpec.startPosition;
+        level.startPosition = new Vector(levelSpec.startPosition.x, levelSpec.startPosition.y);
         level.estimateTime = levelSpec.estimateTime;
         level.bgm = levelSpec.bgm;
 
@@ -67,15 +67,24 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         }
         composition.push(
             new ChunkedTilesetLayer(
-                levelSpec.tiledMap.layers.filter((a) => a.name !== 'FRONT').map((a) => a.matrix),
+                levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && !a.dynamic).map((a) => a.matrix),
                 levelSpec.tiledMap.tileset,
             ),
-        );
-        composition.push(new EntityLayer(level.entities));
-        composition.push(
-            new ChunkedTilesetLayer(
-                levelSpec.tiledMap.layers.filter((a) => a.name === 'FRONT').map((a) => a.matrix),
+
+            new TilesetLayer(
+                levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && a.dynamic).map((a) => a.matrix),
                 levelSpec.tiledMap.tileset,
+                () => level.time,
+            ),
+            new EntityLayer(level.entities),
+            new ChunkedTilesetLayer(
+                levelSpec.tiledMap.layers.filter((a) => a.frontLayer && !a.dynamic).map((a) => a.matrix),
+                levelSpec.tiledMap.tileset,
+            ),
+            new TilesetLayer(
+                levelSpec.tiledMap.layers.filter((a) => a.frontLayer && a.dynamic).map((a) => a.matrix),
+                levelSpec.tiledMap.tileset,
+                () => level.time,
             ),
         );
         composition.push(new CollisionLayer(level));

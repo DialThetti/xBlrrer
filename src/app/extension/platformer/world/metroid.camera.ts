@@ -46,7 +46,6 @@ export default class MetroidCamera extends Camera {
             .findIndex((a) => a.overlaps(playerFigure.bounds));
         if (potentionallyNewCam != -1) {
             if (potentionallyNewCam != this.currentCamIndex) {
-                console.debug(`[camera] Switching cameras from ${this.currentCamIndex} to ${potentionallyNewCam}`);
                 if (this.currentCamIndex !== -1) {
                     this.transition = new Transition(
                         this.currentCam.box.pos,

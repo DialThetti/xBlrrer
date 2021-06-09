@@ -1,104 +1,61 @@
 import Tile from '@engine/core/world/tiles/tile';
-import TileMath from '@engine/core/world/tiles/tile.math';
-import * as EngineLevel from '@engine/level/level';
-import LevelLayer from '@engine/level/level-layer';
+import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { Canvas, CanvasRenderer, FeatherEngine, Range, RenderContext } from 'feather-engine-core';
-import { drawRect, TileSet } from 'feather-engine-graphics';
-import PlatformerLevel from '../../level';
+import { Canvas, CanvasRenderer, Matrix, RenderContext } from 'feather-engine-core';
+import { TileSet } from 'feather-engine-graphics';
 
 export default class TilesetLayer implements RenderLayer {
-    private buffer: Canvas;
-    private bufferContext: RenderContext;
-
-    private math: TileMath;
-    screenFrameTileRangeHash: string;
-
-    constructor(private level: PlatformerLevel, private tileSet: TileSet, onlyFront = false) {
-        this.createBackgroundLayer(level.tilesize);
-
-        this.math = new TileMath(level.tilesize);
-    }
-
-    private toRange(pos: number, size: number): Range {
-        const bWidth = this.math.toIndex(size);
-        const from = this.math.toIndex(pos);
-        return { from, to: bWidth + from };
-    }
-
-    draw(context: RenderContext, level: EngineLevel.default): void {
-        this.redraw(
-            level,
-            this.toRange(level.camera.box.left, level.camera.size.x),
-            this.toRange(level.camera.box.top, level.camera.size.y),
-        );
-        context.drawImage(
-            this.buffer,
-            -level.camera.box.left % this.level.tilesize,
-            -level.camera.box.top % this.level.tilesize,
+    private buffer: RenderContext;
+    constructor(
+        private tiles: Matrix<Tile>[],
+        private tileset: TileSet,
+        private time: () => number,
+        private chunkSize = 32,
+    ) {
+        this.buffer = CanvasRenderer.createRenderContext(
+            this.chunkSize * this.tileset.tilesize,
+            this.chunkSize * this.tileset.tilesize,
         );
     }
-
-    private redraw(level: EngineLevel.default, rangeX: Range, rangeY: Range): void {
-        if (!this.hasChanged(rangeX, rangeY)) {
-            return;
-        }
-        this.bufferContext.clearRect(0, 0, this.buffer.width, this.buffer.height);
-        level.levelLayer.forEach((layer) => this.renderLayer(layer, rangeX, rangeY));
-    }
-
-    private hasChanged(rangeX: Range, rangeY: Range): boolean {
-        const currentHash = JSON.stringify({ rangeX, rangeY });
-        if (this.screenFrameTileRangeHash === currentHash) {
-            //     return false;
-        }
-        this.screenFrameTileRangeHash = currentHash;
-        return true;
-    }
-
-    private renderLayer(layer: LevelLayer, rangeX: Range, rangeY: Range): void {
-        for (let x = rangeX.from; x <= rangeX.to; x++) {
-            for (let y = rangeY.from; y <= rangeY.to; y++) {
-                const match = layer.getByIndex(x, y);
-                if (!match) {
-                    continue;
-                }
-                if (FeatherEngine.debugSettings.hitboxesOnly) {
-                    this.renderHitbox(match.tile, x - rangeX.from, y - rangeY.from);
-                } else {
-                    this.renderTile(match.tile, x - rangeX.from, y - rangeY.from);
-                }
+    draw(context: RenderContext, level: Level): void {
+        const { camera } = level;
+        const xRange = { from: this.toChunkPosition(camera.box.left), to: this.toChunkPosition(camera.box.right) + 1 };
+        const yRange = { from: this.toChunkPosition(camera.box.top), to: this.toChunkPosition(camera.box.bottom) + 1 };
+        for (let x = xRange.from; x < xRange.to; x++) {
+            for (let y = yRange.from; y < yRange.to; y++) {
+                context.drawImage(
+                    this.prepareChunk(x, y),
+                    x * this.tileset.tilesize * this.chunkSize - camera.box.left,
+                    y * this.tileset.tilesize * this.chunkSize - camera.box.top,
+                );
             }
         }
     }
-    renderTile(tile: Tile, x: number, y: number): void {
-        if (this.tileSet.isAnimatedTile(tile.name)) {
-            //Animation found for block
-            this.tileSet.drawAnim(tile.name, this.bufferContext, x, y, this.level.time);
-        } else {
-            this.tileSet.drawTile(tile.name, this.bufferContext, x, y);
-        }
-    }
 
-    renderHitbox(tile: Tile, x: number, y: number): void {
-        const s = this.tileSet.tilesize;
-        if (tile.types.includes('solid')) {
-            drawRect(this.bufferContext, s * x, s * y, s, s, 'grey', {
-                filled: true,
-            });
-            drawRect(this.bufferContext, s * x, s * y, s, s, 'black');
-        }
-        if (tile.types.includes('platform')) {
-            drawRect(this.bufferContext, s * x, s * y, s, 4, 'grey', {
-                filled: true,
-            });
-            drawRect(this.bufferContext, s * x, s * y, s, 4, 'black');
-        }
-    }
+    prepareChunk(x: number, y: number): Canvas {
+        const context = this.buffer;
+        context.clearRect(0, 0, this.chunkSize * this.tileset.tilesize, this.chunkSize * this.tileset.tilesize);
+        const chunk = context.canvas;
+        const xRange = { from: x * this.chunkSize, to: (x + 1) * this.chunkSize };
+        const yRange = { from: y * this.chunkSize, to: (y + 1) * this.chunkSize };
 
-    createBackgroundLayer(extraSize: number): void {
-        this.bufferContext = CanvasRenderer.createRenderContext(256 * 2 + extraSize, 224 * 2 + extraSize);
-        this.buffer = this.bufferContext.canvas;
-        this.screenFrameTileRangeHash = '';
+        this.tiles.forEach((layer) => {
+            for (let x = xRange.from; x < xRange.to; x++) {
+                for (let y = yRange.from; y < yRange.to; y++) {
+                    const tile = layer.get(x, y);
+                    if (tile) {
+                        if (this.tileset.isAnimatedTile(tile.name)) {
+                            this.tileset.drawAnim(tile.name, context, x - xRange.from, y - yRange.from, this.time());
+                        } else {
+                            this.tileset.drawTile(tile.name, context, x - xRange.from, y - yRange.from);
+                        }
+                    }
+                }
+            }
+        });
+        return chunk;
+    }
+    private toChunkPosition(x: number): number {
+        return Math.floor(x / this.tileset.tilesize / this.chunkSize);
     }
 }

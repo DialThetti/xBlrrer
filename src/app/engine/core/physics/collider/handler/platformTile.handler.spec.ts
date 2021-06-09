@@ -1,9 +1,8 @@
 import { Vector } from 'feather-engine-core';
 import { anything, spy, verify } from 'ts-mockito';
-import { PositionedTile } from '../../../../level/level-layer';
+import LevelLayer, { PositionedTile } from '../../../../level/level-layer';
 import Entity from '../../../entities/entity';
 import { Side } from '../../../world/tiles/side';
-import TileColliderLayer from '../tile.collider.layer';
 import { createPlatformTileHandler } from './platformTile.handler';
 
 describe('createPlatformTileHandler', () => {
@@ -25,24 +24,24 @@ describe('createPlatformTileHandler', () => {
     describe('x', () => {
         it('should do nothing', () => {
             entity.vel = new Vector(0, 0);
-            handler.x(entity, {} as PositionedTile, {} as TileColliderLayer);
+            handler.x(entity, {} as PositionedTile, {} as LevelLayer);
             verify(spyedInstance.obstruct(anything(), anything())).never();
         });
     });
     describe('y', () => {
         it('should do nothing if y == 0', () => {
             entity.vel = new Vector(0, 0);
-            handler.y(entity, {} as PositionedTile, {} as TileColliderLayer);
+            handler.y(entity, {} as PositionedTile, {} as LevelLayer);
             verify(spyedInstance.obstruct(anything(), anything())).never();
         });
         it('should obstruct BOTTOM if y > 0', () => {
             entity.vel = new Vector(0, 1);
-            handler.y(entity, { y: { from: -1 } } as PositionedTile, {} as TileColliderLayer);
+            handler.y(entity, { y: { from: -1 } } as PositionedTile, {} as LevelLayer);
             verify(spyedInstance.obstruct(Side.BOTTOM, anything())).once();
         });
         it('should do nothing if y < 0', () => {
             entity.vel = new Vector(0, -1);
-            handler.y(entity, { y: { to: 1 } } as PositionedTile, {} as TileColliderLayer);
+            handler.y(entity, { y: { to: 1 } } as PositionedTile, {} as LevelLayer);
             verify(spyedInstance.obstruct(anything(), anything())).never();
         });
     });
