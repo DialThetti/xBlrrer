@@ -8,35 +8,29 @@ describe('GameLoop', () => {
         expect(GameLoop['instance']).toBe(GameLoop['instance']);
     });
     it('should register OnInput Listener', () => {
-        GameLoop.register([
-            {
-                handleInput: () => {
-                    queue += 'A';
-                },
-            } as OnInput,
-        ]);
+        GameLoop.register({
+            handleInput: () => {
+                queue += 'A';
+            },
+        } as OnInput);
         let instance: GameLoop = GameLoop['instance'];
         expect(instance['onInput'].length).toBe(1);
     });
     it('should register OnUpdate Listener', () => {
-        GameLoop.register([
-            {
-                update: (dT: number) => {
-                    queue += 'B';
-                },
-            } as OnUpdate,
-        ]);
+        GameLoop.register({
+            update: (dT: number) => {
+                queue += 'B';
+            },
+        } as OnUpdate);
         let instance: GameLoop = GameLoop['instance'];
         expect(instance['onUpdate'].length).toBe(1);
     });
     it('should register OnDraw Listener', () => {
-        GameLoop.register([
-            {
-                draw: (rc: RenderContext) => {
-                    queue += 'C';
-                },
-            } as OnDraw,
-        ]);
+        GameLoop.register({
+            draw: (rc: RenderContext) => {
+                queue += 'C';
+            },
+        } as OnDraw);
         let instance: GameLoop = GameLoop['instance'];
         expect(instance['onDraw'].length).toBe(1);
     });
