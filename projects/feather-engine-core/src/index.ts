@@ -6,6 +6,8 @@ export * from './internal/gameloop/gameloop-listeners';
 export * from './internal/io/loaders';
 export * from './internal/logger';
 export * from './internal/renderer/canvas-renderer';
+export * from './internal/save-system/save-data';
+export * from './internal/save-system/save-data-manager';
 export * from './math';
 export { FeatherEngine, EngineConfig };
 export { Loader };

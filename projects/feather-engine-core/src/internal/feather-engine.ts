@@ -1,6 +1,8 @@
 import { GameLoop } from './gameloop/gameloop';
 import { error, warn } from './logger';
 import { CanvasRenderer } from './renderer/canvas-renderer';
+import { LocalStorageSaveDataSystem, SaveDataSystem } from './save-system/save-data-manager';
+import { JSONSaveDataMarshaller } from './save-system/save-data-marshaller';
 
 export interface EngineConfig {
     canvasId: string;
@@ -21,7 +23,7 @@ export default class FeatherEngine {
 
     private renderer: CanvasRenderer | null = null;
     private static instance = new FeatherEngine();
-
+    private static saveDataSystem: SaveDataSystem<any>;
     private debugSettings: DebugSettings = {
         enabled: false,
         hitboxesOnly: false,
@@ -36,6 +38,17 @@ export default class FeatherEngine {
     }
     public static get Renderer(): CanvasRenderer {
         return FeatherEngine.instance.renderer as CanvasRenderer;
+    }
+
+    public static getSaveDataSystem<T>(): SaveDataSystem<T> {
+        if (this.saveDataSystem === undefined) {
+            this.saveDataSystem = new LocalStorageSaveDataSystem(new JSONSaveDataMarshaller());
+        }
+        return this.saveDataSystem;
+    }
+
+    public static setSaveDataSystem<T>(system: SaveDataSystem<T>): void {
+        this.saveDataSystem = system;
     }
 
     public static get screenSize(): { width: number; height: number } {
