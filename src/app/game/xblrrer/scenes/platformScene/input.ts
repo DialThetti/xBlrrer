@@ -11,7 +11,7 @@ import { xBlrrerSaveData } from './save-data';
 
 export default class PlatformerKeyListener implements KeyListener {
     constructor(private playerFigure: Entity & TraitCtnr) {}
-    keyDown(code: String): void {
+    keyDown(code: string): void {
         const go = this.playerFigure.getTrait(Go);
         const jump = this.playerFigure.getTrait(Jump);
         const crouch = this.playerFigure.getTrait(Crouch);
@@ -53,7 +53,7 @@ export default class PlatformerKeyListener implements KeyListener {
         }
     }
 
-    keyUp(code: String): void {
+    keyUp(code: string): void {
         const go = this.playerFigure.getTrait(Go);
         const jump = this.playerFigure.getTrait(Jump);
         const crouch = this.playerFigure.getTrait(Crouch);
@@ -78,5 +78,5 @@ export default class PlatformerKeyListener implements KeyListener {
         }
     }
 
-    keyPressed(code: String): void {}
+    keyPressed(code: string): void {}
 }

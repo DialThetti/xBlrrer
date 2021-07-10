@@ -40,7 +40,28 @@ export class KeyboardInput implements OnInput {
     }
 
     public static clearKeyListeners(): void {
+        // Lift all keys
+        Object.keys(KeyboardInput.instance.keyStates).forEach((k) => {
+            const v = KeyboardInput.instance.keyStates[k];
+            if (v == KeyState.PRESSED) {
+                KeyboardInput.instance.keyListeners.forEach((l) => l.keyUp(k));
+            }
+        });
+        KeyboardInput.instance.keyStates = {};
         KeyboardInput.instance.keyListeners.length = 0;
+        KeyboardInput.instance.keyStatesChanges = {};
+    }
+
+    private static keyListenerStash: KeyListener[] = [];
+
+    public static stashKeyListeners(): void {
+        KeyboardInput.keyListenerStash = [...KeyboardInput.instance.keyListeners];
+        this.clearKeyListeners();
+    }
+
+    public static popKeyListeners(): void {
+        this.clearKeyListeners();
+        KeyboardInput.instance.keyListeners = KeyboardInput.keyListenerStash;
     }
     /**
      * Not real public, since class cant be instanciated
