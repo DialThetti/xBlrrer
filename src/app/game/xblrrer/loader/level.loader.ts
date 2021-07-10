@@ -15,11 +15,13 @@ import CollisionLayer from '@extension/platformer/rendering/layers/debug/collisi
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
 import { BoundingBox, Loader, loadImage, Vector } from 'feather-engine-core';
 import EntityFactory from '../entities/entity.factory';
+import Glide from '../entities/traits/glide';
 import { createDeadlyHandler } from '../physics/collider/deadly.handler';
 import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.handler';
+import { xBlrrerSaveData } from '../scenes/platformScene/save-data';
 
 export default class LevelLoader implements Loader<{ level: PlatformerLevel; player: PlatformerEntity }> {
-    constructor(private levelName: string) {}
+    constructor(private saveData: xBlrrerSaveData) {}
 
     async load(): Promise<{
         level: PlatformerLevel;
@@ -27,25 +29,29 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         renderer: RenderLayer[];
         viewPorts: BoundingBox[];
     }> {
-        const levelSpec = await new LevelSpecLoader(this.levelName).load();
+        const levelSpec = await new LevelSpecLoader(this.saveData.stage.name).load();
 
         await new EntityFactory().prepare();
 
         const tileset = levelSpec.tiledMap.tileset;
 
         const level = new PlatformerLevel(levelSpec.tiledMap.tileSize);
-        level.name = this.levelName;
+        level.name = this.saveData.stage.name;
         level.width = levelSpec.tiledMap.width;
         level.height = levelSpec.tiledMap.height;
         if (levelSpec.entities) {
-            levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
-                const entity = entityRepo[name]() as PlatformerEntity;
-
-                entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
-                level.entities.add(entity);
-            });
+            levelSpec.entities
+                .map(({ name, pos: [x, y] }) => ({ name, pos: [x, y], entity: entityRepo[name]() as PlatformerEntity }))
+                .filter(({ entity }) => entity)
+                .forEach(({ pos: [x, y], entity }) => {
+                    entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
+                    level.entities.add(entity);
+                });
         }
         const player = entityRepo['crow']() as PlatformerEntity;
+        if (this.saveData.collectables?.hasGliding) {
+            player.addTrait(new Glide());
+        }
         player.state = EntityState.ACTIVE;
 
         level.startPosition = new Vector(levelSpec.startPosition.x, levelSpec.startPosition.y);

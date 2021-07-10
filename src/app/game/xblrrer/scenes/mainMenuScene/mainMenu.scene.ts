@@ -1,3 +1,5 @@
+import AudioBoard from '@engine/core/io/sfx/audioboard';
+import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
 import Camera from '@engine/core/world/camera';
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
@@ -5,7 +7,7 @@ import Scene from '@engine/scenes/scene';
 import SceneMachine from '@engine/scenes/scene-machine';
 import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
 import { FontLoader } from 'feather-engine-graphics';
-import { xBlrrerSaveData } from '../platformScene/save-data';
+import { InitialSaveData, xBlrrerSaveData } from '../platformScene/save-data';
 import MenuKeyboard from './input';
 import MainMenuLayer from './layer/mainmenu.layer';
 
@@ -15,11 +17,14 @@ export default class MainMenuScene implements Scene {
     isLoadingScene = false;
     layer: RenderLayer;
     _option = 0;
+    audioBoard: AudioBoard;
     camera = new Camera();
 
     async load(): Promise<void> {
         const font = await new FontLoader('./img/font.png').load();
         this.layer = new MainMenuLayer(font, this);
+        this.audioBoard = await new AudioBoardLoader(new AudioContext(), './sfx/audio.json').load();
+        this.audioBoard.setVolume(0.5);
     }
 
     async start(): Promise<void> {
@@ -42,6 +47,7 @@ export default class MainMenuScene implements Scene {
 
     submit(): void {
         const sav = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>();
+        this.audioBoard.playAudio('confirm', true, 0);
         switch (this.option) {
             case 0:
                 sav.loadCurrentData(0);
@@ -54,6 +60,6 @@ export default class MainMenuScene implements Scene {
     }
 
     newGame(): Partial<xBlrrerSaveData> {
-        return { stage: { name: 'forest' } };
+        return InitialSaveData;
     }
 }

@@ -1,8 +1,9 @@
 import { setEntityRepo } from '@engine/core/entities/entity.repo';
+import { GlideCollectable } from './prefabs/collectable.prefab';
 import CrowPrefab from './prefabs/Crow.prefab';
 import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime.prefab';
 
-const prefabs = [CrowPrefab, BlueSlimePrefab, RedSlimePrefab];
+const prefabs = [CrowPrefab, BlueSlimePrefab, RedSlimePrefab, GlideCollectable];
 export default class EntityFactory {
     async prepare(): Promise<void> {
         const factories = await Promise.all(

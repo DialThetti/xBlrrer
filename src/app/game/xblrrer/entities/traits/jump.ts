@@ -4,6 +4,7 @@ import EventBuffer from '@engine/core/events/eventBuffer';
 import { SfxEvent } from '@engine/core/events/events';
 import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import { FeatherEngine } from 'feather-engine-core';
 import Crouch from './crouch';
 
 class JumpButtonPressed implements Event<void> {
@@ -78,7 +79,9 @@ export default class Jump extends Trait {
             if (!this.falling) {
                 entity.bypassPlatform = true;
                 this.raisingTime.reset();
-                entity.events.emit(new SfxEvent({ name: 'jump' }));
+
+                const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
+                entity.events.emit(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
             }
         });
 

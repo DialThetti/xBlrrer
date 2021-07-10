@@ -4,8 +4,9 @@ export default class AudioBoard {
     lastSource: AudioScheduledSourceNode;
     enabled = true;
     isBlocked = false;
-
     bgmChannel: AudioScheduledSourceNode;
+
+    volume = 1;
     constructor(private audioContext: AudioContext) {
         window.setAudio = (enabled): void => {
             this.enabled = enabled;
@@ -16,10 +17,15 @@ export default class AudioBoard {
         };
     }
 
+    setVolume(v: number): void {
+        this.volume = v > 1 ? 1 : v < 0 ? 0 : v;
+    }
+
     addAudio(name: string, buffer: AudioBuffer): void {
         this.buffers[name] = buffer;
     }
-    playAudio(name: string, blocking: boolean): void {
+    playAudio(name: string, blocking: boolean, position: number): void {
+        console.info(`Starting ${name} as Sfx`);
         if (!this.enabled) {
             return;
         }
@@ -27,10 +33,25 @@ export default class AudioBoard {
             return;
         }
         if (this.lastSource) {
-            this.lastSource.stop();
+            //     this.lastSource.stop();
         }
         const source = this.audioContext.createBufferSource();
-        source.connect(this.audioContext.destination);
+
+        const gain = this.audioContext.createGain();
+        if (Math.abs(position) > 3) {
+            return;
+        }
+        if (Math.abs(position) > 1) {
+            gain.gain.value = this.volume / (position * position);
+        } else {
+            gain.gain.value = this.volume;
+        }
+        console.log(position);
+        const pannerOptions = { pan: position };
+        const panner = new StereoPannerNode(this.audioContext, pannerOptions);
+
+        source.connect(gain).connect(panner).connect(this.audioContext.destination);
+
         source.buffer = this.buffers[name];
         source.start(0);
         if (blocking) {

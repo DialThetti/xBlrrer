@@ -1,5 +1,6 @@
 import EntityPrefab from '@engine/core/entities/entity.prefab';
 import Trait, { Context } from '@engine/core/entities/trait';
+import { SfxEvent } from '@engine/core/events/events';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
@@ -7,7 +8,7 @@ import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { PlatformerTraitContext } from '@extension/platformer/entities/traits/traits';
-import { Vector } from 'feather-engine-core';
+import { FeatherEngine, Vector } from 'feather-engine-core';
 import { SpriteSheet } from 'feather-engine-graphics';
 import Stomp from '../traits/stomp';
 
@@ -43,6 +44,9 @@ class SlimeJumping extends Trait {
         if (this.onGround) {
             this.jumpingInterval.update(context.deltaTime, () => {
                 this.jumping = true;
+
+                const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
+                entity.events.emit(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
             });
         }
         if (this.jumping) {

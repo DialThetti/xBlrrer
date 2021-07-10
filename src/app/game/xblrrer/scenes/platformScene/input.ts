@@ -1,5 +1,6 @@
 import Entity from '@engine/core/entities/entity';
 import TraitCtnr from '@engine/core/entities/trait.container';
+import SceneMachine from '@engine/scenes/scene-machine';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { FeatherEngine, KeyListener, log } from 'feather-engine-core';
 import Crouch from '../../entities/traits/crouch';
@@ -34,20 +35,18 @@ export default class PlatformerKeyListener implements KeyListener {
                 go.right(true);
                 break;
             case 'Digit5':
+                // TODO Due by Actions
                 FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().pushData({
                     position: this.playerFigure.pos,
                     life: killable.hp,
                     stage: { name: 'forest' },
+                    collectables: { hasGliding: this.playerFigure.hasTrait(Glide) },
                 });
                 FeatherEngine.getSaveDataSystem().storeCurrentData(0);
                 break;
             case 'Digit9':
                 FeatherEngine.getSaveDataSystem().loadCurrentData(0);
-                const data = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
-                if (data != null) {
-                    this.playerFigure.pos.set(data.position.x, data.position.y);
-                    killable.hp = data.life;
-                }
+                SceneMachine.INSTANCE.setScene('game', true, true);
                 break;
             default:
                 log(this, `Key ${code} was pressed without listener`);

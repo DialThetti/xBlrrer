@@ -26,7 +26,7 @@ export default class CrowPrefab extends EntityPrefab {
             new Jump(),
             new Go(),
             new Stomp(),
-            new Glide(),
+            //      new Glide(),
             new Killable('dead', 3, 0),
             new Crouch(),
             new Player(),

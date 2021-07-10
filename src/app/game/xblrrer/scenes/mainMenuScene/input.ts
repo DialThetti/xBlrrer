@@ -10,9 +10,11 @@ export default class MenuKeyboard implements KeyListener {
                 break;
             case 'KeyW':
                 this.mainMenu.option--;
+                this.mainMenu.audioBoard.playAudio('pointer', false, 0);
                 break;
             case 'KeyS':
                 this.mainMenu.option++;
+                this.mainMenu.audioBoard.playAudio('pointer', false, 0);
                 break;
         }
     }

@@ -31,13 +31,13 @@ export default class SceneMachine {
         FeatherEngine.start();
     }
 
-    public async setScene(name: string, withLoading = true): Promise<void> {
+    public async setScene(name: string, withLoading = true, forceLoading = false): Promise<void> {
         if (withLoading) {
             info(this, `Switch to Loadingscreen`);
             this.currentSceneName = 'loadingScene';
         }
         const sceneBlob = this.scenes[name];
-        if (!sceneBlob.loaded) {
+        if (forceLoading || !sceneBlob.loaded) {
             info(this, `Loading Scene ${name}`);
             await sceneBlob.scene.load();
             sceneBlob.loaded = true;

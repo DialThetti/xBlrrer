@@ -12,5 +12,5 @@ export class SpawnEvent implements Event<{ entity: Entity }> {
 
 export class SfxEvent implements Event<{ name: string; blocking?: boolean }> {
     name = Names.playSFX;
-    constructor(public payload: { name: string; blocking?: boolean }) {}
+    constructor(public payload: { name: string; blocking?: boolean; position?: number }) {}
 }

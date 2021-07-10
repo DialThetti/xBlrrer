@@ -42,7 +42,7 @@ export default class GameScene implements Scene {
     async load(): Promise<void> {
         let saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
 
-        const { level, player, renderer, viewPorts } = await new LevelLoader(saveData.stage.name).load();
+        const { level, player, renderer, viewPorts } = await new LevelLoader(saveData).load();
         const audioContext = new AudioContext();
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
