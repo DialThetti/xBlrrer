@@ -1,15 +1,13 @@
-import Level from '@engine/level/level';
-import { PauseGameEvent, ResumeGameEvent } from '@extension/platformer/events/events';
-import { KeyboardInput } from 'feather-engine-core';
+import { FeatherEngine } from 'feather-engine-core';
 
 export default class Dialog {
-    static show(level: Level, text: string[]) {
-        KeyboardInput.stashKeyListeners();
-        level.eventBuffer.emit(new PauseGameEvent());
+    static show(text: string[]) {
+        FeatherEngine.eventBus.publish('game-control-input', 'stash');
+        FeatherEngine.eventBus.publish('game-control', 'pause');
         text.forEach((e) => console.log(e));
         setTimeout(() => {
-            level.eventBuffer.emit(new ResumeGameEvent());
-            KeyboardInput.popKeyListeners();
+            FeatherEngine.eventBus.publish('game-control', 'resume');
+            FeatherEngine.eventBus.publish('game-control-input', 'pop');
         }, 1000);
     }
 }

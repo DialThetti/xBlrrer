@@ -5,7 +5,7 @@ import { Context } from '@engine/core/entities/trait';
 import { Names } from '@engine/core/events/events';
 import AudioBoard from '@engine/core/io/sfx/audioboard';
 import Level from '@engine/level/level';
-import { Vector } from 'feather-engine-core';
+import { FeatherEngine, Vector } from 'feather-engine-core';
 import PlatformerEntity from './entities/platformer-entity';
 import PlayerController from './entities/traits/player-controller';
 import EntityColliderTrait from './level/trait/entity-collider-trait';
@@ -32,8 +32,16 @@ export default class PlatformerLevel extends Level {
 
     update(deltaTime: number): void {
         super.update(deltaTime);
-        this.eventBuffer.process('PauseGame', () => (this.paused = true));
-        this.eventBuffer.process('ResumeGame', () => (this.paused = false));
+        FeatherEngine.eventBus.subscribe('game-control', {
+            receive: (t: string, s: string) => {
+                if (s === 'pause') {
+                    this.paused = true;
+                }
+                if (s === 'resume') {
+                    this.paused = false;
+                }
+            },
+        });
         const context = { deltaTime: this.paused ? 0 : deltaTime, level: this, camera: this.camera };
         this.camera.update(this.findPlayer(), { ...context, deltaTime });
         this.activateEntititesOnSight(context);

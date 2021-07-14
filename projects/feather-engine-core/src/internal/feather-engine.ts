@@ -1,9 +1,9 @@
+import { EventBus } from 'feather-engine-events';
 import { GameLoop } from './gameloop/gameloop';
 import { error, warn } from './logger';
 import { CanvasRenderer } from './renderer/canvas-renderer';
 import { LocalStorageSaveDataSystem, SaveDataSystem } from './save-system/save-data-manager';
 import { JSONSaveDataMarshaller } from './save-system/save-data-marshaller';
-
 export interface EngineConfig {
     canvasId: string;
     width: number;
@@ -29,6 +29,8 @@ export default class FeatherEngine {
         hitboxesOnly: false,
         showFPS: false,
     };
+
+    public static readonly eventBus = new EventBus();
 
     public static init(engineConfig: EngineConfig): void {
         FeatherEngine.instance.init(engineConfig);

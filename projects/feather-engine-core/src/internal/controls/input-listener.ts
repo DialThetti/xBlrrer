@@ -1,3 +1,4 @@
+import FeatherEngine from '../feather-engine';
 import { GameLoop } from '../gameloop/gameloop';
 import { OnInput } from '../gameloop/gameloop-listeners';
 import { info } from '../logger';
@@ -25,6 +26,20 @@ export class KeyboardInput implements OnInput {
     private registered = false;
     private constructor() {
         // private constructor to implement Singleton Pattern
+
+        FeatherEngine.eventBus.subscribe('game-control-input', {
+            receive: (t: string, s: string) => {
+                if (s === 'stash') {
+                    this.stashKeyListeners();
+                }
+                if (s === 'pop') {
+                    this.popKeyListeners();
+                }
+                if (s === 'clear') {
+                    this.clearKeyListeners();
+                }
+            },
+        });
     }
 
     private static get instance() {
@@ -39,7 +54,7 @@ export class KeyboardInput implements OnInput {
         KeyboardInput.instance.addKeyListener(keyListener);
     }
 
-    public static clearKeyListeners(): void {
+    private clearKeyListeners(): void {
         // Lift all keys
         Object.keys(KeyboardInput.instance.keyStates).forEach((k) => {
             const v = KeyboardInput.instance.keyStates[k];
@@ -54,12 +69,12 @@ export class KeyboardInput implements OnInput {
 
     private static keyListenerStash: KeyListener[] = [];
 
-    public static stashKeyListeners(): void {
+    private stashKeyListeners(): void {
         KeyboardInput.keyListenerStash = [...KeyboardInput.instance.keyListeners];
         this.clearKeyListeners();
     }
 
-    public static popKeyListeners(): void {
+    private popKeyListeners(): void {
         this.clearKeyListeners();
         KeyboardInput.instance.keyListeners = KeyboardInput.keyListenerStash;
     }

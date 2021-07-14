@@ -12,7 +12,7 @@ import Glide from '../traits/glide';
 class CollectableTrait extends Trait {
     lvl: PlatformerLevel;
 
-    constructor(private onCollect: (entity: PlatformerEntity, level: PlatformerLevel) => void) {
+    constructor(private onCollect: (entity: PlatformerEntity) => void) {
         super('collectableTrait');
     }
     update(entity: PlatformerEntity, context: Context): void {
@@ -20,12 +20,12 @@ class CollectableTrait extends Trait {
     }
     collides(entity: PlatformerEntity, target: PlatformerEntity): void {
         target.events.emit(new SfxEvent({ name: 'collect' }));
-        this.onCollect(target, this.lvl);
+        this.onCollect(target);
         entity.state = EntityState.READY_TO_REMOVE;
     }
 }
 abstract class CollectablePrefab extends EntityPrefab {
-    constructor(name: string, sprite: string, onCollect: (entity: PlatformerEntity, level: PlatformerLevel) => void) {
+    constructor(name: string, sprite: string, onCollect: (entity: PlatformerEntity) => void) {
         super(name, sprite);
         this.size = new Vector(16, 32);
         this.offset = new Vector(0, 0);
@@ -49,8 +49,8 @@ abstract class CollectablePrefab extends EntityPrefab {
 
 export class GlideCollectable extends CollectablePrefab {
     constructor() {
-        super('glide-collectable', 'crow_feather', (e, l) => {
-            Dialog.show(l, ['You have collected a crow Feather: Glide', 'Press and Hold [Space] in midair to glide']);
+        super('glide-collectable', 'crow_feather', (e) => {
+            Dialog.show(['You have collected a crow Feather: Glide', 'Press and Hold [Space] in midair to glide']);
             e.addTrait(new Glide());
         });
     }
