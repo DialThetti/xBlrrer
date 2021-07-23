@@ -62,4 +62,12 @@ export class EventBus {
 
         this.receivers[topic] = this.receivers[topic].filter((item) => item !== receiver);
     }
+
+    public unsubscribeAll(topic: string) {
+        if (!this.receivers[topic]) {
+            return;
+        }
+
+        delete this.receivers[topic];
+    }
 }

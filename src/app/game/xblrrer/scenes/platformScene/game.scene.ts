@@ -9,6 +9,7 @@ import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlayerController from '@extension/platformer/entities/traits/player-controller';
 import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
+import DialogLayer from '@game/xblrrer/rendering/layers/dialog.layer';
 import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
 import { FontLoader } from 'feather-engine-graphics';
 import { addDebugToLevel } from '../../debug/debug';
@@ -58,7 +59,12 @@ export default class GameScene implements Scene {
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);
         level.audioBoard = audioBoard;
-        renderer.push(new CameraLayer(camera), new ScrollSpyLayer(), new DashboardLayer(font, level));
+        renderer.push(
+            new CameraLayer(camera),
+            new ScrollSpyLayer(),
+            new DashboardLayer(font, level),
+            new DialogLayer(font, level),
+        );
         level.camera = camera;
         this.level = level;
 

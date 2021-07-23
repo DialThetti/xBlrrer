@@ -108,7 +108,6 @@ export class KeyboardInput implements OnInput {
 
     private handleEvent(event: KeyboardEvent): void {
         const { code, type } = event;
-
         const keyState = type === 'keydown' ? KeyState.PRESSED : KeyState.RELEASED;
         if (this.keyStates[code] === keyState) {
             return;
