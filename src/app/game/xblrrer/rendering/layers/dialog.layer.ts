@@ -1,12 +1,12 @@
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import PlatformerLevel from '@extension/platformer/level';
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
-import { drawRect, Font } from 'feather-engine-graphics';
-import { Subject } from 'projects/feather-engine-events/dist';
+import { Subject } from 'feather-engine-events';
+import { Font, NineWaySpriteSheet } from 'feather-engine-graphics';
 
 export default class DialogLayer implements RenderLayer {
     private textToShow: string[];
-    constructor(private font: Font, private level: PlatformerLevel) {
+    constructor(private font: Font, private frame: NineWaySpriteSheet, private level: PlatformerLevel) {
         FeatherEngine.eventBus.subscribe('dialog-text', {
             receive: (topic: string, subject: Subject) => {
                 this.textToShow = subject.split('\n');
@@ -21,10 +21,18 @@ export default class DialogLayer implements RenderLayer {
 
     draw(context: RenderContext): void {
         if (!this.textToShow) return;
-        drawRect(context, 0, 23 * this.level.tilesize, FeatherEngine.screenSize.width, 5 * this.level.tilesize, 'red', {
-            filled: true,
-        });
-        this.font.print(this.textToShow[0], context, 5, 5);
+        const boxPos = { x: 2 * this.level.tilesize, y: 16 * this.level.tilesize };
+        const margin = 16;
+
+        this.frame.draw(
+            context,
+            boxPos.x,
+            boxPos.y,
+            FeatherEngine.screenSize.width - 4 * this.level.tilesize,
+            5 * this.level.tilesize,
+        );
+
+        this.font.print(this.textToShow[0], context, boxPos.x + margin, boxPos.y + margin);
     }
 
     withZero(count: number, length: number): string {
