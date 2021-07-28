@@ -5,8 +5,8 @@ import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import Scene from '@engine/scenes/scene';
 import SceneMachine from '@engine/scenes/scene-machine';
-import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
-import { FontLoader } from 'feather-engine-graphics';
+import { FeatherEngine, KeyboardInput, loadImage, RenderContext } from 'feather-engine-core';
+import { FontLoader, NineWaySpriteSheetLoader } from 'feather-engine-graphics';
 import { InitialSaveData, xBlrrerSaveData } from '../platformScene/save-data';
 import MenuKeyboard from './input';
 import MainMenuLayer from './layer/mainmenu.layer';
@@ -22,7 +22,9 @@ export default class MainMenuScene implements Scene {
 
     async load(): Promise<void> {
         const font = await new FontLoader('./img/font.png').load();
-        this.layer = new MainMenuLayer(font, this);
+        const title = await loadImage('./img/title.png');
+        const nineway = await new NineWaySpriteSheetLoader('./img/frame.png').load();
+        this.layer = new MainMenuLayer(font, title, nineway, this);
         this.audioBoard = await new AudioBoardLoader(new AudioContext(), './sfx/audio.json').load();
         this.audioBoard.setVolume(0.5);
     }
