@@ -11,6 +11,6 @@
     "entities": [
         { "name": "blue_slime", "pos": [100, 65] },
         { "name": "red_slime", "pos": [100, 65] },
-        { "name": "glide-collectable", "pos": [204, 20] }
+        { "name": "glide-collectable", "pos": [233, 18] }
     ]
 }
