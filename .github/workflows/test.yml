@@ -65,18 +65,34 @@ jobs:
                   path: projects/feather-engine-core/coverage
     build-engine-entities:
         runs-on: ubuntu-latest
-        needs: [build-engine-events, build-engine-core]
+        needs: [build-engine-events, build-engine-core, build-engine-graphics]
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - name: Download a feather-engine-entities
+            - name: Download a feather-engine-core
               uses: actions/download-artifact@v2
               with:
-                  name: feather-engine-entities
-                  path: projects/feather-engine-entities/dist
+                  name: feather-engine-core
+                  path: projects/feather-engine-core/dist
+            - name: Download a feather-engine-events
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-events
+                  path: projects/feather-engine-events/dist
+            - name: Download a feather-engine-graphics
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-graphics
+                  path: projects/feather-engine-graphics/dist
+            - name: Clean install core
+              working-directory: projects/feather-engine-core
+              run: npm ci
+            - name: Clean install graphics
+              working-directory: projects/feather-engine-graphics
+              run: npm ci
             - name: Clean install
               working-directory: projects/feather-engine-entities
               run: npm ci
@@ -98,7 +114,7 @@ jobs:
                   path: projects/feather-engine-entities/coverage
     build-engine-graphics:
         runs-on: ubuntu-latest
-        needs: [build-engine-core]
+        needs: [build-engine-core, build-engine-events]
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
@@ -110,6 +126,14 @@ jobs:
               with:
                   name: feather-engine-core
                   path: projects/feather-engine-core/dist
+            - name: Download a feather-engine-events
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-events
+                  path: projects/feather-engine-events/dist
+            - name: Clean install core
+              working-directory: projects/feather-engine-core
+              run: npm ci
             - name: Clean install
               working-directory: projects/feather-engine-graphics
               run: npm ci
@@ -149,6 +173,16 @@ jobs:
               with:
                   name: feather-engine-core-coverage
                   path: projects/feather-engine-core/coverage
+            - name: Download a feather-engine-events/coverage
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-events-coverage
+                  path: projects/feather-engine-events/coverage
+            - name: Download a feather-engine-entities/coverage
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-entities-coverage
+                  path: projects/feather-engine-entities/coverage
             - name: Download a feather-engine-graphics
               uses: actions/download-artifact@v2
               with:
@@ -159,6 +193,21 @@ jobs:
               with:
                   name: feather-engine-graphics-coverage
                   path: projects/feather-engine-graphics/coverage
+            - name: Clean install events
+              working-directory: projects/feather-engine-events
+              run: npm ci
+            - name: Clean install core
+              working-directory: projects/feather-engine-core
+              run: npm ci
+            - name: Clean install graphics
+              working-directory: projects/feather-engine-graphics
+              run: npm ci
+            - name: Clean install entities
+              working-directory: projects/feather-engine-entities
+              run: npm ci
+            - name: Clean install entities
+              working-directory: projects/feather-engine-entities
+              run: npm ci
             - name: Clean install
               run: npm ci
             - name: Build
