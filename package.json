@@ -10,7 +10,9 @@
         "test": "jest --coverage",
         "test:watch": "jest --watch",
         "format": "npx prettier --write 'src/**/*.ts'",
-        "lint": "npx eslint --fix 'src/**/*.ts'"
+        "lint": "npx eslint --fix 'src/**/*.ts'",
+        "dependencyInsight:svg": "node_modules/.bin/depcruise --exclude '^node_modules' --output-type dot src/app/main.ts > dependencies.dot && dot dependencies.dot -T svg -o dependencies.svg",
+        "dependencyInsight:json": "node_modules/.bin/depcruise --exclude '^node_modules' --output-type json src/app/main.ts > dependencies.json"
     },
     "nyc": {
         "extension": [
@@ -35,6 +37,7 @@
     "devDependencies": {
         "@types/jest": "^26.0.23",
         "copy-webpack-plugin": "^9.0.0",
+        "dependency-cruiser": "^10.2.0",
         "eslint": "^7.22.0",
         "eslint-config-prettier": "^8.1.0",
         "eslint-import-resolver-alias": "^1.1.2",
