@@ -1,6 +1,6 @@
 import EntityPrefab from '@engine/core/entities/entity.prefab';
 import Trait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/events/events';
+import { SfxEvent } from '@engine/core/io/sfx/events';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
@@ -46,7 +46,7 @@ class SlimeJumping extends Trait {
                 this.jumping = true;
 
                 const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
-                entity.events.emit(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
+                entity.events.publish(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
             });
         }
         if (this.jumping) {

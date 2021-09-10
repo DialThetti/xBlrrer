@@ -1,3 +1,4 @@
+import { Subject } from '../../../../feather-engine-events/dist';
 import FeatherEngine from '../feather-engine';
 import { GameLoop } from '../gameloop/gameloop';
 import { OnInput } from '../gameloop/gameloop-listeners';
@@ -28,14 +29,14 @@ export class KeyboardInput implements OnInput {
         // private constructor to implement Singleton Pattern
 
         FeatherEngine.eventBus.subscribe('game-control-input', {
-            receive: (t: string, s: string) => {
-                if (s === 'stash') {
+            receive: (s: Subject<string>) => {
+                if (s.payload === 'stash') {
                     this.stashKeyListeners();
                 }
-                if (s === 'pop') {
+                if (s.payload === 'pop') {
                     this.popKeyListeners();
                 }
-                if (s === 'clear') {
+                if (s.payload === 'clear') {
                     this.clearKeyListeners();
                 }
             },

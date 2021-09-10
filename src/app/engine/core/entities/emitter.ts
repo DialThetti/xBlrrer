@@ -1,7 +1,7 @@
-import { SpawnEvent } from '../events/events';
 import Entity from './entity';
 import { entityRepo } from './entity.repo';
 import { EntityState } from './entity.state';
+import { SpawnEvent } from './events';
 import Trait, { Context } from './trait';
 
 export default class Emitter extends Trait {
@@ -38,7 +38,7 @@ export default class Emitter extends Trait {
             e.vel.x = 100 * this.direction;
             e.state = EntityState.ACTIVE;
             e.pos.set(us.pos.x, us.pos.y);
-            us.events.emit(new SpawnEvent({ entity: e }));
+            us.events.publish(new SpawnEvent({ entity: e }));
             if (this.onEmit) this.onEmit(us);
         }
     }

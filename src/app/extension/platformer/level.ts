@@ -1,11 +1,13 @@
 import ActivateOnSight from '@engine/core/entities/activateOnSight';
 import Entity from '@engine/core/entities/entity';
 import { EntityState } from '@engine/core/entities/entity.state';
+import { Names, SpawnEvent } from '@engine/core/entities/events';
 import { Context } from '@engine/core/entities/trait';
-import { Names } from '@engine/core/events/events';
 import AudioBoard from '@engine/core/io/sfx/audioboard';
+import { SfxEvent } from '@engine/core/io/sfx/events';
 import Level from '@engine/level/level';
 import { FeatherEngine, Vector } from 'feather-engine-core';
+import { Subject } from 'feather-engine-events';
 import PlatformerEntity from './entities/platformer-entity';
 import PlayerController from './entities/traits/player-controller';
 import EntityColliderTrait from './level/trait/entity-collider-trait';
@@ -33,11 +35,11 @@ export default class PlatformerLevel extends Level {
     update(deltaTime: number): void {
         super.update(deltaTime);
         FeatherEngine.eventBus.subscribe('game-control', {
-            receive: (t: string, s: string) => {
-                if (s === 'pause') {
+            receive: (subject: Subject<string>) => {
+                if (subject.payload === 'pause') {
                     this.paused = true;
                 }
-                if (s === 'resume') {
+                if (subject.payload === 'resume') {
                     this.paused = false;
                 }
             },
@@ -64,13 +66,12 @@ export default class PlatformerLevel extends Level {
         this.time += deltaTime;
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => {
-            e.events.process(
-                Names.playSFX,
-                ({ name, blocking, position }: { name: string; blocking: boolean; position: number }): void =>
-                    this.audioBoard.playAudio(name, blocking, position),
-            );
-            e.events.process(Names.spawn, (payload: { entity: PlatformerEntity }) => {
-                this.entities.add(payload.entity);
+            e.events.process(Names.playSFX, (sfxEvent: SfxEvent): void => {
+                const { name, blocking, position } = sfxEvent.payload;
+                this.audioBoard.playAudio(name, blocking, position);
+            });
+            e.events.process(Names.spawn, (spawnEvent: SpawnEvent) => {
+                this.entities.add(spawnEvent.payload.entity as PlatformerEntity);
             });
         });
     }

@@ -34,7 +34,7 @@ export default class MetroidCamera extends Camera {
             this.currentCam.box.top = delta.y;
             if (this.transition.delta >= 1) {
                 this.transition = null;
-                FeatherEngine.eventBus.publish('game-control', 'resume');
+                FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'resume' });
             }
         }
     }
@@ -50,7 +50,7 @@ export default class MetroidCamera extends Camera {
                         this.currentCam.box.pos,
                         this.cameras[potentionallyNewCam].box.pos,
                     );
-                    FeatherEngine.eventBus.publish('game-control', 'pause');
+                    FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'pause' });
                 }
             }
 

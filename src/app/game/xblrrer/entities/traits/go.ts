@@ -1,6 +1,6 @@
 import Entity from '@engine/core/entities/entity';
 import Trait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/events/events';
+import { SfxEvent } from '@engine/core/io/sfx/events';
 import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
@@ -25,7 +25,7 @@ export default class Go extends Trait {
     }
     obstruct(entity: Entity, side: Side): void {
         if (side === Side.LEFT || side === Side.RIGHT) {
-            if (this.distance != 0) entity.events.emit(new SfxEvent({ name: 'bump' }));
+            if (this.distance != 0) entity.events.publish(new SfxEvent({ name: 'bump' }));
             this.distance = 0;
         }
     }

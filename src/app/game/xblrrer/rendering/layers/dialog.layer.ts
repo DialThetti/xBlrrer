@@ -8,12 +8,12 @@ export default class DialogLayer implements RenderLayer {
     private textToShow: string[];
     constructor(private font: Font, private frame: NineWaySpriteSheet, private level: PlatformerLevel) {
         FeatherEngine.eventBus.subscribe('dialog-text', {
-            receive: (topic: string, subject: Subject) => {
-                this.textToShow = subject.split('\n');
+            receive: (subject: Subject<string>) => {
+                this.textToShow = subject.payload.split('\n');
             },
         });
         FeatherEngine.eventBus.subscribe('dialog-clear', {
-            receive: (topic: string, subject: Subject) => {
+            receive: (subject: Subject<string>) => {
                 this.textToShow = null;
             },
         });

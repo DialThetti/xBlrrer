@@ -1,19 +1,17 @@
 import Trait, { Context } from '@engine/core/entities/trait';
-import Event from '@engine/core/events/event';
-import EventBuffer from '@engine/core/events/eventBuffer';
-import { SfxEvent } from '@engine/core/events/events';
 import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { FeatherEngine } from 'feather-engine-core';
+import { EventStack, Subject } from 'feather-engine-events';
 import Crouch from './crouch';
 
-class JumpButtonPressed implements Event<void> {
-    name = 'JumpButtonPressed';
+class JumpButtonPressed implements Subject<void> {
+    topic = 'JumpButtonPressed';
     payload = null;
 }
 
-class JumpButtonReleased implements Event<void> {
-    name = 'JumpButtonReleased';
+class JumpButtonReleased implements Subject<void> {
+    topic = 'JumpButtonReleased';
     payload = null;
 }
 
@@ -40,7 +38,7 @@ class CountDown {
     }
 }
 export default class Jump extends Trait {
-    private eventBuffer = new EventBuffer();
+    private eventBuffer = new EventStack();
     private velocity = 220;
     private raisingTime = new CountDown(0.15);
 
@@ -54,10 +52,10 @@ export default class Jump extends Trait {
         this.raisingTime.toZero();
     }
     start(): void {
-        this.eventBuffer.emit(new JumpButtonPressed());
+        this.eventBuffer.publish(new JumpButtonPressed());
     }
     cancel(): void {
-        this.eventBuffer.emit(new JumpButtonReleased());
+        this.eventBuffer.publish(new JumpButtonReleased());
     }
     update(entity: PlatformerEntity, context: Context): void {
         this.eventBuffer.process('JumpButtonReleased', () => {
@@ -81,7 +79,10 @@ export default class Jump extends Trait {
                 this.raisingTime.reset();
 
                 const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
-                entity.events.emit(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
+                entity.events.publish({
+                    topic: 'playSFX',
+                    payload: { name: 'jump', blocking: false, position: 2 * pos - 1 },
+                });
             }
         });
 

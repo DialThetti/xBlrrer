@@ -1,31 +1,31 @@
 import { FeatherEngine, KeyboardInput } from 'feather-engine-core';
-import { Subject } from 'projects/feather-engine-events/dist';
+import { Subject } from 'feather-engine-events';
 
 export default class Dialog {
     static show(text: string[]) {
         FeatherEngine.eventBus.subscribe('dialog-next', {
-            receive: (topic: string, subject: Subject) => {
+            receive: (subject: Subject<any>) => {
                 text.shift();
                 console.log(text);
                 if (text.length == 0) {
-                    FeatherEngine.eventBus.publish('game-control', 'resume');
-                    FeatherEngine.eventBus.publish('game-control-input', 'pop');
+                    FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'resume' });
+                    FeatherEngine.eventBus.publish({ topic: 'game-control-input', payload: 'pop' });
                     FeatherEngine.eventBus.unsubscribeAll('dialog-next');
-                    FeatherEngine.eventBus.publish('dialog-clear', 'x');
+                    FeatherEngine.eventBus.publish({ topic: 'dialog-clear', payload: 'x' });
                 } else {
-                    FeatherEngine.eventBus.publish('dialog-text', text[0]);
+                    FeatherEngine.eventBus.publish({ topic: 'dialog-text', payload: text[0] });
                 }
             },
         });
-        FeatherEngine.eventBus.publish('game-control-input', 'stash');
-        FeatherEngine.eventBus.publish('game-control', 'pause');
+        FeatherEngine.eventBus.publish({ topic: 'game-control-input', payload: 'stash' });
+        FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'pause' });
         KeyboardInput.addKeyListener({
             keyDown: (e) => {
-                if (e == 'Space') FeatherEngine.eventBus.publish('dialog-next', 'x');
+                if (e == 'Space') FeatherEngine.eventBus.publish({ topic: 'dialog-next', payload: 'x' });
             },
             keyUp: () => {},
             keyPressed: () => {},
         });
-        FeatherEngine.eventBus.publish('dialog-text', text[0]);
+        FeatherEngine.eventBus.publish({ topic: 'dialog-text', payload: text[0] });
     }
 }

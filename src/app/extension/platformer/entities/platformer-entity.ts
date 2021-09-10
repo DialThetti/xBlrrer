@@ -2,10 +2,10 @@ import Entity from '@engine/core/entities/entity';
 import { EntityState } from '@engine/core/entities/entity.state';
 import Trait from '@engine/core/entities/trait';
 import TraitCtnr from '@engine/core/entities/trait.container';
-import EventBuffer from '@engine/core/events/eventBuffer';
 import { Side } from '@engine/core/world/tiles/side';
 import { PositionedTile } from '@engine/level/level-layer';
 import { BoundingBox, RenderContext, Vector } from 'feather-engine-core';
+import { EventStack } from 'feather-engine-events';
 import { PlatformerTraitContext } from './traits/traits';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {
@@ -24,7 +24,7 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
 
     standingOn: Set<string> = new Set();
 
-    events = new EventBuffer();
+    events = new EventStack();
 
     collide(target: PlatformerEntity): void {
         this.getTraits()

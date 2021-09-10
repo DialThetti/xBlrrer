@@ -1,1 +1,4 @@
-export type Subject = string;
+export interface Subject<T> {
+    topic: string;
+    payload: T;
+}

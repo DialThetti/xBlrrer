@@ -48,7 +48,7 @@ export default class GameScene implements Scene {
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
         const font = await new FontLoader('./img/font.png').load();
-        FeatherEngine.eventBus.publish('game-control-input', 'clear');
+        FeatherEngine.eventBus.publish({ topic: 'game-control-input', payload: 'clear' });
         KeyboardInput.addKeyListener(new PlatformerKeyListener(player));
 
         const camera = new MetroidCamera(viewPorts);

@@ -1,5 +1,5 @@
 import Trait from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/events/events';
+import { SfxEvent } from '@engine/core/io/sfx/events';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { StompEvent } from '../../events/events';
@@ -13,11 +13,7 @@ export default class Stomp extends Trait {
         super('stomper');
     }
 
-    fromAbove(
-        entity: PlatformerEntity,
-
-        target: PlatformerEntity,
-    ): boolean {
+    fromAbove(entity: PlatformerEntity, target: PlatformerEntity): boolean {
         return entity.vel.y > target.vel.y;
     }
 
@@ -30,8 +26,8 @@ export default class Stomp extends Trait {
 
         if (this.fromAbove(us, them)) {
             this.bounce(us, them);
-            us.events.emit(new SfxEvent({ name: 'stomp' }));
-            us.events.emit(new StompEvent({ us, them }));
+            us.events.publish(new SfxEvent({ name: 'stomp' }));
+            us.events.publish(new StompEvent({ us, them }));
         }
     }
 

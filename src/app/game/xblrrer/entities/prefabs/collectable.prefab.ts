@@ -1,7 +1,7 @@
 import EntityPrefab from '@engine/core/entities/entity.prefab';
 import { EntityState } from '@engine/core/entities/entity.state';
 import Trait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/events/events';
+import { SfxEvent } from '@engine/core/io/sfx/events';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { xBlrrerSaveData } from '@game/xblrrer/scenes/platformScene/save-data';
 import { FeatherEngine, Vector } from 'feather-engine-core';
@@ -19,7 +19,7 @@ class CollectableTrait extends Trait {
         this.lvl = context.level as PlatformerLevel;
     }
     collides(entity: PlatformerEntity, target: PlatformerEntity): void {
-        target.events.emit(new SfxEvent({ name: 'collect' }));
+        target.events.publish(new SfxEvent({ name: 'collect' }));
         this.onCollect(target);
         entity.state = EntityState.READY_TO_REMOVE;
     }

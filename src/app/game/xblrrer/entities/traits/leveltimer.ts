@@ -1,6 +1,6 @@
 import Entity from '@engine/core/entities/entity';
 import Trait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/events/events';
+import { SfxEvent } from '@engine/core/io/sfx/events';
 import PlatformerLevel from '@extension/platformer/level';
 
 export default class LevelTimer extends Trait {
@@ -16,7 +16,7 @@ export default class LevelTimer extends Trait {
         this.currentTime += context.deltaTime;
         if (this.restTime <= 100 && !this.hurried) {
             this.hurried = true;
-            entity.events.emit(new SfxEvent({ name: 'hurry', blocking: true }));
+            entity.events.publish(new SfxEvent({ name: 'hurry', blocking: true }));
         }
     }
 

@@ -1,6 +1,6 @@
 import { PositionedTile } from '@engine/level/level-layer';
 import { BoundingBox, RenderContext, Vector } from 'feather-engine-core';
-import EventEmitter from '../events/eventBuffer';
+import { EventStack } from 'feather-engine-events';
 import { Side } from '../world/tiles/side';
 import { EntityState } from './entity.state';
 import TraitCtnr from './trait.container';
@@ -18,5 +18,5 @@ export default interface Entity extends TraitCtnr {
     currentFrame?: string;
     spriteChanged: boolean;
     bypassPlatform: boolean;
-    events: EventEmitter;
+    events: EventStack;
 }

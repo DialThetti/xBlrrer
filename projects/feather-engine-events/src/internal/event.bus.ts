@@ -1,27 +1,23 @@
+import { EventPublisher } from './event.publisher';
 import { Receiver } from './receiver';
 import { Subject } from './subject';
 
-export class EventBus {
+export class EventBus implements EventPublisher<Subject<any>> {
     receivers: {
         [key: string]: Receiver[];
     } = {};
 
-    constructor(
-        // Count of attempts to send to the receiver
-        public defaultTriesCount: number = 3,
-    ) {}
+    defaultTriesCount: number = 3;
 
-    public async publish(topic: string, subject: Subject, tries: number = 0): Promise<void> {
+    public async publish(subject: Subject<any>, tries: number = 0): Promise<void> {
         if (tries === 0) {
             tries = this.defaultTriesCount;
         }
 
-        const receivers = this.getTopicReceivers(topic);
+        const receivers = this.getTopicReceivers(subject.topic);
 
         // Run promises
-        receivers.map(
-            (receiver) => new Promise((resolve) => resolve(this.retryPublish(topic, subject, receiver, tries))),
-        );
+        receivers.map((receiver) => new Promise((resolve) => resolve(this.retryPublish(subject, receiver, tries))));
     }
 
     private getTopicReceivers(topic: string): Receiver[] {
@@ -32,9 +28,9 @@ export class EventBus {
         return this.receivers[topic];
     }
 
-    private retryPublish(topic: string, subject: Subject, receiver: Receiver, triesLeft: number) {
+    private retryPublish(subject: Subject<any>, receiver: Receiver, triesLeft: number) {
         try {
-            receiver.receive(topic, subject);
+            receiver.receive(subject);
         } catch (e) {
             console.log('error happened');
 
@@ -42,7 +38,7 @@ export class EventBus {
             triesLeft -= 1;
 
             if (triesLeft > 0) {
-                this.retryPublish(topic, subject, receiver, triesLeft);
+                this.retryPublish(subject, receiver, triesLeft);
             }
         }
     }
