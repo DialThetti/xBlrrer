@@ -1,7 +1,7 @@
-import Trait, { Context } from '@engine/core/entities/trait';
-import { Side } from '@engine/core/world/tiles/side';
+import ATrait, { Context } from '@engine/core/entities/trait';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { FeatherEngine } from 'feather-engine-core';
+import { Entity, Side } from 'feather-engine-entities';
 import { EventStack, Subject } from 'feather-engine-events';
 import Crouch from './crouch';
 
@@ -37,7 +37,7 @@ class CountDown {
         return this.startVal - this.currentVal;
     }
 }
-export default class Jump extends Trait {
+export default class Jump extends ATrait {
     private eventBuffer = new EventStack();
     private velocity = 220;
     private raisingTime = new CountDown(0.15);
@@ -57,7 +57,7 @@ export default class Jump extends Trait {
     cancel(): void {
         this.eventBuffer.publish(new JumpButtonReleased());
     }
-    update(entity: PlatformerEntity, context: Context): void {
+    update(entity: Entity, context: Context): void {
         this.eventBuffer.process('JumpButtonReleased', () => {
             this.raisingTime.toZero();
             if (entity.vel.y < 0) {
@@ -68,8 +68,10 @@ export default class Jump extends Trait {
             const crouch = entity.getTrait(Crouch);
 
             if (crouch?.down) {
-                if (entity.standingOn.has('platform')) {
-                    entity.bypassPlatform = true;
+                if (entity instanceof PlatformerEntity) {
+                    if (entity.standingOn.has('platform')) {
+                        entity.bypassPlatform = true;
+                    }
                 }
                 this.raisingTime.toZero();
                 return;
@@ -101,7 +103,7 @@ export default class Jump extends Trait {
         this.distance += absY * context.deltaTime;
         this.onGround--;
     }
-    obstruct(entity: PlatformerEntity, side: Side): void {
+    obstruct(entity: Entity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.onGround = 1;
             this.distance = 0;

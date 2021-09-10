@@ -1,10 +1,7 @@
-import Entity from '@engine/core/entities/entity';
-import { EntityState } from '@engine/core/entities/entity.state';
-import Trait from '@engine/core/entities/trait';
-import TraitCtnr from '@engine/core/entities/trait.container';
-import { Side } from '@engine/core/world/tiles/side';
+import ATrait from '@engine/core/entities/trait';
 import { PositionedTile } from '@engine/level/level-layer';
 import { BoundingBox, RenderContext, Vector } from 'feather-engine-core';
+import { Entity, EntityState, Side, Trait, TraitCtnr } from 'feather-engine-entities';
 import { EventStack } from 'feather-engine-events';
 import { PlatformerTraitContext } from './traits/traits';
 
@@ -20,13 +17,13 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
 
     bounds = new BoundingBox(this.pos, this.size, this.offset);
 
-    traits: { [name: string]: Trait } = {};
+    traits: { [name: string]: ATrait } = {};
 
     standingOn: Set<string> = new Set();
 
     events = new EventStack();
 
-    collide(target: PlatformerEntity): void {
+    collide(target: Entity): void {
         this.getTraits()
             .filter((trait) => trait.enabled)
             .forEach((trait) => trait.collides(this, target));
@@ -56,15 +53,15 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
             .forEach((trait) => trait.obstruct(this, side, match));
     }
 
-    addTrait(trait: Trait): void {
+    addTrait(trait: ATrait): void {
         this.traits[trait.name] = trait;
     }
-    addTraits(traits: Trait[]): void {
+    addTraits(traits: ATrait[]): void {
         traits.forEach((t) => this.addTrait(t));
     }
 
     getTrait<T extends Trait>(trait: new () => T): T {
-        return this.traits[new trait().name] as T;
+        return this.traits[new trait().name] as any as T;
     }
     hasTrait<T extends Trait>(trait: new () => T): boolean {
         return this.traits[new trait().name] != null;
@@ -81,7 +78,7 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
         // entity has no rendering.
     }
 
-    private getTraits(): Trait[] {
+    private getTraits(): ATrait[] {
         return Object.keys(this.traits).map((key) => this.traits[key]);
     }
 }

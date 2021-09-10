@@ -1,6 +1,6 @@
 import Level from '@engine/level/level';
 import LevelLayer, { PositionedTile } from '@engine/level/level-layer';
-import Entity from '../../entities/entity';
+import { Entity } from 'feather-engine-entities';
 import { createPlatformTileHandler } from './handler/platformTile.handler';
 import { createSolidTileHandler } from './handler/solidTile.handler';
 

@@ -1,15 +1,15 @@
 import { RenderContext, Vector } from 'feather-engine-core';
 import { SpriteSheet, SpriteSheetLoader } from 'feather-engine-graphics';
-import Entity from './entity';
-import Trait from './trait';
-import TraitCtnr from './trait.container';
+import { Trait } from '../trait/trait';
+import { TraitCtnr } from '../trait/trait-container';
+import { Entity } from './entity';
 
-export default abstract class EntityPrefab {
-    public size: Vector;
-    public offset: Vector;
-    public traits: () => Trait[];
+export abstract class EntityPrefab {
+    public size: Vector = new Vector(0, 0);
+    public offset: Vector = new Vector(0, 0);
+    public traits: () => Trait[] = () => [];
 
-    abstract entityFac: () => Entity & TraitCtnr;
+    abstract entityFac: () => Entity;
     constructor(public name: string, private spriteName?: string) {}
 
     abstract routeFrame(entity: Entity, sprite: SpriteSheet): string;

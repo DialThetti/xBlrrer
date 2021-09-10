@@ -1,9 +1,9 @@
 import { Vector } from 'feather-engine-core';
 import { mock } from 'ts-mockito';
-import Entity from './entity';
-import EntityPrefab from './entity.prefab';
-import Trait from './trait';
-import TraitCtnr from './trait.container';
+import { Trait } from '../trait/trait';
+import { TraitCtnr } from '../trait/trait-container';
+import { Entity } from './entity';
+import { EntityPrefab } from './entity-prefab';
 
 describe('EntityPrefab', () => {
     let entityPrefab: EntityPrefab;
@@ -40,7 +40,7 @@ describe('EntityPrefab', () => {
         });
     });
     describe('create', () => {
-        let entityFac;
+        let entityFac: () => Entity & TraitCtnr;
         it('should create a constructor function for an Entity', async () => {
             entityFac = await entityPrefab.create();
             expect(entityFac).not.toBeNull();

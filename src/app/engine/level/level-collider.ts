@@ -1,6 +1,6 @@
-import Entity from '@engine/core/entities/entity';
 import Collidable from '@engine/core/physics/collidable';
 import LevelCollider from '@extension/platformer/level.collider';
+import { Entity } from 'feather-engine-entities';
 import Level from './level';
 
 class X implements Collidable {

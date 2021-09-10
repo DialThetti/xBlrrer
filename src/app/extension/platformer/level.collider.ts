@@ -1,6 +1,6 @@
-import Entity from '@engine/core/entities/entity';
 import EntityCollider from '@engine/core/physics/collider/entity.collider';
 import TileCollider from '@engine/core/physics/collider/tile.collider';
+import { Entity } from 'feather-engine-entities';
 import PlatformerLevel from './level';
 
 export default class LevelCollider {

@@ -1,9 +1,8 @@
 import { PositionedTile } from '@engine/level/level-layer';
-import Entity from '../../entities/entity';
-import Trait from '../../entities/trait';
-import { Side } from '../../world/tiles/side';
+import { Entity, Side } from 'feather-engine-entities';
+import ATrait from '../../entities/trait';
 
-export default class Solid extends Trait {
+export default class Solid extends ATrait {
     constructor() {
         super('solid');
     }

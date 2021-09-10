@@ -1,7 +1,7 @@
-import EntityPrefab from '@engine/core/entities/entity.prefab';
-import Trait from '@engine/core/entities/trait';
+import ATrait from '@engine/core/entities/trait';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { Vector } from 'feather-engine-core';
+import { Entity, EntityPrefab } from 'feather-engine-entities';
 import { SpriteSheet } from 'feather-engine-graphics';
 
 export default class LoadingPrefab extends EntityPrefab {
@@ -9,11 +9,14 @@ export default class LoadingPrefab extends EntityPrefab {
         super('loading', 'loading');
         this.size = new Vector(32, 32);
         this.offset = new Vector(0, 0);
-        this.traits = (): Trait[] => [];
+        this.traits = (): ATrait[] => [];
     }
-    entityFac = (): PlatformerEntity => new PlatformerEntity();
+    entityFac = (): Entity => new PlatformerEntity() as Entity;
 
-    routeFrame(entity: PlatformerEntity, sprite: SpriteSheet): string {
-        return sprite.getAnimation('loading')(entity.lifeTime * 60);
+    routeFrame(entity: Entity, sprite: SpriteSheet): string {
+        if (entity instanceof PlatformerEntity) {
+            return sprite.getAnimation('loading')(entity.lifeTime * 60);
+        }
+        return sprite.getAnimation('loading')(0);
     }
 }

@@ -1,8 +1,9 @@
-import Trait from './trait';
+import { Trait } from './trait';
+
 /**
  * A Trait Container describes all Entities which can hold traits
  */
-export default interface TraitCtnr {
+export interface TraitCtnr {
     /**
      * Adds Traits to a Trait Container
      * @param t

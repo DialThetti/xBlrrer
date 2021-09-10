@@ -1,5 +1,3 @@
-import Entity from '@engine/core/entities/entity';
-import { EntityState } from '@engine/core/entities/entity.state';
 import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
 import { LEVEL_RENDERER } from '@engine/level/level-renderer';
 import Scene from '@engine/scenes/scene';
@@ -11,6 +9,7 @@ import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import DialogLayer from '@game/xblrrer/rendering/layers/dialog.layer';
 import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
+import { Entity, EntityState } from 'feather-engine-entities';
 import { FontLoader, NineWaySpriteSheetLoader } from 'feather-engine-graphics';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';

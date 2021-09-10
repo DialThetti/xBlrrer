@@ -1,6 +1,5 @@
 import { PositionedTile } from '@engine/level/level-layer';
-import Entity from '../../../entities/entity';
-import { Side } from '../../../world/tiles/side';
+import { Entity, Side } from 'feather-engine-entities';
 import { TwoDimTileCollisionHandler } from '../tile.collider';
 
 export function createSolidTileHandler(): TwoDimTileCollisionHandler {

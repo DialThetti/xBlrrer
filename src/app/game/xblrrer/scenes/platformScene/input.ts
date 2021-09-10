@@ -1,8 +1,7 @@
-import Entity from '@engine/core/entities/entity';
-import TraitCtnr from '@engine/core/entities/trait.container';
 import SceneMachine from '@engine/scenes/scene-machine';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { FeatherEngine, KeyListener, log } from 'feather-engine-core';
+import { Entity, TraitCtnr } from 'feather-engine-entities';
 import Crouch from '../../entities/traits/crouch';
 import Glide from '../../entities/traits/glide';
 import Go from '../../entities/traits/go';

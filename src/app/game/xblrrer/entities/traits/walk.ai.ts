@@ -1,8 +1,7 @@
-import Entity from '@engine/core/entities/entity';
-import Trait from '@engine/core/entities/trait';
-import { Side } from '@engine/core/world/tiles/side';
+import ATrait from '@engine/core/entities/trait';
+import { Entity, Side } from 'feather-engine-entities';
 
-export default class Walk extends Trait {
+export default class Walk extends ATrait {
     enabled = true;
     constructor(public speed = -30) {
         super('walk');

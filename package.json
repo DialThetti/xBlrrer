@@ -47,6 +47,7 @@
         "feather-engine-core": "file:projects/feather-engine-core",
         "feather-engine-events": "file:projects/feather-engine-events",
         "feather-engine-graphics": "file:projects/feather-engine-graphics",
+        "feather-engine-entities": "file:projects/feather-engine-entities",
         "jest": "^26.6.3",
         "prettier": "^2.3.0",
         "ts-jest": "^26.5.6",

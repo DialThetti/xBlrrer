@@ -1,5 +1,4 @@
-import Entity from '@engine/core/entities/entity';
-import TraitCtnr from '@engine/core/entities/trait.container';
+import { Entity, TraitCtnr } from 'feather-engine-entities';
 import CantGoLeft from '../../entities/traits/cantGoLeft';
 
 export default class LeftWallCollider {

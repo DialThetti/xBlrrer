@@ -1,10 +1,8 @@
-import Entity from './entity';
-import { entityRepo } from './entity.repo';
-import { EntityState } from './entity.state';
+import { Entity, entityRepo, EntityState } from 'feather-engine-entities';
 import { SpawnEvent } from './events';
-import Trait, { Context } from './trait';
+import ATrait, { Context } from './trait';
 
-export default class Emitter extends Trait {
+export default class Emitter extends ATrait {
     private cooldown = 0;
     direction = 1;
     constructor(

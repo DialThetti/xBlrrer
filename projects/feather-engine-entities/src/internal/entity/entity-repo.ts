@@ -1,4 +1,4 @@
-import Entity from './entity';
+import { Entity } from './entity';
 
 export type PrefabRepository = { [key: string]: () => Entity };
 export let entityRepo: PrefabRepository;

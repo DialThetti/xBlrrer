@@ -1,6 +1,6 @@
-import Entity from '@engine/core/entities/entity';
 import Camera from '@engine/core/world/camera';
 import { BoundingBox, FeatherEngine, Vector } from 'feather-engine-core';
+import { Entity } from 'feather-engine-entities';
 import { PlatformerTraitContext } from '../entities/traits/traits';
 import PlatformerLevel from '../level';
 

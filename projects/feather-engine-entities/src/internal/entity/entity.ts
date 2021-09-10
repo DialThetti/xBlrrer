@@ -1,11 +1,16 @@
-import { PositionedTile } from '@engine/level/level-layer';
 import { BoundingBox, RenderContext, Vector } from 'feather-engine-core';
 import { EventStack } from 'feather-engine-events';
-import { Side } from '../world/tiles/side';
-import { EntityState } from './entity.state';
-import TraitCtnr from './trait.container';
+import { TraitCtnr } from '../trait/trait-container';
+import { EntityState } from './entity-state';
 
-export default interface Entity extends TraitCtnr {
+export enum Side {
+    TOP,
+    BOTTOM,
+    LEFT,
+    RIGHT,
+}
+
+export interface Entity extends TraitCtnr {
     pos: Vector;
     vel: Vector;
     size: Vector;
@@ -14,7 +19,8 @@ export default interface Entity extends TraitCtnr {
     state: EntityState;
     draw(context: RenderContext): void;
     collide(target: Entity): void;
-    obstruct(side: Side, match: PositionedTile): void;
+    obstruct(side: Side, cause: any): void;
+    update(context: any): void;
     currentFrame?: string;
     spriteChanged: boolean;
     bypassPlatform: boolean;

@@ -1,5 +1,5 @@
+import { Entity } from 'feather-engine-entities';
 import { Subject } from 'feather-engine-events';
-import Entity from './entity';
 
 export const Names = {
     spawn: 'spawn',

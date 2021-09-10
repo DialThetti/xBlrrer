@@ -1,5 +1,5 @@
 import { TwoDimTileCollisionHandler } from '@engine/core/physics/collider/tile.collider';
-import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import { Entity } from 'feather-engine-entities';
 import Crouch from '../../entities/traits/crouch';
 
 export function createOnlyCrouchTileHandler(): TwoDimTileCollisionHandler {
@@ -7,7 +7,7 @@ export function createOnlyCrouchTileHandler(): TwoDimTileCollisionHandler {
         x: (): void => {
             // no collision in x direction
         },
-        y: (entity: PlatformerEntity): void => {
+        y: (entity: Entity): void => {
             const crouch = entity.getTrait(Crouch);
             if (crouch) {
                 crouch.lockDown = true;

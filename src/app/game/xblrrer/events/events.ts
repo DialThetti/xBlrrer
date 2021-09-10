@@ -1,7 +1,7 @@
-import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import { Entity } from 'feather-engine-entities';
 import { Subject } from 'feather-engine-events';
 
-export class StompEvent implements Subject<{ us: PlatformerEntity; them: PlatformerEntity }> {
+export class StompEvent implements Subject<{ us: Entity; them: Entity }> {
     topic = 'stomp';
-    constructor(public payload: { us: PlatformerEntity; them: PlatformerEntity }) {}
+    constructor(public payload: { us: Entity; them: Entity }) {}
 }

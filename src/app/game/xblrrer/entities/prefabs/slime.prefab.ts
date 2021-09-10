@@ -1,14 +1,13 @@
-import EntityPrefab from '@engine/core/entities/entity.prefab';
-import Trait, { Context } from '@engine/core/entities/trait';
+import ATrait, { Context } from '@engine/core/entities/trait';
 import { SfxEvent } from '@engine/core/io/sfx/events';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
-import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { PlatformerTraitContext } from '@extension/platformer/entities/traits/traits';
 import { FeatherEngine, Vector } from 'feather-engine-core';
+import { Entity, EntityPrefab, Side } from 'feather-engine-entities';
 import { SpriteSheet } from 'feather-engine-graphics';
 import Stomp from '../traits/stomp';
 
@@ -29,7 +28,7 @@ class Interval {
         }
     }
 }
-class SlimeJumping extends Trait {
+class SlimeJumping extends ATrait {
     direction: number = -1;
 
     jumping = false;
@@ -60,14 +59,14 @@ class SlimeJumping extends Trait {
             });
         }
     }
-    obstruct(entity: PlatformerEntity, side: Side): void {
+    obstruct(entity: Entity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.onGround = true;
             this.jumping = false;
             entity.vel.x = 0;
         }
     }
-    collides(us: PlatformerEntity, them: PlatformerEntity): void {
+    collides(us: Entity, them: Entity): void {
         const stomper = them.getTrait(Stomp);
         const themKillable = them.getTrait(Killable);
         const usKillable = us.getTrait(Killable);
@@ -87,16 +86,16 @@ class SlimeJumping extends Trait {
     }
 }
 
-class RandomChangeDirection extends Trait {
+class RandomChangeDirection extends ATrait {
     changeDir = new Interval(2);
     lastDelta: number;
     constructor() {
         super('slime_random_turn');
     }
-    update(entity: PlatformerEntity, context: Context) {
+    update(entity: Entity, context: Context) {
         this.lastDelta = context.deltaTime;
     }
-    obstruct(entity: PlatformerEntity, side: Side): void {
+    obstruct(entity: Entity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.changeDir.update(this.lastDelta, () => {
                 entity.getTrait(SlimeJumping).direction = Math.sign(Math.random() - 0.5);
@@ -105,18 +104,18 @@ class RandomChangeDirection extends Trait {
     }
 }
 
-class TowardsPlayerDirection extends Trait {
+class TowardsPlayerDirection extends ATrait {
     changeDir = new Interval(2);
     lastDelta: number;
     deltaToPlayer: number;
     constructor() {
         super('slime_random_turn');
     }
-    update(entity: PlatformerEntity, context: PlatformerTraitContext) {
+    update(entity: Entity, context: PlatformerTraitContext) {
         this.lastDelta = context.deltaTime;
         this.deltaToPlayer = context.level.findPlayer().pos.x - entity.pos.x;
     }
-    obstruct(entity: PlatformerEntity, side: Side): void {
+    obstruct(entity: Entity, side: Side): void {
         if (side === Side.BOTTOM) {
             entity.getTrait(SlimeJumping).direction = Math.sign(this.deltaToPlayer);
         }
@@ -124,11 +123,11 @@ class TowardsPlayerDirection extends Trait {
 }
 
 class SlimePrefab extends EntityPrefab {
-    constructor(name: string, directionTrait: new () => Trait, jumpTrait: () => Trait) {
+    constructor(name: string, directionTrait: new () => ATrait, jumpTrait: () => ATrait) {
         super(name, name);
         this.size = new Vector(16, 16);
         this.offset = new Vector(0, 0);
-        this.traits = (): Trait[] => [
+        this.traits = (): ATrait[] => [
             new Gravity(),
             new Solid(),
             new Physics(),

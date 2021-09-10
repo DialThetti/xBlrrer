@@ -1,9 +1,9 @@
-import Entity from '@engine/core/entities/entity';
-import Trait, { Context } from '@engine/core/entities/trait';
+import ATrait, { Context } from '@engine/core/entities/trait';
 import { SfxEvent } from '@engine/core/io/sfx/events';
 import PlatformerLevel from '@extension/platformer/level';
+import { Entity } from 'feather-engine-entities';
 
-export default class LevelTimer extends Trait {
+export default class LevelTimer extends ATrait {
     totalTime = 300;
     currentTime = 0;
     hurried = false;

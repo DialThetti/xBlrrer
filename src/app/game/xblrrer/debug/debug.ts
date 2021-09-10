@@ -1,6 +1,6 @@
-import { traitRegistry } from '@engine/core/entities/trait-registry';
 import PlatformerLevel from '@extension/platformer/level';
 import { FeatherEngine } from 'feather-engine-core';
+import { traitRegistry } from 'feather-engine-entities';
 
 declare const window: any; // eslint-disable-line
 

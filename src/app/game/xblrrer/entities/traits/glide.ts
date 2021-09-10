@@ -1,9 +1,8 @@
-import Trait, { Context } from '@engine/core/entities/trait';
+import ATrait, { Context } from '@engine/core/entities/trait';
 import Gravity from '@engine/core/physics/traits/gravity';
-import { Side } from '@engine/core/world/tiles/side';
-import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import { Entity, Side } from 'feather-engine-entities';
 
-export default class Glide extends Trait {
+export default class Glide extends ATrait {
     gliding = false;
 
     constructor() {
@@ -17,7 +16,7 @@ export default class Glide extends Trait {
         this.gliding = false;
     }
 
-    update(entity: PlatformerEntity, context: Context): void {
+    update(entity: Entity, context: Context): void {
         const gravity = entity.getTrait(Gravity);
         if (!(this.gliding && gravity && this.enabled)) {
             return;
@@ -25,7 +24,7 @@ export default class Glide extends Trait {
         entity.vel.y = gravity.gravity.y * 0.95 * context.deltaTime;
     }
 
-    obstruct(entity: PlatformerEntity, side: Side): void {
+    obstruct(entity: Entity, side: Side): void {
         switch (side) {
             case Side.BOTTOM:
             case Side.TOP:

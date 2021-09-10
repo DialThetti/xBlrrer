@@ -1,5 +1,5 @@
-import Entity from '@engine/core/entities/entity';
 import Camera from '@engine/core/world/camera';
+import { Entity } from 'feather-engine-entities';
 import LevelLayer from './level-layer';
 import LevelTrait from './level-trait';
 

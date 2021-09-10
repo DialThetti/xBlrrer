@@ -1,5 +1,5 @@
 import { BoundingBox, FeatherEngine, Vector } from 'feather-engine-core';
-import Entity from '../entities/entity';
+import { Entity } from 'feather-engine-entities';
 import { Context } from '../entities/trait';
 
 export default class Camera {

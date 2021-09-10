@@ -1,11 +1,11 @@
-import Trait from '@engine/core/entities/trait';
+import ATrait from '@engine/core/entities/trait';
 import { Vector } from 'feather-engine-core';
 import PlatformerLevel from '../../level';
 import PlatformerEntity from '../platformer-entity';
 import CantGoLeft from './cantGoLeft';
 import Killable from './killable';
 
-export default class PlayerController extends Trait {
+export default class PlayerController extends ATrait {
     player: PlatformerEntity;
     checkPoint: Vector;
     constructor(private level?: PlatformerLevel) {

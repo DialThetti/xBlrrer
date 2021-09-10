@@ -1,7 +1,7 @@
-import Entity from '@engine/core/entities/entity';
-import Trait from '@engine/core/entities/trait';
+import ATrait from '@engine/core/entities/trait';
+import { Entity } from 'feather-engine-entities';
 
-export default class Player extends Trait {
+export default class Player extends ATrait {
     lives = 3;
     private c = 0;
     score = 0;

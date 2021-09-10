@@ -1,5 +1,3 @@
-import { entityRepo } from '@engine/core/entities/entity.repo';
-import { EntityState } from '@engine/core/entities/entity.state';
 import { addHandler } from '@engine/core/physics/collider/tile.collider';
 import LevelLayer from '@engine/level/level-layer';
 import EntityLayer from '@engine/level/rendering/entity.layer';
@@ -14,6 +12,7 @@ import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.
 import CollisionLayer from '@extension/platformer/rendering/layers/debug/collision.layer';
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
 import { BoundingBox, Loader, loadImage, Vector } from 'feather-engine-core';
+import { entityRepo, EntityState } from 'feather-engine-entities';
 import EntityFactory from '../entities/entity.factory';
 import Glide from '../entities/traits/glide';
 import { createDeadlyHandler } from '../physics/collider/deadly.handler';

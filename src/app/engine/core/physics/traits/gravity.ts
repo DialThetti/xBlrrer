@@ -1,8 +1,8 @@
 import { Vector } from 'feather-engine-core';
-import Entity from '../../entities/entity';
-import Trait, { Context } from '../../entities/trait';
+import { Entity } from 'feather-engine-entities';
+import ATrait, { Context } from '../../entities/trait';
 
-export default class Gravity extends Trait {
+export default class Gravity extends ATrait {
     constructor(public gravity = new Vector(0, 1500)) {
         super('gravity');
     }

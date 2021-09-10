@@ -1,6 +1,6 @@
-import Trait from './trait';
+import { Trait } from './trait';
 
-export default class TraitRegistry {
+export class TraitRegistry {
     private registry: { [traitName: string]: new () => Trait } = {};
 
     addTrait(trait: Trait): void {

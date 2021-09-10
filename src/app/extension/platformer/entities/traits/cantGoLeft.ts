@@ -1,7 +1,7 @@
-import Trait from '@engine/core/entities/trait';
+import ATrait from '@engine/core/entities/trait';
 import { Vector } from 'feather-engine-core';
 
-export default class CantGoLeft extends Trait {
+export default class CantGoLeft extends ATrait {
     posOnScreen: Vector;
     disabledForReset = false;
     constructor() {

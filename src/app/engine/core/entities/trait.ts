@@ -1,15 +1,12 @@
 import Level from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
+import { Entity, Side, Trait, traitRegistry } from 'feather-engine-entities';
 import Camera from '../world/camera';
-import { Side } from '../world/tiles/side';
-import Entity from './entity';
-import { traitRegistry } from './trait-registry';
-
 /**
  * A Trait is a single property hold by an entity to handle a single behavior like Solidity or Gravity.
  *
  */
-export default abstract class Trait {
+export default abstract class ATrait implements Trait {
     enabled = true;
 
     private finalizeMethod: () => void;

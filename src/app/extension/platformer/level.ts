@@ -1,20 +1,18 @@
 import ActivateOnSight from '@engine/core/entities/activateOnSight';
-import Entity from '@engine/core/entities/entity';
-import { EntityState } from '@engine/core/entities/entity.state';
 import { Names, SpawnEvent } from '@engine/core/entities/events';
 import { Context } from '@engine/core/entities/trait';
 import AudioBoard from '@engine/core/io/sfx/audioboard';
 import { SfxEvent } from '@engine/core/io/sfx/events';
 import Level from '@engine/level/level';
 import { FeatherEngine, Vector } from 'feather-engine-core';
+import { Entity, EntityState } from 'feather-engine-entities';
 import { Subject } from 'feather-engine-events';
-import PlatformerEntity from './entities/platformer-entity';
 import PlayerController from './entities/traits/player-controller';
 import EntityColliderTrait from './level/trait/entity-collider-trait';
 
 export default class PlatformerLevel extends Level {
     name: string;
-    entities = new Set<PlatformerEntity>();
+    entities = new Set<Entity>();
     gravity = new Vector(0, 1500);
     width: number;
     height: number;
@@ -71,12 +69,12 @@ export default class PlatformerLevel extends Level {
                 this.audioBoard.playAudio(name, blocking, position);
             });
             e.events.process(Names.spawn, (spawnEvent: SpawnEvent) => {
-                this.entities.add(spawnEvent.payload.entity as PlatformerEntity);
+                this.entities.add(spawnEvent.payload.entity);
             });
         });
     }
 
-    private getEntities(state: EntityState): PlatformerEntity[] {
+    private getEntities(state: EntityState): Entity[] {
         return [...this.entities].filter((e) => e.state === state);
     }
 

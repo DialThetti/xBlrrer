@@ -1,9 +1,9 @@
-import { EntityState } from '@engine/core/entities/entity.state';
-import Trait, { Context } from '@engine/core/entities/trait';
+import ATrait, { Context } from '@engine/core/entities/trait';
 import Go from '@game/xblrrer/entities/traits/go';
+import { EntityState } from 'feather-engine-entities';
 import PlatformerEntity from '../platformer-entity';
 
-export default class Killable extends Trait {
+export default class Killable extends ATrait {
     dead = false;
     deadTime = 0;
     invulnabilityTime = 0;

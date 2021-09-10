@@ -1,4 +1,4 @@
-import { setEntityRepo } from '@engine/core/entities/entity.repo';
+import { setEntityRepo } from 'feather-engine-entities';
 import { GlideCollectable } from './prefabs/collectable.prefab';
 import CrowPrefab from './prefabs/Crow.prefab';
 import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime.prefab';

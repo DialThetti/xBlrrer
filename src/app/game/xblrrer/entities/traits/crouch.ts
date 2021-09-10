@@ -1,9 +1,8 @@
-import Entity from '@engine/core/entities/entity';
-import Trait from '@engine/core/entities/trait';
-import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import ATrait from '@engine/core/entities/trait';
 import { Vector } from 'feather-engine-core';
+import { Entity } from 'feather-engine-entities';
 
-export default class Crouch extends Trait {
+export default class Crouch extends ATrait {
     private _down = false;
     memoSize: Vector;
     memoOffset: Vector;
@@ -13,7 +12,7 @@ export default class Crouch extends Trait {
         super('crouch');
     }
 
-    update(entity: PlatformerEntity): void {
+    update(entity: Entity): void {
         if (this._down) {
             this.resetSize(entity);
         }
@@ -25,7 +24,7 @@ export default class Crouch extends Trait {
         this.lockDown = false;
     }
 
-    end(entity: PlatformerEntity): void {
+    end(entity: Entity): void {
         if (this.memoSize) {
             entity.pos.y -= 8;
             entity.size.set(this.memoSize.x, this.memoSize.y);

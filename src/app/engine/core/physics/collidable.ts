@@ -1,5 +1,5 @@
 import Level from '@engine/level/level';
-import Entity from '../entities/entity';
+import { Entity } from 'feather-engine-entities';
 
 export default interface Collidable {
     /**

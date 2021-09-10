@@ -1,7 +1,6 @@
-import Entity from './entity';
-import { EntityState } from './entity.state';
-import Trait, { Context } from './trait';
-export default class ActivateOnSight extends Trait {
+import { Entity, EntityState } from 'feather-engine-entities';
+import ATrait, { Context } from './trait';
+export default class ActivateOnSight extends ATrait {
     constructor() {
         super('activateOnSight');
     }

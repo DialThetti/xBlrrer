@@ -1,11 +1,11 @@
-import EntityPrefab from '@engine/core/entities/entity.prefab';
-import Trait from '@engine/core/entities/trait';
+import ATrait from '@engine/core/entities/trait';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { Vector } from 'feather-engine-core';
+import { EntityPrefab } from 'feather-engine-entities';
 import { SpriteSheet } from 'feather-engine-graphics';
 import Crouch from '../traits/crouch';
 import Glide from '../traits/glide';
@@ -19,7 +19,7 @@ export default class CrowPrefab extends EntityPrefab {
         super('crow', 'crow');
         this.size = new Vector(16, 32);
         this.offset = new Vector(8, 0);
-        this.traits = (): Trait[] => [
+        this.traits = (): ATrait[] => [
             new Solid(),
             new Gravity(new Vector(0, 750)),
             new Physics(),

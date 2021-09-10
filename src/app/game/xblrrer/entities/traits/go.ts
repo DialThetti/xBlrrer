@@ -1,14 +1,13 @@
-import Entity from '@engine/core/entities/entity';
-import Trait, { Context } from '@engine/core/entities/trait';
+import ATrait, { Context } from '@engine/core/entities/trait';
 import { SfxEvent } from '@engine/core/io/sfx/events';
-import { Side } from '@engine/core/world/tiles/side';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { FeatherEngine } from 'feather-engine-core';
+import { Entity, Side } from 'feather-engine-entities';
 import Crouch from './crouch';
 import Jump from './jump';
 
-export default class Go extends Trait {
+export default class Go extends ATrait {
     private acceleration = 400;
     private deceleration = 300;
 
