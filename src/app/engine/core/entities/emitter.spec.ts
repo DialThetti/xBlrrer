@@ -1,6 +1,6 @@
+import { Entity } from 'feather-engine-entities';
 import { anything, mock, spy, verify } from 'ts-mockito';
 import Emitter from './emitter';
-import Entity from './entity';
 import { Context } from './trait';
 
 describe('Emmiter', () => {

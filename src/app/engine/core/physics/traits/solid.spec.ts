@@ -1,7 +1,6 @@
 import { BoundingBox, Vector } from 'feather-engine-core';
+import { Entity, Side } from 'feather-engine-entities';
 import { PositionedTile } from '../../../level/level-layer';
-import Entity from '../../entities/entity';
-import { Side } from '../../world/tiles/side';
 import Solid from './solid';
 
 describe('Solid', () => {

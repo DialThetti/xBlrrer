@@ -1,5 +1,5 @@
+import { Entity } from 'feather-engine-entities';
 import { mock, when } from 'ts-mockito';
-import Entity from '../../entities/entity';
 import Gravity from './gravity';
 import { getTraits } from './traits';
 

@@ -1,7 +1,6 @@
+import { Entity, EntityState } from 'feather-engine-entities';
 import Camera from '../world/camera';
 import ActivateOnSight from './activateOnSight';
-import Entity from './entity';
-import { EntityState } from './entity.state';
 import { Context } from './trait';
 
 describe('ActivateOnSight', () => {
