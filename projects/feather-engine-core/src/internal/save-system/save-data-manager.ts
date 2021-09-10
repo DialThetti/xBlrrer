@@ -15,6 +15,12 @@ export abstract class SaveDataSystem<T> {
      */
     abstract storeCurrentData(slot: number): void;
     /**
+     * Checks if data is available in the storage
+     * @param slot
+     */
+    abstract hasData(slot: number): boolean;
+
+    /**
      * Add a `Partial`of the SaveData to current game state
      * @param data
      */
@@ -49,5 +55,9 @@ export class LocalStorageSaveDataSystem<T> extends SaveDataSystem<T> {
     public storeCurrentData(slot: number): void {
         const dataString = this.marshaller.marshal(this.currentData);
         this.storage.setItem('save_' + slot, dataString);
+    }
+
+    public hasData(slot: number): boolean {
+        return !!this.storage.getItem('save_' + slot);
     }
 }

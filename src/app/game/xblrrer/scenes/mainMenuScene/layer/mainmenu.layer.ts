@@ -29,7 +29,9 @@ export default class MainMenuLayer implements RenderLayer {
 
     drawSelectBox(context: RenderContext, boxX: number, boxY: number): void {
         this.frame.draw(context, boxX, boxY, 32 * 6, 32 * 2);
-        this.font.print('Continue', context, boxX + 32, boxY + 16);
+        if (this.mainMenu.sav.hasData(0)) {
+            this.font.print('Continue', context, boxX + 32, boxY + 16);
+        }
         this.font.print('New Game', context, boxX + 32, boxY + 16 + 16 + 8);
         this.font.print('>', context, boxX + 16, boxY + 16 + 24 * this.mainMenu.option);
     }
