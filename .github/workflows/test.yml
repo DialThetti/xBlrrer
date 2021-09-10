@@ -163,11 +163,26 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
+            - name: Download a feather-engine-events
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-events
+                  path: projects/feather-engine-events/dist
             - name: Download a feather-engine-core
               uses: actions/download-artifact@v2
               with:
                   name: feather-engine-core
                   path: projects/feather-engine-core/dist
+            - name: Download a feather-engine-graphics
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-graphics
+                  path: projects/feather-engine-graphics/dist
+            - name: Download a feather-engine-entities
+              uses: actions/download-artifact@v2
+              with:
+                  name: feather-engine-entities
+                  path: projects/feather-engine-entities/dist
             - name: Download a feather-engine-core/coverage
               uses: actions/download-artifact@v2
               with:
@@ -183,11 +198,7 @@ jobs:
               with:
                   name: feather-engine-entities-coverage
                   path: projects/feather-engine-entities/coverage
-            - name: Download a feather-engine-graphics
-              uses: actions/download-artifact@v2
-              with:
-                  name: feather-engine-graphics
-                  path: projects/feather-engine-graphics/dist
+
             - name: Download a feather-engine-graphics/coverage
               uses: actions/download-artifact@v2
               with:
@@ -201,9 +212,6 @@ jobs:
               run: npm ci
             - name: Clean install graphics
               working-directory: projects/feather-engine-graphics
-              run: npm ci
-            - name: Clean install entities
-              working-directory: projects/feather-engine-entities
               run: npm ci
             - name: Clean install entities
               working-directory: projects/feather-engine-entities
