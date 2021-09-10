@@ -17,7 +17,7 @@ export class EventBus implements EventPublisher<Subject<any>> {
         const receivers = this.getTopicReceivers(subject.topic);
 
         // Run promises
-        receivers.map((receiver) => new Promise((resolve) => resolve(this.retryPublish(subject, receiver, tries))));
+        receivers.forEach((receiver) => new Promise((resolve) => resolve(this.retryPublish(subject, receiver, tries))));
     }
 
     private getTopicReceivers(topic: string): Receiver[] {
