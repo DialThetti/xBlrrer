@@ -9,9 +9,11 @@ import Crouch from './crouch';
 import Jump from './jump';
 
 export default class Go extends Trait {
-    dirOfAppliedForce = 0;
     private acceleration = 400;
     private deceleration = 300;
+
+    private goLeft = false;
+    private goRight = false;
     distance = 0;
     facingDirection = 0;
     running = false;
@@ -33,9 +35,11 @@ export default class Go extends Trait {
         const jump = entity.getTrait(Jump);
         const killable = entity.getTrait(Killable);
         const crouch = entity.getTrait(Crouch);
-        if (this.dirOfAppliedForce !== 0) {
+
+        const dirOfAppliedForce = this.goRight ? 1 : this.goLeft ? -1 : 0;
+        if (dirOfAppliedForce !== 0) {
             if (jump && !jump.falling) {
-                this.facingDirection = this.dirOfAppliedForce;
+                this.facingDirection = dirOfAppliedForce;
             }
         }
         if (crouch.down) {
@@ -49,8 +53,8 @@ export default class Go extends Trait {
         }
 
         const absX = Math.abs(entity.vel.x);
-        if (this.dirOfAppliedForce !== 0) {
-            entity.vel.x += this.acceleration * this.dirOfAppliedForce * context.deltaTime;
+        if (dirOfAppliedForce !== 0) {
+            entity.vel.x += this.acceleration * dirOfAppliedForce * context.deltaTime;
         } else if (entity.vel.x !== 0) {
             this.decelToStand(entity, context.deltaTime);
         } else {
@@ -72,10 +76,12 @@ export default class Go extends Trait {
     }
 
     public right(accel: boolean) {
-        this.dirOfAppliedForce += accel ? 1 : -1;
+        this.goRight = accel;
+        if (accel) this.goLeft = false;
     }
 
     public left(accel: boolean) {
-        this.dirOfAppliedForce -= accel ? 1 : -1;
+        this.goLeft = accel;
+        if (accel) this.goRight = false;
     }
 }
