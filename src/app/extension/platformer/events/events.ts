@@ -1,9 +1,10 @@
-import Event from '@engine/core/events/event';
-export class PauseGameEvent implements Event<void> {
-    name = 'PauseGame';
+import { Subject } from 'feather-engine-events';
+
+export class PauseGameEvent implements Subject<void> {
+    topic = 'PauseGame';
     payload: null;
 }
-export class ResumeGameEvent implements Event<void> {
-    name = 'ResumeGame';
+export class ResumeGameEvent implements Subject<void> {
+    topic = 'ResumeGame';
     payload: null;
 }
