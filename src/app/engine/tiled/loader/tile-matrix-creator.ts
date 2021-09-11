@@ -10,31 +10,36 @@ export default class TileMatrixCreator {
     public create(layer: InfiniteTmxLayer | FiniteTmxLayer): Matrix<Tile> {
         const tiles = new Matrix<Tile>();
         if (isInfiniteLayer(layer)) {
-            layer.chunks.forEach((chunk) => {
-                for (let x = 0; x < chunk.width; x++) {
-                    for (let y = 0; y < chunk.height; y++) {
-                        const id = chunk.data[y * chunk.width + x];
-                        if (id === 0) {
-                            continue;
-                        }
-                        this.setTile(tiles, id, this.tileProps[id], x + chunk.x, y + chunk.y);
-                    }
-                }
-            });
+            this.handleInfiniteLayer(layer, tiles);
         }
         if (isFiniteLayer(layer)) {
-            for (let x = 0; x < layer.width; x++) {
-                for (let y = 0; y < layer.height; y++) {
-                    const id = layer.data[y * layer.width + x];
-
+            this.handleFiniteLayer(layer, tiles);
+        }
+        return tiles;
+    }
+    private handleFiniteLayer(layer: FiniteTmxLayer, tiles: Matrix<Tile>) {
+        for (let x = 0; x < layer.width; x++) {
+            for (let y = 0; y < layer.height; y++) {
+                const id = layer.data[y * layer.width + x];
+                if (id === 0) {
+                    continue;
+                }
+                this.setTile(tiles, id, this.tileProps[id], x + layer.x, y + layer.y);
+            }
+        }
+    }
+    private handleInfiniteLayer(layer: InfiniteTmxLayer, tiles: Matrix<Tile>) {
+        layer.chunks.forEach((chunk) => {
+            for (let x = 0; x < chunk.width; x++) {
+                for (let y = 0; y < chunk.height; y++) {
+                    const id = chunk.data[y * chunk.width + x];
                     if (id === 0) {
                         continue;
                     }
-                    this.setTile(tiles, id, this.tileProps[id], x + layer.x, y + layer.y);
+                    this.setTile(tiles, id, this.tileProps[id], x + chunk.x, y + chunk.y);
                 }
             }
-        }
-        return tiles;
+        });
     }
 
     private setTile(tiles: Matrix<Tile>, id: number, tile: TsxTileModel, x: number, y: number): void {
