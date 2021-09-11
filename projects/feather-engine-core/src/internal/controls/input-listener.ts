@@ -3,6 +3,7 @@ import FeatherEngine from '../feather-engine';
 import { GameLoop } from '../gameloop/gameloop';
 import { OnInput } from '../gameloop/gameloop-listeners';
 import { info } from '../logger';
+import { INPUT_CONTROL_TOPIC } from './events';
 
 export enum KeyState {
     PRESSED,
@@ -28,7 +29,7 @@ export class KeyboardInput implements OnInput {
     private constructor() {
         // private constructor to implement Singleton Pattern
 
-        FeatherEngine.eventBus.subscribe('game-control-input', {
+        FeatherEngine.eventBus.subscribe(INPUT_CONTROL_TOPIC, {
             receive: (s: Subject<string>) => {
                 if (s.payload === 'stash') {
                     this.stashKeyListeners();

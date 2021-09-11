@@ -8,7 +8,7 @@ import PlayerController from '@extension/platformer/entities/traits/player-contr
 import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import DialogLayer from '@game/xblrrer/rendering/layers/dialog.layer';
-import { FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
+import { ClearControlInputEvent, FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
 import { Entity, EntityState } from 'feather-engine-entities';
 import { FontLoader, NineWaySpriteSheetLoader } from 'feather-engine-graphics';
 import { addDebugToLevel } from '../../debug/debug';
@@ -47,7 +47,7 @@ export default class GameScene implements Scene {
 
         const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
         const font = await new FontLoader('./img/font.png').load();
-        FeatherEngine.eventBus.publish({ topic: 'game-control-input', payload: 'clear' });
+        FeatherEngine.eventBus.publish(new ClearControlInputEvent());
         KeyboardInput.addKeyListener(new PlatformerKeyListener(player));
 
         const camera = new MetroidCamera(viewPorts);

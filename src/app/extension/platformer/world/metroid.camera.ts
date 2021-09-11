@@ -1,5 +1,5 @@
 import Camera from '@engine/core/world/camera';
-import { BoundingBox, FeatherEngine, Vector } from 'feather-engine-core';
+import { BoundingBox, FeatherEngine, PauseGameEvent, ResumeGameEvent, Vector } from 'feather-engine-core';
 import { Entity } from 'feather-engine-entities';
 import { PlatformerTraitContext } from '../entities/traits/traits';
 import PlatformerLevel from '../level';
@@ -34,7 +34,7 @@ export default class MetroidCamera extends Camera {
             this.currentCam.box.top = delta.y;
             if (this.transition.delta >= 1) {
                 this.transition = null;
-                FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'resume' });
+                FeatherEngine.eventBus.publish(new ResumeGameEvent());
             }
         }
     }
@@ -50,7 +50,7 @@ export default class MetroidCamera extends Camera {
                         this.currentCam.box.pos,
                         this.cameras[potentionallyNewCam].box.pos,
                     );
-                    FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'pause' });
+                    FeatherEngine.eventBus.publish(new PauseGameEvent());
                 }
             }
 

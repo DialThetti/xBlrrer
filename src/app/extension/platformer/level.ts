@@ -4,7 +4,7 @@ import { Context } from '@engine/core/entities/trait';
 import AudioBoard from '@engine/core/io/sfx/audioboard';
 import { SfxEvent } from '@engine/core/io/sfx/events';
 import Level from '@engine/level/level';
-import { FeatherEngine, Vector } from 'feather-engine-core';
+import { FeatherEngine, GAME_CONTROL_TOPIC, Vector } from 'feather-engine-core';
 import { Entity, EntityState } from 'feather-engine-entities';
 import { Subject } from 'feather-engine-events';
 import PlayerController from './entities/traits/player-controller';
@@ -32,7 +32,7 @@ export default class PlatformerLevel extends Level {
 
     update(deltaTime: number): void {
         super.update(deltaTime);
-        FeatherEngine.eventBus.subscribe('game-control', {
+        FeatherEngine.eventBus.subscribe(GAME_CONTROL_TOPIC, {
             receive: (subject: Subject<string>) => {
                 if (subject.payload === 'pause') {
                     this.paused = true;

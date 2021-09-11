@@ -1,15 +1,20 @@
-import { FeatherEngine, KeyboardInput } from 'feather-engine-core';
-import { Subject } from 'feather-engine-events';
-
+import {
+    FeatherEngine,
+    KeyboardInput,
+    PauseGameEvent,
+    PopControlInputEvent,
+    ResumeGameEvent,
+    StashControlInputEvent,
+} from 'feather-engine-core';
 export default class Dialog {
     static show(text: string[]) {
         FeatherEngine.eventBus.subscribe('dialog-next', {
-            receive: (subject: Subject<any>) => {
+            receive: () => {
                 text.shift();
                 console.log(text);
                 if (text.length == 0) {
-                    FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'resume' });
-                    FeatherEngine.eventBus.publish({ topic: 'game-control-input', payload: 'pop' });
+                    FeatherEngine.eventBus.publish(new ResumeGameEvent());
+                    FeatherEngine.eventBus.publish(new PopControlInputEvent());
                     FeatherEngine.eventBus.unsubscribeAll('dialog-next');
                     FeatherEngine.eventBus.publish({ topic: 'dialog-clear', payload: 'x' });
                 } else {
@@ -17,8 +22,8 @@ export default class Dialog {
                 }
             },
         });
-        FeatherEngine.eventBus.publish({ topic: 'game-control-input', payload: 'stash' });
-        FeatherEngine.eventBus.publish({ topic: 'game-control', payload: 'pause' });
+        FeatherEngine.eventBus.publish(new StashControlInputEvent());
+        FeatherEngine.eventBus.publish(new PauseGameEvent());
         KeyboardInput.addKeyListener({
             keyDown: (e) => {
                 if (e == 'Space') FeatherEngine.eventBus.publish({ topic: 'dialog-next', payload: 'x' });
