@@ -58,34 +58,38 @@ export default class Jump extends ATrait {
         this.eventBuffer.publish(new JumpButtonReleased());
     }
     update(entity: Entity, context: Context): void {
-        this.eventBuffer.process('JumpButtonReleased', () => {
-            this.raisingTime.toZero();
-            if (entity.vel.y < 0) {
-                entity.vel.y = -this.velocity / 2;
-            }
-        });
-        this.eventBuffer.process('JumpButtonPressed', () => {
-            const crouch = entity.getTrait(Crouch);
-
-            if (crouch?.down) {
-                if (entity instanceof PlatformerEntity) {
-                    if (entity.standingOn.has('platform')) {
-                        entity.bypassPlatform = true;
-                    }
-                }
+        this.eventBuffer.process('JumpButtonReleased', {
+            receive: () => {
                 this.raisingTime.toZero();
-                return;
-            }
-            if (!this.falling) {
-                entity.bypassPlatform = true;
-                this.raisingTime.reset();
+                if (entity.vel.y < 0) {
+                    entity.vel.y = -this.velocity / 2;
+                }
+            },
+        });
+        this.eventBuffer.process('JumpButtonPressed', {
+            receive: () => {
+                const crouch = entity.getTrait(Crouch);
 
-                const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
-                entity.events.publish({
-                    topic: 'playSFX',
-                    payload: { name: 'jump', blocking: false, position: 2 * pos - 1 },
-                });
-            }
+                if (crouch?.down) {
+                    if (entity instanceof PlatformerEntity) {
+                        if (entity.standingOn.has('platform')) {
+                            entity.bypassPlatform = true;
+                        }
+                    }
+                    this.raisingTime.toZero();
+                    return;
+                }
+                if (!this.falling) {
+                    entity.bypassPlatform = true;
+                    this.raisingTime.reset();
+
+                    const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
+                    entity.events.publish({
+                        topic: 'playSFX',
+                        payload: { name: 'jump', blocking: false, position: 2 * pos - 1 },
+                    });
+                }
+            },
         });
 
         if (this.raisingTime.notZero()) {

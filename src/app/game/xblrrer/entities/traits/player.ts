@@ -10,7 +10,7 @@ export default class Player extends ATrait {
     }
 
     update(entity: Entity): void {
-        entity.events.process('stomp', () => (this.score += 100));
+        entity.events.process('stomp', { receive: () => (this.score += 100) });
     }
 
     get coins(): number {

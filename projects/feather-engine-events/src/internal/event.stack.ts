@@ -1,4 +1,5 @@
 import { EventPublisher } from './event.publisher';
+import { Receiver } from './receiver';
 import { Subject } from './subject';
 
 export class EventStack implements EventPublisher<Subject<any>> {
@@ -11,11 +12,11 @@ export class EventStack implements EventPublisher<Subject<any>> {
         this.eventStack[subject.topic].push(subject);
     }
 
-    public process(topic: string, f: (s: Subject<any>) => void): void {
+    public process(topic: string, receiver: Receiver): void {
         if (!this.eventStack[topic]) {
             return;
         }
-        this.eventStack[topic].forEach(f);
+        this.eventStack[topic].forEach((s) => receiver.receive(s));
         delete this.eventStack[topic];
     }
 }

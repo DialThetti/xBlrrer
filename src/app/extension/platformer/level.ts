@@ -64,12 +64,16 @@ export default class PlatformerLevel extends Level {
         this.time += deltaTime;
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => {
-            e.events.process(Names.playSFX, (sfxEvent: SfxEvent): void => {
-                const { name, blocking, position } = sfxEvent.payload;
-                this.audioBoard.playAudio(name, blocking, position);
+            e.events.process(Names.playSFX, {
+                receive: (sfxEvent: SfxEvent): void => {
+                    const { name, blocking, position } = sfxEvent.payload;
+                    this.audioBoard.playAudio(name, blocking, position);
+                },
             });
-            e.events.process(Names.spawn, (spawnEvent: SpawnEvent) => {
-                this.entities.add(spawnEvent.payload.entity);
+            e.events.process(Names.spawn, {
+                receive: (spawnEvent: SpawnEvent) => {
+                    this.entities.add(spawnEvent.payload.entity);
+                },
             });
         });
     }
