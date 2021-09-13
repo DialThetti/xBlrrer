@@ -1,4 +1,3 @@
-import Camera from '@engine/core/world/camera';
 import Level from '@engine/level/level';
 import EntityLayer from '@engine/level/rendering/entity.layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
@@ -7,6 +6,7 @@ import Scene from '@engine/scenes/scene';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import LoadingPrefab from '@game/xblrrer/entities/prefabs/Loading.prefab';
 import { BoundingBox, FeatherEngine, RenderContext, Vector } from 'feather-engine-core';
+import Camera from 'src/app/core/rendering/camera';
 
 export default class LoadingScene implements Scene {
     name = 'loadingScene';

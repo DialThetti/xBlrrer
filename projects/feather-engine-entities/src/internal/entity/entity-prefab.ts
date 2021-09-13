@@ -17,6 +17,7 @@ export abstract class EntityPrefab {
     flipped(entity: Entity): boolean {
         return entity.vel.x < 0;
     }
+
     async create(): Promise<() => Entity> {
         const sprite = this.spriteName ? await new SpriteSheetLoader(`entities/${this.spriteName}`).load() : undefined;
         return (): Entity & TraitCtnr => {

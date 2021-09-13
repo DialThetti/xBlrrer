@@ -1,7 +1,7 @@
 import { Loader, loadJson } from 'feather-engine-core';
-import AudioSpec from '../../../../model/AudioSpec';
 import AudioLoader from './audio.loader';
 import AudioBoard from './audioboard';
+import AudioSpec from './AudioSpec';
 
 export default class AudioBoardLoader implements Loader<AudioBoard> {
     constructor(private context: AudioContext, private audioURL: string) {}

@@ -3,6 +3,7 @@ import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { FeatherEngine } from 'feather-engine-core';
 import { Entity, Side } from 'feather-engine-entities';
 import { EventStack, Subject } from 'feather-engine-events';
+import { SfxEvent } from 'src/app/core/sfx/events';
 import Crouch from './crouch';
 
 class JumpButtonPressed implements Subject<void> {
@@ -84,10 +85,7 @@ export default class Jump extends ATrait {
                     this.raisingTime.reset();
 
                     const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
-                    entity.events.publish({
-                        topic: 'playSFX',
-                        payload: { name: 'jump', blocking: false, position: 2 * pos - 1 },
-                    });
+                    entity.events.publish(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
                 }
             },
         });

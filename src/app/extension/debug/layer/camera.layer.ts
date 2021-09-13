@@ -1,7 +1,7 @@
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import { FeatherEngine, RenderContext } from 'feather-engine-core';
 import { drawRect } from 'feather-engine-graphics';
-import Camera from '../../../engine/core/world/camera';
+import Camera from '../../../core/rendering/camera';
 
 export default class CameraLayer implements RenderLayer {
     constructor(private cameraToDraw: Camera) {}

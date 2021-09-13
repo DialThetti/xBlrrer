@@ -1,5 +1,4 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/io/sfx/events';
 import Gravity from '@engine/core/physics/traits/gravity';
 import Physics from '@engine/core/physics/traits/physics';
 import Solid from '@engine/core/physics/traits/solid';
@@ -9,6 +8,7 @@ import { PlatformerTraitContext } from '@extension/platformer/entities/traits/tr
 import { FeatherEngine, Vector } from 'feather-engine-core';
 import { Entity, EntityPrefab, Side } from 'feather-engine-entities';
 import { SpriteSheet } from 'feather-engine-graphics';
+import { SfxEvent } from 'src/app/core/sfx/events';
 import Stomp from '../traits/stomp';
 
 class Interval {

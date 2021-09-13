@@ -1,7 +1,7 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/io/sfx/events';
 import PlatformerLevel from '@extension/platformer/level';
 import { Entity } from 'feather-engine-entities';
+import { SfxEvent } from 'src/app/core/sfx/events';
 
 export default class LevelTimer extends ATrait {
     totalTime = 300;

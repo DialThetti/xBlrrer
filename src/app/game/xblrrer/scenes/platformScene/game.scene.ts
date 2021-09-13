@@ -1,4 +1,3 @@
-import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
 import { LEVEL_RENDERER } from '@engine/level/level-renderer';
 import Scene from '@engine/scenes/scene';
 import CameraLayer from '@extension/debug/layer/camera.layer';
@@ -11,6 +10,7 @@ import DialogLayer from '@game/xblrrer/rendering/layers/dialog.layer';
 import { ClearControlInputEvent, FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
 import { Entity, EntityState } from 'feather-engine-entities';
 import { FontLoader, NineWaySpriteSheetLoader } from 'feather-engine-graphics';
+import AudioBoardLoader from 'src/app/core/sfx/audioboard.loader';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';
 import LevelLoader from '../../loader/level.loader';

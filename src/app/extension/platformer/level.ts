@@ -1,12 +1,12 @@
 import ActivateOnSight from '@engine/core/entities/activateOnSight';
 import { Names, SpawnEvent } from '@engine/core/entities/events';
 import { Context } from '@engine/core/entities/trait';
-import AudioBoard from '@engine/core/io/sfx/audioboard';
-import { SfxEvent } from '@engine/core/io/sfx/events';
 import Level from '@engine/level/level';
 import { FeatherEngine, GAME_CONTROL_TOPIC, Vector } from 'feather-engine-core';
 import { Entity, EntityState } from 'feather-engine-entities';
 import { Subject } from 'feather-engine-events';
+import AudioBoard from 'src/app/core/sfx/audioboard';
+import { PLAY_SFX_TOPIC, SfxEvent } from 'src/app/core/sfx/events';
 import PlayerController from './entities/traits/player-controller';
 import EntityColliderTrait from './level/trait/entity-collider-trait';
 
@@ -43,7 +43,7 @@ export default class PlatformerLevel extends Level {
             },
         });
         const context = { deltaTime: this.paused ? 0 : deltaTime, level: this, camera: this.camera };
-        this.camera.update(this.findPlayer(), { ...context, deltaTime });
+        this.camera.update(this.findPlayer(), deltaTime);
         this.activateEntititesOnSight(context);
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => e.update(context));
@@ -64,7 +64,7 @@ export default class PlatformerLevel extends Level {
         this.time += deltaTime;
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => {
-            e.events.process(Names.playSFX, {
+            e.events.process(PLAY_SFX_TOPIC, {
                 receive: (sfxEvent: SfxEvent): void => {
                     const { name, blocking, position } = sfxEvent.payload;
                     this.audioBoard.playAudio(name, blocking, position);

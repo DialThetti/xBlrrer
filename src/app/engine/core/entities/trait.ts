@@ -1,7 +1,7 @@
 import Level from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
 import { Entity, Side, Trait, traitRegistry } from 'feather-engine-entities';
-import Camera from '../world/camera';
+import Camera from '../../../core/rendering/camera';
 /**
  * A Trait is a single property hold by an entity to handle a single behavior like Solidity or Gravity.
  *

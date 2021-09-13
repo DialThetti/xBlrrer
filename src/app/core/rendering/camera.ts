@@ -1,6 +1,5 @@
 import { BoundingBox, FeatherEngine, Vector } from 'feather-engine-core';
 import { Entity } from 'feather-engine-entities';
-import { Context } from '../entities/trait';
 
 export default class Camera {
     protected pos_ = new Vector(0, 0);
@@ -24,7 +23,7 @@ export default class Camera {
         return this.totalMovementBounds;
     }
 
-    update(playerFigure: Entity, context: Context): void {
+    update(playerFigure: Entity, dT: number): void {
         const right = playerFigure.bounds.right - this.box.right + this.edge.x;
         const left = playerFigure.bounds.left - this.box.left - this.edge.x;
         this.pos_.x += Math.max(right, Math.min(left, 0));

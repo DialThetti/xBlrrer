@@ -1,12 +1,12 @@
-import AudioBoard from '@engine/core/io/sfx/audioboard';
-import AudioBoardLoader from '@engine/core/io/sfx/audioboard.loader';
-import Camera from '@engine/core/world/camera';
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import Scene from '@engine/scenes/scene';
 import SceneMachine from '@engine/scenes/scene-machine';
 import { FeatherEngine, KeyboardInput, loadImage, RenderContext, SaveDataSystem } from 'feather-engine-core';
 import { FontLoader, NineWaySpriteSheetLoader } from 'feather-engine-graphics';
+import Camera from 'src/app/core/rendering/camera';
+import AudioBoard from 'src/app/core/sfx/audioboard';
+import AudioBoardLoader from 'src/app/core/sfx/audioboard.loader';
 import { InitialSaveData, xBlrrerSaveData } from '../platformScene/save-data';
 import MenuKeyboard from './input';
 import MainMenuLayer from './layer/mainmenu.layer';

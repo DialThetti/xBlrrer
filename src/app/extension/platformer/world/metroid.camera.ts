@@ -1,8 +1,6 @@
-import Camera from '@engine/core/world/camera';
 import { BoundingBox, FeatherEngine, PauseGameEvent, ResumeGameEvent, Vector } from 'feather-engine-core';
 import { Entity } from 'feather-engine-entities';
-import { PlatformerTraitContext } from '../entities/traits/traits';
-import PlatformerLevel from '../level';
+import Camera from 'src/app/core/rendering/camera';
 
 export default class MetroidCamera extends Camera {
     cameras: Camera[];
@@ -21,15 +19,15 @@ export default class MetroidCamera extends Camera {
         return this.cameras[this.currentCamIndex];
     }
 
-    update(playerFigure: Entity, context: PlatformerTraitContext): void {
-        this.updateCurrentCam(playerFigure, context.level);
+    update(playerFigure: Entity, dT: number): void {
+        this.updateCurrentCam(playerFigure);
 
-        this.currentCam.update(playerFigure, context);
+        this.currentCam.update(playerFigure, dT);
         if (this.transition != null) {
             if (this.transition.delta == 0) {
                 this.transition.targetPosition = this.currentCam.box.pos;
             }
-            const delta = this.transition.get(1.5 * context.deltaTime);
+            const delta = this.transition.get(1.5 * dT);
             this.currentCam.box.left = delta.x;
             this.currentCam.box.top = delta.y;
             if (this.transition.delta >= 1) {
@@ -39,7 +37,7 @@ export default class MetroidCamera extends Camera {
         }
     }
 
-    private updateCurrentCam(playerFigure: Entity, level: PlatformerLevel): void {
+    private updateCurrentCam(playerFigure: Entity): void {
         const potentionallyNewCam = this.cameras
             .map((a) => a.viewPort)
             .findIndex((a) => a.overlaps(playerFigure.bounds));

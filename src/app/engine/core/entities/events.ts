@@ -3,7 +3,6 @@ import { Subject } from 'feather-engine-events';
 
 export const Names = {
     spawn: 'spawn',
-    playSFX: 'playSFX',
 };
 export class SpawnEvent implements Subject<{ entity: Entity }> {
     topic = Names.spawn;

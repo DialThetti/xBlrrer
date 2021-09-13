@@ -1,11 +1,11 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/io/sfx/events';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { xBlrrerSaveData } from '@game/xblrrer/scenes/platformScene/save-data';
 import { FeatherEngine, Vector } from 'feather-engine-core';
 import { Entity, EntityPrefab, EntityState } from 'feather-engine-entities';
 import { SpriteSheet } from 'feather-engine-graphics';
 import { TraitCtnr } from 'projects/feather-engine-entities/dist';
+import { SfxEvent } from 'src/app/core/sfx/events';
 import PlatformerLevel from '../../../../extension/platformer/level';
 import Dialog from '../../rendering/dialog/Dialog';
 import Glide from '../traits/glide';

@@ -1,7 +1,7 @@
 import ATrait from '@engine/core/entities/trait';
-import { SfxEvent } from '@engine/core/io/sfx/events';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { Entity } from 'feather-engine-entities';
+import { SfxEvent } from 'src/app/core/sfx/events';
 import { StompEvent } from '../events';
 
 export default class Stomp extends ATrait {
