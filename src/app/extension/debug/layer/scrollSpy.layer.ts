@@ -1,7 +1,7 @@
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { FeatherEngine, RenderContext } from 'feather-engine-core';
-import { drawRect } from 'feather-engine-graphics';
+import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
+import { drawRect } from '@dialthetti/feather-engine-graphics';
 
 export default class ScrollSpyLayer implements RenderLayer {
     draw(context: RenderContext, level: Level): void {

@@ -1,4 +1,4 @@
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 
 export default class EntityCollider {
     constructor(private entities: Set<Entity>) {}

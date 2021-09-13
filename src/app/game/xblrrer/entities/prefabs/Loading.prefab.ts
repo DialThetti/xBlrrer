@@ -1,8 +1,8 @@
 import ATrait from '@engine/core/entities/trait';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import { Vector } from 'feather-engine-core';
-import { Entity, EntityPrefab } from 'feather-engine-entities';
-import { SpriteSheet } from 'feather-engine-graphics';
+import { Vector } from '@dialthetti/feather-engine-core';
+import { Entity, EntityPrefab } from '@dialthetti/feather-engine-entities';
+import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 
 export default class LoadingPrefab extends EntityPrefab {
     constructor() {

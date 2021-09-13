@@ -1,8 +1,8 @@
 import * as EngineLevel from '@engine/level/level';
 import { PositionedTile } from '@engine/level/level-layer';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { FeatherEngine, RenderContext } from 'feather-engine-core';
-import { drawRect } from 'feather-engine-graphics';
+import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
+import { drawRect } from '@dialthetti/feather-engine-graphics';
 import Camera from 'src/app/core/rendering/camera';
 import PlatformerLevel from '../../../level';
 export default class CollisionLayer implements RenderLayer {

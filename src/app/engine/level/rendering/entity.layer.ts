@@ -1,7 +1,7 @@
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { Canvas, CanvasRenderer, RenderContext } from 'feather-engine-core';
-import { Entity } from 'feather-engine-entities';
+import { Canvas, CanvasRenderer, RenderContext } from '@dialthetti/feather-engine-core';
+import { Entity } from '@dialthetti/feather-engine-entities';
 
 export default class EntityLayer implements RenderLayer {
     bufferContext: RenderContext;

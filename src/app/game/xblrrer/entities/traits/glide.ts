@@ -1,6 +1,6 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
 import Gravity from '@engine/core/physics/traits/gravity';
-import { Entity, Side } from 'feather-engine-entities';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
 
 export default class Glide extends ATrait {
     gliding = false;

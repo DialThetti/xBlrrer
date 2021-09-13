@@ -1,5 +1,5 @@
 import { LEVEL_COLLIDER } from '@engine/level/level-collider';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import ATrait, { Context } from '../../entities/trait';
 
 export default class Physics extends ATrait {

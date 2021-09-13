@@ -1,8 +1,8 @@
 import Tile from '@engine/core/world/tiles/tile';
 import Level from '@engine/level/level';
 import RenderLayer from '@engine/level/rendering/renderLayer';
-import { Canvas, CanvasRenderer, Matrix, RenderContext } from 'feather-engine-core';
-import { TileSet } from 'feather-engine-graphics';
+import { Canvas, CanvasRenderer, Matrix, RenderContext } from '@dialthetti/feather-engine-core';
+import { TileSet } from '@dialthetti/feather-engine-graphics';
 
 export default class TilesetLayer implements RenderLayer {
     private buffer: RenderContext;

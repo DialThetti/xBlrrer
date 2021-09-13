@@ -1,4 +1,4 @@
-import { Loader, loadJson } from 'feather-engine-core';
+import { Loader, loadJson } from '@dialthetti/feather-engine-core';
 import AudioLoader from './audio.loader';
 import AudioBoard from './audioboard';
 import AudioSpec from './AudioSpec';

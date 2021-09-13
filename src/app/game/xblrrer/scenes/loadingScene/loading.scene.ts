@@ -5,7 +5,7 @@ import SingleColorLayer from '@engine/level/rendering/singleColor.layer';
 import Scene from '@engine/scenes/scene';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import LoadingPrefab from '@game/xblrrer/entities/prefabs/Loading.prefab';
-import { BoundingBox, FeatherEngine, RenderContext, Vector } from 'feather-engine-core';
+import { BoundingBox, FeatherEngine, RenderContext, Vector } from '@dialthetti/feather-engine-core';
 import Camera from 'src/app/core/rendering/camera';
 
 export default class LoadingScene implements Scene {

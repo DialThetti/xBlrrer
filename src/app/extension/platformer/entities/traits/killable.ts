@@ -1,6 +1,6 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
 import Go from '@game/xblrrer/entities/traits/go';
-import { EntityState } from 'feather-engine-entities';
+import { EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '../platformer-entity';
 
 export default class Killable extends ATrait {

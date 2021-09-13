@@ -1,4 +1,4 @@
-import { Vector } from 'feather-engine-core';
+import { Vector } from '@dialthetti/feather-engine-core';
 
 export default interface PlatformerLevelData {
     tiledMapPath: string;

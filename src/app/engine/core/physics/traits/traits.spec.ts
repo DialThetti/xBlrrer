@@ -1,4 +1,4 @@
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import { mock, when } from 'ts-mockito';
 import Gravity from './gravity';
 import { getTraits } from './traits';

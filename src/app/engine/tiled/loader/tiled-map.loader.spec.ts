@@ -1,5 +1,5 @@
-import { Matrix } from 'feather-engine-core';
-import { TileSet } from 'feather-engine-graphics';
+import { Matrix } from '@dialthetti/feather-engine-core';
+import { TileSet } from '@dialthetti/feather-engine-graphics';
 import { mock } from 'ts-mockito';
 import Tile from '../../../engine/core/world/tiles/tile';
 import { mockLoader } from '../../../testing/loader.util';

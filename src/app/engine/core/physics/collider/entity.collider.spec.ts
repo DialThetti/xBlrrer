@@ -1,4 +1,4 @@
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import { anything, spy, verify } from 'ts-mockito';
 import EntityCollider from './entity.collider';
 describe('EntityCollider', () => {

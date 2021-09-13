@@ -1,4 +1,4 @@
-import { KeyListener } from 'feather-engine-core';
+import { KeyListener } from '@dialthetti/feather-engine-core';
 import MainMenuScene from './mainMenu.scene';
 
 export default class MenuKeyboard implements KeyListener {

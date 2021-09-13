@@ -1,7 +1,7 @@
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import PlatformerLevel from '@extension/platformer/level';
-import { FeatherEngine, RenderContext } from 'feather-engine-core';
-import { drawRect, Font } from 'feather-engine-graphics';
+import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
+import { drawRect, Font } from '@dialthetti/feather-engine-graphics';
 
 export default class DashboardLayer implements RenderLayer {
     constructor(private font: Font, private level: PlatformerLevel) {}

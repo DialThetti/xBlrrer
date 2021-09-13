@@ -1,5 +1,5 @@
 import Tile from '@engine/core/world/tiles/tile';
-import { Matrix } from 'feather-engine-core';
+import { Matrix } from '@dialthetti/feather-engine-core';
 import { FiniteTmxLayer, InfiniteTmxLayer, isFiniteLayer, isInfiniteLayer } from '../model/tmx.model';
 import { TsxTileModel } from '../model/tsx.model';
 

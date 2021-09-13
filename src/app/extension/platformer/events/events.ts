@@ -1,4 +1,4 @@
-import { Subject } from 'feather-engine-events';
+import { Subject } from '@dialthetti/feather-engine-events';
 
 export class PauseGameEvent implements Subject<void> {
     topic = 'PauseGame';

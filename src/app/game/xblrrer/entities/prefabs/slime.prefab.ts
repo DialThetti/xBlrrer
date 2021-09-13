@@ -5,9 +5,9 @@ import Solid from '@engine/core/physics/traits/solid';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Killable from '@extension/platformer/entities/traits/killable';
 import { PlatformerTraitContext } from '@extension/platformer/entities/traits/traits';
-import { FeatherEngine, Vector } from 'feather-engine-core';
-import { Entity, EntityPrefab, Side } from 'feather-engine-entities';
-import { SpriteSheet } from 'feather-engine-graphics';
+import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
+import { Entity, EntityPrefab, Side } from '@dialthetti/feather-engine-entities';
+import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import Stomp from '../traits/stomp';
 

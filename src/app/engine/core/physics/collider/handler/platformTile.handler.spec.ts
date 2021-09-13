@@ -1,5 +1,5 @@
-import { Vector } from 'feather-engine-core';
-import { Entity, Side } from 'feather-engine-entities';
+import { Vector } from '@dialthetti/feather-engine-core';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { anything, spy, verify } from 'ts-mockito';
 import LevelLayer, { PositionedTile } from '../../../../level/level-layer';
 import { createPlatformTileHandler } from './platformTile.handler';

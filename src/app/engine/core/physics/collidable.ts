@@ -1,5 +1,5 @@
 import Level from '@engine/level/level';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 
 export default interface Collidable {
     /**

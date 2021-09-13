@@ -1,6 +1,6 @@
 import PlatformerLevel from '@extension/platformer/level';
-import { FeatherEngine } from 'feather-engine-core';
-import { traitRegistry } from 'feather-engine-entities';
+import { FeatherEngine } from '@dialthetti/feather-engine-core';
+import { traitRegistry } from '@dialthetti/feather-engine-entities';
 
 declare const window: any; // eslint-disable-line
 

@@ -1,5 +1,5 @@
 import { TwoDimTileCollisionHandler } from '@engine/core/physics/collider/tile.collider';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import Crouch from '../../entities/traits/crouch';
 
 export function createOnlyCrouchTileHandler(): TwoDimTileCollisionHandler {

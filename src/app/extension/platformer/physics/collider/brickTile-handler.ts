@@ -1,6 +1,6 @@
 import { TwoDimTileCollisionHandler } from '@engine/core/physics/collider/tile.collider';
 import LevelLayer, { PositionedTile } from '@engine/level/level-layer';
-import { Entity, Side } from 'feather-engine-entities';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
 
 export function createBrickTileHandler(): TwoDimTileCollisionHandler {
     return {

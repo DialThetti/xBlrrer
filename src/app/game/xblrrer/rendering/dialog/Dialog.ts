@@ -5,7 +5,7 @@ import {
     PopControlInputEvent,
     ResumeGameEvent,
     StashControlInputEvent,
-} from 'feather-engine-core';
+} from '@dialthetti/feather-engine-core';
 export default class Dialog {
     static show(text: string[]) {
         FeatherEngine.eventBus.subscribe('dialog-next', {

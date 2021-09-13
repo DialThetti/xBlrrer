@@ -1,5 +1,5 @@
 import { TiledMap } from '@engine/tiled/model/tiled-map.model';
-import { Vector } from 'feather-engine-core';
+import { Vector } from '@dialthetti/feather-engine-core';
 
 export default interface PlatformerLevel {
     tiledMapPath: string;

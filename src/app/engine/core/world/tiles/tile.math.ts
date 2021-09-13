@@ -1,4 +1,4 @@
-import { Range } from 'feather-engine-core';
+import { Range } from '@dialthetti/feather-engine-core';
 
 export default class TileMath {
     constructor(private tilesize: number) {}

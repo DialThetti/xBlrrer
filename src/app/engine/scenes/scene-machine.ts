@@ -1,4 +1,4 @@
-import { FeatherEngine, GameLoop, info, OnDraw, OnUpdate } from 'feather-engine-core';
+import { FeatherEngine, GameLoop, info, OnDraw, OnUpdate } from '@dialthetti/feather-engine-core';
 import Scene from './scene';
 
 export default class SceneMachine {

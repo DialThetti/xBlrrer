@@ -1,6 +1,6 @@
 import { TwoDimTileCollisionHandler } from '@engine/core/physics/collider/tile.collider';
 import Killable from '@extension/platformer/entities/traits/killable';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 
 export function createDeadlyHandler(): TwoDimTileCollisionHandler {
     return {

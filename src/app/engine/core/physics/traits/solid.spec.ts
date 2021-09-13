@@ -1,5 +1,5 @@
-import { BoundingBox, Vector } from 'feather-engine-core';
-import { Entity, Side } from 'feather-engine-entities';
+import { BoundingBox, Vector } from '@dialthetti/feather-engine-core';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { PositionedTile } from '../../../level/level-layer';
 import Solid from './solid';
 

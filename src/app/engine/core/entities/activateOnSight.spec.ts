@@ -1,5 +1,5 @@
-import { Entity, EntityState } from 'feather-engine-entities';
-import Camera from '../world/camera';
+import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
+import Camera from '../../../core/rendering/camera';
 import ActivateOnSight from './activateOnSight';
 import { Context } from './trait';
 

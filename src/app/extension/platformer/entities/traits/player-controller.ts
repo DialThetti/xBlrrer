@@ -1,5 +1,5 @@
 import ATrait from '@engine/core/entities/trait';
-import { Vector } from 'feather-engine-core';
+import { Vector } from '@dialthetti/feather-engine-core';
 import PlatformerLevel from '../../level';
 import PlatformerEntity from '../platformer-entity';
 import CantGoLeft from './cantGoLeft';

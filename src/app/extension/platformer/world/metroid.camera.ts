@@ -1,5 +1,5 @@
-import { BoundingBox, FeatherEngine, PauseGameEvent, ResumeGameEvent, Vector } from 'feather-engine-core';
-import { Entity } from 'feather-engine-entities';
+import { BoundingBox, FeatherEngine, PauseGameEvent, ResumeGameEvent, Vector } from '@dialthetti/feather-engine-core';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import Camera from 'src/app/core/rendering/camera';
 
 export default class MetroidCamera extends Camera {

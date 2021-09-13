@@ -1,5 +1,5 @@
-import Camera from '@engine/core/world/camera';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
+import Camera from 'src/app/core/rendering/camera';
 import LevelLayer from './level-layer';
 import LevelTrait from './level-trait';
 

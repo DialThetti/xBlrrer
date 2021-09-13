@@ -1,4 +1,4 @@
-import { Entity, EntityState } from 'feather-engine-entities';
+import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
 import ATrait, { Context } from './trait';
 export default class ActivateOnSight extends ATrait {
     constructor() {

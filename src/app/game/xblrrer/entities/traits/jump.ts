@@ -1,8 +1,8 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import { FeatherEngine } from 'feather-engine-core';
-import { Entity, Side } from 'feather-engine-entities';
-import { EventStack, Subject } from 'feather-engine-events';
+import { FeatherEngine } from '@dialthetti/feather-engine-core';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
+import { EventStack, Subject } from '@dialthetti/feather-engine-events';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import Crouch from './crouch';
 

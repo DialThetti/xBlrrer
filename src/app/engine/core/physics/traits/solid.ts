@@ -1,5 +1,5 @@
 import { PositionedTile } from '@engine/level/level-layer';
-import { Entity, Side } from 'feather-engine-entities';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import ATrait from '../../entities/trait';
 
 export default class Solid extends ATrait {

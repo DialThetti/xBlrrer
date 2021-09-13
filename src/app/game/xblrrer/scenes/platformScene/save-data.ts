@@ -1,4 +1,4 @@
-import { Vector } from 'feather-engine-core';
+import { Vector } from '@dialthetti/feather-engine-core';
 
 export const InitialSaveData: Partial<xBlrrerSaveData> = {
     stage: { name: 'forest' },

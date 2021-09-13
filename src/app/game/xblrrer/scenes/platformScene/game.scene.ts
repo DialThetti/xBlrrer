@@ -7,9 +7,9 @@ import PlayerController from '@extension/platformer/entities/traits/player-contr
 import PlatformerLevel from '@extension/platformer/level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import DialogLayer from '@game/xblrrer/rendering/layers/dialog.layer';
-import { ClearControlInputEvent, FeatherEngine, KeyboardInput, RenderContext } from 'feather-engine-core';
-import { Entity, EntityState } from 'feather-engine-entities';
-import { FontLoader, NineWaySpriteSheetLoader } from 'feather-engine-graphics';
+import { ClearControlInputEvent, FeatherEngine, KeyboardInput, RenderContext } from '@dialthetti/feather-engine-core';
+import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
+import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 import AudioBoardLoader from 'src/app/core/sfx/audioboard.loader';
 import { addDebugToLevel } from '../../debug/debug';
 import LevelTimer from '../../entities/traits/leveltimer';

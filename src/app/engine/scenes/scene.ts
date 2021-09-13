@@ -1,4 +1,4 @@
-import { RenderContext } from 'feather-engine-core';
+import { RenderContext } from '@dialthetti/feather-engine-core';
 export default interface Scene {
     name: string;
     isLoadingScene: boolean;

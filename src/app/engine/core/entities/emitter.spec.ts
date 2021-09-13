@@ -1,4 +1,4 @@
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import { anything, mock, spy, verify } from 'ts-mockito';
 import Emitter from './emitter';
 import { Context } from './trait';

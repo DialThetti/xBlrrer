@@ -1,5 +1,5 @@
-import { Canvas, Loader, loadImage, loadJson } from 'feather-engine-core';
-import { createAnim, TileSet } from 'feather-engine-graphics';
+import { Canvas, Loader, loadImage, loadJson } from '@dialthetti/feather-engine-core';
+import { createAnim, TileSet } from '@dialthetti/feather-engine-graphics';
 import { TiledTileset } from '../model/tiled-tileset.model';
 import { TsxModel, TsxTileModel } from '../model/tsx.model';
 export default class TiledTilesetLoader implements Loader<TiledTileset> {

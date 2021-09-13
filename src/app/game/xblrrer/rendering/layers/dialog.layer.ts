@@ -1,8 +1,8 @@
 import RenderLayer from '@engine/level/rendering/renderLayer';
 import PlatformerLevel from '@extension/platformer/level';
-import { FeatherEngine, RenderContext } from 'feather-engine-core';
-import { Subject } from 'feather-engine-events';
-import { Font, NineWaySpriteSheet } from 'feather-engine-graphics';
+import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
+import { Subject } from '@dialthetti/feather-engine-events';
+import { Font, NineWaySpriteSheet } from '@dialthetti/feather-engine-graphics';
 
 export default class DialogLayer implements RenderLayer {
     private textToShow: string[];

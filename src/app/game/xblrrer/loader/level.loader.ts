@@ -11,8 +11,8 @@ import { createBrickTileHandler } from '@extension/platformer/physics/collider/b
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.tileset.layer';
 import CollisionLayer from '@extension/platformer/rendering/layers/debug/collision.layer';
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
-import { BoundingBox, Loader, loadImage, Vector } from 'feather-engine-core';
-import { entityRepo, EntityState } from 'feather-engine-entities';
+import { BoundingBox, Loader, loadImage, Vector } from '@dialthetti/feather-engine-core';
+import { entityRepo, EntityState } from '@dialthetti/feather-engine-entities';
 import EntityFactory from '../entities/entity.factory';
 import Glide from '../entities/traits/glide';
 import { createDeadlyHandler } from '../physics/collider/deadly.handler';

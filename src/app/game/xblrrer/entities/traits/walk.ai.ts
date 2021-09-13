@@ -1,5 +1,5 @@
 import ATrait from '@engine/core/entities/trait';
-import { Entity, Side } from 'feather-engine-entities';
+import { Entity, Side } from '@dialthetti/feather-engine-entities';
 
 export default class Walk extends ATrait {
     enabled = true;

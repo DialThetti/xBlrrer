@@ -1,6 +1,6 @@
 import ATrait from '@engine/core/entities/trait';
-import { Vector } from 'feather-engine-core';
-import { Entity } from 'feather-engine-entities';
+import { Vector } from '@dialthetti/feather-engine-core';
+import { Entity } from '@dialthetti/feather-engine-entities';
 
 export default class Crouch extends ATrait {
     private _down = false;

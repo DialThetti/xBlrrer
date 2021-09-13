@@ -1,4 +1,4 @@
-import { TraitCtnr } from 'feather-engine-entities';
+import { TraitCtnr } from '@dialthetti/feather-engine-entities';
 import Gravity from './gravity';
 import Physics from './physics';
 import Solid from './solid';

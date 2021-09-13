@@ -44,10 +44,6 @@
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-unused-imports": "^1.1.0",
-        "feather-engine-core": "file:projects/feather-engine-core",
-        "feather-engine-events": "file:projects/feather-engine-events",
-        "feather-engine-graphics": "file:projects/feather-engine-graphics",
-        "feather-engine-entities": "file:projects/feather-engine-entities",
         "jest": "^26.6.3",
         "prettier": "^2.3.0",
         "ts-jest": "^26.5.6",
@@ -58,5 +54,11 @@
         "webpack": "^5.37.1",
         "webpack-cli": "^4.7.0",
         "webpack-dev-server": "^3.11.2"
+    },
+    "dependencies": {
+        "@dialthetti/feather-engine-core": "0.0.1-alpha",
+        "@dialthetti/feather-engine-entities": "0.0.1-alpha",
+        "@dialthetti/feather-engine-events": "0.0.1-alpha",
+        "@dialthetti/feather-engine-graphics": "0.0.1-alpha"
     }
 }

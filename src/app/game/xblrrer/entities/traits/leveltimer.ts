@@ -1,6 +1,6 @@
 import ATrait, { Context } from '@engine/core/entities/trait';
 import PlatformerLevel from '@extension/platformer/level';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 import { SfxEvent } from 'src/app/core/sfx/events';
 
 export default class LevelTimer extends ATrait {

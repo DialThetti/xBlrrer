@@ -1,5 +1,5 @@
 import ATrait from '@engine/core/entities/trait';
-import { Entity } from 'feather-engine-entities';
+import { Entity } from '@dialthetti/feather-engine-entities';
 
 export default class Player extends ATrait {
     lives = 3;

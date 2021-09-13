@@ -1,4 +1,4 @@
-import { Entity, entityRepo, EntityState } from 'feather-engine-entities';
+import { Entity, entityRepo, EntityState } from '@dialthetti/feather-engine-entities';
 import { SpawnEvent } from './events';
 import ATrait, { Context } from './trait';
 
