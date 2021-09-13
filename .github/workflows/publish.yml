@@ -3,7 +3,10 @@ on:
   release:
     types: [created]
 jobs:
+
   build:
+    env:
+        TOKEN: ${{ secrets.TOKEN }}
     runs-on: ubuntu-latest 
     permissions: 
       contents: read
