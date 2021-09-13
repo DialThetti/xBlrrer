@@ -1,34 +1,52 @@
 {
-    "name": "feather-engine-core",
-    "version": "0.0.1-alpha",
-    "description": "",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "prepublish": "npm run build",
-        "build": "tsc",
-        "test": "jest --coverage",
-        "test:watch": "jest --watch --coverage",
-        "format": "npx prettier --write 'src/**/*.ts'",
-        "lint": "npx eslint --fix 'src/**/*.ts'"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@types/jest": "^26.0.23",
-        "eslint": "^7.22.0",
-        "eslint-config-prettier": "^8.1.0",
-        "eslint-import-resolver-alias": "^1.1.2",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-prettier": "^3.3.1",
-        "eslint-plugin-unused-imports": "^1.1.0",
-        "jest": "^26.6.3",
-        "prettier": "^2.3.0",
-        "ts-jest": "^26.5.6",
-        "ts-mockito": "^2.6.1",
-        "typescript": "^4.2.4"
-    },
-    "dependencies": {
-        "feather-engine-events": "0.0.1-alpha"
-    }
+  "name": "@dialthetti/feather-engine-core",
+  "version": "0.0.1-alpha",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage",
+    "format": "npx prettier --write 'src/**/*.ts'",
+    "lint": "npx eslint --fix 'src/**/*.ts'"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.spec.ts"
+    ],
+    "include": [
+      "src/**"
+    ],
+    "reporter": [
+      "html",
+      "clover",
+      "lcovonly"
+    ],
+    "all": true
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-unused-imports": "^1.1.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.3.0",
+    "ts-jest": "^26.5.6",
+    "ts-mockito": "^2.6.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@dialthetti/feather-engine-events": "0.0.1-alpha"
+  }
 }

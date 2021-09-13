@@ -1,4 +1,4 @@
-import { Subject } from 'feather-engine-events';
+import { Subject } from '@dialthetti/feather-engine-events';
 
 export const GAME_CONTROL_TOPIC = 'game-control';
 
