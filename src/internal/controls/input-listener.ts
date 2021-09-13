@@ -1,4 +1,4 @@
-import { Subject } from '../../../../feather-engine-events/dist';
+import { Subject } from '@dialthetti/feather-engine-events';
 import FeatherEngine from '../feather-engine';
 import { GameLoop } from '../gameloop/gameloop';
 import { OnInput } from '../gameloop/gameloop-listeners';

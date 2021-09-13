@@ -1,4 +1,4 @@
-import { EventBus } from 'feather-engine-events';
+import { EventBus } from '@dialthetti/feather-engine-events';
 import { GameLoop } from './gameloop/gameloop';
 import { error, warn } from './logger';
 import { CanvasRenderer } from './renderer/canvas-renderer';
