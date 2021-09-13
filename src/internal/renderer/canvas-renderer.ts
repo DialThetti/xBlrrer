@@ -1,5 +1,4 @@
-export type Canvas = OffscreenCanvas | HTMLCanvasElement | HTMLImageElement;
-
+export type Canvas = HTMLCanvasElement | HTMLImageElement;
 export class CanvasRenderer {
     private canvas: HTMLCanvasElement;
     private _context: RenderingContext;
@@ -21,15 +20,7 @@ export class CanvasRenderer {
         return context;
     }
 
-    private static createCanvas(width: number, height: number): OffscreenCanvas | HTMLCanvasElement {
-        if (typeof OffscreenCanvas === 'function') {
-            /* OffscreenCanvas is a class for Chrome, which should be used due inperformance of createCanvas('canvas'),
-             * currently still experimental,
-             * see https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/OffscreenCanvas
-             */
-            return new OffscreenCanvas(width, height);
-        }
-
+    private static createCanvas(width: number, height: number): HTMLCanvasElement {
         const buffer = document.createElement('canvas');
         buffer.width = width;
         buffer.height = height;

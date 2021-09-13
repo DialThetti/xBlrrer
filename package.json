@@ -1,6 +1,10 @@
 {
   "name": "@dialthetti/feather-engine-core",
   "version": "0.0.1-alpha",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DialThetti/feather-engine-core.git"
+  },
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
