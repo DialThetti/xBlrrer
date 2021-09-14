@@ -1,5 +1,5 @@
-import TiledMapLoader from '@engine/tiled/loader/tiled-map.loader';
 import { Loader, loadJson } from '@dialthetti/feather-engine-core';
+import { TiledMapLoader } from '@dialthetti/feather-engine-tiled';
 import PlatformerLevelData from '../model/platformer-level.interface';
 import PlatformerLevel from '../model/platformer-level.model';
 

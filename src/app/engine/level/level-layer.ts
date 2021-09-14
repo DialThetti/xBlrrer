@@ -1,7 +1,6 @@
-import { notNull } from '@engine/core/polyfill';
-import Tile from '@engine/core/world/tiles/tile';
-import TileMath from '@engine/core/world/tiles/tile.math';
 import { cross, Matrix, Range } from '@dialthetti/feather-engine-core';
+import { Tile, TileMath } from '@dialthetti/feather-engine-tiled';
+import { notNull } from '@engine/core/polyfill';
 
 export default class LevelLayer {
     private math: TileMath;

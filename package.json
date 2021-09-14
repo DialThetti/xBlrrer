@@ -59,6 +59,7 @@
         "@dialthetti/feather-engine-core": "0.0.1-alpha",
         "@dialthetti/feather-engine-entities": "0.0.1-alpha",
         "@dialthetti/feather-engine-events": "0.0.1-alpha",
-        "@dialthetti/feather-engine-graphics": "0.0.1-alpha"
+        "@dialthetti/feather-engine-graphics": "0.0.1-alpha",
+        "@dialthetti/feather-engine-tiled": "0.0.2-alpha"
     }
 }
