@@ -1,0 +1,16 @@
+{
+    "fx": {
+        "jump": {
+            "url": "./sfx/jump.wav"
+        },
+        "collect": {
+            "url": "./sfx/jingle.mp3"
+        },
+        "confirm": {
+            "url": "./sfx/confirm.mp3"
+        },
+        "pointer": {
+            "url": "./sfx/pointer.mp3"
+        }
+    }
+}

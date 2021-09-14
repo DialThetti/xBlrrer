@@ -1,0 +1,18 @@
+{
+    "imageURL": "./img/enemies/blue_slime.png",
+
+    "frames": [
+        { "name": "right-1", "rect": [8, 40, 16, 16] },
+        { "name": "right-2", "rect": [40, 40, 16, 16] },
+        { "name": "right-3", "rect": [72, 40, 16, 16] },
+        { "name": "right-4", "rect": [104, 40, 16, 16] }
+    ],
+
+    "animations": [
+        {
+            "name": "idle",
+            "frameLen": 8,
+            "frames": ["right-1", "right-2", "right-3", "right-4"]
+        }
+    ]
+}
