@@ -1,9 +1,9 @@
-import ATrait from '@engine/core/entities/trait';
-import { PositionedTile } from '@engine/level/level-layer';
 import { BoundingBox, RenderContext, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityState, Side, Trait, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { EventStack } from '@dialthetti/feather-engine-events';
-import { PlatformerTraitContext } from './traits/traits';
+import { PlatformerTraitContext } from '@game/entities/traits/traits';
+import ATrait from 'src/app/core/entities/trait';
+import { PositionedTile } from 'src/app/core/level/level-layer';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {
     pos = new Vector(0, 0);

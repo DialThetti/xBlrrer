@@ -2,8 +2,8 @@
 import { Canvas, CanvasRenderer, Matrix, RenderContext } from '@dialthetti/feather-engine-core';
 import { TileSet } from '@dialthetti/feather-engine-graphics';
 import { Tile } from '@dialthetti/feather-engine-tiled';
-import Level from '@engine/level/level';
-import RenderLayer from '@engine/level/rendering/renderLayer';
+import Level from 'src/app/core/level/level';
+import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 
 export default class ChunkedTilesetLayer implements RenderLayer {
     private chunks: Matrix<Canvas> = new Matrix();
