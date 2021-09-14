@@ -1,7 +1,7 @@
-import Trait from '../../../engine/core/entities/trait';
+import ATrait from '../../../core/entities/trait';
 import PlatformerEntity from './platformer-entity';
 
-class TestE extends Trait {
+class TestE extends ATrait {
     counter = 0;
     constructor() {
         super('test');

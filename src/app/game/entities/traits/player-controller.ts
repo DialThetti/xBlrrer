@@ -1,8 +1,9 @@
 import { Vector } from '@dialthetti/feather-engine-core';
+import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/level';
-import { CantGoLeft, Killable } from '@game/entities/traits';
 import ATrait from 'src/app/core/entities/trait';
-import PlatformerEntity from '../platformer-entity';
+import CantGoLeft from './cantGoLeft';
+import Killable from './killable';
 
 export default class PlayerController extends ATrait {
     player: PlatformerEntity;
