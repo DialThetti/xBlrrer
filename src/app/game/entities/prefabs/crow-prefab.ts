@@ -46,8 +46,7 @@ export default class CrowPrefab extends EntityPrefab {
 
         if (jump.falling) {
             const direction = entity.vel.y < 0 ? 'jump' : 'fall';
-            const x = sprite.getAnimation(direction)(jump.timeOfCurrentPhase);
-            return x;
+            return sprite.getAnimation(direction)(jump.timeOfCurrentPhase);
         }
 
         if (go.distance !== 0 && entity.vel.x !== 0) {

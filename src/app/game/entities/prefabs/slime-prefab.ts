@@ -52,8 +52,6 @@ class SlimeJumping extends TraitAdapter {
             entity.vel.y = -200;
             this.jumpTime.update(context.deltaTime, () => {
                 this.jumping = false;
-                // this.direction = Math.sign(Math.random() - 0.5);
-
                 this.jumpTime = new Interval(0.2 * Math.random());
             });
         }
