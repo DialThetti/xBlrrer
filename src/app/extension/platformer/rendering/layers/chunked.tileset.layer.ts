@@ -1,4 +1,3 @@
-
 import { Canvas, CanvasRenderer, Matrix, RenderContext } from '@dialthetti/feather-engine-core';
 import { TileSet } from '@dialthetti/feather-engine-graphics';
 import { Tile } from '@dialthetti/feather-engine-tiled';

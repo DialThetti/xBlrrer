@@ -5,7 +5,7 @@ export default class AudioBoard {
     enabled = true;
     isBlocked = false;
     bgmChannel: AudioScheduledSourceNode;
-
+    onlyOneTrack = false;
     volume = 1;
     constructor(private audioContext: AudioContext) {
         window.setAudio = (enabled): void => {
@@ -18,7 +18,7 @@ export default class AudioBoard {
     }
 
     setVolume(v: number): void {
-        this.volume = v > 1 ? 1 : v < 0 ? 0 : v;
+        this.volume = Math.max(0, Math.min(1, v));
     }
 
     addAudio(name: string, buffer: AudioBuffer): void {
@@ -32,8 +32,8 @@ export default class AudioBoard {
         if (this.isBlocked) {
             return;
         }
-        if (this.lastSource) {
-            //     this.lastSource.stop();
+        if (this.lastSource && this.onlyOneTrack) {
+            this.lastSource.stop();
         }
         const source = this.audioContext.createBufferSource();
 

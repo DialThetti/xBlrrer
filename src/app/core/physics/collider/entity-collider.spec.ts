@@ -1,6 +1,6 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 import { anything, spy, verify } from 'ts-mockito';
-import EntityCollider from './entity.collider';
+import EntityCollider from './entity-collider';
 describe('EntityCollider', () => {
     let collider: EntityCollider;
     const a = {

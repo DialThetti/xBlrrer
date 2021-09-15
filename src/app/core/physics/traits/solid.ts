@@ -1,8 +1,8 @@
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { PositionedTile } from 'src/app/core/level/level-layer';
-import ATrait from '../../entities/trait';
+import TraitAdapter from '../../entities/trait';
 
-export default class Solid extends ATrait {
+export default class Solid extends TraitAdapter {
     constructor() {
         super('solid');
     }

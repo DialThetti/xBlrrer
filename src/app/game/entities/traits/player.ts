@@ -1,7 +1,7 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import ATrait from 'src/app/core/entities/trait';
+import TraitAdapter from 'src/app/core/entities/trait';
 
-export default class Player extends ATrait {
+export default class Player extends TraitAdapter {
     lives = 3;
     private c = 0;
     score = 0;

@@ -2,19 +2,18 @@ import { Vector } from '@dialthetti/feather-engine-core';
 import { EntityPrefab } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import ATrait from 'src/app/core/entities/trait';
+import TraitAdapter from 'src/app/core/entities/trait';
 import Gravity from 'src/app/core/physics/traits/gravity';
 import Physics from 'src/app/core/physics/traits/physics';
 import Solid from 'src/app/core/physics/traits/solid';
 import { Crouch, Glide, Go, Jump, Killable, Player, Stomp } from '../traits';
-
 
 export default class CrowPrefab extends EntityPrefab {
     constructor() {
         super('crow', 'crow');
         this.size = new Vector(16, 32);
         this.offset = new Vector(8, 0);
-        this.traits = (): ATrait[] => [
+        this.traits = (): TraitAdapter[] => [
             new Solid(),
             new Gravity(new Vector(0, 750)),
             new Physics(),
@@ -47,8 +46,7 @@ export default class CrowPrefab extends EntityPrefab {
 
         if (jump.falling) {
             const direction = entity.vel.y < 0 ? 'jump' : 'fall';
-            const x = sprite.getAnimation(direction)(jump.timeOfCurrentPhase);
-            return x;
+            return sprite.getAnimation(direction)(jump.timeOfCurrentPhase);
         }
 
         if (go.distance !== 0 && entity.vel.x !== 0) {

@@ -2,13 +2,13 @@ import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityPrefab, EntityState, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { xBlrrerSaveData } from '@game/save-data';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import Dialog from '../../rendering/dialog/Dialog';
 import Glide from '../traits/glide';
-class CollectableTrait extends ATrait {
+class CollectableTrait extends TraitAdapter {
     lvl: PlatformerLevel;
 
     constructor(private onCollect: (entity: Entity) => void) {
@@ -28,7 +28,7 @@ abstract class CollectablePrefab extends EntityPrefab {
         super(name, sprite);
         this.size = new Vector(16, 32);
         this.offset = new Vector(0, 0);
-        this.traits = (): ATrait[] => [new CollectableTrait(onCollect)];
+        this.traits = (): TraitAdapter[] => [new CollectableTrait(onCollect)];
     }
     entityFac = (): Entity => new PlatformerEntity() as Entity;
 
@@ -41,7 +41,7 @@ abstract class CollectablePrefab extends EntityPrefab {
 
     abstract saveDataRef(saveData: xBlrrerSaveData): boolean;
 
-    async create() {
+    async create(): Promise<() => Entity> {
         const sav = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>();
         const data = sav.getData();
         if (this.saveDataRef(data)) return () => null;
@@ -57,7 +57,7 @@ export class GlideCollectable extends CollectablePrefab {
         });
     }
 
-    saveDataRef(saveData: xBlrrerSaveData) {
+    saveDataRef(saveData: xBlrrerSaveData): boolean {
         return saveData.collectables.hasGliding;
     }
 }

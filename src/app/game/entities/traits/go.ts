@@ -1,13 +1,13 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import Crouch from './crouch';
 import Jump from './jump';
 import Killable from './killable';
 
-export default class Go extends ATrait {
+export default class Go extends TraitAdapter {
     private acceleration = 400;
     private deceleration = 300;
 
@@ -35,12 +35,8 @@ export default class Go extends ATrait {
         const killable = entity.getTrait(Killable);
         const crouch = entity.getTrait(Crouch);
 
-        const dirOfAppliedForce = this.goRight ? 1 : this.goLeft ? -1 : 0;
-        if (dirOfAppliedForce !== 0) {
-            if (jump && !jump.falling) {
-                this.facingDirection = dirOfAppliedForce;
-            }
-        }
+        const dirOfAppliedForce = this.getDirection();
+        this.turnToMovementDirection(dirOfAppliedForce, jump);
         if (crouch.down) {
             this.decelToStand(entity, context.deltaTime);
             return;
@@ -57,15 +53,37 @@ export default class Go extends ATrait {
         } else if (entity.vel.x !== 0) {
             this.decelToStand(entity, context.deltaTime);
         } else {
-            if (FeatherEngine.debugSettings.enabled && this.distance !== 0) {
-                console.log('Standing at', Math.round(entity.pos.x / 16), Math.round(entity.pos.y / 16));
-            }
-            this.distance = 0;
+            this.resetMovement(entity);
         }
 
         const drag = this.dragFactor * entity.vel.x * absX;
         entity.vel.x -= drag;
         this.distance += absX * context.deltaTime;
+    }
+
+    private resetMovement(entity: PlatformerEntity) {
+        if (FeatherEngine.debugSettings.enabled && this.distance !== 0) {
+            console.log('Standing at', Math.round(entity.pos.x / 16), Math.round(entity.pos.y / 16));
+        }
+        this.distance = 0;
+    }
+
+    getDirection(): number {
+        if (this.goRight) {
+            return 1;
+        }
+        if (this.goLeft) {
+            return -1;
+        }
+        return 0;
+    }
+
+    private turnToMovementDirection(dirOfAppliedForce: number, jump: Jump) {
+        if (dirOfAppliedForce !== 0) {
+            if (jump && !jump.falling) {
+                this.facingDirection = dirOfAppliedForce;
+            }
+        }
     }
 
     private decelToStand(entity: Entity, deltaTime: number) {
@@ -74,12 +92,12 @@ export default class Go extends ATrait {
         entity.vel.x += entity.vel.x > 0 ? -decel : decel;
     }
 
-    public right(accel: boolean) {
+    public right(accel: boolean): void {
         this.goRight = accel;
         if (accel) this.goLeft = false;
     }
 
-    public left(accel: boolean) {
+    public left(accel: boolean): void {
         this.goLeft = accel;
         if (accel) this.goRight = false;
     }

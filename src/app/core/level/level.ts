@@ -13,6 +13,6 @@ export default class Level {
     camera: Camera;
 
     update(deltaTime: number): void {
-        this.levelTraits.forEach((trait) => trait.update(this));
+        this.levelTraits.forEach((trait) => trait.update(this, deltaTime));
     }
 }

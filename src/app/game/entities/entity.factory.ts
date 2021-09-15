@@ -1,7 +1,7 @@
 import { setEntityRepo } from '@dialthetti/feather-engine-entities';
-import { GlideCollectable } from './prefabs/collectable.prefab';
-import CrowPrefab from './prefabs/Crow.prefab';
-import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime.prefab';
+import { GlideCollectable } from './prefabs/collectable-prefab';
+import CrowPrefab from './prefabs/crow-prefab';
+import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime-prefab';
 
 const prefabs = [CrowPrefab, BlueSlimePrefab, RedSlimePrefab, GlideCollectable];
 export default class EntityFactory {

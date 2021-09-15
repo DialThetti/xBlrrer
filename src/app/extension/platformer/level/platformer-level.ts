@@ -95,6 +95,8 @@ export default class PlatformerLevel extends Level {
     }
 
     private init(): void {
-        //  if (this.bgm) this.audioBoard.playBGM(this.bgm);
+        if (this.bgm) {
+            this.audioBoard.playBGM(this.bgm);
+        }
     }
 }

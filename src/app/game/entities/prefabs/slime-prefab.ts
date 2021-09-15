@@ -2,7 +2,7 @@ import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityPrefab, Side } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import Gravity from 'src/app/core/physics/traits/gravity';
 import Physics from 'src/app/core/physics/traits/physics';
 import Solid from 'src/app/core/physics/traits/solid';
@@ -27,12 +27,12 @@ class Interval {
         }
     }
 }
-class SlimeJumping extends ATrait {
-    direction: number = -1;
+class SlimeJumping extends TraitAdapter {
+    direction = -1;
 
     jumping = false;
     jumpTime = new Interval(0.1);
-    onGround: boolean = true;
+    onGround = true;
 
     constructor(private jumpingInterval = new Interval(3, true)) {
         super('slime_jumping');
@@ -52,8 +52,6 @@ class SlimeJumping extends ATrait {
             entity.vel.y = -200;
             this.jumpTime.update(context.deltaTime, () => {
                 this.jumping = false;
-                // this.direction = Math.sign(Math.random() - 0.5);
-
                 this.jumpTime = new Interval(0.2 * Math.random());
             });
         }
@@ -85,7 +83,7 @@ class SlimeJumping extends ATrait {
     }
 }
 
-class RandomChangeDirection extends ATrait {
+class RandomChangeDirection extends TraitAdapter {
     changeDir = new Interval(2);
     lastDelta: number;
     constructor() {
@@ -103,7 +101,7 @@ class RandomChangeDirection extends ATrait {
     }
 }
 
-class TowardsPlayerDirection extends ATrait {
+class TowardsPlayerDirection extends TraitAdapter {
     changeDir = new Interval(2);
     lastDelta: number;
     deltaToPlayer: number;
@@ -122,11 +120,11 @@ class TowardsPlayerDirection extends ATrait {
 }
 
 class SlimePrefab extends EntityPrefab {
-    constructor(name: string, directionTrait: new () => ATrait, jumpTrait: () => ATrait) {
+    constructor(name: string, directionTrait: new () => TraitAdapter, jumpTrait: () => TraitAdapter) {
         super(name, name);
         this.size = new Vector(16, 16);
         this.offset = new Vector(0, 0);
-        this.traits = (): ATrait[] => [
+        this.traits = (): TraitAdapter[] => [
             new Gravity(),
             new Solid(),
             new Physics(),
@@ -143,7 +141,6 @@ class SlimePrefab extends EntityPrefab {
     }
 
     routeFrame(entity: PlatformerEntity, sprite: SpriteSheet): string {
-        const jumping = entity.getTrait(SlimeJumping);
         return sprite.getAnimation('idle')(entity.lifeTime * 60);
     }
 }

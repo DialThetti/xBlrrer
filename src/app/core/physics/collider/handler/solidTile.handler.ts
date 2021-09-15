@@ -1,6 +1,6 @@
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { PositionedTile } from 'src/app/core/level/level-layer';
-import { TwoDimTileCollisionHandler } from '../tile.collider';
+import { TwoDimTileCollisionHandler } from '../tile-collider';
 
 export function createSolidTileHandler(): TwoDimTileCollisionHandler {
     return {

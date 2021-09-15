@@ -2,7 +2,7 @@ import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { EventStack, Subject } from '@dialthetti/feather-engine-events';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import Crouch from './crouch';
 
@@ -38,7 +38,7 @@ class CountDown {
         return this.startVal - this.currentVal;
     }
 }
-export default class Jump extends ATrait {
+export default class Jump extends TraitAdapter {
     private eventBuffer = new EventStack();
     private velocity = 220;
     private raisingTime = new CountDown(0.15);
