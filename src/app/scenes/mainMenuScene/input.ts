@@ -3,7 +3,7 @@ import MainMenuScene from './mainMenu.scene';
 
 export default class MenuKeyboard implements KeyListener {
     constructor(private mainMenu: MainMenuScene) {}
-    keyDown(code: String): void {
+    keyDown(code: string): void {
         switch (code) {
             case 'Space':
                 this.mainMenu.submit();
@@ -19,7 +19,11 @@ export default class MenuKeyboard implements KeyListener {
         }
     }
 
-    keyUp(code: String): void {}
+    keyUp(): void {
+        // no keyUp atm
+    }
 
-    keyPressed(code: String): void {}
+    keyPressed(): void {
+        // no keyPressed atm
+    }
 }

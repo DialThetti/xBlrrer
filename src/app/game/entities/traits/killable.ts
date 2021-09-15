@@ -1,9 +1,9 @@
 import { EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Go from '@game/entities/traits/go';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 
-export default class Killable extends ATrait {
+export default class Killable extends TraitAdapter {
     dead = false;
     deadTime = 0;
     invulnabilityTime = 0;

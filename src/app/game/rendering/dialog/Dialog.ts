@@ -7,7 +7,7 @@ import {
     StashControlInputEvent,
 } from '@dialthetti/feather-engine-core';
 export default class Dialog {
-    static show(text: string[]) {
+    static show(text: string[]): void {
         FeatherEngine.eventBus.subscribe('dialog-next', {
             receive: () => {
                 text.shift();
@@ -28,8 +28,12 @@ export default class Dialog {
             keyDown: (e) => {
                 if (e == 'Space') FeatherEngine.eventBus.publish({ topic: 'dialog-next', payload: 'x' });
             },
-            keyUp: () => {},
-            keyPressed: () => {},
+            keyUp: () => {
+                //no keyup atm
+            },
+            keyPressed: () => {
+                //no keyPressed atm
+            },
         });
         FeatherEngine.eventBus.publish({ topic: 'dialog-text', payload: text[0] });
     }

@@ -73,5 +73,7 @@ export default class PlatformerKeyListener implements KeyListener {
         }
     }
 
-    keyPressed(code: string): void {}
+    keyPressed(): void {
+        // No key pressed atm
+    }
 }

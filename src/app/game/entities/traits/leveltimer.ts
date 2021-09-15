@@ -1,9 +1,9 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 import PlatformerLevel from '@extension/platformer/level/level';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 
-export default class LevelTimer extends ATrait {
+export default class LevelTimer extends TraitAdapter {
     totalTime = 300;
     currentTime = 0;
     hurried = false;

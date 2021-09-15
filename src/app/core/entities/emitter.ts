@@ -1,8 +1,8 @@
 import { Entity, entityRepo, EntityState } from '@dialthetti/feather-engine-entities';
 import { SpawnEvent } from './events';
-import ATrait, { Context } from './trait';
+import TraitAdapter, { Context } from './trait';
 
-export default class Emitter extends ATrait {
+export default class Emitter extends TraitAdapter {
     private cooldown = 0;
     direction = 1;
     constructor(

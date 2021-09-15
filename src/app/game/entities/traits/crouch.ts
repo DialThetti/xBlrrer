@@ -1,8 +1,8 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
-import ATrait from 'src/app/core/entities/trait';
+import TraitAdapter from 'src/app/core/entities/trait';
 
-export default class Crouch extends ATrait {
+export default class Crouch extends TraitAdapter {
     private _down = false;
     memoSize: Vector;
     memoOffset: Vector;

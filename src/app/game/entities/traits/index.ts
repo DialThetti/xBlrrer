@@ -11,4 +11,3 @@ import Stomp from './stomp';
 import Walk from './walk.ai';
 
 export { CantGoLeft, Crouch, Glide, Jump, Killable, LevelTimer, PlayerController, Player, Stomp, Walk, Go };
-

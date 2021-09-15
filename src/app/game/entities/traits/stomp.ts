@@ -1,10 +1,10 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import ATrait from 'src/app/core/entities/trait';
+import TraitAdapter from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import { StompEvent } from './events';
 import Killable from './killable';
 
-export default class Stomp extends ATrait {
+export default class Stomp extends TraitAdapter {
     bounceSpeed = 150;
     quereBounce = false;
     stomped = false;

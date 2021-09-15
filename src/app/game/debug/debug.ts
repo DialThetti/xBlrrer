@@ -1,4 +1,3 @@
-
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { traitRegistry } from '@dialthetti/feather-engine-entities';
 import PlatformerLevel from '@extension/platformer/level/level';

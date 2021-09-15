@@ -1,13 +1,13 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import ATrait, { Context } from 'src/app/core/entities/trait';
+import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 import Crouch from './crouch';
 import Jump from './jump';
 import Killable from './killable';
 
-export default class Go extends ATrait {
+export default class Go extends TraitAdapter {
     private acceleration = 400;
     private deceleration = 300;
 
@@ -74,12 +74,12 @@ export default class Go extends ATrait {
         entity.vel.x += entity.vel.x > 0 ? -decel : decel;
     }
 
-    public right(accel: boolean) {
+    public right(accel: boolean): void {
         this.goRight = accel;
         if (accel) this.goLeft = false;
     }
 
-    public left(accel: boolean) {
+    public left(accel: boolean): void {
         this.goLeft = accel;
         if (accel) this.goRight = false;
     }

@@ -13,7 +13,7 @@ export default class DialogLayer implements RenderLayer {
             },
         });
         FeatherEngine.eventBus.subscribe('dialog-clear', {
-            receive: (subject: Subject<string>) => {
+            receive: () => {
                 this.textToShow = null;
             },
         });

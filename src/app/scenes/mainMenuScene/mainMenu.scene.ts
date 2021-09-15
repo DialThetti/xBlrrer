@@ -1,4 +1,10 @@
-import { FeatherEngine, KeyboardInput, loadImage, RenderContext, SaveDataSystem } from '@dialthetti/feather-engine-core';
+import {
+    FeatherEngine,
+    KeyboardInput,
+    loadImage,
+    RenderContext,
+    SaveDataSystem,
+} from '@dialthetti/feather-engine-core';
 import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
@@ -39,7 +45,9 @@ export default class MainMenuScene implements Scene {
         KeyboardInput.addKeyListener(new MenuKeyboard(this));
     }
 
-    update(deltaTime: number): void {}
+    update(): void {
+        //nothing on update atm
+    }
     draw(context: RenderContext): void {
         this.layer.draw(context, { camera: this.camera } as Level);
     }

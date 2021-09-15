@@ -1,8 +1,8 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 import { LEVEL_COLLIDER } from 'src/app/core/level/level-collider';
-import ATrait, { Context } from '../../entities/trait';
+import TraitAdapter, { Context } from '../../entities/trait';
 
-export default class Physics extends ATrait {
+export default class Physics extends TraitAdapter {
     constructor() {
         super('physics');
     }

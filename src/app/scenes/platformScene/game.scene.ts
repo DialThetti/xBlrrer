@@ -25,8 +25,6 @@ export default class GameScene implements Scene {
 
     player: Entity;
 
-    constructor() {}
-
     createPlayerEnv(player: PlatformerEntity, level: PlatformerLevel): PlatformerEntity {
         const playerEnv = new PlatformerEntity();
         const playerControl = new PlayerController(level);
@@ -40,7 +38,7 @@ export default class GameScene implements Scene {
         return playerEnv;
     }
     async load(): Promise<void> {
-        let saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
+        const saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
 
         const { level, player, renderer, viewPorts } = await new LevelLoader(saveData).load();
         const audioContext = new AudioContext();

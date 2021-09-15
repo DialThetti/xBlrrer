@@ -1,8 +1,8 @@
-import { BoundingBox, RenderContext, Vector } from '@dialthetti/feather-engine-core';
+import { BoundingBox, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityState, Side, Trait, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { EventStack } from '@dialthetti/feather-engine-events';
 import { PlatformerTraitContext } from '@game/entities/traits/traits';
-import ATrait from 'src/app/core/entities/trait';
+import TraitAdapter from 'src/app/core/entities/trait';
 import { PositionedTile } from 'src/app/core/level/level-layer';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {
@@ -17,7 +17,7 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
 
     bounds = new BoundingBox(this.pos, this.size, this.offset);
 
-    traits: { [name: string]: ATrait } = {};
+    traits: { [name: string]: TraitAdapter } = {};
 
     standingOn: Set<string> = new Set();
 
@@ -53,15 +53,15 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
             .forEach((trait) => trait.obstruct(this, side, match));
     }
 
-    addTrait(trait: ATrait): void {
+    addTrait(trait: TraitAdapter): void {
         this.traits[trait.name] = trait;
     }
-    addTraits(traits: ATrait[]): void {
+    addTraits(traits: TraitAdapter[]): void {
         traits.forEach((t) => this.addTrait(t));
     }
 
     getTrait<T extends Trait>(trait: new () => T): T {
-        return this.traits[new trait().name] as any as T;
+        return this.traits[new trait().name] as unknown as T;
     }
     hasTrait<T extends Trait>(trait: new () => T): boolean {
         return this.traits[new trait().name] != null;
@@ -74,11 +74,11 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
         delete this.traits[name];
         return true;
     }
-    draw(context: RenderContext): void {
+    draw(): void {
         // entity has no rendering.
     }
 
-    private getTraits(): ATrait[] {
+    private getTraits(): TraitAdapter[] {
         return Object.keys(this.traits).map((key) => this.traits[key]);
     }
 }

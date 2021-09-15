@@ -1,7 +1,7 @@
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
-import ATrait from 'src/app/core/entities/trait';
+import TraitAdapter from 'src/app/core/entities/trait';
 
-export default class Walk extends ATrait {
+export default class Walk extends TraitAdapter {
     enabled = true;
     constructor(public speed = -30) {
         super('walk');
