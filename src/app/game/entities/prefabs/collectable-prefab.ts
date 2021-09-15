@@ -2,7 +2,7 @@ import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityPrefab, EntityState, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { xBlrrerSaveData } from '@game/save-data';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';

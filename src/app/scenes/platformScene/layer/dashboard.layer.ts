@@ -1,6 +1,6 @@
 import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect, Font } from '@dialthetti/feather-engine-graphics';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 
 export default class DashboardLayer implements RenderLayer {

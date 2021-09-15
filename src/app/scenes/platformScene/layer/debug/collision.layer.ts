@@ -1,6 +1,6 @@
 import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect } from '@dialthetti/feather-engine-graphics';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import Level from 'src/app/core/level/level';
 import { PositionedTile } from 'src/app/core/level/level-layer';
 import Camera from 'src/app/core/rendering/camera';

@@ -12,7 +12,7 @@ import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import Scene from 'src/app/core/scenes/scene';
 import SceneMachine from 'src/app/core/scenes/scene-machine';
 import AudioBoard from 'src/app/core/sfx/audioboard';
-import AudioBoardLoader from 'src/app/core/sfx/audioboard.loader';
+import AudioBoardLoader from 'src/app/core/sfx/audioboard-loader';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
 import MenuKeyboard from './input';
 import MainMenuLayer from './layer/mainmenu.layer';

@@ -1,6 +1,6 @@
 import { BoundingBox, FeatherEngine, RenderContext, Vector } from '@dialthetti/feather-engine-core';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import LoadingPrefab from '@game/entities/prefabs/Loading.prefab';
+import LoadingPrefab from '@game/entities/prefabs/loading-prefab';
 import Level from 'src/app/core/level/level';
 import { EntityLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';

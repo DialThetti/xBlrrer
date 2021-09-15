@@ -2,15 +2,15 @@ import { ClearControlInputEvent, FeatherEngine, KeyboardInput, RenderContext } f
 import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
 import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { PlayerController } from '@game/entities/traits';
 import { LEVEL_RENDERER } from 'src/app/core/level/level-renderer';
 import Scene from 'src/app/core/scenes/scene';
-import AudioBoardLoader from 'src/app/core/sfx/audioboard.loader';
+import AudioBoardLoader from 'src/app/core/sfx/audioboard-loader';
 import { addDebugToLevel } from '../../game/debug/debug';
 import LevelTimer from '../../game/entities/traits/leveltimer';
-import LevelLoader from '../../game/loader/level.loader';
+import LevelLoader from '../../game/loader/level-loader';
 import { xBlrrerSaveData } from '../../game/save-data';
 import PlatformerKeyListener from './input';
 import DashboardLayer from './layer/dashboard.layer';

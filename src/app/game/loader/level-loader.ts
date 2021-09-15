@@ -1,13 +1,13 @@
 import { BoundingBox, Loader, loadImage, Vector } from '@dialthetti/feather-engine-core';
 import { entityRepo, EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import LevelSpecLoader from '@extension/platformer/loader/platformer-level.loader';
 import { createBrickTileHandler } from '@extension/platformer/physics/collider/brickTile-handler';
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.tileset.layer';
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
 import LevelLayer from 'src/app/core/level/level-layer';
-import { addHandler } from 'src/app/core/physics/collider/tile.collider';
+import { addHandler } from 'src/app/core/physics/collider/tile-collider';
 import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import CollisionLayer from 'src/app/scenes/platformScene/layer/debug/collision.layer';

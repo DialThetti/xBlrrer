@@ -1,5 +1,5 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import PlatformerLevel from '@extension/platformer/level/level';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { SfxEvent } from 'src/app/core/sfx/events';
 
