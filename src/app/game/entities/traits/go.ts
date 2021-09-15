@@ -35,12 +35,8 @@ export default class Go extends TraitAdapter {
         const killable = entity.getTrait(Killable);
         const crouch = entity.getTrait(Crouch);
 
-        const dirOfAppliedForce = this.goRight ? 1 : this.goLeft ? -1 : 0;
-        if (dirOfAppliedForce !== 0) {
-            if (jump && !jump.falling) {
-                this.facingDirection = dirOfAppliedForce;
-            }
-        }
+        const dirOfAppliedForce = this.getDirection();
+        this.turnToMovementDirection(dirOfAppliedForce, jump);
         if (crouch.down) {
             this.decelToStand(entity, context.deltaTime);
             return;
@@ -57,15 +53,37 @@ export default class Go extends TraitAdapter {
         } else if (entity.vel.x !== 0) {
             this.decelToStand(entity, context.deltaTime);
         } else {
-            if (FeatherEngine.debugSettings.enabled && this.distance !== 0) {
-                console.log('Standing at', Math.round(entity.pos.x / 16), Math.round(entity.pos.y / 16));
-            }
-            this.distance = 0;
+            this.resetMovement(entity);
         }
 
         const drag = this.dragFactor * entity.vel.x * absX;
         entity.vel.x -= drag;
         this.distance += absX * context.deltaTime;
+    }
+
+    private resetMovement(entity: PlatformerEntity) {
+        if (FeatherEngine.debugSettings.enabled && this.distance !== 0) {
+            console.log('Standing at', Math.round(entity.pos.x / 16), Math.round(entity.pos.y / 16));
+        }
+        this.distance = 0;
+    }
+
+    getDirection(): number {
+        if (this.goRight) {
+            return 1;
+        }
+        if (this.goLeft) {
+            return -1;
+        }
+        return 0;
+    }
+
+    private turnToMovementDirection(dirOfAppliedForce: number, jump: Jump) {
+        if (dirOfAppliedForce !== 0) {
+            if (jump && !jump.falling) {
+                this.facingDirection = dirOfAppliedForce;
+            }
+        }
     }
 
     private decelToStand(entity: Entity, deltaTime: number) {
