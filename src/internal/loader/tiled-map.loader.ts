@@ -12,14 +12,14 @@ import TiledTilesetLoader from './tiled-tileset.loader';
 export default class TiledMapLoader implements Loader<TiledMap> {
     directory: string;
 
-    loader = () => loadJson<Tmx.TmxModel<any>>(this.path);
+    loader = (): Promise<Tmx.TmxModel<any>> => loadJson<Tmx.TmxModel<any>>(this.path);
     tilesetLoader = (
         tileset: {
             firstgid: number;
             source: string;
         },
         ids: number[],
-    ) => new TiledTilesetLoader(this.directory + tileset.source, tileset.firstgid).load();
+    ): Promise<TiledTileset> => new TiledTilesetLoader(this.directory + tileset.source, tileset.firstgid).load();
     constructor(private path: string) {
         this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
     }
@@ -38,7 +38,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
         const tilesets = await Promise.all([...tmx.tilesets].map(async (tileset) => this.tilesetLoader(tileset, ids)));
 
         const tileset = this.merge(tilesets);
-        let viewPorts = this.getViewPorts(tmx);
+        const viewPorts = this.getViewPorts(tmx);
         const entities = this.getEntities(tmx);
         const tiledMap = {
             tileset: tileset.tileset,
@@ -105,9 +105,9 @@ export default class TiledMapLoader implements Loader<TiledMap> {
                 .filter((layer) => layer.type === 'objectgroup' && layer.name == 'Entities')
                 .map((layer) =>
                     (layer as Tmx.TmxObjectLayer).objects
-                        .map((o) => ({ o, p: this.getProperty(o.properties, 'entity_prefab') }))
-                        .filter(({ o, p }) => p !== undefined)
-                        .map(({ o, p }) => ({ prefab: p as string, position: { x: o.x, y: o.y } })),
+                        .map((o) => ({ ...o, prefabId: this.getProperty(o.properties, 'entity_prefab') }))
+                        .filter(({ prefabId }) => prefabId !== undefined)
+                        .map((o) => ({ prefab: o.prefabId as string, position: { x: o.x, y: o.y } })),
                 ),
         );
 
@@ -136,16 +136,14 @@ export default class TiledMapLoader implements Loader<TiledMap> {
             }));
     }
 
-    hasEnabled(layer: Tmx.TmxLayer, key: string) {
+    hasEnabled(layer: Tmx.TmxLayer, key: string): boolean {
         return layer && layer.properties.some((t) => t.name === key && (t.value as boolean) === true);
     }
 
     merge(tilesets: TiledTileset[]): TiledTileset {
-        const t = {} as TiledTileset;
-
-        return tilesets.reduce((o, c) => {
-            const t = mergeImageContainer(o.tileset, c.tileset) as TileSet;
-            return { tileMatrix: { ...o.tileMatrix, ...c.tileMatrix }, tileset: t };
-        });
+        return tilesets.reduce((o, c) => ({
+            tileMatrix: { ...o.tileMatrix, ...c.tileMatrix },
+            tileset: mergeImageContainer(o.tileset, c.tileset) as TileSet,
+        }));
     }
 }
