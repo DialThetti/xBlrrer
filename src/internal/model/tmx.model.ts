@@ -70,6 +70,7 @@ export interface TmxObjectLayer {
         width: number;
         x: number;
         y: number;
+        properties: { name: string; type: string; value: unknown }[];
     }[];
     opacity: number;
     type: 'objectgroup';

@@ -39,10 +39,12 @@ export default class TiledMapLoader implements Loader<TiledMap> {
 
         const tileset = this.merge(tilesets);
         let viewPorts = this.getViewPorts(tmx);
+        const entities = this.getEntities(tmx);
         const tiledMap = {
             tileset: tileset.tileset,
             tileSize: w,
             viewPorts,
+            entities,
         } as TiledMap;
         tiledMap.layers = this.createTileMatrixes(tmx, tileset.tileMatrix);
         if (tmx.infinite) {
@@ -75,7 +77,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
         const x = flatMap(
             tmx.layers
                 .filter((layer) => layer.visible)
-                .filter((layer) => layer.type === 'objectgroup')
+                .filter((layer) => layer.type === 'objectgroup' && layer.name == 'ViewPorts')
                 .map((layer) =>
                     (layer as Tmx.TmxObjectLayer).objects.map(
                         (o) => new BoundingBox(new Vector(o.x, o.y), new Vector(o.width, o.height)),
@@ -88,6 +90,35 @@ export default class TiledMapLoader implements Loader<TiledMap> {
             ];
         }
         return x;
+    }
+    /**
+     * Get all Entities from the EntityLayer. The Entity Layer must be an object layer with the name "Entities"
+     * @param tmx
+     * @returns entity prefab ids with their position
+     */
+    getEntities(
+        tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>,
+    ): { prefab: string; position: { x: number; y: number } }[] {
+        const x = flatMap(
+            tmx.layers
+                .filter((layer) => layer.visible)
+                .filter((layer) => layer.type === 'objectgroup' && layer.name == 'Entities')
+                .map((layer) =>
+                    (layer as Tmx.TmxObjectLayer).objects
+                        .map((o) => ({ o, p: this.getProperty(o.properties, 'entity_prefab') }))
+                        .filter(({ o, p }) => p !== undefined)
+                        .map(({ o, p }) => ({ prefab: p as string, position: { x: o.x, y: o.y } })),
+                ),
+        );
+
+        return x;
+    }
+
+    getProperty(propertyMap: { name: string; type: string; value: unknown }[], name: string): unknown | undefined {
+        return propertyMap
+            .filter((p) => p.name == name)
+            .map((p) => p.value)
+            .pop();
     }
     createTileMatrixes(
         tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>,

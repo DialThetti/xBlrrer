@@ -9,6 +9,7 @@ export interface TiledMap {
     width: number;
     height: number;
     viewPorts: BoundingBox[];
+    entities: { prefab: string; position: { x: number; y: number } }[];
 }
 
 export interface Layer {
