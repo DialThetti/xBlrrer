@@ -11,6 +11,9 @@
         },
         "pointer": {
             "url": "./sfx/pointer.mp3"
+        },
+        "forest": {
+            "url": "./sfx/bgm/forest.wav"
         }
     }
 }
