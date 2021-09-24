@@ -51,7 +51,7 @@ export default class TileMatrixCreator {
         tiles.set(x, y, new Tile(`${id}`, tags));
     }
 
-    hasEnabled(tile: TsxTileModel, key: string) {
+    hasEnabled(tile: TsxTileModel, key: string): boolean {
         return tile && tile.properties.some((t) => t.name === key && (t.value as boolean) === true);
     }
 }

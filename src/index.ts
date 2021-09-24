@@ -5,4 +5,3 @@ import TileMath from './internal/world/tiles/tile.math';
 
 export * from './internal/model';
 export { Tile, TileMath, TiledMap, TiledMapLoader };
-

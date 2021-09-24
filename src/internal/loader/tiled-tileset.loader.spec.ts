@@ -13,7 +13,6 @@ describe('TiledTilesetLoader', () => {
     });
     describe('load', () => {
         let img;
-        let tileset;
 
         beforeEach(() => {
             tiledTilesetLoader.loader = mockLoader<TsxModel>({

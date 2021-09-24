@@ -5,9 +5,10 @@ import { TsxModel, TsxTileModel } from '../model/tsx.model';
 export default class TiledTilesetLoader implements Loader<TiledTileset> {
     directory: string;
     onlyRequiredIds?: number[];
-    loader = () => loadJson<TsxModel>(this.path);
-    imageLoader = (path: string) => loadImage(path);
-    createTileSet = (img: Canvas, tsxModel: TsxModel) => new TileSet(img, tsxModel.tilewidth, tsxModel.tileheight);
+    loader = (): Promise<TsxModel> => loadJson<TsxModel>(this.path);
+    imageLoader = (path: string): Promise<Canvas> => loadImage(path);
+    createTileSet = (img: Canvas, tsxModel: TsxModel): TileSet =>
+        new TileSet(img, tsxModel.tilewidth, tsxModel.tileheight);
 
     constructor(private path: string, private idOffset: number) {
         this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
