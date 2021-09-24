@@ -6,7 +6,5 @@ export default interface PlatformerLevelData {
     estimateTime: number;
     bgm?: string;
 
-    entities?: { name: string; pos: number[] }[];
-
     startPosition: Vector;
 }

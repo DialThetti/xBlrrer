@@ -36,12 +36,12 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         level.name = this.saveData.stage.name;
         level.width = levelSpec.tiledMap.width;
         level.height = levelSpec.tiledMap.height;
-        if (levelSpec.entities) {
-            levelSpec.entities
-                .map(({ name, pos: [x, y] }) => ({ name, pos: [x, y], entity: entityRepo[name]() as PlatformerEntity }))
+        if (levelSpec.tiledMap.entities) {
+            levelSpec.tiledMap.entities
+                .map((a) => ({ ...a, entity: entityRepo[a.prefab]() as PlatformerEntity }))
                 .filter(({ entity }) => entity)
-                .forEach(({ pos: [x, y], entity }) => {
-                    entity.pos.set(x * tileset.tilesize, y * tileset.tilesize);
+                .forEach(({ position: { x, y }, entity }) => {
+                    entity.pos.set(x, y);
                     level.entities.add(entity);
                 });
         }
