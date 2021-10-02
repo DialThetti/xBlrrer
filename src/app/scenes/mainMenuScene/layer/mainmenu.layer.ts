@@ -24,7 +24,7 @@ export default class MainMenuLayer implements RenderLayer {
             FeatherEngine.screenSize.width - 8 * 13 - 4,
             FeatherEngine.screenSize.height - 8 - 4,
         );
-        this.font.print('v0.0.20210924-1', context, 4, FeatherEngine.screenSize.height - 8 - 4);
+        this.font.print('v0.0.20211002-1', context, 4, FeatherEngine.screenSize.height - 8 - 4);
     }
 
     drawSelectBox(context: RenderContext, boxX: number, boxY: number): void {
