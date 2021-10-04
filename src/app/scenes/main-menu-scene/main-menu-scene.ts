@@ -11,7 +11,7 @@ import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import Scene from 'src/app/core/scenes/scene';
 import SceneMachine from 'src/app/core/scenes/scene-machine';
-import { AudioBoard, AudioBoardLoader } from 'src/app/core/sfx';
+import { AudioBoard } from 'src/app/core/sfx';
 import { PlaySFXEvent } from 'src/app/core/sfx/internal/events';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
 import MenuKeyboard from './input';
@@ -35,8 +35,6 @@ export default class MainMenuScene implements Scene {
         const title = await loadImage('./img/title.png');
         const nineway = await new NineWaySpriteSheetLoader('./img/frame.png').load();
         this.layers = [new MainMenuLayer(font, title, nineway, this)];
-        this.audioBoard = await new AudioBoardLoader('./sfx/audio.json').load();
-        this.audioBoard.setMasterVolume(0.5);
         if (!this.sav.hasData(0)) {
             this._option = 1;
             return;

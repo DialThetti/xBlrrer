@@ -1,4 +1,5 @@
 import SceneMachine from 'src/app/core/scenes/scene-machine';
+import { AudioBoardLoader } from '../core/sfx';
 import LoadingScene from '../scenes/loading-scene/loading-scene';
 import MainMenuScene from '../scenes/main-menu-scene/main-menu-scene';
 import GameScene from '../scenes/platform-scene/game.scene';
@@ -14,6 +15,8 @@ export default class Game {
             () => new MainMenuScene(),
             () => new GameScene(),
         ]);
+        const audioBoard = await new AudioBoardLoader('./sfx/audio.json').load();
+        audioBoard.setMasterVolume(0.5);
         await sceneMachine.load();
         sceneMachine.start();
         sceneMachine.setScene(MainMenuScene.NAME);
