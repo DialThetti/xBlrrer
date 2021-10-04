@@ -1,7 +1,7 @@
 import SceneMachine from 'src/app/core/scenes/scene-machine';
-import LoadingScene from '../scenes/loadingScene/loading.scene';
-import MainMenuScene from '../scenes/mainMenuScene/mainMenu.scene';
-import GameScene from '../scenes/platformScene/game.scene';
+import LoadingScene from '../scenes/loading-scene/loading-scene';
+import MainMenuScene from '../scenes/main-menu-scene/main-menu-scene';
+import GameScene from '../scenes/platform-scene/game.scene';
 
 declare const window: any; // eslint-disable-line
 

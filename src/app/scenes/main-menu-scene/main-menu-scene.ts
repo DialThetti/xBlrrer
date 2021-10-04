@@ -15,7 +15,7 @@ import { AudioBoard, AudioBoardLoader } from 'src/app/core/sfx';
 import { PlaySFXEvent } from 'src/app/core/sfx/internal/events';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
 import MenuKeyboard from './input';
-import MainMenuLayer from './layer/mainmenu.layer';
+import MainMenuLayer from './layer/main-menu-layer';
 
 export default class MainMenuScene implements Scene {
     public static NAME = 'main-menu';

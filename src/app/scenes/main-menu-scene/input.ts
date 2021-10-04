@@ -1,6 +1,6 @@
 import { FeatherEngine, KeyListener } from '@dialthetti/feather-engine-core';
 import { PlaySFXEvent, SetMasterVolumeEvent } from 'src/app/core/sfx';
-import MainMenuScene from './mainMenu.scene';
+import MainMenuScene from './main-menu-scene';
 
 export default class MenuKeyboard implements KeyListener {
     constructor(private mainMenu: MainMenuScene) {}
