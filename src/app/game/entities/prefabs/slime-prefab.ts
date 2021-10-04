@@ -6,7 +6,7 @@ import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import Gravity from 'src/app/core/physics/traits/gravity';
 import Physics from 'src/app/core/physics/traits/physics';
 import Solid from 'src/app/core/physics/traits/solid';
-import { SfxEvent } from 'src/app/core/sfx/events';
+import { PlaySFXEvent } from 'src/app/core/sfx';
 import { Killable, Stomp } from '../traits';
 import { PlatformerTraitContext } from '../traits/traits';
 
@@ -44,7 +44,9 @@ class SlimeJumping extends TraitAdapter {
                 this.jumping = true;
 
                 const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
-                entity.events.publish(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
+                FeatherEngine.eventBus.publish(
+                    new PlaySFXEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }),
+                );
             });
         }
         if (this.jumping) {

@@ -1,4 +1,5 @@
-import { KeyListener } from '@dialthetti/feather-engine-core';
+import { FeatherEngine, KeyListener } from '@dialthetti/feather-engine-core';
+import { PlaySFXEvent, SetMasterVolumeEvent } from 'src/app/core/sfx';
 import MainMenuScene from './mainMenu.scene';
 
 export default class MenuKeyboard implements KeyListener {
@@ -10,12 +11,22 @@ export default class MenuKeyboard implements KeyListener {
                 break;
             case 'KeyW':
                 this.mainMenu.option--;
-                this.mainMenu.audioBoard.playAudio('pointer', false, 0);
+                FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'pointer' }));
                 break;
             case 'KeyS':
                 this.mainMenu.option++;
-                this.mainMenu.audioBoard.playAudio('pointer', false, 0);
+                FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'pointer' }));
                 break;
+            case 'Digit1':
+                FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '-0.1' }));
+
+                break;
+            case 'Digit2':
+                FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '+0.1' }));
+
+                break;
+            default:
+                console.log(code);
         }
     }
 

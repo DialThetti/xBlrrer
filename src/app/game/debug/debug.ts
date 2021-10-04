@@ -19,5 +19,6 @@ export function addDebugToLevel(level: PlatformerLevel): void {
         window.hitboxesOnly = (enabled): void => {
             FeatherEngine.debugSettings.hitboxesOnly = enabled;
         };
+        window.FeatherEngine = FeatherEngine;
     }
 }
