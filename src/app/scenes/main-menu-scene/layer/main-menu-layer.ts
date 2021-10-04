@@ -19,7 +19,7 @@ export default class MainMenuLayer implements RenderLayer {
         this.drawSelectBox(context, (FeatherEngine.screenSize.width - 32 * 6) / 2, 16 * 21);
         const lastRow = FeatherEngine.screenSize.height - 8 - 4;
         this.font.print('by DialThetti', context, FeatherEngine.screenSize.width - 8 * 14 + 4, lastRow);
-        this.font.print('v0.0.20211002-1', context, 4, lastRow);
+        this.font.print('v0.0.20211004-1', context, 4, lastRow);
     }
 
     private drawSelectBox(context: RenderContext, boxX: number, boxY: number): void {
