@@ -1,0 +1,105 @@
+import {
+    FeatherEngine,
+    KeyboardInput,
+    loadImage,
+    RenderContext,
+    SaveDataSystem,
+} from '@dialthetti/feather-engine-core';
+import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
+import { initialData, Settings, settingsSaveSlot } from '@game/settings';
+import Level from 'src/app/core/level/level';
+import Camera from 'src/app/core/rendering/camera';
+import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import Scene from 'src/app/core/scenes/scene';
+import SceneMachine from 'src/app/core/scenes/scene-machine';
+import { AudioBoard, PlaySFXEvent, SetBGMVolumeEvent, SetMasterVolumeEvent, SetSFXVolumeEvent } from 'src/app/core/sfx';
+import MainMenuScene from '../main-menu-scene/main-menu-scene';
+import MenuSettingsKeyboard from './input';
+import MenuSettingsLayer from './layer/menu-settings-layer';
+
+export default class MenuSettingsScene implements Scene {
+    public static NAME = 'menu-settings';
+    name = MenuSettingsScene.NAME;
+    isLoadingScene = false;
+    layers: RenderLayer[];
+    _option = 0;
+    audioBoard: AudioBoard;
+    camera = new Camera();
+    sav: SaveDataSystem<Settings>;
+
+    private max = 4;
+
+    public currentData: Settings;
+    async load(): Promise<void> {
+        this.sav = FeatherEngine.getSaveDataSystem<Settings>();
+        const font = await new FontLoader('./img/font.png').load();
+        const title = await loadImage('./img/title.png');
+        const nineway = await new NineWaySpriteSheetLoader('./img/frame.png').load();
+        this.layers = [new MenuSettingsLayer(font, title, nineway, this)];
+        if (!this.sav.hasData(settingsSaveSlot)) {
+            this.sav.clearData();
+            this.sav.pushData(initialData);
+            this.sav.storeCurrentData(settingsSaveSlot);
+        }
+        this.sav.loadCurrentData(settingsSaveSlot);
+        this.currentData = { ...initialData, ...this.sav.getData() };
+    }
+
+    public changeSettings(dir: string): void {
+        const v = dir === 'inc' ? 1 : -1;
+        switch (this.option) {
+            case 0:
+                this.currentData.masterVolume = Math.max(0, Math.min(10, this.currentData.masterVolume + v));
+                FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: this.currentData.masterVolume / 10 }));
+                break;
+            case 1:
+                this.currentData.bgmVolume = Math.max(0, Math.min(10, this.currentData.bgmVolume + v));
+                FeatherEngine.eventBus.publish(new SetBGMVolumeEvent({ value: this.currentData.bgmVolume / 10 }));
+                break;
+            case 2:
+                this.currentData.sfxVolume = Math.max(0, Math.min(10, this.currentData.sfxVolume + v));
+                FeatherEngine.eventBus.publish(new SetSFXVolumeEvent({ value: this.currentData.sfxVolume / 10 }));
+                break;
+            default:
+                return;
+        }
+        this.updateSave();
+        FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'pointer' }));
+    }
+
+    private updateSave(): void {
+        this.sav.clearData();
+        this.sav.pushData(this.currentData);
+        this.sav.storeCurrentData(settingsSaveSlot);
+    }
+
+    async start(): Promise<void> {
+        KeyboardInput.clearKeyListeners();
+        KeyboardInput.addKeyListener(new MenuSettingsKeyboard(this));
+    }
+
+    update(): void {
+        //nothing on update atm
+    }
+    draw(context: RenderContext): void {
+        this.layers.forEach((layer) => layer.draw(context, { camera: this.camera } as Level));
+    }
+
+    get option(): number {
+        return this._option;
+    }
+
+    set option(v: number) {
+        if (!this.sav.hasData(0)) {
+            this._option = 1;
+            return;
+        }
+        this._option = (v < 0 ? v + this.max : v) % this.max;
+    }
+
+    submit(): void {
+        FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'confirm' }));
+        this.updateSave();
+        SceneMachine.INSTANCE.setScene(MainMenuScene.NAME, false);
+    }
+}

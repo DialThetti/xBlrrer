@@ -71,16 +71,18 @@ export default class MainMenuScene implements Scene {
                 if (this.sav.hasData(0)) {
                     this.sav.loadCurrentData(0);
                 }
+                SceneMachine.INSTANCE.setScene('game');
                 break;
             case 1:
                 this.sav.clearData();
                 this.sav.pushData(this.newGame());
+                SceneMachine.INSTANCE.setScene('game');
                 break;
             case 2:
                 //Settings
+                SceneMachine.INSTANCE.setScene('menu-settings', false);
                 break;
         }
-        SceneMachine.INSTANCE.setScene('game');
     }
 
     newGame(): Partial<xBlrrerSaveData> {
