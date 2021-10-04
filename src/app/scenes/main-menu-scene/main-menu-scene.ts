@@ -21,18 +21,20 @@ export default class MainMenuScene implements Scene {
     public static NAME = 'main-menu';
     name = MainMenuScene.NAME;
     isLoadingScene = false;
-    layer: RenderLayer;
+    layers: RenderLayer[];
     _option = 0;
     audioBoard: AudioBoard;
     camera = new Camera();
     sav: SaveDataSystem<xBlrrerSaveData>;
+
+    private max = 3;
 
     async load(): Promise<void> {
         this.sav = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>();
         const font = await new FontLoader('./img/font.png').load();
         const title = await loadImage('./img/title.png');
         const nineway = await new NineWaySpriteSheetLoader('./img/frame.png').load();
-        this.layer = new MainMenuLayer(font, title, nineway, this);
+        this.layers = [new MainMenuLayer(font, title, nineway, this)];
         this.audioBoard = await new AudioBoardLoader('./sfx/audio.json').load();
         this.audioBoard.setMasterVolume(0.5);
         if (!this.sav.hasData(0)) {
@@ -49,7 +51,7 @@ export default class MainMenuScene implements Scene {
         //nothing on update atm
     }
     draw(context: RenderContext): void {
-        this.layer.draw(context, { camera: this.camera } as Level);
+        this.layers.forEach((layer) => layer.draw(context, { camera: this.camera } as Level));
     }
 
     get option(): number {
@@ -61,8 +63,7 @@ export default class MainMenuScene implements Scene {
             this._option = 1;
             return;
         }
-        const max = 2;
-        this._option = (v < 0 ? v + max : v) % max;
+        this._option = (v < 0 ? v + this.max : v) % this.max;
     }
 
     submit(): void {
@@ -76,6 +77,10 @@ export default class MainMenuScene implements Scene {
             case 1:
                 this.sav.clearData();
                 this.sav.pushData(this.newGame());
+                break;
+            case 2:
+                //Settings
+                break;
         }
         SceneMachine.INSTANCE.setScene('game');
     }
