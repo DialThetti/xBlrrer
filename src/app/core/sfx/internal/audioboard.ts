@@ -1,40 +1,19 @@
-import { log } from '@dialthetti/feather-engine-core';
+import { FeatherEngine, log } from '@dialthetti/feather-engine-core';
 import { AudioEventHandler } from './audio-event-handler';
+import { AudioLayer } from './audio-layer';
+import { determineNewVolume } from './audio-utils';
 
-declare const window: any; // eslint-disable-line
-
-class AudioLayer {
-    volume: number = 1;
-    gainNode: GainNode;
-    constructor(private audioContext: AudioContext, private layerName: string) {
-        this.gainNode = this.audioContext.createGain();
-    }
-    setVolume(v: number | string): void {
-        const newVol = determineNewVolume(v, this.volume);
-        log(this, 'Set ' + this.layerName + ' Volume to ' + newVol);
-        this.volume = newVol;
-        this.gainNode.gain.value = this.volume;
-    }
-}
-
-function determineNewVolume(v: number | string, oldVolume: number): number {
-    let newVol: number;
-    if (typeof v === 'string') {
-        console.log(v, parseFloat(v));
-        newVol = parseFloat(v) + oldVolume;
-    } else {
-        newVol = v;
-    }
-    return Math.max(0, Math.min(1, newVol));
-}
 export default class AudioBoard {
+    public readonly audioContext: AudioContext;
+
     private buffers: { [name: string]: AudioBuffer } = {};
-    private lastSource: AudioScheduledSourceNode;
+
     private enabled = true;
     private isBlocked = false;
-    private bgmChannel: AudioScheduledSourceNode;
     private onlyOneTrack = false;
-    audioContext: AudioContext;
+
+    private bgmChannel: AudioScheduledSourceNode;
+    private lastSource: AudioScheduledSourceNode;
 
     private sfxVolume = 1;
     private masterAudioLayer: AudioLayer;
@@ -42,17 +21,10 @@ export default class AudioBoard {
 
     constructor() {
         this.audioContext = new AudioContext();
-        new AudioEventHandler().connect(this);
+        new AudioEventHandler(FeatherEngine.eventBus).connect(this);
         this.masterAudioLayer = new AudioLayer(this.audioContext, 'Master');
         this.masterAudioLayer.gainNode.connect(this.audioContext.destination);
         this.bgmLayer = new AudioLayer(this.audioContext, 'BGM');
-        window.setAudio = (enabled): void => {
-            this.enabled = enabled;
-            if (!enabled) {
-                if (this.lastSource) this.lastSource.stop();
-                if (this.bgmChannel) this.bgmChannel.stop();
-            }
-        };
     }
 
     setSfxVolume(v: number | string): void {
