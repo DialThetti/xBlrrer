@@ -40,7 +40,7 @@ export default class AudioBoard {
         this.buffers[name] = buffer;
     }
 
-    public playSfx(name: string, blocking: boolean, position: number): void {
+    public playSfx(name: string, blocking: boolean, position: number = 0): void {
         if (!this.enabled || this.isBlocked) {
             return;
         }
@@ -55,12 +55,11 @@ export default class AudioBoard {
         const source = this.audioContext.createBufferSource();
         const sfxGain = this.audioContext.createGain();
 
+        const panner = this.createPannerNode(position);
         if (Math.abs(position) <= 1) {
             position = 1;
         }
         sfxGain.gain.value = this.sfxVolume / (position * position);
-
-        const panner = this.createPannerNode(position);
 
         source.connect(sfxGain).connect(panner).connect(this.masterAudioLayer.gainNode);
 
