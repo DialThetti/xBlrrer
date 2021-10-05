@@ -5,7 +5,7 @@ import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { xBlrrerSaveData } from '@game/save-data';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
-import { SfxEvent } from 'src/app/core/sfx/events';
+import { PlaySfxEvent } from 'src/app/core/sfx';
 import Dialog from '../../rendering/dialog/Dialog';
 import Glide from '../traits/glide';
 class CollectableTrait extends TraitAdapter {
@@ -18,7 +18,7 @@ class CollectableTrait extends TraitAdapter {
         this.lvl = context.level as PlatformerLevel;
     }
     collides(entity: Entity, target: Entity): void {
-        target.events.publish(new SfxEvent({ name: 'collect' }));
+        FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'collect' }));
         this.onCollect(target);
         entity.state = EntityState.READY_TO_REMOVE;
     }

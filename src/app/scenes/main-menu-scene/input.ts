@@ -1,7 +1,8 @@
-import { KeyListener } from '@dialthetti/feather-engine-core';
-import MainMenuScene from './mainMenu.scene';
+import { FeatherEngine, KeyListener } from '@dialthetti/feather-engine-core';
+import { PlaySfxEvent } from 'src/app/core/sfx';
+import MainMenuScene from './main-menu-scene';
 
-export default class MenuKeyboard implements KeyListener {
+export default class Input implements KeyListener {
     constructor(private mainMenu: MainMenuScene) {}
     keyDown(code: string): void {
         switch (code) {
@@ -10,12 +11,14 @@ export default class MenuKeyboard implements KeyListener {
                 break;
             case 'KeyW':
                 this.mainMenu.option--;
-                this.mainMenu.audioBoard.playAudio('pointer', false, 0);
+                FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'pointer' }));
                 break;
             case 'KeyS':
                 this.mainMenu.option++;
-                this.mainMenu.audioBoard.playAudio('pointer', false, 0);
+                FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'pointer' }));
                 break;
+            default:
+                console.log(code);
         }
     }
 

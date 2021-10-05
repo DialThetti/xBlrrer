@@ -3,7 +3,7 @@ import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { EventStack, Subject } from '@dialthetti/feather-engine-events';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
-import { SfxEvent } from 'src/app/core/sfx/events';
+import { PlaySfxEvent } from 'src/app/core/sfx';
 import Crouch from './crouch';
 
 class JumpButtonPressed implements Subject<void> {
@@ -85,7 +85,9 @@ export default class Jump extends TraitAdapter {
                     this.raisingTime.reset();
 
                     const pos = (entity.bounds.left - context.camera.box.left) / FeatherEngine.screenSize.width;
-                    entity.events.publish(new SfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }));
+                    FeatherEngine.eventBus.publish(
+                        new PlaySfxEvent({ name: 'jump', blocking: false, position: 2 * pos - 1 }),
+                    );
                 }
             },
         });

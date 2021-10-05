@@ -6,8 +6,7 @@ import ActivateOnSight from 'src/app/core/entities/activateOnSight';
 import { Names, SpawnEvent } from 'src/app/core/entities/events';
 import { Context } from 'src/app/core/entities/trait';
 import Level from 'src/app/core/level/level';
-import AudioBoard from 'src/app/core/sfx/audioboard';
-import { PLAY_SFX_TOPIC, SfxEvent } from 'src/app/core/sfx/events';
+import { PlayBgmEvent } from 'src/app/core/sfx';
 import EntityColliderTrait from './trait/entity-collider-trait';
 
 export default class PlatformerLevel extends Level {
@@ -19,8 +18,6 @@ export default class PlatformerLevel extends Level {
     time = 0;
     estimateTime: number;
     startPosition: Vector;
-
-    audioBoard: AudioBoard;
 
     bgm: string;
 
@@ -64,12 +61,6 @@ export default class PlatformerLevel extends Level {
         this.time += deltaTime;
 
         this.getEntities(EntityState.ACTIVE).forEach((e) => {
-            e.events.process(PLAY_SFX_TOPIC, {
-                receive: (sfxEvent: SfxEvent): void => {
-                    const { name, blocking, position } = sfxEvent.payload;
-                    this.audioBoard.playAudio(name, blocking, position);
-                },
-            });
             e.events.process(Names.spawn, {
                 receive: (spawnEvent: SpawnEvent) => {
                     this.entities.add(spawnEvent.payload.entity);
@@ -96,7 +87,7 @@ export default class PlatformerLevel extends Level {
 
     private init(): void {
         if (this.bgm) {
-            this.audioBoard.playBGM(this.bgm);
+            FeatherEngine.eventBus.publish(new PlayBgmEvent({ name: this.bgm }));
         }
     }
 }

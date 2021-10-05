@@ -7,16 +7,15 @@ import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { PlayerController } from '@game/entities/traits';
 import { LEVEL_RENDERER } from 'src/app/core/level/level-renderer';
 import Scene from 'src/app/core/scenes/scene';
-import AudioBoardLoader from 'src/app/core/sfx/audioboard-loader';
 import { addDebugToLevel } from '../../game/debug/debug';
 import LevelTimer from '../../game/entities/traits/leveltimer';
 import LevelLoader from '../../game/loader/level-loader';
 import { xBlrrerSaveData } from '../../game/save-data';
-import PlatformerKeyListener from './input';
-import DashboardLayer from './layer/dashboard.layer';
-import CameraLayer from './layer/debug/camera.layer';
-import ScrollSpyLayer from './layer/debug/scrollSpy.layer';
-import DialogLayer from './layer/dialog.layer';
+import Input from './input';
+import DashboardLayer from './layer/dashboard-layer';
+import CameraLayer from './layer/debug/camera-layer';
+import ScrollSpyLayer from './layer/debug/scrollSpy-layer';
+import DialogLayer from './layer/dialog-layer';
 export default class GameScene implements Scene {
     public static NAME = 'game';
     name = GameScene.NAME;
@@ -41,12 +40,10 @@ export default class GameScene implements Scene {
         const saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
 
         const { level, player, renderer, viewPorts } = await new LevelLoader(saveData).load();
-        const audioContext = new AudioContext();
 
-        const audioBoard = await new AudioBoardLoader(audioContext, './sfx/audio.json').load();
         const font = await new FontLoader('./img/font.png').load();
         FeatherEngine.eventBus.publish(new ClearControlInputEvent());
-        KeyboardInput.addKeyListener(new PlatformerKeyListener(player));
+        KeyboardInput.addKeyListener(new Input(player));
 
         const camera = new MetroidCamera(viewPorts);
         if (saveData.position) {
@@ -55,7 +52,6 @@ export default class GameScene implements Scene {
         const playerEnv = this.createPlayerEnv(player, level);
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);
-        level.audioBoard = audioBoard;
         const frame = await new NineWaySpriteSheetLoader('./img/frame.png').load();
         renderer.push(
             new CameraLayer(camera),

@@ -2,9 +2,10 @@ import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
 import SceneMachine from 'src/app/core/scenes/scene-machine';
+import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
 
-export default class PlatformerKeyListener implements KeyListener {
+export default class Input implements KeyListener {
     constructor(private playerFigure: Entity & TraitCtnr) {}
     keyDown(code: string): void {
         const go = this.playerFigure.getTrait(Go);
@@ -28,6 +29,14 @@ export default class PlatformerKeyListener implements KeyListener {
                 break;
             case 'KeyD':
                 go.right(true);
+                break;
+            case 'Digit1':
+                FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '-0.1' }));
+
+                break;
+            case 'Digit2':
+                FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '+0.1' }));
+
                 break;
             case 'Digit5':
                 // TODO Due by Actions
