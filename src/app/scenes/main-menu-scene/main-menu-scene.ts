@@ -56,8 +56,8 @@ export default class MainMenuScene implements Scene {
     }
 
     set option(v: number) {
-        if (!this.sav.hasData(0) && v == 0) {
-            this._option = 1;
+        console.log(v);
+        if ((!this.sav.hasData(0) && v == 0) || v == this.max) {
             return;
         }
         this._option = (v < 0 ? v + this.max : v) % this.max;

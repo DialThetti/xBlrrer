@@ -90,10 +90,6 @@ export default class MenuSettingsScene implements Scene {
     }
 
     set option(v: number) {
-        if (!this.sav.hasData(0)) {
-            this._option = 1;
-            return;
-        }
         this._option = (v < 0 ? v + this.max : v) % this.max;
     }
 
