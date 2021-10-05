@@ -1,11 +1,9 @@
-import { FeatherEngine, log } from '@dialthetti/feather-engine-core';
+import { FeatherEngine, info, log } from '@dialthetti/feather-engine-core';
 import { AudioEventHandler } from './audio-event-handler';
 import { AudioLayer } from './audio-layer';
 import { determineNewVolume } from './audio-utils';
 
 export default class AudioBoard {
-    public readonly audioContext: AudioContext;
-
     private buffers: { [name: string]: AudioBuffer } = {};
 
     private enabled = true;
@@ -19,8 +17,7 @@ export default class AudioBoard {
     private masterAudioLayer: AudioLayer;
     private bgmLayer: AudioLayer;
 
-    constructor() {
-        this.audioContext = new AudioContext();
+    constructor(public readonly audioContext = new AudioContext()) {
         new AudioEventHandler(FeatherEngine.eventBus).connect(this);
         this.masterAudioLayer = new AudioLayer(this.audioContext, 'Master');
         this.masterAudioLayer.gainNode.connect(this.audioContext.destination);
@@ -44,29 +41,26 @@ export default class AudioBoard {
     }
 
     public playSfx(name: string, blocking: boolean, position: number): void {
-        console.info(`Starting ${name} as Sfx`);
-        if (!this.enabled) {
+        if (!this.enabled || this.isBlocked) {
             return;
         }
-        if (this.isBlocked) {
+        if (Math.abs(position) > 3) {
             return;
         }
+        info(this, `Starting ${name} as Sfx`);
+
         if (this.lastSource && this.onlyOneTrack) {
             this.lastSource.stop();
         }
         const source = this.audioContext.createBufferSource();
         const sfxGain = this.audioContext.createGain();
 
-        if (Math.abs(position) > 3) {
-            return;
+        if (Math.abs(position) <= 1) {
+            position = 1;
         }
-        if (Math.abs(position) > 1) {
-            sfxGain.gain.value = this.sfxVolume / (position * position);
-        } else {
-            sfxGain.gain.value = this.sfxVolume;
-        }
-        const pannerOptions = { pan: position };
-        const panner = new StereoPannerNode(this.audioContext, pannerOptions);
+        sfxGain.gain.value = this.sfxVolume / (position * position);
+
+        const panner = this.createPannerNode(position);
 
         source.connect(sfxGain).connect(panner).connect(this.masterAudioLayer.gainNode);
 
@@ -79,11 +73,15 @@ export default class AudioBoard {
         this.lastSource = source;
     }
 
+    createPannerNode(position: number): StereoPannerNode {
+        return new StereoPannerNode(this.audioContext, { pan: position });
+    }
+
     public playBgm(name: string): void {
         if (!this.enabled) {
             return;
         }
-        console.info(`Starting ${name} as BGM`);
+        info(this, `Starting ${name} as BGM`);
         if (this.bgmChannel) {
             this.bgmChannel.stop();
         }

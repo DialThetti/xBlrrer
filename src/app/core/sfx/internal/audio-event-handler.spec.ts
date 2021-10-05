@@ -1,4 +1,5 @@
 import { EventBus } from '@dialthetti/feather-engine-events';
+import AudioBoard from './audio-board';
 import {
     AudioEventHandler,
     playBgmOn,
@@ -7,7 +8,6 @@ import {
     setMasterVolumeOn,
     setSfxVolumeOn,
 } from './audio-event-handler';
-import AudioBoard from './audioboard';
 import * as Events from './events';
 
 describe('AudioEventHandler', () => {

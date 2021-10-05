@@ -1,5 +1,5 @@
 import { EventBus, Receiver } from '@dialthetti/feather-engine-events';
-import AudioBoard from './audioboard';
+import AudioBoard from './audio-board';
 import * as Events from './events';
 
 export const playSfxOn: (AudioBoard) => Receiver = (audioBoard) => ({
