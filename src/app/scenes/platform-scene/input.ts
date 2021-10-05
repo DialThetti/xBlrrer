@@ -5,7 +5,7 @@ import SceneMachine from 'src/app/core/scenes/scene-machine';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
 
-export default class PlatformerKeyListener implements KeyListener {
+export default class Input implements KeyListener {
     constructor(private playerFigure: Entity & TraitCtnr) {}
     keyDown(code: string): void {
         const go = this.playerFigure.getTrait(Go);

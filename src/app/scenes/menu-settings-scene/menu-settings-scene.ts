@@ -12,9 +12,9 @@ import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import Scene from 'src/app/core/scenes/scene';
 import SceneMachine from 'src/app/core/scenes/scene-machine';
-import { AudioBoard, PlaySFXEvent, SetBGMVolumeEvent, SetMasterVolumeEvent, SetSFXVolumeEvent } from 'src/app/core/sfx';
+import { AudioBoard, PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
 import MainMenuScene from '../main-menu-scene/main-menu-scene';
-import MenuSettingsKeyboard from './input';
+import Input from './input';
 import MenuSettingsLayer from './layer/menu-settings-layer';
 
 export default class MenuSettingsScene implements Scene {
@@ -54,17 +54,17 @@ export default class MenuSettingsScene implements Scene {
                 break;
             case 1:
                 this.currentData.bgmVolume = Math.max(0, Math.min(10, this.currentData.bgmVolume + v));
-                FeatherEngine.eventBus.publish(new SetBGMVolumeEvent({ value: this.currentData.bgmVolume / 10 }));
+                FeatherEngine.eventBus.publish(new SetBgmVolumeEvent({ value: this.currentData.bgmVolume / 10 }));
                 break;
             case 2:
                 this.currentData.sfxVolume = Math.max(0, Math.min(10, this.currentData.sfxVolume + v));
-                FeatherEngine.eventBus.publish(new SetSFXVolumeEvent({ value: this.currentData.sfxVolume / 10 }));
+                FeatherEngine.eventBus.publish(new SetSfxVolumeEvent({ value: this.currentData.sfxVolume / 10 }));
                 break;
             default:
                 return;
         }
         this.updateSave();
-        FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'pointer' }));
+        FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'pointer' }));
     }
 
     private updateSave(): void {
@@ -75,7 +75,7 @@ export default class MenuSettingsScene implements Scene {
 
     async start(): Promise<void> {
         KeyboardInput.clearKeyListeners();
-        KeyboardInput.addKeyListener(new MenuSettingsKeyboard(this));
+        KeyboardInput.addKeyListener(new Input(this));
     }
 
     update(): void {
@@ -98,7 +98,7 @@ export default class MenuSettingsScene implements Scene {
     }
 
     submit(): void {
-        FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'confirm' }));
+        FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'confirm' }));
         this.updateSave();
         SceneMachine.INSTANCE.setScene(MainMenuScene.NAME, false);
     }

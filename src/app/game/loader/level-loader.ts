@@ -10,7 +10,7 @@ import LevelLayer from 'src/app/core/level/level-layer';
 import { addHandler } from 'src/app/core/physics/collider/tile-collider';
 import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
-import CollisionLayer from 'src/app/scenes/platform-scene/layer/debug/collision.layer';
+import CollisionLayer from 'src/app/scenes/platform-scene/layer/debug/collision-layer';
 import EntityFactory from '../entities/entity.factory';
 import Glide from '../entities/traits/glide';
 import { createDeadlyHandler } from '../physics/collider/deadly.handler';
@@ -29,8 +29,6 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         const levelSpec = await new LevelSpecLoader(this.saveData.stage.name).load();
 
         await new EntityFactory().prepare();
-
-        const tileset = levelSpec.tiledMap.tileset;
 
         const level = new PlatformerLevel(levelSpec.tiledMap.tileSize);
         level.name = this.saveData.stage.name;

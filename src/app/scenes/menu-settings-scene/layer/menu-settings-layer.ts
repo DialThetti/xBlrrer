@@ -17,7 +17,6 @@ export default class MenuSettingsLayer implements RenderLayer {
         });
         context.drawImage(this.img, 0, 0);
         this.drawSelectBox(context, 16 * 4, 16 * 4);
-        const lastRow = FeatherEngine.screenSize.height - 8 - 4;
     }
 
     private drawSelectBox(context: RenderContext, boxX: number, boxY: number): void {

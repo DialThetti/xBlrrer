@@ -1,7 +1,7 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
 import TraitAdapter from 'src/app/core/entities/trait';
-import { PlaySFXEvent } from 'src/app/core/sfx';
+import { PlaySfxEvent } from 'src/app/core/sfx';
 import { StompEvent } from './events';
 import Killable from './killable';
 
@@ -27,7 +27,7 @@ export default class Stomp extends TraitAdapter {
 
         if (this.fromAbove(us, them)) {
             this.bounce(us, them);
-            FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'stomp' }));
+            FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'stomp' }));
             us.events.publish(new StompEvent({ us, them }));
         }
     }

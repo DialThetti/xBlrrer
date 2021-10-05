@@ -1,7 +1,7 @@
 import { log } from '@dialthetti/feather-engine-core';
 import { determineNewVolume } from './audio-utils';
 export class AudioLayer {
-    volume: number = 1;
+    volume = 1;
     gainNode: GainNode;
     constructor(private audioContext: AudioContext, private layerName: string) {
         this.gainNode = this.audioContext.createGain();

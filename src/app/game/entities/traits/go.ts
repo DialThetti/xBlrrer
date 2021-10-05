@@ -2,7 +2,7 @@ import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
-import { PlaySFXEvent } from 'src/app/core/sfx';
+import { PlaySfxEvent } from 'src/app/core/sfx';
 import Crouch from './crouch';
 import Jump from './jump';
 import Killable from './killable';
@@ -24,7 +24,7 @@ export default class Go extends TraitAdapter {
     }
     obstruct(entity: Entity, side: Side): void {
         if (side === Side.LEFT || side === Side.RIGHT) {
-            if (this.distance != 0) FeatherEngine.eventBus.publish(new PlaySFXEvent({ name: 'bump' }));
+            if (this.distance != 0) FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'bump' }));
             this.distance = 0;
         }
     }

@@ -4,7 +4,7 @@ import { AudioBoard, AudioBoardLoader } from '../core/sfx';
 import LoadingScene from '../scenes/loading-scene/loading-scene';
 import MainMenuScene from '../scenes/main-menu-scene/main-menu-scene';
 import MenuSettingsScene from '../scenes/menu-settings-scene/menu-settings-scene';
-import GameScene from '../scenes/platform-scene/game.scene';
+import GameScene from '../scenes/platform-scene/game-scene';
 import { initialData, Settings, settingsSaveSlot } from './settings';
 
 declare const window: any; // eslint-disable-line
@@ -33,7 +33,7 @@ export default class Game {
         sav.loadCurrentData(settingsSaveSlot);
         const s: Settings = { ...initialData, ...sav.getData() };
         audioBoard.setMasterVolume(s.masterVolume / 10);
-        audioBoard.setBGMVolume(s.bgmVolume / 10);
+        audioBoard.setBgmVolume(s.bgmVolume / 10);
         audioBoard.setSfxVolume(s.sfxVolume / 10);
     }
 }

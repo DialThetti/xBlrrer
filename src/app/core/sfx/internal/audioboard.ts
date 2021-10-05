@@ -27,23 +27,23 @@ export default class AudioBoard {
         this.bgmLayer = new AudioLayer(this.audioContext, 'BGM');
     }
 
-    setSfxVolume(v: number | string): void {
+    public setSfxVolume(v: number | string): void {
         const newVol = determineNewVolume(v, this.sfxVolume);
         log(this, 'Set SFX Volume to ' + newVol);
         this.sfxVolume = newVol;
     }
-    setBGMVolume(v: number | string): void {
+    public setBgmVolume(v: number | string): void {
         this.bgmLayer.setVolume(v);
     }
-    setMasterVolume(v: number | string): void {
+    public setMasterVolume(v: number | string): void {
         this.masterAudioLayer.setVolume(v);
     }
 
-    addAudio(name: string, buffer: AudioBuffer): void {
+    public addAudio(name: string, buffer: AudioBuffer): void {
         this.buffers[name] = buffer;
     }
 
-    playAudio(name: string, blocking: boolean, position: number): void {
+    public playSfx(name: string, blocking: boolean, position: number): void {
         console.info(`Starting ${name} as Sfx`);
         if (!this.enabled) {
             return;
@@ -79,7 +79,7 @@ export default class AudioBoard {
         this.lastSource = source;
     }
 
-    playBGM(name: string): void {
+    public playBgm(name: string): void {
         if (!this.enabled) {
             return;
         }

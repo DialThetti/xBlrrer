@@ -6,7 +6,7 @@ import ActivateOnSight from 'src/app/core/entities/activateOnSight';
 import { Names, SpawnEvent } from 'src/app/core/entities/events';
 import { Context } from 'src/app/core/entities/trait';
 import Level from 'src/app/core/level/level';
-import { PlayBGMEvent } from 'src/app/core/sfx';
+import { PlayBgmEvent } from 'src/app/core/sfx';
 import EntityColliderTrait from './trait/entity-collider-trait';
 
 export default class PlatformerLevel extends Level {
@@ -87,7 +87,7 @@ export default class PlatformerLevel extends Level {
 
     private init(): void {
         if (this.bgm) {
-            FeatherEngine.eventBus.publish(new PlayBGMEvent({ name: this.bgm }));
+            FeatherEngine.eventBus.publish(new PlayBgmEvent({ name: this.bgm }));
         }
     }
 }
