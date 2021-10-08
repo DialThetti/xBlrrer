@@ -1,19 +1,326 @@
 {
-    "file.lastUsedOpenFilter": "All Files (*)",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tmx/forest_world.json",
+    "automapping.whileDrawing": false,
+    "expandedProjectPaths": [
+        "tmx",
+        "tsx/forest",
+        "tsx",
+        "tsx/beach"
+    ],
+    "exportAsImage.drawTileGrid": false,
+    "exportAsImage.includeBackgroundColor": false,
+    "exportAsImage.useCurrentScale": false,
+    "exportAsImage.visibleLayersOnly": true,
+    "file.lastUsedOpenFilter": "JSON map files (*.json)",
     "fileStates": {
-        "tmx/forest_world.json": {
-            "scale": 1.5,
-            "selectedLayer": 7,
+        "/home/sglass/Documents/tiled/s4m/demo.tmx": {
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 264.66666666666663,
-                "y": 281
+                "x": -178.75,
+                "y": 3
             }
         },
-        "tsx/beach/beach-deco2.json": {
+        "/home/sglass/git/github.com/shield-blades/src/assets/tiled/demo.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 246.33333333333331,
+                "y": 132.33333333333331
+            }
+        },
+        "/home/sglass/git/github.com/shield-blades/src/assets/tiled/dev.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 545.6666666666666,
+                "y": 484.66666666666663
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/back.json": {
+            "scaleInDock": 0.5
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/deco.json": {
+            "scaleInDock": 0.5
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/dev/transition.json": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 236,
+                "y": 358
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/forest-1.json": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1636,
+                "y": 369.33333333333326
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/forest.json": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 167,
+                "y": 341
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/forest/forest_world.json": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 2190,
+                "y": 985
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/main.json": {
+            "scaleInDock": 2
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tmx/forest_world.json": {
+            "scale": 0.25,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 2564,
+                "y": -208
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tmx/main-menu.json": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320,
+                "y": 223.33333333333331
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tmx/title.json": {
+            "scale": 1.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 246,
+                "y": 219.33333333333331
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/beach/beach.json": {
+            "scaleInDock": 2,
+            "scaleInEditor": 2
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/beach/water.json": {
             "scaleInDock": 1
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/font.json": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/forest/back.json": {
+            "scaleInDock": 0.33
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/forest/deco.json": {
+            "scaleInDock": 0.5
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/forest/main.json": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 4
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/gui.json": {
+            "dynamicWrapping": false,
+            "scaleInDock": 3,
+            "scaleInEditor": 5.5
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/test-assets/tesst-tilemap-infinite.json": {
+            "scale": 23,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2.369565217391303,
+                "y": 3.391304347826086
+            }
+        },
+        "/home/sglass/git/github.com/xBlrrer/src/test-assets/test-tilemap.json": {
+            "scale": 130.3875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1.0008628127696289,
+                "y": 1.5032115808647302
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/gsk_map.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 43.33333333333334,
+                "y": -533.1666666666666
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/001_Houses.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 596.6666666666666,
+                "y": 358.66666666666663
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/001_NewBarkTown.tmx": {
+            "scale": 1.5491477272727272,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 298.2284980744545,
+                "y": 124.58463231248854
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/002_Houses.tmx": {
+            "scale": 2.12265625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 184.20316525579685,
+                "y": 192.211998527788
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/002_Route29.tmx": {
+            "scale": 1.553063725490196,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 912.3901207291093,
+                "y": 294.2570819853231
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/gsk-tileset.tsx": {
+            "scaleInDock": 2
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/gsk_map.tmx": {
+            "scale": 1.5919921874999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -144.4730707888603,
+                "y": -511.9371856213962
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/t1.tmx": {
+            "scale": 5.094374999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 71.84394552815606,
+                "y": 79.89203778677462
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/untitled.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 205,
+                "y": 165
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/untitled2.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -8,
+                "y": 8
+            }
+        },
+        "/home/sglass/git/gitlab.intershop.de/pokemon/core/assets/maps/untitled3.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 8545,
+                "y": 8522
+            }
+        },
+        "tmx/forest_world.json": {
+            "scale": 0.25,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1854,
+                "y": 10
+            }
+        },
+        "tmx/title.json": {
+            "scale": 1.8342633928571428,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 255.96105871615455,
+                "y": 223.52296927289322
+            }
+        },
+        "tsx/beach/beach-deco1.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tsx/beach/beach-deco2.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tsx/beach/beach.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tsx/beach/water.json": {
+            "scaleInDock": 1
+        },
+        "tsx/font.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tsx/forest/back.json": {
+            "scaleInDock": 0.33
+        },
+        "tsx/forest/deco.json": {
+            "scaleInDock": 0.5
+        },
+        "tsx/forest/main.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
         }
     },
+    "frame.defaultDuration": 150,
+    "last.imagePath": "/home/sglass/git/github.com/xBlrrer/xBlrrer/src/assets/tiled/tsx/beach",
+    "map.fixedSize": true,
+    "map.height": 28,
+    "map.lastUsedFormat": "json",
+    "map.layerDataFormat": 1,
+    "map.orientation": 1,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 32,
+    "openFiles": [
+        "tmx/forest_world.json",
+        "tmx/title.json",
+        "tsx/forest/main.json",
+        "tsx/beach/beach.json",
+        "tsx/beach/beach-deco1.json",
+        "tsx/beach/beach-deco2.json"
+    ],
+    "project": "xBlrrer.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
-        "tmx/forest_world.json"
-    ]
+        "tsx/beach/beach-deco2.json",
+        "tsx/beach/beach-deco1.json",
+        "tsx/beach/beach.json",
+        "tsx/forest/main.json",
+        "tmx/title.json",
+        "tmx/forest_world.json",
+        "tsx/font.json",
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tmx/forest_world.json",
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/forest/main.json",
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/font.json",
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tsx/beach/beach.json",
+        "/home/sglass/git/github.com/xBlrrer/src/assets/tiled/tmx/title.json"
+    ],
+    "resizeMap.removeObjects": true,
+    "tileset.embedInMap": false,
+    "tileset.lastUsedFormat": "json",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#ff00ff",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
 }

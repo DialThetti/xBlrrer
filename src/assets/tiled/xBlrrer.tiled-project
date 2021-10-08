@@ -1,0 +1,11 @@
+{
+    "automappingRulesFile": "",
+    "commands": [
+    ],
+    "extensionsPath": ".",
+    "folders": [
+        "tmx",
+        "tsx"
+    ],
+    "objectTypesFile": ""
+}
