@@ -62,6 +62,7 @@
         "@dialthetti/feather-engine-entities": "0.0.1-alpha",
         "@dialthetti/feather-engine-events": "0.0.1-alpha",
         "@dialthetti/feather-engine-graphics": "0.0.1-alpha",
-        "@dialthetti/feather-engine-tiled": "0.1.0"
+        "@dialthetti/feather-engine-tiled": "0.1.0",
+        "gameanalytics": "^4.3.0"
     }
 }

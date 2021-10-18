@@ -4,6 +4,7 @@ import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { xBlrrerSaveData } from '@game/save-data';
+import { CollectTrackingEvent } from 'src/app/core/analytics/events';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 import Dialog from '../../rendering/dialog/Dialog';
@@ -54,6 +55,7 @@ export class GlideCollectable extends CollectablePrefab {
         super('glide-collectable', 'crow_feather', (e) => {
             Dialog.show(['You have collected a crow Feather: Glide', 'Press and Hold [Space] in midair to glide']);
             e.addTraits([new Glide()]);
+            FeatherEngine.eventBus.publish(new CollectTrackingEvent({ name: 'glide', pos: e.pos }));
         });
     }
 

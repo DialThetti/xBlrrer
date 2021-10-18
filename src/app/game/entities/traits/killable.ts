@@ -1,6 +1,8 @@
+import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Go from '@game/entities/traits/go';
+import { GetDamageTrackingEvent } from 'src/app/core/analytics/events';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 
 export default class Killable extends TraitAdapter {
@@ -61,9 +63,8 @@ export default class Killable extends TraitAdapter {
     repulse(e: PlatformerEntity): void {
         if (e.hasTrait(Go)) {
             console.log('repulsing');
-            debugger;
             const g = e.getTrait(Go);
-
+            FeatherEngine.eventBus.publish(new GetDamageTrackingEvent({ pos: e.pos }));
             e.vel.x = -g.facingDirection * 100;
             e.vel.y = -150;
         }

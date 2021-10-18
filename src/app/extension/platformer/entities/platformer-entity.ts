@@ -22,7 +22,6 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
     standingOn: Set<string> = new Set();
 
     events = new EventStack();
-
     collide(target: Entity): void {
         this.getTraits()
             .filter((trait) => trait.enabled)

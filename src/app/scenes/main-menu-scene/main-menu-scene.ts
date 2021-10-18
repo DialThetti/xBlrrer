@@ -5,6 +5,9 @@ import {
     RenderContext,
     SaveDataSystem,
 } from '@dialthetti/feather-engine-core';
+import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
+import { getAnalytics } from 'src/app/core/analytics/analytics_connetor';
+import { ContinueTrackingEvent, NewGameTrackingEvent } from 'src/app/core/analytics/events';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
@@ -72,9 +75,12 @@ export default class MainMenuScene implements Scene {
                         new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }),
                     );
                 }
+                FeatherEngine.eventBus.publish(new ContinueTrackingEvent({ level: this.sav.getData().stage.name }));
+                SceneMachine.INSTANCE.setScene('game');
                 break;
             case 1:
                 this.sav.clearData();
+                FeatherEngine.eventBus.publish(new NewGameTrackingEvent({ level: 'forest' }));
                 this.sav.pushData(this.newGame());
                 FeatherEngine.eventBus.publish(
                     new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }),

@@ -1,11 +1,14 @@
 import { BoundingBox, FeatherEngine, PauseGameEvent, ResumeGameEvent, Vector } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
+import { getAnalytics } from 'src/app/core/analytics/analytics_connetor';
+import { TransitionTrackingEvent } from 'src/app/core/analytics/events';
 import Camera from 'src/app/core/rendering/camera';
 
 export default class MetroidCamera extends Camera {
     cameras: Camera[];
     currentCamIndex = -1;
     transition: Transition;
+    timeOnScreen = 0;
     constructor(viewPorts: BoundingBox[]) {
         super();
         this.cameras = viewPorts.map((a) => new Camera(a));
@@ -20,6 +23,7 @@ export default class MetroidCamera extends Camera {
     }
 
     update(playerFigure: Entity, dT: number): void {
+        this.timeOnScreen += dT;
         this.updateCurrentCam(playerFigure);
 
         this.currentCam.update(playerFigure, dT);
@@ -33,6 +37,7 @@ export default class MetroidCamera extends Camera {
             if (this.transition.delta >= 1) {
                 this.transition = null;
                 FeatherEngine.eventBus.publish(new ResumeGameEvent());
+                this.timeOnScreen = 0;
             }
         }
     }
@@ -49,6 +54,13 @@ export default class MetroidCamera extends Camera {
                         this.cameras[potentionallyNewCam].box.pos,
                     );
                     FeatherEngine.eventBus.publish(new PauseGameEvent());
+                    FeatherEngine.eventBus.publish(new TransitionTrackingEvent(
+                        {
+                            level: "forest",
+                            timeOnScreen: this.timeOnScreen,
+                            transition: { from: this.currentCamIndex, to: potentionallyNewCam }
+                        }
+                    ));
                 }
             }
 
@@ -65,7 +77,7 @@ export default class MetroidCamera extends Camera {
 
 class Transition {
     delta = 0; //0..1
-    constructor(private currentPosition: Vector, public targetPosition: Vector) {}
+    constructor(private currentPosition: Vector, public targetPosition: Vector) { }
     get(deltaTime: number): Vector {
         this.delta += deltaTime;
         if (this.delta > 1) this.delta = 1;
