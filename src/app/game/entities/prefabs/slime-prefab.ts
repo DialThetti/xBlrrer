@@ -61,7 +61,7 @@ class SlimeJumping extends TraitAdapter {
             });
         }
     }
-   
+
     obstruct(entity: Entity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.onGround = true;
@@ -91,7 +91,7 @@ class SlimeJumping extends TraitAdapter {
 
 class RandomChangeDirection extends TraitAdapter {
     changeDir = new Interval(2);
-    lastDelta: number;
+    lastDelta: number = 0;
     constructor() {
         super('slime_random_turn');
     }
