@@ -11,8 +11,7 @@ import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
-import SceneMachine from 'src/app/core/scenes/scene-machine';
-import { AudioBoard, PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
+import { PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
 import MenuSettingsScene from '../menu-settings-scene/menu-settings-scene';
 import GameScene from '../platform-scene/game-scene';
@@ -25,7 +24,6 @@ export default class MainMenuScene implements Scene {
     isLoadingScene = false;
     layers: RenderLayer[];
     _option = 0;
-    audioBoard: AudioBoard;
     camera = new Camera();
     sav: SaveDataSystem<xBlrrerSaveData>;
 
