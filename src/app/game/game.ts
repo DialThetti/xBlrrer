@@ -1,5 +1,6 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import SceneMachine from 'src/app/core/scenes/scene-machine';
+import { ShowSceneEvent } from '../core/scenes/events';
 import { AudioBoard, AudioBoardLoader } from '../core/sfx';
 import LoadingScene from '../scenes/loading-scene/loading-scene';
 import MainMenuScene from '../scenes/main-menu-scene/main-menu-scene';
@@ -10,7 +11,7 @@ import { initialData, Settings, settingsSaveSlot } from './settings';
 declare const window: any; // eslint-disable-line
 
 export default class Game {
-    constructor(private canvasId: string) {}
+    constructor(private canvasId: string) { }
 
     async start(): Promise<void> {
         const sceneMachine = new SceneMachine().addScenes([
@@ -24,7 +25,9 @@ export default class Game {
         this.setVolumeBySave(audioBoard);
         await sceneMachine.load();
         sceneMachine.start();
-        sceneMachine.setScene(MainMenuScene.NAME);
+        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: MainMenuScene.NAME, withLoading: true, forceLoading: true }));
+        FeatherEngine.init({ canvasId: this.canvasId, width: 512, height: 448 });
+        FeatherEngine.start();
     }
 
     setVolumeBySave(audioBoard: AudioBoard): void {

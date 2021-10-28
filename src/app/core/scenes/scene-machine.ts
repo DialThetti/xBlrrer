@@ -1,4 +1,5 @@
 import { FeatherEngine, GameLoop, info, OnDraw, OnUpdate } from '@dialthetti/feather-engine-core';
+import { ShowSceneEvent, SHOW_SCENE_EVENT } from './events';
 import Scene from './scene';
 
 export default class SceneMachine {
@@ -27,11 +28,13 @@ export default class SceneMachine {
                 },
             } as OnDraw,
         );
-        FeatherEngine.init({ canvasId: 'screen', width: 256 * 2, height: 224 * 2 });
-        FeatherEngine.start();
+        FeatherEngine.eventBus.subscribe(SHOW_SCENE_EVENT, {
+            receive: (event: ShowSceneEvent) =>
+                this.setScene(event.payload.name, event.payload.withLoading, event.payload.forceLoading)
+        })
     }
 
-    public async setScene(name: string, withLoading = true, forceLoading = false): Promise<void> {
+    private async setScene(name: string, withLoading = true, forceLoading = false): Promise<void> {
         if (withLoading) {
             info(this, `Switch to Loadingscreen`);
             this.currentSceneName = 'loadingScene';

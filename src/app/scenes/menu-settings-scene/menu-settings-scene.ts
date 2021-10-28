@@ -10,6 +10,7 @@ import { initialData, Settings, settingsSaveSlot } from '@game/settings';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
 import SceneMachine from 'src/app/core/scenes/scene-machine';
 import { AudioBoard, PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
@@ -96,6 +97,6 @@ export default class MenuSettingsScene implements Scene {
     submit(): void {
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'confirm' }));
         this.updateSave();
-        SceneMachine.INSTANCE.setScene(MainMenuScene.NAME, false);
+        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: MainMenuScene.NAME, withLoading: false, forceLoading: false }));
     }
 }
