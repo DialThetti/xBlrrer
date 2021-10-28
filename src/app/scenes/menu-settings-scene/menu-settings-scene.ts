@@ -13,13 +13,12 @@ import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
 import { PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
-import MainMenuScene from '../main-menu-scene/main-menu-scene';
+import { SceneNames } from '../scene.names';
 import Input from './input';
 import MenuSettingsLayer from './layer/menu-settings-layer';
 
 export default class MenuSettingsScene implements Scene {
-    public static NAME = 'menu-settings';
-    name = MenuSettingsScene.NAME;
+    name = SceneNames.MenuSettings;
     isLoadingScene = false;
     layers: RenderLayer[];
     _option = 0;
@@ -95,6 +94,6 @@ export default class MenuSettingsScene implements Scene {
     submit(): void {
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'confirm' }));
         this.updateSave();
-        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: MainMenuScene.NAME, withLoading: false, forceLoading: false }));
+        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: false, forceLoading: false }));
     }
 }

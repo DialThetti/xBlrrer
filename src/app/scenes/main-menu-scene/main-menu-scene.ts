@@ -13,14 +13,12 @@ import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
 import { PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
-import MenuSettingsScene from '../menu-settings-scene/menu-settings-scene';
-import GameScene from '../platform-scene/game-scene';
+import { SceneNames } from '../scene.names';
 import Input from './input';
 import MainMenuLayer from './layer/main-menu-layer';
 
 export default class MainMenuScene implements Scene {
-    public static NAME = 'main-menu';
-    name = MainMenuScene.NAME;
+    name = SceneNames.MainMenu;
     isLoadingScene = false;
     layers: RenderLayer[];
     _option = 0;
@@ -70,17 +68,17 @@ export default class MainMenuScene implements Scene {
             case 0:
                 if (this.sav.hasData(0)) {
                     this.sav.loadCurrentData(0);
-                    FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: GameScene.NAME, withLoading: true, forceLoading: true }));
+                    FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }));
                 }
                 break;
             case 1:
                 this.sav.clearData();
                 this.sav.pushData(this.newGame());
-                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: GameScene.NAME, withLoading: true, forceLoading: true }));
+                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }));
                 break;
             case 2:
                 //Settings
-                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: MenuSettingsScene.NAME, withLoading: false, forceLoading: false }));
+                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MenuSettings, withLoading: false, forceLoading: false }));
                 break;
         }
     }

@@ -2,7 +2,6 @@ import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
-import SceneMachine from 'src/app/core/scenes/scene-machine';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
 

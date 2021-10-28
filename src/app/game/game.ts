@@ -6,6 +6,7 @@ import LoadingScene from '../scenes/loading-scene/loading-scene';
 import MainMenuScene from '../scenes/main-menu-scene/main-menu-scene';
 import MenuSettingsScene from '../scenes/menu-settings-scene/menu-settings-scene';
 import GameScene from '../scenes/platform-scene/game-scene';
+import { SceneNames } from '../scenes/scene.names';
 import { initialData, Settings, settingsSaveSlot } from './settings';
 
 declare const window: any; // eslint-disable-line
@@ -25,7 +26,7 @@ export default class Game {
         this.setVolumeBySave();
         await sceneMachine.load();
         sceneMachine.start();
-        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: MainMenuScene.NAME, withLoading: true, forceLoading: true }));
+        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: true, forceLoading: true }));
         FeatherEngine.init({ canvasId: this.canvasId, width: 512, height: 448 });
         FeatherEngine.start();
     }
