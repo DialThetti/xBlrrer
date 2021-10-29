@@ -9,20 +9,19 @@ import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
-import SceneMachine from 'src/app/core/scenes/scene-machine';
-import { AudioBoard, PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
+import { PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
+import { SceneNames } from '../scene.names';
 import Input from './input';
 import MainMenuLayer from './layer/main-menu-layer';
 
 export default class MainMenuScene implements Scene {
-    public static NAME = 'main-menu';
-    name = MainMenuScene.NAME;
+    name = SceneNames.MainMenu;
     isLoadingScene = false;
     layers: RenderLayer[];
     _option = 0;
-    audioBoard: AudioBoard;
     camera = new Camera();
     sav: SaveDataSystem<xBlrrerSaveData>;
 
@@ -69,17 +68,17 @@ export default class MainMenuScene implements Scene {
             case 0:
                 if (this.sav.hasData(0)) {
                     this.sav.loadCurrentData(0);
+                    FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }));
                 }
-                SceneMachine.INSTANCE.setScene('game');
                 break;
             case 1:
                 this.sav.clearData();
                 this.sav.pushData(this.newGame());
-                SceneMachine.INSTANCE.setScene('game');
+                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }));
                 break;
             case 2:
                 //Settings
-                SceneMachine.INSTANCE.setScene('menu-settings', false);
+                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MenuSettings, withLoading: false, forceLoading: false }));
                 break;
         }
     }

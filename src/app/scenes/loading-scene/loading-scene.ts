@@ -6,9 +6,10 @@ import { EntityLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 import Camera from '../../core/rendering/camera';
 import Scene from '../../core/scenes/scene';
+import { SceneNames } from '../scene.names';
 
 export default class LoadingScene implements Scene {
-    name = 'loadingScene';
+    name = SceneNames.LoadingScene;
     isLoadingScene = true;
 
     private bg: RenderLayer[];

@@ -10,20 +10,18 @@ import { initialData, Settings, settingsSaveSlot } from '@game/settings';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
-import SceneMachine from 'src/app/core/scenes/scene-machine';
-import { AudioBoard, PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
-import MainMenuScene from '../main-menu-scene/main-menu-scene';
+import { PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
+import { SceneNames } from '../scene.names';
 import Input from './input';
 import MenuSettingsLayer from './layer/menu-settings-layer';
 
 export default class MenuSettingsScene implements Scene {
-    public static NAME = 'menu-settings';
-    name = MenuSettingsScene.NAME;
+    name = SceneNames.MenuSettings;
     isLoadingScene = false;
     layers: RenderLayer[];
     _option = 0;
-    audioBoard: AudioBoard;
     camera = new Camera();
     sav: SaveDataSystem<Settings>;
 
@@ -96,6 +94,6 @@ export default class MenuSettingsScene implements Scene {
     submit(): void {
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'confirm' }));
         this.updateSave();
-        SceneMachine.INSTANCE.setScene(MainMenuScene.NAME, false);
+        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: false, forceLoading: false }));
     }
 }

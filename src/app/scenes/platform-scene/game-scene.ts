@@ -11,14 +11,14 @@ import { addDebugToLevel } from '../../game/debug/debug';
 import LevelTimer from '../../game/entities/traits/leveltimer';
 import LevelLoader from '../../game/loader/level-loader';
 import { xBlrrerSaveData } from '../../game/save-data';
+import { SceneNames } from '../scene.names';
 import Input from './input';
 import DashboardLayer from './layer/dashboard-layer';
 import CameraLayer from './layer/debug/camera-layer';
 import ScrollSpyLayer from './layer/debug/scrollSpy-layer';
 import DialogLayer from './layer/dialog-layer';
 export default class GameScene implements Scene {
-    public static NAME = 'game';
-    name = GameScene.NAME;
+    name = SceneNames.GameScene;
     isLoadingScene = false;
     level: PlatformerLevel;
 
