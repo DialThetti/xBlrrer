@@ -7,6 +7,7 @@ import { Names, SpawnEvent } from 'src/app/core/entities/events';
 import { Context } from 'src/app/core/entities/trait';
 import Level from 'src/app/core/level/level';
 import { PlayBgmEvent } from 'src/app/core/sfx';
+import MiniMap from './mini-map';
 import EntityColliderTrait from './trait/entity-collider-trait';
 
 export default class PlatformerLevel extends Level {
@@ -22,6 +23,9 @@ export default class PlatformerLevel extends Level {
     bgm: string;
 
     paused = false;
+
+    miniMap: MiniMap;
+
     constructor(public tilesize: number) {
         super();
         this.levelTraits.push(new EntityColliderTrait());

@@ -5,6 +5,13 @@ export default interface PlatformerLevelData {
 
     estimateTime: number;
     bgm?: string;
+    parallax?: {
+        img: string,
+        speed: number,
+        y: number
+    }[];
 
     startPosition: Vector;
+
+    minimap: string[];
 }

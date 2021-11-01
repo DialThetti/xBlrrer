@@ -6,6 +6,7 @@ import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { PlayerController } from '@game/entities/traits';
 import { LEVEL_RENDERER } from 'src/app/core/level/level-renderer';
+import RasterDebugLayer from 'src/app/core/rendering/layer/raster-debug-layer';
 import Scene from 'src/app/core/scenes/scene';
 import { addDebugToLevel } from '../../game/debug/debug';
 import LevelTimer from '../../game/entities/traits/leveltimer';
@@ -56,8 +57,8 @@ export default class GameScene implements Scene {
         renderer.push(
             new CameraLayer(camera),
             new ScrollSpyLayer(),
-            new DashboardLayer(font, level),
-            new DialogLayer(font, frame, level),
+            new DashboardLayer(font, level, player),
+            new DialogLayer(font, frame, level)
         );
         level.camera = camera;
         this.level = level;
