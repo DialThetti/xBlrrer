@@ -5,10 +5,10 @@ import {
     RenderContext,
     SaveDataSystem,
 } from '@dialthetti/feather-engine-core';
-import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
 import { PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
@@ -29,9 +29,9 @@ export default class MainMenuScene implements Scene {
 
     async load(): Promise<void> {
         this.sav = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>();
-        const font = await new FontLoader('./img/font.png').load();
+        const font = await ResourceRegistry.font();
         const title = await loadImage('./img/title.png');
-        const nineway = await new NineWaySpriteSheetLoader('./img/frame.png').load();
+        const nineway = await ResourceRegistry.frame();
         this.layers = [new MainMenuLayer(font, title, nineway, this)];
         if (!this.sav.hasData(0)) {
             this._option = 1;

@@ -1,12 +1,12 @@
 import { ClearControlInputEvent, FeatherEngine, KeyboardInput, RenderContext } from '@dialthetti/feather-engine-core';
 import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
-import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import MetroidCamera from '@extension/platformer/world/metroid.camera';
 import { PlayerController } from '@game/entities/traits';
 import { LEVEL_RENDERER } from 'src/app/core/level/level-renderer';
 import RasterDebugLayer from 'src/app/core/rendering/layer/raster-debug-layer';
+import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
 import Scene from 'src/app/core/scenes/scene';
 import { addDebugToLevel } from '../../game/debug/debug';
 import LevelTimer from '../../game/entities/traits/leveltimer';
@@ -42,7 +42,7 @@ export default class GameScene implements Scene {
 
         const { level, player, renderer, viewPorts } = await new LevelLoader(saveData).load();
 
-        const font = await new FontLoader('./img/font.png').load();
+        const font = await ResourceRegistry.font();
         FeatherEngine.eventBus.publish(new ClearControlInputEvent());
         KeyboardInput.addKeyListener(new Input(player));
 
@@ -53,7 +53,7 @@ export default class GameScene implements Scene {
         const playerEnv = this.createPlayerEnv(player, level);
         player.state = EntityState.ACTIVE;
         level.entities.add(playerEnv);
-        const frame = await new NineWaySpriteSheetLoader('./img/frame.png').load();
+        const frame = await ResourceRegistry.frame();
         renderer.push(
             new CameraLayer(camera),
             new ScrollSpyLayer(),
