@@ -1,14 +1,16 @@
 import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
-import { drawRect, Font } from '@dialthetti/feather-engine-graphics';
+import { drawRect, Font, NineWaySpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 
 export default class DashboardLayer implements RenderLayer {
 
-    rad = 1;
+    rad = 2;
 
-    constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) { }
+    constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) {
+
+    }
 
     draw(context: RenderContext): void {
         drawRect(
@@ -20,6 +22,17 @@ export default class DashboardLayer implements RenderLayer {
             'black',
             {
                 filled: true,
+            },
+        );
+        drawRect(
+            context,
+            0,
+            23 * this.level.tilesize,
+            FeatherEngine.screenSize.width,
+            5 * this.level.tilesize,
+            'white',
+            {
+                filled: false,
             },
         );
         const posX = Math.floor(this.level.miniMap.width * this.player.pos.x / (this.level.width * this.level.tilesize));
