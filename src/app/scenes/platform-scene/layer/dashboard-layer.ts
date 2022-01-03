@@ -2,12 +2,13 @@ import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect, Font } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
+import { Killable } from '@game/entities/traits';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
 
 export default class DashboardLayer implements RenderLayer {
     rad = 1;
 
-    constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) {}
+    constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) { }
 
     draw(context: RenderContext): void {
         drawRect(
@@ -32,6 +33,19 @@ export default class DashboardLayer implements RenderLayer {
                 filled: false,
             },
         );
+        this.drawLives(context);
+        this.drawMinimap(context);
+    }
+    drawLives(context: RenderContext): void {
+        this.font.print('HP', context, 4, 4 + 16 * 23);
+        for (let hp = 0; hp < this.player.getTrait(Killable).hp; hp++) {
+            this.font.draw('o', context, 16 + 16 * hp, 16 * 24);
+        }
+        for (let hp = this.player.getTrait(Killable).hp; hp < this.player.getTrait(Killable).maxHP; hp++) {
+            this.font.draw('.', context, 16 + 16 * hp, 16 * 24);
+        }
+    }
+    drawMinimap(context: RenderContext): void {
         const posX = Math.floor(
             (this.level.miniMap.width * this.player.pos.x) / (this.level.width * this.level.tilesize),
         );
@@ -40,7 +54,7 @@ export default class DashboardLayer implements RenderLayer {
         );
         for (let x = posX - this.rad; x <= posX + this.rad; x++) {
             for (let y = posY - this.rad; y <= posY + this.rad; y++) {
-                if (x < 0 || y < 0 || x > this.level.width || y > this.level.height) {
+                if (x < 0 || y < 0 || y >= this.level.miniMap.rooms.length || x >= this.level.miniMap.rooms[y].length) {
                     continue;
                 }
                 const room = this.level.miniMap.rooms[y][x];
@@ -68,7 +82,6 @@ export default class DashboardLayer implements RenderLayer {
             }
         }
     }
-
     withZero(count: number, length: number): string {
         return count.toFixed().toString().padStart(length, '0');
     }

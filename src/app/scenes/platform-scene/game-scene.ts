@@ -59,6 +59,7 @@ export default class GameScene implements Scene {
             new ScrollSpyLayer(),
             new DashboardLayer(font, level, player),
             new DialogLayer(font, frame, level),
+            //  new RasterDebugLayer(),
         );
         level.camera = camera;
         this.level = level;

@@ -1,3 +1,19 @@
 {
-    "file.lastUsedOpenFilter": "All Files (*)"
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "tmx/forest_world.json": {
+            "scale": 1.5,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 264.66666666666663,
+                "y": 281
+            }
+        },
+        "tsx/beach/beach-deco2.json": {
+            "scaleInDock": 1
+        }
+    },
+    "recentFiles": [
+        "tmx/forest_world.json"
+    ]
 }
