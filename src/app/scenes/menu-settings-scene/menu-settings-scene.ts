@@ -94,6 +94,8 @@ export default class MenuSettingsScene implements Scene {
     submit(): void {
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'confirm' }));
         this.updateSave();
-        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: false, forceLoading: false }));
+        FeatherEngine.eventBus.publish(
+            new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: false, forceLoading: false }),
+        );
     }
 }

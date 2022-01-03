@@ -3,9 +3,8 @@ export default class MiniMap {
 
     static fromValue(data: number[][]): MiniMap {
         const m = new MiniMap();
-        m.rooms = data.map(row => row.map(value => Room.fromValue(value)));
+        m.rooms = data.map((row) => row.map((value) => Room.fromValue(value)));
         return m;
-
     }
 
     get width(): number {
@@ -18,10 +17,10 @@ export default class MiniMap {
 }
 
 export class Room {
-    topOpen: boolean = false;
-    leftOpen: boolean = false;
-    rightOpen: boolean = false;
-    bottomOpen: boolean = false;
+    topOpen = false;
+    leftOpen = false;
+    rightOpen = false;
+    bottomOpen = false;
 
     get not(): boolean {
         return !(this.topOpen || this.leftOpen || this.rightOpen || this.bottomOpen);

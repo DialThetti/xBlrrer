@@ -4,7 +4,7 @@ import PlatformerLevelData from '../model/platformer-level.interface';
 import PlatformerLevel from '../model/platformer-level.model';
 
 export default class LevelSpecLoader implements Loader<PlatformerLevelData & { tiledMap: TiledMap }> {
-    constructor(private levelName: string) { }
+    constructor(private levelName: string) {}
 
     async load(): Promise<PlatformerLevelData & { tiledMap: TiledMap }> {
         const level = await loadJson<PlatformerLevelData>(`./levels/${this.levelName}/main.json`);

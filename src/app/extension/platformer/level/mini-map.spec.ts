@@ -1,6 +1,5 @@
 import { Room } from './mini-map';
 describe('Room', () => {
-
     describe('fromValue', () => {
         it('should work for 15', () => {
             const room = Room.fromValue(15);
@@ -22,6 +21,6 @@ describe('Room', () => {
             expect(room.leftOpen).toBeTruthy();
             expect(room.rightOpen).toBeTruthy();
             expect(room.bottomOpen).toBeFalsy();
-        })
-    })
-})
+        });
+    });
+});

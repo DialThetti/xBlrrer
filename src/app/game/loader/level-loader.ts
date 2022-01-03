@@ -19,7 +19,7 @@ import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.hand
 import { xBlrrerSaveData } from '../save-data';
 
 export default class LevelLoader implements Loader<{ level: PlatformerLevel; player: PlatformerEntity }> {
-    constructor(private saveData: xBlrrerSaveData) { }
+    constructor(private saveData: xBlrrerSaveData) {}
 
     async load(): Promise<{
         level: PlatformerLevel;
@@ -33,7 +33,7 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
 
         const level = new PlatformerLevel(levelSpec.tiledMap.tileSize);
 
-        const miniMapData: number[][] = levelSpec.minimap.map(row => [...row].map(char => parseInt("0x" + char)));
+        const miniMapData: number[][] = levelSpec.minimap.map((row) => [...row].map((char) => parseInt('0x' + char)));
         level.miniMap = MiniMap.fromValue(miniMapData);
         level.name = this.saveData.stage.name;
         level.width = levelSpec.tiledMap.width;

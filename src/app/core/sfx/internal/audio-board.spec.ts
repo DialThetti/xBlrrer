@@ -4,7 +4,7 @@ describe('AudioBoard', () => {
     let audioBoard: AudioBoard;
     let chain = '';
     let started = false;
-    let mockAudioContext = {
+    const mockAudioContext = {
         createBufferSource: () => ({
             connect: (node) => {
                 chain += 'S';
@@ -13,7 +13,7 @@ describe('AudioBoard', () => {
             start: () => (started = true),
         }),
         createGain: () => {
-            let x = { gain: { value: 0 }, connect: null };
+            const x = { gain: { value: 0 }, connect: null };
 
             x.connect = (node) => {
                 chain += 'G' + x.gain.value;

@@ -3,4 +3,4 @@ export const SceneNames = {
     MainMenu: 'main-menu',
     LoadingScene: 'loading-scene',
     GameScene: 'game-scene',
-}
+};

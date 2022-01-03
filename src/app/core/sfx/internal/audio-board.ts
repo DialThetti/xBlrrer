@@ -40,7 +40,7 @@ export default class AudioBoard {
         this.buffers[name] = buffer;
     }
 
-    public playSfx(name: string, blocking: boolean, position: number = 0): void {
+    public playSfx(name: string, blocking: boolean, position = 0): void {
         if (!this.enabled || this.isBlocked) {
             return;
         }
