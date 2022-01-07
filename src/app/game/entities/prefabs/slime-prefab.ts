@@ -2,6 +2,7 @@ import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityPrefab, Side } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import ActivateOnSight from 'src/app/core/entities/activateOnSight';
 import TraitAdapter, { Context } from 'src/app/core/entities/trait';
 import Gravity from 'src/app/core/physics/traits/gravity';
 import Physics from 'src/app/core/physics/traits/physics';
@@ -51,13 +52,16 @@ class SlimeJumping extends TraitAdapter {
         }
         if (this.jumping) {
             entity.vel.x = 100 * this.direction;
+
             entity.vel.y = -200;
+
             this.jumpTime.update(context.deltaTime, () => {
                 this.jumping = false;
                 this.jumpTime = new Interval(0.2 * Math.random());
             });
         }
     }
+
     obstruct(entity: Entity, side: Side): void {
         if (side === Side.BOTTOM) {
             this.onGround = true;
@@ -87,7 +91,7 @@ class SlimeJumping extends TraitAdapter {
 
 class RandomChangeDirection extends TraitAdapter {
     changeDir = new Interval(2);
-    lastDelta: number;
+    lastDelta: number = 0;
     constructor() {
         super('slime_random_turn');
     }
@@ -125,8 +129,9 @@ class SlimePrefab extends EntityPrefab {
     constructor(name: string, directionTrait: new () => TraitAdapter, jumpTrait: () => TraitAdapter) {
         super(name, name);
         this.size = new Vector(16, 16);
-        this.offset = new Vector(0, 0);
+        this.offset = new Vector(0, -4);
         this.traits = (): TraitAdapter[] => [
+            new ActivateOnSight(),
             new Gravity(),
             new Solid(),
             new Physics(),

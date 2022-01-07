@@ -4,3 +4,5 @@ coverage
 dependencies.dot
 dependencies.json
 dependencies.svg
+
+*.tiled-session
