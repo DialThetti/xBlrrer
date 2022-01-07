@@ -4,9 +4,10 @@ import { Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
+import { SceneNames } from '../scene.names';
 
 export default class Input implements KeyListener {
-    constructor(private playerFigure: Entity & TraitCtnr) { }
+    constructor(private playerFigure: Entity & TraitCtnr) {}
     keyDown(code: string): void {
         const go = this.playerFigure.getTrait(Go);
         const jump = this.playerFigure.getTrait(Jump);
@@ -50,7 +51,9 @@ export default class Input implements KeyListener {
                 break;
             case 'Digit9':
                 FeatherEngine.getSaveDataSystem().loadCurrentData(0);
-                FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: 'game', withLoading: true, forceLoading: true }));
+                FeatherEngine.eventBus.publish(
+                    new ShowSceneEvent({ name: SceneNames.GameScene, withLoading: true, forceLoading: true }),
+                );
                 break;
             default:
                 log(this, `Key ${code} was pressed without listener`);

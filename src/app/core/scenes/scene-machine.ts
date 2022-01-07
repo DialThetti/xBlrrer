@@ -30,8 +30,8 @@ export default class SceneMachine {
         );
         FeatherEngine.eventBus.subscribe(SHOW_SCENE_EVENT, {
             receive: (event: ShowSceneEvent) =>
-                this.setScene(event.payload.name, event.payload.withLoading, event.payload.forceLoading)
-        })
+                this.setScene(event.payload.name, event.payload.withLoading, event.payload.forceLoading),
+        });
     }
 
     private async setScene(name: string, withLoading = true, forceLoading = false): Promise<void> {

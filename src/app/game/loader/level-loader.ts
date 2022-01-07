@@ -1,6 +1,7 @@
 import { BoundingBox, Loader, loadImage, Vector } from '@dialthetti/feather-engine-core';
 import { entityRepo, EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
+import MiniMap from '@extension/platformer/level/mini-map';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import LevelSpecLoader from '@extension/platformer/loader/platformer-level.loader';
 import { createBrickTileHandler } from '@extension/platformer/physics/collider/brickTile-handler';
@@ -31,6 +32,9 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         await new EntityFactory().prepare();
 
         const level = new PlatformerLevel(levelSpec.tiledMap.tileSize);
+
+        const miniMapData: number[][] = levelSpec.minimap.map((row) => [...row].map((char) => parseInt('0x' + char)));
+        level.miniMap = MiniMap.fromValue(miniMapData);
         level.name = this.saveData.stage.name;
         level.width = levelSpec.tiledMap.width;
         level.height = levelSpec.tiledMap.height;

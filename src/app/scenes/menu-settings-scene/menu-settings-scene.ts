@@ -5,11 +5,11 @@ import {
     RenderContext,
     SaveDataSystem,
 } from '@dialthetti/feather-engine-core';
-import { FontLoader, NineWaySpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 import { initialData, Settings, settingsSaveSlot } from '@game/settings';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
 import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
 import Scene from 'src/app/core/scenes/scene';
 import { PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
@@ -30,9 +30,9 @@ export default class MenuSettingsScene implements Scene {
     public currentData: Settings;
     async load(): Promise<void> {
         this.sav = FeatherEngine.getSaveDataSystem<Settings>();
-        const font = await new FontLoader('./img/font.png').load();
+        const font = await ResourceRegistry.font();
         const title = await loadImage('./img/title.png');
-        const nineway = await new NineWaySpriteSheetLoader('./img/frame.png').load();
+        const nineway = await await ResourceRegistry.frame();
         this.layers = [new MenuSettingsLayer(font, title, nineway, this)];
         if (!this.sav.hasData(settingsSaveSlot)) {
             this.sav.clearData();
@@ -94,6 +94,8 @@ export default class MenuSettingsScene implements Scene {
     submit(): void {
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'confirm' }));
         this.updateSave();
-        FeatherEngine.eventBus.publish(new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: false, forceLoading: false }));
+        FeatherEngine.eventBus.publish(
+            new ShowSceneEvent({ name: SceneNames.MainMenu, withLoading: false, forceLoading: false }),
+        );
     }
 }
