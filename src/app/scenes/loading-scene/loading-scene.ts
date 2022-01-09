@@ -1,11 +1,10 @@
 import { BoundingBox, FeatherEngine, RenderContext, Vector } from '@dialthetti/feather-engine-core';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import LoadingPrefab from '@game/entities/prefabs/loading-prefab';
-import Level from 'src/app/core/level/level';
-import { EntityLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
-import Camera from '../../core/rendering/camera';
-import Scene from '../../core/scenes/scene';
+import { Level } from 'src/app/core/level';
+import { Camera, EntityLayer, SingleColorLayer } from 'src/app/core/rendering';
+import { RenderLayer } from 'src/app/core/rendering';
+import { Scene } from 'src/app/core/scenes';
 import { SceneNames } from '../scene.names';
 
 export default class LoadingScene implements Scene {

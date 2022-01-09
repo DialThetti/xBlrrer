@@ -1,6 +1,6 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 
 export default class Crouch extends TraitAdapter {
     private _down = false;

@@ -1,7 +1,7 @@
-import ATrait from '../../../core/entities/trait';
+import { TraitAdapter } from '../../../core/entities';
 import PlatformerEntity from './platformer-entity';
 
-class TestE extends ATrait {
+class TestE extends TraitAdapter {
     counter = 0;
     constructor() {
         super('test');

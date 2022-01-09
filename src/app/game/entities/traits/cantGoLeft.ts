@@ -1,5 +1,5 @@
 import { Vector } from '@dialthetti/feather-engine-core';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 
 export default class CantGoLeft extends TraitAdapter {
     posOnScreen: Vector;

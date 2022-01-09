@@ -2,11 +2,8 @@ import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityPrefab, Side } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import ActivateOnSight from 'src/app/core/entities/activateOnSight';
-import TraitAdapter, { Context } from 'src/app/core/entities/trait';
-import Gravity from 'src/app/core/physics/traits/gravity';
-import Physics from 'src/app/core/physics/traits/physics';
-import Solid from 'src/app/core/physics/traits/solid';
+import { ActivateOnSight, Context, TraitAdapter } from 'src/app/core/entities';
+import { Gravity, Physics, Solid } from 'src/app/core/physics';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 import { Killable, Stomp } from '../traits';
 import { PlatformerTraitContext } from '../traits/traits';
@@ -91,7 +88,7 @@ class SlimeJumping extends TraitAdapter {
 
 class RandomChangeDirection extends TraitAdapter {
     changeDir = new Interval(2);
-    lastDelta: number = 0;
+    lastDelta = 0;
     constructor() {
         super('slime_random_turn');
     }

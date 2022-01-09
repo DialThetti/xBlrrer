@@ -1,12 +1,12 @@
 import { Canvas, CanvasRenderer, Matrix, RenderContext } from '@dialthetti/feather-engine-core';
 import { TileSet } from '@dialthetti/feather-engine-graphics';
 import { Tile } from '@dialthetti/feather-engine-tiled';
-import Level from 'src/app/core/level/level';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { Level } from 'src/app/core/level';
+import { RenderLayer } from 'src/app/core/rendering';
 
 export default class ChunkedTilesetLayer implements RenderLayer {
     private chunks: Matrix<Canvas> = new Matrix();
-    constructor(private tiles: Matrix<Tile>[], private tileset: TileSet, private chunkSize: number = 32) {}
+    constructor(private tiles: Matrix<Tile>[], private tileset: TileSet, private chunkSize: number = 32) { }
     draw(context: RenderContext, level: Level): void {
         const { camera } = level;
         const xRange = { from: this.toChunkPosition(camera.box.left), to: this.toChunkPosition(camera.box.right) + 1 };
@@ -35,11 +35,11 @@ export default class ChunkedTilesetLayer implements RenderLayer {
         const yRange = { from: y * this.chunkSize, to: (y + 1) * this.chunkSize };
 
         this.tiles.forEach((layer) => {
-            for (let x = xRange.from; x < xRange.to; x++) {
-                for (let y = yRange.from; y < yRange.to; y++) {
-                    const tile = layer.get(x, y);
+            for (let relX = xRange.from; relX < xRange.to; relX++) {
+                for (let relY = yRange.from; relY < yRange.to; relY++) {
+                    const tile = layer.get(relX, relY);
                     if (tile) {
-                        this.tileset.drawTile(tile.name, context, x - xRange.from, y - yRange.from);
+                        this.tileset.drawTile(tile.name, context, relX - xRange.from, relY - yRange.from);
                     }
                 }
             }

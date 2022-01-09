@@ -1,7 +1,7 @@
 import { EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import Go from '@game/entities/traits/go';
-import TraitAdapter, { Context } from 'src/app/core/entities/trait';
+import { Context, TraitAdapter } from 'src/app/core/entities';
 
 export default class Killable extends TraitAdapter {
     dead = false;
@@ -27,7 +27,6 @@ export default class Killable extends TraitAdapter {
             this.finalize = (): void => {
                 this.dead = true;
             };
-        } else {
         }
     }
     revive(entity: PlatformerEntity): void {
@@ -61,7 +60,6 @@ export default class Killable extends TraitAdapter {
     repulse(e: PlatformerEntity): void {
         if (e.hasTrait(Go)) {
             console.log('repulsing');
-            debugger;
             const g = e.getTrait(Go);
 
             e.vel.x = -g.facingDirection * 100;

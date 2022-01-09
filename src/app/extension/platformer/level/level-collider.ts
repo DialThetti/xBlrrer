@@ -1,6 +1,5 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import EntityCollider from 'src/app/core/physics/collider/entity-collider';
-import TileCollider from 'src/app/core/physics/collider/tile-collider';
+import { EntityCollider, TileCollider } from 'src/app/core/physics';
 import PlatformerLevel from './platformer-level';
 
 export default class LevelCollider {

@@ -6,12 +6,11 @@ import {
     SaveDataSystem,
 } from '@dialthetti/feather-engine-core';
 import { initialData, Settings, settingsSaveSlot } from '@game/settings';
-import Level from 'src/app/core/level/level';
-import Camera from 'src/app/core/rendering/camera';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { Level } from 'src/app/core/level';
+import { Camera } from 'src/app/core/rendering';
+import { RenderLayer } from 'src/app/core/rendering';
 import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
-import { ShowSceneEvent } from 'src/app/core/scenes/events';
-import Scene from 'src/app/core/scenes/scene';
+import { Scene, ShowSceneEvent } from 'src/app/core/scenes';
 import { PlaySfxEvent, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
 import { SceneNames } from '../scene.names';
 import Input from './input';

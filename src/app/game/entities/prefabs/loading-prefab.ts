@@ -2,7 +2,7 @@ import { Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityPrefab } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 
 export default class LoadingPrefab extends EntityPrefab {
     constructor() {

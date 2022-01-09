@@ -1,6 +1,6 @@
-import Level from 'src/app/core/level/level';
-import { LEVEL_COLLIDER } from 'src/app/core/level/level-collider';
-import LevelTrait from 'src/app/core/level/level-trait';
+import { Level } from 'src/app/core/level';
+import { LEVEL_COLLIDER } from 'src/app/core/level/internal/level-collider';
+import { LevelTrait } from 'src/app/core/level';
 
 export default class EntityColliderTrait implements LevelTrait {
     update(level: Level): void {

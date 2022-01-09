@@ -2,7 +2,7 @@ import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { EventStack, Subject } from '@dialthetti/feather-engine-events';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import TraitAdapter, { Context } from 'src/app/core/entities/trait';
+import { Context, TraitAdapter } from 'src/app/core/entities';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 import Crouch from './crouch';
 

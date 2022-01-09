@@ -9,4 +9,8 @@ module.exports = {
         '@extension/(.*)': '<rootDir>/src/app/extension/$1',
         '@game/(.*)': '<rootDir>/src/app/game/$1',
     },
+    modulePaths: [
+        "<rootDir>"
+    ],
+
 };

@@ -1,4 +1,4 @@
-export default interface AudioSpec {
+export interface AudioSpec {
     fx: {
         [name: string]: {
             url: string;
