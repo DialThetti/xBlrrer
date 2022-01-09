@@ -1,6 +1,6 @@
 import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core';
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
-import { Attack, Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
+import { Attack, Crouch, Glide, Go, Jump, Killable, Player } from '@game/entities/traits';
 import { ShowSceneEvent } from 'src/app/core/scenes';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
@@ -16,6 +16,7 @@ export default class Input implements KeyListener {
     const glide = this.playerFigure.getTrait(Glide);
     const killable = this.playerFigure.getTrait(Killable);
     const attack = this.playerFigure.getTrait(Attack);
+    const player = this.playerFigure.getTrait(Player);
     switch (code) {
       case Keys.A:
         if (glide && jump.falling) {
@@ -33,13 +34,15 @@ export default class Input implements KeyListener {
       case Keys.RIGHT:
         go.right(true);
         break;
+      case Keys.UP:
+        player.activate();
+        break;
       case Keys.B:
         if (attack)
           attack.attack();
         break;
       case 'Digit1':
         FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '-0.1' }));
-
         break;
       case 'Digit2':
         FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '+0.1' }));
