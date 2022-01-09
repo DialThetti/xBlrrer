@@ -1,5 +1,5 @@
 import { Scene } from './scene';
-import SceneMachine from './scene-machine';
+import { SceneMachine } from './scene-machine';
 
 describe('SceneMachine', () => {
     let sceneMachine;
@@ -48,16 +48,16 @@ describe('SceneMachine', () => {
         it('should switch to s1 without loading', async () => {
             sceneMachine.addScenes([
                 () =>
-                    ({
-                        isLoadingScene: false,
-                        name: 's1',
-                        load: () => {
-                            /* NOOP */
-                        },
-                        start: () => {
-                            /* NOOP */
-                        },
-                    } as Scene),
+                ({
+                    isLoadingScene: false,
+                    name: 's1',
+                    load: () => {
+                        /* NOOP */
+                    },
+                    start: () => {
+                        /* NOOP */
+                    },
+                } as Scene),
                 () => ({ isLoadingScene: true, name: 's2' } as Scene),
             ]);
             await sceneMachine.setScene('s1', false);
@@ -67,16 +67,16 @@ describe('SceneMachine', () => {
             sceneMachine.currentSceneName = 'other';
             sceneMachine.addScenes([
                 () =>
-                    ({
-                        isLoadingScene: false,
-                        name: 's1',
-                        load: () => {
-                            /* NOOP */
-                        },
-                        start: () => {
-                            /* NOOP */
-                        },
-                    } as Scene),
+                ({
+                    isLoadingScene: false,
+                    name: 's1',
+                    load: () => {
+                        /* NOOP */
+                    },
+                    start: () => {
+                        /* NOOP */
+                    },
+                } as Scene),
                 () => ({ isLoadingScene: true, name: 's2' } as Scene),
             ]);
             sceneMachine.setScene('s1').then(() => {

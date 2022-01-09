@@ -33,7 +33,7 @@ describe('AudioEventHandler', () => {
 describe('playSfxOn', () => {
     it('should call playSfx on AudioBoard', () => {
         let done = false;
-        const a = { playSfx: () => (done = true) };
+        const a = { playSfx: () => (done = true) } as unknown as AudioBoard;
         playSfxOn(a).receive(new Events.PlaySfxEvent({ name: 'a', blocking: false, position: 0 }));
         expect(done).toBeTruthy();
     });
@@ -42,7 +42,7 @@ describe('playSfxOn', () => {
 describe('playBgmxOn', () => {
     it('should call playBgmx on AudioBoard', () => {
         let done = false;
-        const a = { playBgm: () => (done = true) };
+        const a = { playBgm: () => (done = true) } as unknown as AudioBoard;;
         playBgmOn(a).receive(new Events.PlayBgmEvent({ name: 'a' }));
         expect(done).toBeTruthy();
     });
@@ -50,7 +50,7 @@ describe('playBgmxOn', () => {
 describe('setBgmVolumeOn', () => {
     it('should call setBgmVolume on AudioBoard', () => {
         let done = false;
-        const a = { setBgmVolume: () => (done = true) };
+        const a = { setBgmVolume: () => (done = true) } as unknown as AudioBoard;;
         setBgmVolumeOn(a).receive(new Events.SetBgmVolumeEvent({ value: 0 }));
         expect(done).toBeTruthy();
     });
@@ -58,7 +58,7 @@ describe('setBgmVolumeOn', () => {
 describe('setSfxVolumeOn', () => {
     it('should call setSfxVolume on AudioBoard', () => {
         let done = false;
-        const a = { setSfxVolume: () => (done = true) };
+        const a = { setSfxVolume: () => (done = true) } as unknown as AudioBoard;;
         setSfxVolumeOn(a).receive(new Events.SetSfxVolumeEvent({ value: 0 }));
         expect(done).toBeTruthy();
     });
@@ -66,7 +66,7 @@ describe('setSfxVolumeOn', () => {
 describe('setMasterVolumeOn', () => {
     it('should call setMasterVolume on AudioBoard', () => {
         let done = false;
-        const a = { setMasterVolume: () => (done = true) };
+        const a = { setMasterVolume: () => (done = true) } as unknown as AudioBoard;;
         setMasterVolumeOn(a).receive(new Events.SetMasterVolumeEvent({ value: 0 }));
         expect(done).toBeTruthy();
     });

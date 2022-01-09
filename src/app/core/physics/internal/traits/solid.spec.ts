@@ -1,7 +1,7 @@
 import { BoundingBox, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
-import { PositionedTile } from '../../level/level-layer';
-import Solid from './solid';
+import { PositionedTile } from '../../../level';
+import { Solid } from './solid';
 
 describe('Solid', () => {
     const trait = new Solid();
