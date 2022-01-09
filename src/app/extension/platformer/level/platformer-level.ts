@@ -4,7 +4,7 @@ import { Subject } from '@dialthetti/feather-engine-events';
 import PlayerController from '@game/entities/traits/player-controller';
 import { ActivateOnSight } from 'src/app/core/entities';
 import { Names, SpawnEvent, Context } from 'src/app/core/entities';
-import { Level } from 'src/app/core/level';
+import { Level } from 'src/app/core/level/internal/level';
 import { PlayBgmEvent } from 'src/app/core/sfx';
 import MiniMap from './mini-map';
 import EntityColliderTrait from './trait/entity-collider-trait';

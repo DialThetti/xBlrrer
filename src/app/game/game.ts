@@ -1,6 +1,7 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { SceneMachine, ShowSceneEvent } from 'src/app/core/scenes';
 import { AudioBoardLoader, SetBgmVolumeEvent, SetMasterVolumeEvent, SetSfxVolumeEvent } from 'src/app/core/sfx';
+import EngineScene from '../scenes/engine-scene/engine-scene';
 import LoadingScene from '../scenes/loading-scene/loading-scene';
 import MainMenuScene from '../scenes/main-menu-scene/main-menu-scene';
 import MenuSettingsScene from '../scenes/menu-settings-scene/menu-settings-scene';
@@ -19,14 +20,15 @@ export default class Game {
       () => new MainMenuScene(),
       () => new GameScene(),
       () => new MenuSettingsScene(),
-    ]);
-    await new AudioBoardLoader('./sfx/audio.json').load();
+            () => new EngineScene(),
+        ]);
+        await new AudioBoardLoader('./sfx/audio.json').load();
 
     this.setVolumeBySave();
     await sceneMachine.load();
     sceneMachine.start();
     FeatherEngine.eventBus.publish(
-      new ShowSceneEvent({ name: SceneNames.mainMenu, withLoading: true, forceLoading: true })
+      new ShowSceneEvent({ name: SceneNames.engineScene, withLoading: true, forceLoading: true })
     );
     FeatherEngine.init({ canvasId: this.canvasId, width: 512, height: 448 });
     FeatherEngine.start();

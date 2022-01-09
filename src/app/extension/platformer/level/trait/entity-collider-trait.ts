@@ -1,5 +1,5 @@
 import { Level } from 'src/app/core/level';
-import { LEVEL_COLLIDER } from 'src/app/core/level/internal/level-collider';
+import { LEVEL_COLLIDER } from 'src/app/core/level';
 import { LevelTrait } from 'src/app/core/level';
 
 export default class EntityColliderTrait implements LevelTrait {

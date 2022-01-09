@@ -3,4 +3,5 @@ export const SceneNames = {
   mainMenu: 'main-menu',
   loadingScene: 'loading-scene',
   gameScene: 'game-scene',
+  engineScene: 'engine-scene',
 };
