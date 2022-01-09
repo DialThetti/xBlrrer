@@ -7,10 +7,10 @@ import LevelSpecLoader from '@extension/platformer/loader/platformer-level.loade
 import { createBrickTileHandler } from '@extension/platformer/physics/collider/brickTile-handler';
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked.tileset.layer';
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
-import LevelLayer from 'src/app/core/level/level-layer';
-import { addHandler } from 'src/app/core/physics/collider/tile-collider';
-import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
-import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
+import { LevelLayer } from 'src/app/core/level';
+import { TileCollider } from 'src/app/core/physics';
+import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering';
+import { RenderLayer } from 'src/app/core/rendering';
 import CollisionLayer from 'src/app/scenes/platform-scene/layer/debug/collision-layer';
 import EntityFactory from '../entities/entity.factory';
 import Glide from '../entities/traits/glide';
@@ -19,7 +19,7 @@ import { createOnlyCrouchTileHandler } from '../physics/collider/onlyCrouch.hand
 import { xBlrrerSaveData } from '../save-data';
 
 export default class LevelLoader implements Loader<{ level: PlatformerLevel; player: PlatformerEntity }> {
-    constructor(private saveData: xBlrrerSaveData) {}
+    constructor(private saveData: xBlrrerSaveData) { }
 
     async load(): Promise<{
         level: PlatformerLevel;
@@ -94,9 +94,9 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
         );
         composition.push(new CollisionLayer(level));
         // prepare collider
-        addHandler('brick', createBrickTileHandler());
-        addHandler('onlyCrouch', createOnlyCrouchTileHandler());
-        addHandler('deadly', createDeadlyHandler());
+        TileCollider.addHandler('brick', createBrickTileHandler());
+        TileCollider.addHandler('onlyCrouch', createOnlyCrouchTileHandler());
+        TileCollider.addHandler('deadly', createDeadlyHandler());
 
         return { level, player, renderer: composition, viewPorts: levelSpec.tiledMap.viewPorts };
     }

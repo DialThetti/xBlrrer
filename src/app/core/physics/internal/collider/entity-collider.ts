@@ -1,7 +1,7 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 
-export default class EntityCollider {
-    constructor(private entities: Set<Entity>) {}
+export class EntityCollider {
+    constructor(private entities: Set<Entity>) { }
 
     check(subject: Entity): void {
         [...this.entities]

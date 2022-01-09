@@ -1,10 +1,8 @@
 import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect } from '@dialthetti/feather-engine-graphics';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
-import Level from 'src/app/core/level/level';
-import { PositionedTile } from 'src/app/core/level/level-layer';
-import Camera from 'src/app/core/rendering/camera';
-import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
+import { Level, PositionedTile } from 'src/app/core/level';
+import { Camera, RenderLayer } from 'src/app/core/rendering';
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;
     resolvedTiles: { x: number; y: number }[] = [];

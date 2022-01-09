@@ -1,5 +1,5 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import Level from 'src/app/core/level/level';
+import { Level } from 'src/app/core/level';
 
 export interface Collidable {
     /**

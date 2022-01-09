@@ -1,9 +1,9 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import Camera from 'src/app/core/rendering/camera';
-import LevelLayer from './level-layer';
+import { Camera } from 'src/app/core/rendering';
+import { LevelLayer } from './level-layer';
 import { LevelTrait } from './level-trait';
 
-export default class Level {
+export class Level {
     levelTraits: LevelTrait[] = [];
 
     levelLayer: LevelLayer[] = [];

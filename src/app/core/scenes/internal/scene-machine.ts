@@ -2,7 +2,7 @@ import { FeatherEngine, GameLoop, info, OnDraw, OnUpdate } from '@dialthetti/fea
 import { ShowSceneEvent, SHOW_SCENE_EVENT } from './events';
 import { Scene } from './scene';
 
-export default class SceneMachine {
+export class SceneMachine {
     public static INSTANCE: SceneMachine;
     private scenes: { [name: string]: { scene: Scene; loaded: boolean } } = {};
     private loadingScene: Scene;

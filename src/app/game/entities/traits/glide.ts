@@ -1,6 +1,6 @@
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
 import { Context, TraitAdapter } from 'src/app/core/entities';
-import Gravity from 'src/app/core/physics/traits/gravity';
+import { Gravity } from 'src/app/core/physics';
 
 export default class Glide extends TraitAdapter {
     gliding = false;

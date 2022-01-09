@@ -1,13 +1,13 @@
 import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core';
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
-import { ShowSceneEvent } from 'src/app/core/scenes/events';
+import { ShowSceneEvent } from 'src/app/core/scenes';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
 import { SceneNames } from '../scene.names';
 
 export default class Input implements KeyListener {
-    constructor(private playerFigure: Entity & TraitCtnr) {}
+    constructor(private playerFigure: Entity & TraitCtnr) { }
     keyDown(code: string): void {
         const go = this.playerFigure.getTrait(Go);
         const jump = this.playerFigure.getTrait(Jump);

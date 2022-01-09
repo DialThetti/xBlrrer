@@ -2,7 +2,7 @@ import { cross, Matrix, Range } from '@dialthetti/feather-engine-core';
 import { Tile, TileMath } from '@dialthetti/feather-engine-tiled';
 import { notNull } from 'src/app/core/polyfill';
 
-export default class LevelLayer {
+export class LevelLayer {
     private math: TileMath;
     constructor(protected tiles: { matrix: Matrix<Tile>; name: string }, private tilesize: number) {
         this.math = new TileMath(tilesize);

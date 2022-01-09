@@ -1,6 +1,6 @@
 import { Canvas, FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect, Font, NineWaySpriteSheet } from '@dialthetti/feather-engine-graphics';
-import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering';
 import MenuSettingsScene from '../menu-settings-scene';
 
 export default class MenuSettingsLayer implements RenderLayer {
@@ -9,7 +9,7 @@ export default class MenuSettingsLayer implements RenderLayer {
         private img: Canvas,
         private frame: NineWaySpriteSheet,
         private menuSettings: MenuSettingsScene,
-    ) {}
+    ) { }
 
     public draw(context: RenderContext): void {
         drawRect(context, 0, 0, FeatherEngine.screenSize.width, FeatherEngine.screenSize.height, 'black', {

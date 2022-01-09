@@ -1,6 +1,6 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 import { Killable } from '@game/entities/traits';
-import { TwoDimTileCollisionHandler } from 'src/app/core/physics/collider/tile-collider';
+import { TwoDimTileCollisionHandler } from 'src/app/core/physics';
 
 export function createDeadlyHandler(): TwoDimTileCollisionHandler {
     return {

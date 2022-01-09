@@ -3,12 +3,12 @@ import { drawRect, Font } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { Killable } from '@game/entities/traits';
-import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering';
 
 export default class DashboardLayer implements RenderLayer {
     rad = 1;
 
-    constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) {}
+    constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) { }
 
     draw(context: RenderContext): void {
         drawRect(

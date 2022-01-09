@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Entity, Side, Trait, traitRegistry } from '@dialthetti/feather-engine-entities';
-import Level from 'src/app/core/level/level';
-import { PositionedTile } from 'src/app/core/level/level-layer';
-import Camera from '../rendering/camera';
+import { Level, PositionedTile } from 'src/app/core/level';
+import { Camera } from 'src/app/core/rendering';
 /**
  * A Trait is a single property hold by an entity to handle a single behavior like Solidity or Gravity.
  *

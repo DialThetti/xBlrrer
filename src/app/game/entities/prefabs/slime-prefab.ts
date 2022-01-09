@@ -3,9 +3,7 @@ import { Entity, EntityPrefab, Side } from '@dialthetti/feather-engine-entities'
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import { ActivateOnSight, Context, TraitAdapter } from 'src/app/core/entities';
-import Gravity from 'src/app/core/physics/traits/gravity';
-import Physics from 'src/app/core/physics/traits/physics';
-import Solid from 'src/app/core/physics/traits/solid';
+import { Gravity, Physics, Solid } from 'src/app/core/physics';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 import { Killable, Stomp } from '../traits';
 import { PlatformerTraitContext } from '../traits/traits';

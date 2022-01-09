@@ -1,6 +1,6 @@
 import { RenderContext } from '@dialthetti/feather-engine-core';
-import { RenderLayer } from '../rendering/layer/renderLayer';
-import Level from './level';
+import { RenderLayer } from 'src/app/core/rendering';
+import { Level } from './level';
 
 class LevelRenderer {
     private layers: RenderLayer[] = [];

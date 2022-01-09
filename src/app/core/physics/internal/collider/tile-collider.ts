@@ -1,6 +1,6 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
-import Level from 'src/app/core/level/level';
-import LevelLayer, { PositionedTile } from 'src/app/core/level/level-layer';
+import { Level } from 'src/app/core/level';
+import { LevelLayer, PositionedTile } from 'src/app/core/level';
 import { createPlatformTileHandler } from './handler/platformTile.handler';
 import { createSolidTileHandler } from './handler/solidTile.handler';
 
@@ -14,11 +14,13 @@ const handlers = {
     platform: createPlatformTileHandler(),
 };
 
-export function addHandler(name: string, handler: TwoDimTileCollisionHandler): void {
-    handlers[name] = handler;
-}
-export default class TileCollider {
-    constructor(private level: Level, private tileSize: number) {}
+
+export class TileCollider {
+
+    static addHandler(name: string, handler: TwoDimTileCollisionHandler): void {
+        handlers[name] = handler;
+    }
+    constructor(private level: Level, private tileSize: number) { }
 
     checkX(entity: Entity): void {
         const box = entity.bounds;

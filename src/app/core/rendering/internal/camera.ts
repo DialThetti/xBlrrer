@@ -1,7 +1,7 @@
 import { BoundingBox, FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
 
-export default class Camera {
+export class Camera {
     protected pos_ = new Vector(0, 0);
 
     edge = new Vector((256 * 2 - 32) / 2, 64);
