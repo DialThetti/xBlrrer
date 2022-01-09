@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Entity, Side, Trait, traitRegistry } from '@dialthetti/feather-engine-entities';
 import Level from 'src/app/core/level/level';
 import { PositionedTile } from 'src/app/core/level/level-layer';
@@ -6,7 +7,7 @@ import Camera from '../rendering/camera';
  * A Trait is a single property hold by an entity to handle a single behavior like Solidity or Gravity.
  *
  */
-export default abstract class TraitAdapter implements PlatformerTrait {
+export abstract class TraitAdapter implements PlatformerTrait {
     enabled = true;
 
     private finalizeMethod: () => void;

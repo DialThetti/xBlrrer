@@ -1,7 +1,7 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 import CantGoLeft from './cantGoLeft';
 import Killable from './killable';
 

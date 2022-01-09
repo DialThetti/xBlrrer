@@ -1,6 +1,6 @@
 import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
-import TraitAdapter, { Context } from './trait';
-export default class ActivateOnSight extends TraitAdapter {
+import { Context, TraitAdapter } from './trait';
+export class ActivateOnSight extends TraitAdapter {
     constructor() {
         super('activateOnSight');
     }

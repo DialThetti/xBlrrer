@@ -1,7 +1,7 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { CantGoLeft, Killable } from '@game/entities/traits';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 import PlatformerEntity from '../platformer-entity';
 
 export default class PlayerController extends TraitAdapter {

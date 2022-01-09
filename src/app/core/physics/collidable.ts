@@ -1,7 +1,7 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 import Level from 'src/app/core/level/level';
 
-export default interface Collidable {
+export interface Collidable {
     /**
      * Check the x-Axes for collition. If collition, may modify the entity passed as argument
      * @param entity

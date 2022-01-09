@@ -2,7 +2,7 @@ import { FeatherEngine, GAME_CONTROL_TOPIC, Vector } from '@dialthetti/feather-e
 import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
 import { Subject } from '@dialthetti/feather-engine-events';
 import PlayerController from '@game/entities/traits/player-controller';
-import ActivateOnSight from 'src/app/core/entities/activateOnSight';
+import { ActivateOnSight } from 'src/app/core/entities';
 import { Names, SpawnEvent } from 'src/app/core/entities/events';
 import { Context } from 'src/app/core/entities/trait';
 import Level from 'src/app/core/level/level';

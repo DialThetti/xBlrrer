@@ -55,7 +55,7 @@ export default class MetroidCamera extends Camera {
             this.currentCamIndex = potentionallyNewCam;
         } else {
             if (FeatherEngine.debugSettings.enabled) {
-                console.debug(`[camera] no new Camera found!`);
+                console.debug('[camera] no new Camera found!');
                 console.log(playerFigure.bounds);
                 console.log(this.cameras.map((a) => a.box));
             }

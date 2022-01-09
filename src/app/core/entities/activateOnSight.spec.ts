@@ -1,6 +1,6 @@
 import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
 import Camera from '../../core/rendering/camera';
-import ActivateOnSight from './activateOnSight';
+import { ActivateOnSight } from './activateOnSight';
 import { Context } from './trait';
 
 describe('ActivateOnSight', () => {

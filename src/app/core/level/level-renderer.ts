@@ -1,5 +1,5 @@
 import { RenderContext } from '@dialthetti/feather-engine-core';
-import RenderLayer from '../rendering/layer/renderLayer';
+import { RenderLayer } from '../rendering/layer/renderLayer';
 import Level from './level';
 
 class LevelRenderer {

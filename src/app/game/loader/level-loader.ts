@@ -10,7 +10,7 @@ import TilesetLayer from '@extension/platformer/rendering/layers/tileset.layer';
 import LevelLayer from 'src/app/core/level/level-layer';
 import { addHandler } from 'src/app/core/physics/collider/tile-collider';
 import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering/layer';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 import CollisionLayer from 'src/app/scenes/platform-scene/layer/debug/collision-layer';
 import EntityFactory from '../entities/entity.factory';
 import Glide from '../entities/traits/glide';

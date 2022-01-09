@@ -1,7 +1,7 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
-import TraitAdapter, { Context } from 'src/app/core/entities/trait';
+import { Context, TraitAdapter } from 'src/app/core/entities';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 
 export default class LevelTimer extends TraitAdapter {

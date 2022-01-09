@@ -1,7 +1,6 @@
 import { Loader, loadJson } from '@dialthetti/feather-engine-core';
 import { TiledMap, TiledMapLoader } from '@dialthetti/feather-engine-tiled';
-import PlatformerLevelData from '../model/platformer-level.interface';
-import PlatformerLevel from '../model/platformer-level.model';
+import { PlatformerLevelData } from '../model/platformer-level.interface';
 
 export default class LevelSpecLoader implements Loader<PlatformerLevelData & { tiledMap: TiledMap }> {
     constructor(private levelName: string) {}

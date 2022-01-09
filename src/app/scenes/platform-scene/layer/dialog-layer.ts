@@ -2,7 +2,7 @@ import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { Subject } from '@dialthetti/feather-engine-events';
 import { Font, NineWaySpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 
 export default class DialogLayer implements RenderLayer {
     private textToShow: string[];

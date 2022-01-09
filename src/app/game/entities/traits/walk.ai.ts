@@ -1,5 +1,5 @@
 import { Entity, Side } from '@dialthetti/feather-engine-entities';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 
 export default class Walk extends TraitAdapter {
     enabled = true;

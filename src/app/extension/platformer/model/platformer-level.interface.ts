@@ -1,6 +1,6 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 
-export default interface PlatformerLevelData {
+export interface PlatformerLevelData {
     tiledMapPath: string;
 
     estimateTime: number;

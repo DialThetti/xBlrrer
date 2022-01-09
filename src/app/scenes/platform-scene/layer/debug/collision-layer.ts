@@ -4,7 +4,7 @@ import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import Level from 'src/app/core/level/level';
 import { PositionedTile } from 'src/app/core/level/level-layer';
 import Camera from 'src/app/core/rendering/camera';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 export default class CollisionLayer implements RenderLayer {
     tileSize: number;
     resolvedTiles: { x: number; y: number }[] = [];

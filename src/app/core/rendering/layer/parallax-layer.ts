@@ -1,6 +1,6 @@
 import { Canvas, FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import Level from 'src/app/core/level/level';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 
 export default class ParallaxLayer implements RenderLayer {
     constructor(private img: Canvas, private y: number, private scrollSpeed = 8) {}

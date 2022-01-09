@@ -2,7 +2,7 @@ import { BoundingBox, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityState, Side, Trait, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { EventStack } from '@dialthetti/feather-engine-events';
 import { PlatformerTraitContext } from '@game/entities/traits/traits';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 import { PositionedTile } from 'src/app/core/level/level-layer';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {

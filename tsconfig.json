@@ -51,13 +51,29 @@
         // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
         "baseUrl": ".",
         "paths": {
-            "@engine/*": ["src/app/engine/*"],
-            "@extension/*": ["src/app/extension/*"],
-            "@game/*": ["src/app/game/*"]
+            "@engine/*": [
+                "src/app/engine/*"
+            ],
+            "@extension/*": [
+                "src/app/extension/*"
+            ],
+            "@game/*": [
+                "src/app/game/*"
+            ]
         }
     },
-    "include": ["src/**/*", "jest.config.js"],
-    "exclude": ["./node_modules", "**/*.spec.ts"],
-
-    "types": ["mocha", "node", "chai", "ts-mockito"]
+    "include": [
+        "src/**/*",
+        "jest.config.js"
+    ],
+    "exclude": [
+        "./node_modules",
+        "**/*.spec.ts"
+    ],
+    "types": [
+        "mocha",
+        "node",
+        "chai",
+        "ts-mockito"
+    ]
 }

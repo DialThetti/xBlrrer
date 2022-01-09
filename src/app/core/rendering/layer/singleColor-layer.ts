@@ -1,6 +1,6 @@
 import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect } from '@dialthetti/feather-engine-graphics';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 
 export default class SingleColorLayer implements RenderLayer {
     constructor(private color: string) {}

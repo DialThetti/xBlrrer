@@ -1,6 +1,6 @@
 import { RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect } from '@dialthetti/feather-engine-graphics';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 
 export default class RasterDebugLayer implements RenderLayer {
     constructor(private tileSize: number = 16) {}

@@ -2,7 +2,7 @@ import { Canvas, CanvasRenderer, Matrix, RenderContext } from '@dialthetti/feath
 import { TileSet } from '@dialthetti/feather-engine-graphics';
 import { Tile } from '@dialthetti/feather-engine-tiled';
 import Level from 'src/app/core/level/level';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 
 export default class TilesetLayer implements RenderLayer {
     private buffer: RenderContext;
@@ -40,14 +40,20 @@ export default class TilesetLayer implements RenderLayer {
         const yRange = { from: y * this.chunkSize, to: (y + 1) * this.chunkSize };
 
         this.tiles.forEach((layer) => {
-            for (let x = xRange.from; x < xRange.to; x++) {
-                for (let y = yRange.from; y < yRange.to; y++) {
-                    const tile = layer.get(x, y);
+            for (let relX = xRange.from; relX < xRange.to; relX++) {
+                for (let relY = yRange.from; relY < yRange.to; relY++) {
+                    const tile = layer.get(relX, relY);
                     if (tile) {
                         if (this.tileset.isAnimatedTile(tile.name)) {
-                            this.tileset.drawAnim(tile.name, context, x - xRange.from, y - yRange.from, this.time());
+                            this.tileset.drawAnim(
+                                tile.name,
+                                context,
+                                relX - xRange.from,
+                                relY - yRange.from,
+                                this.time(),
+                            );
                         } else {
-                            this.tileset.drawTile(tile.name, context, x - xRange.from, y - yRange.from);
+                            this.tileset.drawTile(tile.name, context, relX - xRange.from, relY - yRange.from);
                         }
                     }
                 }

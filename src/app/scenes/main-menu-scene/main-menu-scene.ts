@@ -7,10 +7,10 @@ import {
 } from '@dialthetti/feather-engine-core';
 import Level from 'src/app/core/level/level';
 import Camera from 'src/app/core/rendering/camera';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
 import { ShowSceneEvent } from 'src/app/core/scenes/events';
-import Scene from 'src/app/core/scenes/scene';
+import { Scene } from 'src/app/core/scenes/scene';
 import { PlayBgmEvent, PlaySfxEvent } from 'src/app/core/sfx';
 import { InitialSaveData, xBlrrerSaveData } from '../../game/save-data';
 import { SceneNames } from '../scene.names';

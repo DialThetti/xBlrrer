@@ -1,6 +1,6 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
-import TraitAdapter from 'src/app/core/entities/trait';
+import { TraitAdapter } from 'src/app/core/entities';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 import { StompEvent } from './events';
 import Killable from './killable';

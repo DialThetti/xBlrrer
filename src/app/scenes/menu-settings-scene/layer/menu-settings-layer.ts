@@ -1,6 +1,6 @@
 import { Canvas, FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { drawRect, Font, NineWaySpriteSheet } from '@dialthetti/feather-engine-graphics';
-import RenderLayer from 'src/app/core/rendering/layer/renderLayer';
+import { RenderLayer } from 'src/app/core/rendering/layer/renderLayer';
 import MenuSettingsScene from '../menu-settings-scene';
 
 export default class MenuSettingsLayer implements RenderLayer {

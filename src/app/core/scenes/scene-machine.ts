@@ -1,6 +1,6 @@
 import { FeatherEngine, GameLoop, info, OnDraw, OnUpdate } from '@dialthetti/feather-engine-core';
 import { ShowSceneEvent, SHOW_SCENE_EVENT } from './events';
-import Scene from './scene';
+import { Scene } from './scene';
 
 export default class SceneMachine {
     public static INSTANCE: SceneMachine;
@@ -36,7 +36,7 @@ export default class SceneMachine {
 
     private async setScene(name: string, withLoading = true, forceLoading = false): Promise<void> {
         if (withLoading) {
-            info(this, `Switch to Loadingscreen`);
+            info(this, 'Switch to Loadingscreen');
             this.currentSceneName = 'loadingScene';
         }
         const sceneBlob = this.scenes[name];

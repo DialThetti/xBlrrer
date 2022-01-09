@@ -22,7 +22,7 @@ export default class Camera {
     get viewPort(): BoundingBox {
         return this.totalMovementBounds;
     }
-
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     update(playerFigure: Entity, dT: number): void {
         const right = playerFigure.bounds.right - this.box.right + this.edge.x;
         const left = playerFigure.bounds.left - this.box.left - this.edge.x;

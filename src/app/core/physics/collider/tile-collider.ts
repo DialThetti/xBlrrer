@@ -4,10 +4,10 @@ import LevelLayer, { PositionedTile } from 'src/app/core/level/level-layer';
 import { createPlatformTileHandler } from './handler/platformTile.handler';
 import { createSolidTileHandler } from './handler/solidTile.handler';
 
-export type TwoDimTileCollisionHandler = {
+export interface TwoDimTileCollisionHandler {
     x: (e: Entity, m: PositionedTile, tiles: LevelLayer) => void;
     y: (e: Entity, m: PositionedTile, tiles: LevelLayer) => void;
-};
+}
 
 const handlers = {
     solid: createSolidTileHandler(),
