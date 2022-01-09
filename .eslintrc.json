@@ -1,0 +1,63 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": true
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      }
+    }
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": "error",
+    "@typescript-eslint/dot-notation": "off",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "off",
+      {
+        "accessibility": "explicit"
+      }
+    ],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "dot-notation": "off",
+    "id-denylist": "off",
+    "id-match": "off",
+    "indent": [
+      "off",
+      2
+    ],
+    "no-empty-function": "off",
+    "no-shadow": "error",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": "error",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "semi": "error"
+  }
+}
