@@ -4,8 +4,8 @@ import { TsxTileModel } from '../model/tsx.model';
 import Tile from '../world/tiles/tile';
 
 export default class TileMatrixCreator {
-    booleanTags = ['solid', 'platform', 'onlyCrouch', 'deadly'];
-    constructor(private tileProps: { [id: number]: TsxTileModel }) {}
+    booleanTags = ['solid', 'platform', 'onlyCrouch', 'deadly', 'water'];
+    constructor(private tileProps: { [id: number]: TsxTileModel }) { }
 
     public create(layer: InfiniteTmxLayer | FiniteTmxLayer): Matrix<Tile> {
         const tiles = new Matrix<Tile>();
