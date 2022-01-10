@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>xBlrrer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/fontawesome.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="author" content="DialThetti" />
+    <meta name="keywords" content="TypeScript, Game Dev" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/" />
+    <meta property="og:title" content="xBlrrer" />
+    <meta property="og:description"
+        content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+    <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png" />
+</head>
+
+<body>
+    <sidenav class="hide-on-med-and-down">
+        <h1><i>xBlrrer</i></h1>
+        <div class="sidenav-entry">
+            <a href="#game">The Game</a>
+        </div>
+        <div class="sidenav-entry">
+            <a href="#crew">The Crew</a>
+        </div>
+        <div class="bottom center">
+            <a class="waves-effect waves-light btn discord-btn" target="blank" href="https://discord.gg/T9HAHrDM"><i
+                    class="fab fa-discord"></i>Join on Discord</a>
+        </div>
+    </sidenav>
+    <main>
+        <div class="row">
+            <div class="col s12">
+                <h1 id="game">The Game</h1>
+                <p>Here you find all playable versions of xBlrrer. Feel free to try the Current Version as well as the
+                    Beta.</p>
+            </div>
+            <!--
+                <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="img/title.png">
+                        <span class="card-title">v0.1</span>
+                    </div>
+                    <div class="card-content">
+                        <p>The lastest released version. </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="./beta">Play v0.1 now</a>
+                    </div>
+                </div>
+            </div>
+        -->
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="img/title.png">
+                        <span class="card-title">Beta</span>
+                    </div>
+                    <div class="card-content">
+                        <p>The Beta Build works as sneak-peak and public testing while still in development. Expect Bugs
+                            and glitches and please report them.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="./beta">Play Beta now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <h1 id="crew">The Crew</h1>
+                <p>Here are the developers, as well as people which helped bringing the game to life.</p>
+
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <img src="img/dialthetti.jpg" alt="" class="circle">
+                        <span class="title">Dialthetti
+                            <p><label>Developer</label>
+                            </p>
+                        </span>
+                        <div class="valign-wrapper">Likes to make things and fiddle around with bits and pixels.</div>
+                    </li>
+                    <li class="collection-item avatar">
+                        <img src="img/genn.jpg" alt="" class="circle">
+                        <span class="title">Genn
+                            <p><label>Gametester</label>
+                            </p>
+                        </span>
+                        <div class="valign-wrapper">If it's not broken, I'm not done.</div>
+                    </li>
+                    <li class="collection-item avatar">
+                        <img src="img/wyrvern.jpg" alt="" class="circle">
+                        <span class="title">Wyrvern
+                            <p><label>Gametester</label>
+                            </p>
+                        </span>
+                        <div class="valign-wrapper">Is metroid?</div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="js/blog/runtime.js" defer></script>
+    <script src="js/blog/polyfills.js" defer></script>
+    <script src="js/blog/vendor.js" defer></script>
+    <script src="js/blog/main.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+                toolbarEnabled: true,
+            });
+        });
+    </script>
+</body>
+
+</html>

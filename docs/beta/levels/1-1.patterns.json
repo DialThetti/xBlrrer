@@ -1,0 +1,156 @@
+{
+    "parabel-bush-2": {
+        "tiles": [
+            { "name": "parabel-bush-left", "ranges": [[0, 1]] },
+            { "name": "parabel-bush-middle-dot-right", "ranges": [[1, 1]] },
+            { "name": "parabel-bush-top", "ranges": [[1, 0]] },
+            { "name": "parabel-bush-right", "ranges": [[2, 1]] }
+        ]
+    },
+    "parabel-bush-3": {
+        "tiles": [
+            {
+                "name": "parabel-bush-left",
+                "ranges": [
+                    [1, 1],
+                    [0, 2]
+                ]
+            },
+            {
+                "name": "parabel-bush-middle-dot-right",
+                "ranges": [
+                    [2, 1],
+                    [1, 2],
+                    [3, 2]
+                ]
+            },
+            { "name": "parabel-bush-middle-flat", "ranges": [[2, 2]] },
+            { "name": "parabel-bush-top", "ranges": [[2, 0]] },
+            {
+                "name": "parabel-bush-right",
+                "ranges": [
+                    [3, 1],
+                    [4, 2]
+                ]
+            }
+        ]
+    },
+    "fluffy-bush-1": {
+        "tiles": [
+            { "name": "fluffy-bush-left", "ranges": [[0, 0]] },
+            { "name": "fluffy-bush-middle", "ranges": [[1, 0]] },
+            { "name": "fluffy-bush-right", "ranges": [[2, 0]] }
+        ]
+    },
+    "fluffy-bush-2": {
+        "tiles": [
+            { "name": "fluffy-bush-left", "ranges": [[0, 0]] },
+            { "name": "fluffy-bush-middle", "ranges": [[1, 0]] },
+            { "name": "fluffy-bush-middle", "ranges": [[2, 0]] },
+            { "name": "fluffy-bush-right", "ranges": [[3, 0]] }
+        ]
+    },
+    "fluffy-bush-3": {
+        "tiles": [
+            { "name": "fluffy-bush-left", "ranges": [[0, 0]] },
+            { "name": "fluffy-bush-middle", "ranges": [[1, 0]] },
+            { "name": "fluffy-bush-middle", "ranges": [[2, 0]] },
+            { "name": "fluffy-bush-middle", "ranges": [[3, 0]] },
+            { "name": "fluffy-bush-right", "ranges": [[4, 0]] }
+        ]
+    },
+    "cloud-single": {
+        "tiles": [
+            { "name": "cloud-1-1", "ranges": [[0, 0]] },
+            { "name": "cloud-1-2", "ranges": [[1, 0]] },
+            { "name": "cloud-1-3", "ranges": [[2, 0]] },
+            { "name": "cloud-2-1", "ranges": [[0, 1]] },
+            { "name": "cloud-2-2", "ranges": [[1, 1]] },
+            { "name": "cloud-2-3", "ranges": [[2, 1]] }
+        ]
+    },
+    "cloud-2": {
+        "tiles": [
+            { "name": "cloud-1-1", "ranges": [[0, 0]] },
+            { "name": "cloud-1-2", "ranges": [[1, 0]] },
+            { "name": "cloud-1-2", "ranges": [[2, 0]] },
+            { "name": "cloud-1-3", "ranges": [[3, 0]] },
+            { "name": "cloud-2-1", "ranges": [[0, 1]] },
+            { "name": "cloud-2-2", "ranges": [[1, 1]] },
+            { "name": "cloud-2-2", "ranges": [[2, 1]] },
+            { "name": "cloud-2-3", "ranges": [[3, 1]] }
+        ]
+    },
+    "cloud-3": {
+        "tiles": [
+            { "name": "cloud-1-1", "ranges": [[0, 0]] },
+            { "name": "cloud-1-2", "ranges": [[1, 0]] },
+            { "name": "cloud-1-2", "ranges": [[2, 0]] },
+            { "name": "cloud-1-2", "ranges": [[3, 0]] },
+            { "name": "cloud-1-3", "ranges": [[4, 0]] },
+            { "name": "cloud-2-1", "ranges": [[0, 1]] },
+            { "name": "cloud-2-2", "ranges": [[1, 1]] },
+            { "name": "cloud-2-2", "ranges": [[2, 1]] },
+            { "name": "cloud-2-2", "ranges": [[3, 1]] },
+            { "name": "cloud-2-3", "ranges": [[4, 1]] }
+        ]
+    },
+    "pipe-section-vert": {
+        "tiles": [
+            { "name": "pipe-vert-left", "tags": ["solid"], "ranges": [[0, 0]] },
+            { "name": "pipe-vert-right", "tags": ["solid"], "ranges": [[1, 0]] }
+        ]
+    },
+    "pipe-cap-vert": {
+        "tiles": [
+            {
+                "name": "pipe-insert-vert-left",
+                "tags": ["solid"],
+                "ranges": [[0, 0]]
+            },
+            {
+                "name": "pipe-insert-vert-right",
+                "tags": ["solid"],
+                "ranges": [[1, 0]]
+            }
+        ]
+    },
+    "pipe-2h": {
+        "tiles": [
+            { "name": "pipe-cap-vert", "tags": ["pattern"], "ranges": [[0, 0]] },
+            {
+                "name": "pipe-section-vert",
+                "tags": ["pattern"],
+                "ranges": [[0, 1, 1, 1]]
+            }
+        ]
+    },
+    "pipe-3h": {
+        "tiles": [
+            { "name": "pipe-cap-vert", "tags": ["pattern"], "ranges": [[0, 0]] },
+            {
+                "name": "pipe-section-vert",
+                "tags": ["pattern"],
+                "ranges": [[0, 1, 1, 2]]
+            }
+        ]
+    },
+    "pipe-4h": {
+        "tiles": [
+            { "name": "pipe-cap-vert", "tags": ["pattern"], "ranges": [[0, 0]] },
+            {
+                "name": "pipe-section-vert",
+                "tags": ["pattern"],
+                "ranges": [[0, 1, 1, 3]]
+            }
+        ]
+    },
+    "cannon-2h": {
+        "tiles": [
+            { "name": "cannon-1", "tags":["solid"],"ranges": [[0, 0]] },
+            { "name": "cannon-2", "tags":["solid"],"ranges": [[0, 1]] }
+
+        ]
+    }
+
+}

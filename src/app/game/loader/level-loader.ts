@@ -7,6 +7,7 @@ import LevelSpecLoader from '@extension/platformer/loader/platformer-level.loade
 import { createBrickTileHandler } from '@extension/platformer/physics/collider/brick-tile-handler';
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked-tileset-layer';
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset-layer';
+import { createWaterTileHandler } from '@game/physics/collider/water-handler';
 import { LevelLayer } from 'src/app/core/level';
 import { TileCollider } from 'src/app/core/physics';
 import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering';
@@ -19,7 +20,7 @@ import { createOnlyCrouchTileHandler } from '../physics/collider/only-crouch-han
 import { xBlrrerSaveData } from '../save-data';
 
 export default class LevelLoader implements Loader<{ level: PlatformerLevel; player: PlatformerEntity }> {
-  constructor(private saveData: xBlrrerSaveData) {}
+  constructor(private saveData: xBlrrerSaveData) { }
 
   async load(): Promise<{
     level: PlatformerLevel;
@@ -77,26 +78,27 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
       ),
 
       new TilesetLayer(
-        levelSpec.tiledMap.layers.filter(a => !a.frontLayer && a.dynamic).map(a => a.matrix),
+        levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && a.dynamic).map((a) => a.matrix),
         levelSpec.tiledMap.tileset,
-        () => level.time
+        () => level.time,
       ),
       new EntityLayer(level.entities),
       new ChunkedTilesetLayer(
-        levelSpec.tiledMap.layers.filter(a => a.frontLayer && !a.dynamic).map(a => a.matrix),
-        levelSpec.tiledMap.tileset
+        levelSpec.tiledMap.layers.filter((a) => a.frontLayer && !a.dynamic).map((a) => a.matrix),
+        levelSpec.tiledMap.tileset,
       ),
       new TilesetLayer(
-        levelSpec.tiledMap.layers.filter(a => a.frontLayer && a.dynamic).map(a => a.matrix),
+        levelSpec.tiledMap.layers.filter((a) => a.frontLayer && a.dynamic).map((a) => a.matrix),
         levelSpec.tiledMap.tileset,
-        () => level.time
-      )
+        () => level.time,
+      ),
     );
     composition.push(new CollisionLayer(level));
     // prepare collider
     TileCollider.addHandler('brick', createBrickTileHandler());
     TileCollider.addHandler('onlyCrouch', createOnlyCrouchTileHandler());
     TileCollider.addHandler('deadly', createDeadlyHandler());
+    TileCollider.addHandler('water', createWaterTileHandler());
 
     return { level, player, renderer: composition, viewPorts: levelSpec.tiledMap.viewPorts };
   }
