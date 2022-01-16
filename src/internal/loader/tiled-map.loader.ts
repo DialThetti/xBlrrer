@@ -98,7 +98,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
      */
     getEntities(
         tmx: Tmx.TmxModel<Tmx.FiniteTmxLayer | Tmx.InfiniteTmxLayer>,
-    ): { prefab: string; position: { x: number; y: number } }[] {
+    ): { prefab: string; position: { x: number; y: number }; properties: { [name: string]: unknown } }[] {
         const x = flatMap(
             tmx.layers
                 .filter((layer) => layer.visible)
@@ -107,10 +107,20 @@ export default class TiledMapLoader implements Loader<TiledMap> {
                     (layer as Tmx.TmxObjectLayer).objects
                         .map((o) => ({ ...o, prefabId: this.getProperty(o.properties, 'entity_prefab') }))
                         .filter(({ prefabId }) => prefabId !== undefined)
-                        .map((o) => ({ prefab: o.prefabId as string, position: { x: o.x, y: o.y } })),
+                        .map((o) => ({
+                            prefab: o.prefabId as string,
+                            position: { x: o.x, y: o.y },
+                            properties: this.toMap(o.properties),
+                        })),
                 ),
         );
 
+        return x;
+    }
+
+    toMap(o: { name: string; type: string; value: unknown }[]): { [name: string]: unknown } {
+        const x = {} as any;
+        o.forEach((entry) => (x[entry.name] = entry.value));
         return x;
     }
 
