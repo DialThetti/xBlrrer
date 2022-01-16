@@ -1,0 +1,36 @@
+{
+    "bgm": "forest",
+    "tiledMapPath": "tiled/tmx/water_town.json",
+    "estimateTime": 999,
+    "startPosition": {
+        "x": 90,
+        "y": 55
+    },
+    "parallax": [
+        {
+            "img": "img/beach/background1_day.png",
+            "speed": 9,
+            "y": 0
+        },
+        {
+            "img": "img/beach/background2A_day.png",
+            "speed": 6,
+            "y": 0
+        },
+        {
+            "img": "img/beach/background3_day.png",
+            "speed": 3,
+            "y": 0
+        },
+        {
+            "img": "img/beach/background4_day.png",
+            "speed": 0,
+            "y": 0
+        }
+    ],
+    "minimap": [
+        "379",
+        "BFD",
+        "AEC"
+    ]
+}

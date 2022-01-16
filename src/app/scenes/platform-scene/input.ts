@@ -1,5 +1,6 @@
 import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core';
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
 import { ShowSceneEvent } from 'src/app/core/scenes';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
@@ -7,7 +8,7 @@ import { xBlrrerSaveData } from '../../game/save-data';
 import { SceneNames } from '../scene-names';
 
 export default class Input implements KeyListener {
-  constructor(private playerFigure: Entity & TraitCtnr) { }
+  constructor(private playerFigure: Entity & TraitCtnr, private level: PlatformerLevel) { }
   keyDown(code: string): void {
     const go = this.playerFigure.getTrait(Go);
     const jump = this.playerFigure.getTrait(Jump);
@@ -44,7 +45,7 @@ export default class Input implements KeyListener {
         FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().pushData({
           position: this.playerFigure.pos,
           life: killable.hp,
-          stage: { name: 'forest' },
+          stage: { name: this.level.name },
           collectables: { hasGliding: this.playerFigure.hasTrait(Glide) },
         });
         FeatherEngine.getSaveDataSystem().storeCurrentData(0);
@@ -52,13 +53,14 @@ export default class Input implements KeyListener {
       case 'Digit9':
         FeatherEngine.getSaveDataSystem().loadCurrentData(0);
         FeatherEngine.eventBus.publish(
-          new ShowSceneEvent({ name: SceneNames.gameScene, withLoading: true, forceLoading: true })
+          new ShowSceneEvent({ name: SceneNames.gameScene, withLoading: true, forceLoading: true }),
         );
         break;
       default:
         log(this, `Key ${code} was pressed without listener`);
     }
   }
+
 
   keyUp(code: string): void {
     const go = this.playerFigure.getTrait(Go);

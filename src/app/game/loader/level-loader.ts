@@ -58,24 +58,23 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
     level.estimateTime = levelSpec.estimateTime;
     level.bgm = levelSpec.bgm;
 
-    const layers: LevelLayer[] = levelSpec.tiledMap.layers.map(layer => new LevelLayer(layer, level.tilesize));
-    level.levelLayer = layers;
-    // Render Layer initialization
-    const composition = [];
-    composition.push(new SingleColorLayer('#6B88FE'));
-
-    if (levelSpec.parallax) {
-      composition.push(
-        ...(await Promise.all(
-          levelSpec.parallax.map(async a => new ParallaxLayer(await loadImage(a.img), a.y, a.speed))
-        ))
-      );
-    }
-    composition.push(
-      new ChunkedTilesetLayer(
-        levelSpec.tiledMap.layers.filter(a => !a.frontLayer && !a.dynamic).map(a => a.matrix),
-        levelSpec.tiledMap.tileset
-      ),
+        const layers: LevelLayer[] = levelSpec.tiledMap.layers.map((layer) => new LevelLayer(layer, level.tilesize));
+        level.levelLayer = layers;
+        // Render Layer initialization
+        const composition = [];
+        composition.push(new SingleColorLayer('#6B88FE'));
+        if (levelSpec.parallax) {
+            composition.push(
+                ...(await Promise.all(
+                    levelSpec.parallax.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.y, a.speed)),
+                )),
+            );
+        }
+        composition.push(
+            new ChunkedTilesetLayer(
+                levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && !a.dynamic).map((a) => a.matrix),
+                levelSpec.tiledMap.tileset,
+            ),
 
       new TilesetLayer(
         levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && a.dynamic).map((a) => a.matrix),

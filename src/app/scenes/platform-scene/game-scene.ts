@@ -41,9 +41,9 @@ export default class GameScene implements Scene {
 
     const { level, player, renderer, viewPorts } = await new LevelLoader(saveData).load();
 
-    const font = await ResourceRegistry.font();
-    FeatherEngine.eventBus.publish(new ClearControlInputEvent());
-    KeyboardInput.addKeyListener(new Input(player));
+        const font = await ResourceRegistry.font();
+        FeatherEngine.eventBus.publish(new ClearControlInputEvent());
+        KeyboardInput.addKeyListener(new Input(player, level));
 
     const camera = new MetroidCamera(viewPorts);
     if (saveData.position) {
