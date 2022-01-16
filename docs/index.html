@@ -19,101 +19,61 @@
     <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/" />
     <meta property="og:title" content="xBlrrer" />
     <meta property="og:description"
-        content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+        content="xBlrrer is a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
     <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png" />
 </head>
 
 <body>
-    <sidenav class="hide-on-med-and-down">
-        <h1><i>xBlrrer</i></h1>
-        <div class="sidenav-entry">
-            <a href="#game">The Game</a>
-        </div>
-        <div class="sidenav-entry">
-            <a href="#crew">The Crew</a>
-        </div>
-        <div class="bottom center">
-            <a class="waves-effect waves-light btn discord-btn" target="blank" href="https://discord.gg/T9HAHrDM"><i
-                    class="fab fa-discord"></i>Join on Discord</a>
-        </div>
-    </sidenav>
-    <main>
-        <div class="row">
-            <div class="col s12">
-                <h1 id="game">The Game</h1>
-                <p>Here you find all playable versions of xBlrrer. Feel free to try the Current Version as well as the
-                    Beta.</p>
-            </div>
-            <!--
-                <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/title.png">
-                        <span class="card-title">v0.1</span>
-                    </div>
-                    <div class="card-content">
-                        <p>The lastest released version. </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="./beta">Play v0.1 now</a>
-                    </div>
-                </div>
-            </div>
-        -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/title.png">
-                        <span class="card-title">Beta</span>
-                    </div>
-                    <div class="card-content">
-                        <p>The Beta Build works as sneak-peak and public testing while still in development. Expect Bugs
-                            and glitches and please report them.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="./beta">Play Beta now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12">
-                <h1 id="crew">The Crew</h1>
-                <p>Here are the developers, as well as people which helped bringing the game to life.</p>
+    <div class="background-img"></div>
 
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <img src="img/dialthetti.jpg" alt="" class="circle">
-                        <span class="title">Dialthetti
-                            <p><label>Developer</label>
-                            </p>
-                        </span>
-                        <div class="valign-wrapper">Likes to make things and fiddle around with bits and pixels.</div>
-                    </li>
-                    <li class="collection-item avatar">
-                        <img src="img/genn.jpg" alt="" class="circle">
-                        <span class="title">Genn
-                            <p><label>Gametester</label>
-                            </p>
-                        </span>
-                        <div class="valign-wrapper">If it's not broken, I'm not done.</div>
-                    </li>
-                    <li class="collection-item avatar">
-                        <img src="img/wyrvern.jpg" alt="" class="circle">
-                        <span class="title">Wyrvern
-                            <p><label>Gametester</label>
-                            </p>
-                        </span>
-                        <div class="valign-wrapper">Is metroid?</div>
-                    </li>
-                </ul>
 
+    <nav>
+        <div class="nav-wrapper  grey darken-4">
+            <a href="#" class="brand-logo"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="active"><a href="./index.html">Overview</a></li>
+                <li><a href="./blog/index.html">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="valign-wrapper">
+        <div class="container grass white-text">
+            <div class="row">
+                <div class="col s12 center">
+                    <h1 class="white-text center" id="game">xBlrrer</h1>
+                    <p>
+                        xBlrrer is a metroidvania, where you will need to find abilities to overcome obsticals.
+                    </p>
+                    <p>
+                        You are Blrr, a crow who wants to find the person who wants to demolish its forest.
+                    </p>
+                    <p>
+                        Use [W][A][S][D] and [Space] to navigate through the first level.
+                    </p>
+                </div>
+                <div class="col s12 center">
+                    <a href="./beta/index.html" class="waves-effect waves-light btn btn-large primary">Play
+                        Now</a><br>
+                    <lavel> or play the <a class="primary-text" href="./beta/index.html">beta version</a>
+                    </lavel>
+                </div>
             </div>
         </div>
     </main>
+    <footer class="page-footer grey darken-4">
 
-    <script src="js/blog/runtime.js" defer></script>
-    <script src="js/blog/polyfills.js" defer></script>
-    <script src="js/blog/vendor.js" defer></script>
-    <script src="js/blog/main.js" defer></script>
+        <div class="footer-copyright">
+            <div class="container">
+                MIT License
+                <a href="https://github.com/DialThetti/xBlrrer" class="primary-text">source code</a>
+                <a href="https://github.com/DialThetti/xBlrrer/issues" class="primary-text">report an issue</a>
+                <a class="right primary-text" target="blank" href="https://discord.gg/vCgDxPZwFU"><i
+                        class="fab fa-discord fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.fixed-action-btn');

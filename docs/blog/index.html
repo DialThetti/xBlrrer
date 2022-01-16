@@ -1,142 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Dev Blog: xBlrrer</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="./js/fontawesome.min.js"></script>
-        <link rel="stylesheet" href="./css/style.css" />
-        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-        <meta content="utf-8" http-equiv="encoding" />
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <meta name="author" content="DialThetti" />
-        <meta name="keywords" content="TypeScript, Game Dev" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-            name="description"
-            content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/" />
-        <meta property="og:title" content="Dev Blog: xBlrrer" />
-        <meta
-            property="og:description"
-            content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog."
-        />
-        <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png" />
-    </head>
-    <body>
-        <sidenav class="hide-on-med-and-down">
-            <h1><i>xBlrrer</i> - Devblog</h1>
-            <div class="bottom center">
-                <a class="waves-effect waves-light btn discord-btn" target="blank" href="https://discord.gg/T9HAHrDM"
-                    ><i class="fab fa-discord"></i>Join on Discord</a
-                >
+
+<head>
+    <title>Dev Blog: xBlrrer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/fontawesome.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="author" content="DialThetti" />
+    <meta name="keywords" content="TypeScript, Game Dev" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/" />
+    <meta property="og:title" content="Dev Blog: xBlrrer" />
+    <meta property="og:description"
+        content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+    <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png" />
+</head>
+
+<body>
+
+
+    <main>
+        <nav>
+            <div class="nav-wrapper  grey darken-4">
+                <a href="#" class="brand-logo"></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="../index.html">Overview</a></li>
+                    <li class="active"><a href="./index.html">Blog</a></li>
+                </ul>
             </div>
-        </sidenav>
-        <main>
-            <div class=" hide-on-large-only">
-                <nav>
-                    <div class="nav-wrapper">
-                       <i> <em>xBlrrer</em> - Devblog</i>
-                    </div>
-                </nav>
-                <div class="fixed-action-btn toolbar">
-                    <a class="btn-floating btn-large">
-                        <i class="large material-icons"><i class="fa fa-plus"></i></i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a class="btn-floating" target="blank" href="https://discord.gg/T9HAHrDM"><i class="fab fa-discord"></i></a>
-                        </li>
-                    </ul>
+        </nav>
+        <div class=" hide-on-large-only">
+            <nav>
+                <div class="nav-wrapper">
+                    <i> <em>xBlrrer</em> - Devblog</i>
                 </div>
+            </nav>
+            <div class="fixed-action-btn toolbar">
+                <a class="btn-floating btn-large">
+                    <i class="large material-icons"><i class="fa fa-plus"></i></i>
+                </a>
+                <ul>
+                    <li>
+                        <a class="btn-floating" target="blank" href="https://discord.gg/T9HAHrDM"><i
+                                class="fab fa-discord"></i></a>
+                    </li>
+                </ul>
             </div>
-            <div class="row">
-               
+        </div>
+        <div class="row">
 
-                <div class="col s12">
-                    <blog-entry
-                        title="Day 4: Meet the Protagonist"
-                        author="DialThetti"
-                        date="7.04.2021"
-                        tags="Character Design, Pixelart"
-                    >
-                        <span slot="preview">
-                            <p>
-                                After the easter holidays and not having finished as much as I wanted, I finally took
-                                the first step and animated the main character.
-                            </p></span
-                        >
-                        <span slot="full">
-                            <p>
-                                During the conception phase of the character I asked my friend Wyrvern#8013 to design a
-                                human crow. This was what he sent back to me.
-                            </p>
-                            <img
-                                class="materialboxed"
-                                src="img/day_4/prototype.png"
-                                data-caption="Rough structure of the game and engine"
-                                style="margin: auto; max-width: 100%"
-                            />
-                            <p>
-                                I liked the design. And I set about animating it. I 'borrowed' the spritesheet from
-                                Starbound, because the animations looked very clean and good there, and added the new
-                                skin pixel by pixel.
-                            </p>
-                            <p>
-                                And now he can walk! I still have to make more animations for jumping and gliding, but
-                                the first attempts in the prototype already look good.
-                            </p>
-                            <img
-                            class="materialboxed"
-                            src="img/day_4/walking.gif"
+
+            <div class="col s12">
+                <blog-entry title="Meet the Protagonist" author="DialThetti" date="7.04.2021"
+                    tags="Character Design, Pixelart">
+                    <span slot="preview">
+                        <p>
+                            After the easter holidays and not having finished as much as I wanted, I finally took
+                            the first step and animated the main character.
+                        </p>
+                    </span>
+                    <span slot="full">
+                        <p>
+                            During the conception phase of the character I asked my friend Wyrvern#8013 to design a
+                            human crow. This was what he sent back to me.
+                        </p>
+                        <img class="materialboxed" src="img/day_4/prototype.png"
                             data-caption="Rough structure of the game and engine"
-                            style="margin: auto; max-width: 100%"
-                        />
-                            <p>
-                                I currently spam my guild's group chat when I've made new changes, which disrupts some
-                                conversations. So I decided to create a new Discord channel for all those who have
-                                questions and/or comments. Feel free to drop by, I'd be happy to hear from you.
-                            </p>
-                        </span>
-                    </blog-entry>
-                    <blog-entry
-                        title="Day 3: Blog Improvements"
-                        author="DialThetti"
-                        date="31.03.2021"
-                        tags="Blog, Angular"
-                    >
-                        <span slot="preview">
-                            <blockquote>
-                                <i>
-                                    Wait, you said you wanted to work on a game, now there is a new entry without game
-                                    related news. Whats wrong with you?</i
-                                >
-                            </blockquote>
-                        </span>
-                        <span slot="full">
-                            Yesterday I realised how much copying and pasting I have to do to create a blog entry. It's
-                            not very useful in the long run. So I decided to create a
-                            <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="blank"
-                                >web component</a
-                            >
-                            for individual blog entries.
-                            <h3>What is a web component?</h3>
-                            <p>
-                                Anyone who has written HTML knows DOM elements like <code>&lt;div&gt;</code> and
-                                <code>&lt;img&gt;</code>. With a web component, you can create your own HTML tags. This
-                                way, I don't have to copy the entire structure over and over again, but can simply use
-                                the following blog:
-                            </p>
+                            style="margin: auto; max-width: 100%" />
+                        <p>
+                            I liked the design. And I set about animating it. I 'borrowed' the spritesheet from
+                            Starbound, because the animations looked very clean and good there, and added the new
+                            skin pixel by pixel.
+                        </p>
+                        <p>
+                            And now he can walk! I still have to make more animations for jumping and gliding, but
+                            the first attempts in the prototype already look good.
+                        </p>
+                        <img class="materialboxed" src="img/day_4/walking.gif"
+                            data-caption="Rough structure of the game and engine"
+                            style="margin: auto; max-width: 100%" />
+                        <p>
+                            I currently spam my guild's group chat when I've made new changes, which disrupts some
+                            conversations. So I decided to create a new Discord channel for all those who have
+                            questions and/or comments. Feel free to drop by, I'd be happy to hear from you.
+                        </p>
+                    </span>
+                </blog-entry>
+                <blog-entry title="Blog Improvements" author="DialThetti" date="31.03.2021" tags="Blog, Angular">
+                    <span slot="preview">
+                        <blockquote>
+                            <i>
+                                Wait, you said you wanted to work on a game, now there is a new entry without game
+                                related news. Whats wrong with you?</i>
+                        </blockquote>
+                    </span>
+                    <span slot="full">
+                        Yesterday I realised how much copying and pasting I have to do to create a blog entry. It's
+                        not very useful in the long run. So I decided to create a
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="blank">web
+                            component</a>
+                        for individual blog entries.
+                        <h3>What is a web component?</h3>
+                        <p>
+                            Anyone who has written HTML knows DOM elements like <code>&lt;div&gt;</code> and
+                            <code>&lt;img&gt;</code>. With a web component, you can create your own HTML tags. This
+                            way, I don't have to copy the entire structure over and over again, but can simply use
+                            the following blog:
+                        </p>
 
-                            <pre class="black green-text">
+                        <pre class="black green-text">
 
     &lt;blog-entry
-        title=&quot;Day 3: Blog Improvements&quot;
+        title=&quot;Blog Improvements&quot;
         author=&quot;DialThetti&quot;
         date=&quot;31.03.2021&quot;
         tags=&quot;Blog, Angular&quot;
@@ -149,159 +131,151 @@
         &lt;/span&gt;
     &lt;/blog-entry&gt;
 
-</pre
-                            >
-                            <h3>How does it work?</h3>
-                            <p>
-                                To make this blog entry web component work, I created a new
-                                <a href="https://github.com/DialThetti/blog-utils" target="blank">repository</a>
-                                . This contains an
-                                <a href="https://angular.io/" target="blank">Angular</a>
-                                project. Angular is a TypeScript-based web framework. With it I can easily create
-                                components, define input and output, and write encapsulated Javascript logic. I don't
-                                have to worry about the site as a whole when I create a web component, just the
-                                component itself, because all the functionality stays in that component. You can compare
-                                it roughly with the old iframes.
-                            </p>
-                            <p>
-                                For more information on how to build your own web components with angular, I recommend
-                                this <a href="https://angular.io/guide/elements">guide</a>.
-                            </p>
-                        </span>
-                    </blog-entry>
+</pre>
+                        <h3>How does it work?</h3>
+                        <p>
+                            To make this blog entry web component work, I created a new
+                            <a href="https://github.com/DialThetti/blog-utils" target="blank">repository</a>
+                            . This contains an
+                            <a href="https://angular.io/" target="blank">Angular</a>
+                            project. Angular is a TypeScript-based web framework. With it I can easily create
+                            components, define input and output, and write encapsulated Javascript logic. I don't
+                            have to worry about the site as a whole when I create a web component, just the
+                            component itself, because all the functionality stays in that component. You can compare
+                            it roughly with the old iframes.
+                        </p>
+                        <p>
+                            For more information on how to build your own web components with angular, I recommend
+                            this <a href="https://angular.io/guide/elements">guide</a>.
+                        </p>
+                    </span>
+                </blog-entry>
 
-                    <blog-entry title="Day 2: Engine" author="DialThetti" date="30.03.2021" tags="Architecture, Engine">
-                        <span slot="preview">
-                            <h3>Why an Engine</h3>
-                            <blockquote>
-                                <i>
-                                    But DialThetti, why do you need an engine? Other games just have spaghetti code and
-                                    also works, or are implemented as a unity project which consumes 7GB of data. Why
-                                    not using these magical wonders?
-                                </i>
-                            </blockquote>
-                        </span>
-                        <span slot="full">
-                            <p>
-                                This is a good question. First of, I dont have the
-                                <a href="https://elderscrolls.fandom.com/wiki/Thu%27um" target="blank">Thu'um</a>, which
-                                is required to make a sucessful game:
-                            </p>
-                            <p class="center">
-                                <i>IT JUST WORKS</i>
-                            </p>
-                            <p>
-                                I have to follow more traditional ways of game making. I would like to know what happens
-                                under the bonnet when i develop a game. In addition, this project should also be a kind
-                                of showpiece to make my skills presentable.
-                            </p>
-                            <p>
-                                I would also like to be able to reuse the basic building blocks of the game, be it for
-                                another platformer or a top down RPG like 'The legend of Zelda'. That is, all the basic
-                                elements like tiles, timer, sound and file input/output can be bundled and neatly
-                                decapsulated. This means I never have to start from scratch again with the next project.
-                            </p>
-                            <p>
-                                Since I am only a single developer, I have to try to have tools check my quality. A
-                                clean division of the project is also beneficial for this.
-                            </p>
-                            <p>
-                                On the subject of third-party libraries: Of course I can use a third-party system and
-                                pray that with 2-3 clicks and wizards what I want will happen. But I want to know what
-                                happens internally. I want a small system, without overhead and unnecessary
-                                dependencies.
-                            </p>
-                            <p>
-                                As a basic structure, I have thought of the following:
-                                <img
-                                    class="materialboxed"
-                                    src="img/day_2/structure.png"
-                                    data-caption="Rough structure of the game and engine"
-                                    style="margin: auto; max-width: 100%"
-                                />
-                            </p>
-                            <p>
-                                Even if layer architectures can lead to problems now and then, I would still use these 3
-                                layers:
-                            </p>
-                            <dl>
-                                <dt>Engine layer</dt>
-                                <dd>on which all game-unspecific classes, functions and algorithms are located</dd>
-                                <dt>Extensions layer</dt>
-                                <dd>
-                                    which provides extended functionalities, and can be added or omitted depending on
-                                    the game
-                                </dd>
-                                <dt>Game layer</dt>
-                                <dd>
-                                    where the specific levels, entities and mechanics reside. These should be so
-                                    specific that they cannot be reused
-                                </dd>
-                            </dl>
-                        </span>
-                    </blog-entry>
+                <blog-entry title="Engine" author="DialThetti" date="30.03.2021" tags="Architecture, Engine">
+                    <span slot="preview">
+                        <h3>Why an Engine</h3>
+                        <blockquote>
+                            <i>
+                                But DialThetti, why do you need an engine? Other games just have spaghetti code and
+                                also works, or are implemented as a unity project which consumes 7GB of data. Why
+                                not using these magical wonders?
+                            </i>
+                        </blockquote>
+                    </span>
+                    <span slot="full">
+                        <p>
+                            This is a good question. First of, I dont have the
+                            <a href="https://elderscrolls.fandom.com/wiki/Thu%27um" target="blank">Thu'um</a>, which
+                            is required to make a sucessful game:
+                        </p>
+                        <p class="center">
+                            <i>IT JUST WORKS</i>
+                        </p>
+                        <p>
+                            I have to follow more traditional ways of game making. I would like to know what happens
+                            under the bonnet when i develop a game. In addition, this project should also be a kind
+                            of showpiece to make my skills presentable.
+                        </p>
+                        <p>
+                            I would also like to be able to reuse the basic building blocks of the game, be it for
+                            another platformer or a top down RPG like 'The legend of Zelda'. That is, all the basic
+                            elements like tiles, timer, sound and file input/output can be bundled and neatly
+                            decapsulated. This means I never have to start from scratch again with the next project.
+                        </p>
+                        <p>
+                            Since I am only a single developer, I have to try to have tools check my quality. A
+                            clean division of the project is also beneficial for this.
+                        </p>
+                        <p>
+                            On the subject of third-party libraries: Of course I can use a third-party system and
+                            pray that with 2-3 clicks and wizards what I want will happen. But I want to know what
+                            happens internally. I want a small system, without overhead and unnecessary
+                            dependencies.
+                        </p>
+                        <p>
+                            As a basic structure, I have thought of the following:
+                            <img class="materialboxed" src="img/day_2/structure.png"
+                                data-caption="Rough structure of the game and engine"
+                                style="margin: auto; max-width: 100%" />
+                        </p>
+                        <p>
+                            Even if layer architectures can lead to problems now and then, I would still use these 3
+                            layers:
+                        </p>
+                        <dl>
+                            <dt>Engine layer</dt>
+                            <dd>on which all game-unspecific classes, functions and algorithms are located</dd>
+                            <dt>Extensions layer</dt>
+                            <dd>
+                                which provides extended functionalities, and can be added or omitted depending on
+                                the game
+                            </dd>
+                            <dt>Game layer</dt>
+                            <dd>
+                                where the specific levels, entities and mechanics reside. These should be so
+                                specific that they cannot be reused
+                            </dd>
+                        </dl>
+                    </span>
+                </blog-entry>
 
-                    <blog-entry
-                        title="Day 1: Initium Novum"
-                        author="DialThetti"
-                        date="29.03.2021"
-                        tags="Typescript,Engine,CI/CD,Open Source"
-                    >
-                        <span slot="preview">
-                            <h3>Yet another Platformer</h3>
-                            <p>
-                                After a long period of extreme programming, I decided to take the project of developing
-                                a platformer game seriously once again. It all started with a tutorial by
-                                <a href="https://www.youtube.com/channel/UC8A0M0eDttdB11MHxX58vXQ"
-                                    >Meth Meth Method on Youtube</a
-                                >, implementing Super Mario Bros. in Javascript and HTML 5.
-                            </p>
-                        </span>
-                        <span slot="full">
-                            <p>
-                                Right from the start, I thought Typescript might have some advantages, and adopted his
-                                steps in Typescript. In the process, I managed to make one or two abstractions and/or
-                                revisions, so that I ended up with a modular code state. In this, I could replace the
-                                game (here Super Mario) on an engine at will.
-                            </p>
-                            <p>
-                                I decided to remove all Super Mario resources and build a new game inspired by various
-                                platformers on the engine.
-                            </p>
-                            <p>
-                                For this, however, it was important to have a stable engine. After weeks of refactorings
-                                and try and error, I had a working code, but neither tests nor a build path. So this
-                                should be my first step. A combination of
-                                <a href="https://github.com/">Github</a> workflows and
-                                <a href="https://sonarcloud.io">sonarcloud</a> should give me enough confidence about my
-                                code to start the project.
-                            </p>
-                            <p>
-                                At the moment I have 1.2k lines of typescript code, with a still too low test coverage,
-                                but the worst mistakes are already removed, so I can start the actual game soon.
-                            </p>
-                            <p>
-                                The project will be
-                                <a href="https://github.com/DialThetti/xBlrrer">open source</a> as it is developed, and
-                                I will continue to report as the game grows.
-                            </p>
-                        </span>
-                    </blog-entry>
-                </div>
+                <blog-entry title="Initium Novum" author="DialThetti" date="29.03.2021"
+                    tags="Typescript,Engine,CI/CD,Open Source">
+                    <span slot="preview">
+                        <h3>Yet another Platformer</h3>
+                        <p>
+                            After a long period of extreme programming, I decided to take the project of developing
+                            a platformer game seriously once again. It all started with a tutorial by
+                            <a href="https://www.youtube.com/channel/UC8A0M0eDttdB11MHxX58vXQ">Meth Meth Method on
+                                Youtube</a>, implementing Super Mario Bros. in Javascript and HTML 5.
+                        </p>
+                    </span>
+                    <span slot="full">
+                        <p>
+                            Right from the start, I thought Typescript might have some advantages, and adopted his
+                            steps in Typescript. In the process, I managed to make one or two abstractions and/or
+                            revisions, so that I ended up with a modular code state. In this, I could replace the
+                            game (here Super Mario) on an engine at will.
+                        </p>
+                        <p>
+                            I decided to remove all Super Mario resources and build a new game inspired by various
+                            platformers on the engine.
+                        </p>
+                        <p>
+                            For this, however, it was important to have a stable engine. After weeks of refactorings
+                            and try and error, I had a working code, but neither tests nor a build path. So this
+                            should be my first step. A combination of
+                            <a href="https://github.com/">Github</a> workflows and
+                            <a href="https://sonarcloud.io">sonarcloud</a> should give me enough confidence about my
+                            code to start the project.
+                        </p>
+                        <p>
+                            At the moment I have 1.2k lines of typescript code, with a still too low test coverage,
+                            but the worst mistakes are already removed, so I can start the actual game soon.
+                        </p>
+                        <p>
+                            The project will be
+                            <a href="https://github.com/DialThetti/xBlrrer">open source</a> as it is developed, and
+                            I will continue to report as the game grows.
+                        </p>
+                    </span>
+                </blog-entry>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <script src="js/blog/runtime.js" defer></script>
-        <script src="js/blog/polyfills.js" defer></script>
-        <script src="js/blog/vendor.js" defer></script>
-        <script src="js/blog/main.js" defer></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var elems = document.querySelectorAll('.fixed-action-btn');
-                var instances = M.FloatingActionButton.init(elems, {
-                    toolbarEnabled: true,
-                });
+    <script src="js/blog/runtime.js" defer></script>
+    <script src="js/blog/polyfills.js" defer></script>
+    <script src="js/blog/vendor.js" defer></script>
+    <script src="js/blog/main.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+                toolbarEnabled: true,
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
+
 </html>

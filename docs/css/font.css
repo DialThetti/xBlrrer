@@ -1,0 +1,7 @@
+@font-face {
+    font-family: pixeBoy;
+    src: url(../font/PressStart2P.ttf);
+}
+.pixel-text {
+    font-family: pixeBoy;
+}
