@@ -4,8 +4,21 @@ import CrowPrefab from './prefabs/crow-prefab';
 import { DamageArea } from './prefabs/damage-area.prefab';
 import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime-prefab';
 import { SavePointPrefab } from './prefabs/save-point-prefab';
+import { ChestPrefab } from './prefabs/chest-prefab';
+import { ShinyPrefab } from './prefabs/shiny-prefab';
 
-const prefabs = [CrowPrefab, BlueSlimePrefab, RedSlimePrefab, GlideCollectable, DamageArea, SavePointPrefab];
+
+const prefabs = [
+  CrowPrefab,
+  DamageArea,
+  BlueSlimePrefab,
+  RedSlimePrefab,
+  GlideCollectable,
+  SavePointPrefab,
+  ChestPrefab,
+  ShinyPrefab
+];
+
 export default class EntityFactory {
   async prepare(): Promise<void> {
     const factories = await Promise.all(
