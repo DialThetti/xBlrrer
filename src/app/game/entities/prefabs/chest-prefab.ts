@@ -3,7 +3,7 @@ import { Entity, EntityPrefab, entityRepo, EntityState } from '@dialthetti/feath
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 
 import { SpawnEvent, TraitAdapter } from 'src/app/core/entities';
-import { Player } from '../traits';
+import { Jump, Killable, Player, Stomp } from '../traits';
 
 
 class ChestTrait extends TraitAdapter {
@@ -14,6 +14,7 @@ class ChestTrait extends TraitAdapter {
     collides(entity: PlatformerEntity, target: Entity): void {
         if (this.prepareForCleanup)
             entity.state = EntityState.READY_TO_REMOVE;
+
         if (!target.getTrait(Player)) {
             return;
         }
@@ -30,6 +31,9 @@ class ChestTrait extends TraitAdapter {
             }
 
             this.prepareForCleanup = true;
+            if (target.getTrait(Stomp)) {
+                target.getTrait(Stomp).bounce(target, entity);
+            }
             return;
         }
         if (target.bounds.right > entity.bounds.left && target.bounds.left < entity.bounds.left) {
