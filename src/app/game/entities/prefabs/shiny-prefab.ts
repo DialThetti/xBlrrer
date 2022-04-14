@@ -1,9 +1,8 @@
 import { random, Vector } from '@dialthetti/feather-engine-core';
-import { Entity, EntityPrefab, EntityState, Side } from '@dialthetti/feather-engine-entities';
+import { Entity, EntityPrefab, EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 
 import { Context, TraitAdapter } from 'src/app/core/entities';
-import { PositionedTile } from 'src/app/core/level';
 import { Gravity, Physics, Solid } from 'src/app/core/physics';
 import { Player } from '../traits';
 
@@ -20,7 +19,7 @@ class Bounce extends TraitAdapter {
     constructor() {
         super('bounce');
     }
-    obstruct(entity: Entity, side: Side, match: PositionedTile): void {
+    obstruct(entity: Entity): void {
         this.finalize = (): void => {
             entity.vel.y = this.g;
             entity.vel.x /= 2;

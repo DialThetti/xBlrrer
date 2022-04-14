@@ -3,16 +3,20 @@ import { Entity, EntityPrefab, entityRepo, EntityState } from '@dialthetti/feath
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 
 import { SpawnEvent, TraitAdapter } from 'src/app/core/entities';
+import { Player } from '../traits';
 
 
-class X extends TraitAdapter {
+class ChestTrait extends TraitAdapter {
     prepareForCleanup = false;
     constructor() {
-        super('x');
+        super('chestTrait');
     }
     collides(entity: PlatformerEntity, target: Entity): void {
         if (this.prepareForCleanup)
             entity.state = EntityState.READY_TO_REMOVE;
+        if (!target.getTrait(Player)) {
+            return;
+        }
         if (target.bounds.bottom > entity.bounds.top && target.bounds.top < entity.bounds.top && target.vel.y > 0) {
             const value = ChestPrefab.getProperties(entity)['contentValue'];
 
@@ -52,7 +56,7 @@ export class ChestPrefab extends EntityPrefab {
         this.offset = new Vector(0, 2);
 
         this.traits = (): TraitAdapter[] => [
-            new X(),
+            new ChestTrait(),
         ];
     }
     entityFac = (): Entity => new PlatformerEntity() as Entity;
