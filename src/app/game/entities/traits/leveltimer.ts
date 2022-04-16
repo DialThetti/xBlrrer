@@ -5,23 +5,23 @@ import { Context, TraitAdapter } from 'src/app/core/entities';
 import { PlaySfxEvent } from 'src/app/core/sfx';
 
 export default class LevelTimer extends TraitAdapter {
-    totalTime = 300;
-    currentTime = 0;
-    hurried = false;
+  totalTime = 300;
+  currentTime = 0;
+  hurried = false;
 
-    constructor(level?: PlatformerLevel) {
-        super('leveltimer');
-        if (level) this.totalTime = level.estimateTime;
+  constructor(level?: PlatformerLevel) {
+    super('leveltimer');
+    if (level) this.totalTime = level.estimateTime;
+  }
+  update(entity: Entity, context: Context): void {
+    this.currentTime += context.deltaTime;
+    if (this.restTime <= 100 && !this.hurried) {
+      this.hurried = true;
+      FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'hurry', blocking: true }));
     }
-    update(entity: Entity, context: Context): void {
-        this.currentTime += context.deltaTime;
-        if (this.restTime <= 100 && !this.hurried) {
-            this.hurried = true;
-            FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'hurry', blocking: true }));
-        }
-    }
+  }
 
-    get restTime(): number {
-        return this.totalTime - this.currentTime;
-    }
+  get restTime(): number {
+    return this.totalTime - this.currentTime;
+  }
 }

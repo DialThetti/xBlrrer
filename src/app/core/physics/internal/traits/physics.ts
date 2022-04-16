@@ -4,17 +4,17 @@ import { Context } from 'src/app/core/entities';
 import { TraitAdapter } from 'src/app/core/entities/internal/trait';
 
 export class Physics extends TraitAdapter {
-    constructor() {
-        super('physics');
-    }
+  constructor() {
+    super('physics');
+  }
 
-    update(e: Entity, context: Context): void {
-        if (!this.enabled) {
-            return;
-        }
-        e.pos.x += e.vel.x * context.deltaTime;
-        LEVEL_COLLIDER.checkX(e, context.level);
-        e.pos.y += e.vel.y * context.deltaTime;
-        LEVEL_COLLIDER.checkY(e, context.level);
+  update(e: Entity, context: Context): void {
+    if (!this.enabled) {
+      return;
     }
+    e.pos.x += e.vel.x * context.deltaTime;
+    LEVEL_COLLIDER.checkX(e, context.level);
+    e.pos.y += e.vel.y * context.deltaTime;
+    LEVEL_COLLIDER.checkY(e, context.level);
+  }
 }

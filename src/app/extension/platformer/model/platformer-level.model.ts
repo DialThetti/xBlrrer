@@ -2,16 +2,16 @@ import { Vector } from '@dialthetti/feather-engine-core';
 import { TiledMap } from '@dialthetti/feather-engine-tiled';
 
 export interface PlatformerLevel {
-    tiledMapPath: string;
+  tiledMapPath: string;
 
-    parallax?: { img: string; speed: number; y: number }[];
+  parallax?: { img: string; speed: number; y: number }[];
 
-    estimateTime: number;
-    bgm?: string;
+  estimateTime: number;
+  bgm?: string;
 
-    entities?: { name: string; pos: number[] }[];
+  entities?: { name: string; pos: number[] }[];
 
-    startPosition: Vector;
+  startPosition: Vector;
 
-    tiledMap: TiledMap;
+  tiledMap: TiledMap;
 }

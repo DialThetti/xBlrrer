@@ -1,17 +1,17 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 
 export interface PlatformerLevelData {
-    tiledMapPath: string;
+  tiledMapPath: string;
 
-    estimateTime: number;
-    bgm?: string;
-    parallax?: {
-        img: string;
-        speed: number;
-        y: number;
-    }[];
+  estimateTime: number;
+  bgm?: string;
+  parallax?: {
+    img: string;
+    speed: number;
+    y: number;
+  }[];
 
-    startPosition: Vector;
+  startPosition: Vector;
 
-    minimap: string[];
+  minimap: string[];
 }

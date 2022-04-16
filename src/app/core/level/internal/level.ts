@@ -4,15 +4,15 @@ import { LevelLayer } from './level-layer';
 import { LevelTrait } from './level-trait';
 
 export class Level {
-    levelTraits: LevelTrait[] = [];
+  levelTraits: LevelTrait[] = [];
 
-    levelLayer: LevelLayer[] = [];
+  levelLayer: LevelLayer[] = [];
 
-    entities: Set<Entity> = new Set();
+  entities: Set<Entity> = new Set();
 
-    camera: Camera;
+  camera: Camera;
 
-    update(deltaTime: number): void {
-        this.levelTraits.forEach((trait) => trait.update(this, deltaTime));
-    }
+  update(deltaTime: number): void {
+    this.levelTraits.forEach(trait => trait.update(this, deltaTime));
+  }
 }

@@ -3,13 +3,13 @@ import { TiledMap, TiledMapLoader } from '@dialthetti/feather-engine-tiled';
 import { PlatformerLevelData } from '../model/platformer-level.interface';
 
 export default class LevelSpecLoader implements Loader<PlatformerLevelData & { tiledMap: TiledMap }> {
-    constructor(private levelName: string) {}
+  constructor(private levelName: string) {}
 
-    async load(): Promise<PlatformerLevelData & { tiledMap: TiledMap }> {
-        const level = await loadJson<PlatformerLevelData>(`./levels/${this.levelName}/main.json`);
+  async load(): Promise<PlatformerLevelData & { tiledMap: TiledMap }> {
+    const level = await loadJson<PlatformerLevelData>(`./levels/${this.levelName}/main.json`);
 
-        const tiledMap = await new TiledMapLoader(level.tiledMapPath).load();
+    const tiledMap = await new TiledMapLoader(level.tiledMapPath).load();
 
-        return { ...level, tiledMap };
-    }
+    return { ...level, tiledMap };
+  }
 }

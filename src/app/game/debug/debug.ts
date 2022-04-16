@@ -4,21 +4,21 @@ import PlatformerLevel from '@extension/platformer/level/platformer-level';
 
 declare const window: any; // eslint-disable-line
 
-export function addDebugToLevel(level: PlatformerLevel): void {
-    if (window) {
-        window.addTrait = (name) => {
-            level.findPlayer().addTraits([traitRegistry.byName(name)]);
-        };
+export const addDebugToLevel = (level: PlatformerLevel): void => {
+  if (window) {
+    window.addTrait = name => {
+      level.findPlayer().addTraits([traitRegistry.byName(name)]);
+    };
 
-        window.removeTrait = (name) => {
-            level.findPlayer().removeTraitByName(name);
-        };
-        window.testingCheatsEnabled = (enabled): void => {
-            FeatherEngine.debugSettings.enabled = enabled;
-        };
-        window.hitboxesOnly = (enabled): void => {
-            FeatherEngine.debugSettings.hitboxesOnly = enabled;
-        };
-        window.FeatherEngine = FeatherEngine;
-    }
-}
+    window.removeTrait = name => {
+      level.findPlayer().removeTraitByName(name);
+    };
+    window.testingCheatsEnabled = (enabled): void => {
+      FeatherEngine.debugSettings.enabled = enabled;
+    };
+    window.hitboxesOnly = (enabled): void => {
+      FeatherEngine.debugSettings.hitboxesOnly = enabled;
+    };
+    window.FeatherEngine = FeatherEngine;
+  }
+};
