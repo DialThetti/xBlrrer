@@ -1,3 +1,3 @@
-export function notNull(obj: unknown): boolean {
-    return !!obj;
-}
+export const notNull = (obj: unknown): boolean => {
+  return !!obj;
+};

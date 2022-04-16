@@ -1,9 +1,8 @@
 import Game from '@game/game';
 
-declare const window: any; // eslint-disable-line
+const start: () => Promise<void> = async () => {
+  const game = new Game('screen');
+  await game.start();
+};
 
-async function start(): Promise<void> {
-    const game = new Game('screen');
-    await game.start();
-}
 start();

@@ -1,7 +1,7 @@
 export interface AudioSpec {
-    fx: {
-        [name: string]: {
-            url: string;
-        };
+  fx: {
+    [name: string]: {
+      url: string;
     };
+  };
 }
