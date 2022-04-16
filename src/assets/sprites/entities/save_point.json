@@ -20,6 +20,33 @@
             ]
         },
         {
+            "name": "highlighted-2",
+            "rect": [
+                32,
+                16,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "highlighted-3",
+            "rect": [
+                64,
+                16,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "highlighted-4",
+            "rect": [
+                96,
+                16,
+                32,
+                16
+            ]
+        },
+        {
             "name": "active-1",
             "rect": [
                 0,
@@ -39,9 +66,12 @@
         },
         {
             "name": "highlighted",
-            "frameLen": 8,
+            "frameLen": 16,
             "frames": [
-                "highlighted-1"
+                "highlighted-1",
+                "highlighted-2",
+                "highlighted-3",
+                "highlighted-4"
             ]
         },
         {
