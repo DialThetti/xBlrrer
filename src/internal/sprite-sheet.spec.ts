@@ -4,19 +4,19 @@ import SpriteSheet from './sprite-sheet';
 
 describe('SpriteSheet', () => {
     let spriteSheet: SpriteSheet;
-    let img = mock(HTMLImageElement);
+    const mockImg = mock(HTMLImageElement);
 
     let renderContext: RenderContext;
     beforeEach(() => {
         renderContext = {
-            scale: (x: number, y: number) => null,
-            translate: (x: number, y: number) => null,
-            drawImage: (c: HTMLCanvasElement, w: number, h: number) => null,
+            scale: () => null,
+            translate: () => null,
+            drawImage: () => null,
             canvas: () => ({}),
-            clearRect: (x: number, y: number, w: number, h: number) => null,
+            clearRect: () => null,
         } as unknown as RenderContext;
-        CanvasRenderer.createRenderContext = (w, h) => renderContext;
-        spriteSheet = new SpriteSheet(img, 10, 10);
+        CanvasRenderer.createRenderContext = () => renderContext;
+        spriteSheet = new SpriteSheet(mockImg, 10, 10);
     });
     describe('define', () => {
         it('should define a sprite', () => {
@@ -28,35 +28,31 @@ describe('SpriteSheet', () => {
     });
     describe('draw', () => {
         it('should render original', () => {
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = true);
+            renderContext.drawImage = () => (a = true);
             spriteSheet.ref[0].pos['a'] = {} as any;
             spriteSheet.draw('a', renderContext, 0, 0, false);
             expect(a).toBeTruthy();
         });
         it('should render switched', () => {
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = true);
+            renderContext.drawImage = () => (a = true);
             spriteSheet.ref[1].pos['a_switched'] = {} as any;
             spriteSheet.draw('a', renderContext, 0, 0, true);
             expect(a).toBeTruthy();
         });
         it('should not render if img not exist', () => {
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = false);
-            renderContext.clearRect = (c, x, y) => (a = true);
+            renderContext.drawImage = () => (a = false);
+            renderContext.clearRect = () => (a = true);
             spriteSheet.draw('b', renderContext, 0, 0, false);
             expect(a).toBeTruthy();
         });
         it('should render debug Rect if img not exist', () => {
             FeatherEngine.debugSettings.enabled = true;
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = false);
-            renderContext.fillRect = (x, y, w, h) => (a = true);
+            renderContext.drawImage = () => (a = false);
+            renderContext.fillRect = () => (a = true);
             spriteSheet.draw('b', renderContext, 0, 0, false);
             expect(a).toBeTruthy();
         });

@@ -9,8 +9,8 @@ describe('drawRect', () => {
         renderContext = {
             fillRect: (...a: number[]) => (args = ['filled', ...a]),
             rect: (...a: number[]) => (args = ['not_filled', ...a]),
-            beginPath: () => {},
-            stroke: () => {},
+            beginPath: () => null,
+            stroke: () => null,
         } as unknown as RenderContext;
     });
     it('should draw a rectangle shape by default', () => {

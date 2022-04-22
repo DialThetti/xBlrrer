@@ -1,8 +1,11 @@
 import { Canvas, Loader, loadImage, loadJson } from '@dialthetti/feather-engine-core';
 import { createAnim } from '../animation';
-import SpriteSheetModel from '../model/sprite-sheet-model';
+import { SpriteSheetModel } from '../model/sprite-sheet-model';
 import SpriteSheet from '../sprite-sheet';
 
+/**
+ * @deprecated use sppSpriteSheet format
+ */
 export default class SpriteSheetLoader implements Loader<SpriteSheet> {
     constructor(private name: string) {}
 
