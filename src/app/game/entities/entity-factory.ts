@@ -1,9 +1,10 @@
 import { setEntityRepo } from '@dialthetti/feather-engine-entities';
 import { GlideCollectable } from './prefabs/collectable-prefab';
 import CrowPrefab from './prefabs/crow-prefab';
+import { DamageArea } from './prefabs/damage-area.prefab';
 import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime-prefab';
 
-const prefabs = [CrowPrefab, BlueSlimePrefab, RedSlimePrefab, GlideCollectable];
+const prefabs = [CrowPrefab, BlueSlimePrefab, RedSlimePrefab, GlideCollectable,DamageArea];
 export default class EntityFactory {
   async prepare(): Promise<void> {
     const factories = await Promise.all(

@@ -61,10 +61,10 @@
         "webpack-dev-server": "^3.11.3"
     },
     "dependencies": {
-        "@dialthetti/feather-engine-core": "0.0.1-alpha",
-        "@dialthetti/feather-engine-entities": "0.0.1-alpha",
-        "@dialthetti/feather-engine-events": "0.0.1-alpha",
-        "@dialthetti/feather-engine-graphics": "0.0.1-alpha",
-        "@dialthetti/feather-engine-tiled": "0.2.0"
+        "@dialthetti/feather-engine-core": "0.1.2",
+        "@dialthetti/feather-engine-entities": "0.1.4",
+        "@dialthetti/feather-engine-events": "0.1.1",
+        "@dialthetti/feather-engine-graphics": "0.1.1",
+        "@dialthetti/feather-engine-tiled": "0.3.1"
     }
 }

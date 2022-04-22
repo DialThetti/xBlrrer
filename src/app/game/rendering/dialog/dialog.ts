@@ -6,6 +6,7 @@ import {
   ResumeGameEvent,
   StashControlInputEvent,
 } from '@dialthetti/feather-engine-core';
+import { Keys } from 'src/app/scenes/keys';
 export default class Dialog {
   static show(text: string[]): void {
     FeatherEngine.eventBus.subscribe('dialog-next', {
@@ -25,7 +26,7 @@ export default class Dialog {
     FeatherEngine.eventBus.publish(new PauseGameEvent());
     KeyboardInput.addKeyListener({
       keyDown: e => {
-        if (e == 'Space') FeatherEngine.eventBus.publish({ topic: 'dialog-next', payload: 'x' });
+        if (e == Keys.A) FeatherEngine.eventBus.publish({ topic: 'dialog-next', payload: 'x' });
       },
       keyUp: () => {
         //no keyup atm

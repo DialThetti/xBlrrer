@@ -1,5 +1,5 @@
 import { FeatherEngine } from '@dialthetti/feather-engine-core';
-import { traitRegistry } from '@dialthetti/feather-engine-entities';
+import { EntityState, traitRegistry } from '@dialthetti/feather-engine-entities';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 
 declare const window: any; // eslint-disable-line
@@ -19,6 +19,9 @@ export const addDebugToLevel = (level: PlatformerLevel): void => {
     window.hitboxesOnly = (enabled): void => {
       FeatherEngine.debugSettings.hitboxesOnly = enabled;
     };
+    window.freezeEntities = ()=> {
+      level.entities.forEach(e=>e.state === EntityState.UNTRIGGERED)
+    }
     window.FeatherEngine = FeatherEngine;
   }
 };

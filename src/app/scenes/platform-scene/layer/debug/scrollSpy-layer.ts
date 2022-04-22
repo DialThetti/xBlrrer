@@ -1,5 +1,6 @@
-import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
+
 import { drawRect } from '@dialthetti/feather-engine-graphics';
+import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
 import { Level } from 'src/app/core/level';
 import { RenderLayer } from 'src/app/core/rendering';
 

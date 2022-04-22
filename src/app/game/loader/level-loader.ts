@@ -8,6 +8,7 @@ import { createBrickTileHandler } from '@extension/platformer/physics/collider/b
 import ChunkedTilesetLayer from '@extension/platformer/rendering/layers/chunked-tileset-layer';
 import TilesetLayer from '@extension/platformer/rendering/layers/tileset-layer';
 import { createWaterTileHandler } from '@game/physics/collider/water-handler';
+import { Attack } from '@game/entities/traits';
 import { LevelLayer } from 'src/app/core/level';
 import { TileCollider } from 'src/app/core/physics';
 import { EntityLayer, ParallaxLayer, SingleColorLayer } from 'src/app/core/rendering';
@@ -52,6 +53,10 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
     if (this.saveData.collectables?.hasGliding) {
       player.addTrait(new Glide());
     }
+    if (player.getTrait(Attack)) {
+      player.getTrait(Attack).comboSkill = this.saveData.comboSkill ?? 1;
+    }
+
     player.state = EntityState.ACTIVE;
 
     level.startPosition = new Vector(levelSpec.startPosition.x, levelSpec.startPosition.y);

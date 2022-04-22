@@ -6,7 +6,7 @@ import { RenderLayer } from 'src/app/core/rendering';
 export default class EntityLayer implements RenderLayer {
   bufferContext: RenderContext;
   buffer: Canvas;
-  constructor(private entities: Set<Entity>, private width = 64, private height = 64) {
+  constructor(private entities: Set<Entity>, private width = 64*2, private height = 64*2) {
     this.createBuffer(width, height);
   }
 

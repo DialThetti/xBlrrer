@@ -1,4 +1,4 @@
-import { BoundingBox, Vector } from '@dialthetti/feather-engine-core';
+import { BoundingBox, RenderContext, Vector } from '@dialthetti/feather-engine-core';
 import { Entity, EntityState, Side, Trait, TraitCtnr } from '@dialthetti/feather-engine-entities';
 import { EventStack } from '@dialthetti/feather-engine-events';
 import { PlatformerTraitContext } from '@game/entities/traits/traits';
@@ -74,8 +74,10 @@ export default class PlatformerEntity implements Entity, TraitCtnr {
     delete this.traits[name];
     return true;
   }
-  draw(): void {
+
+  draw(context: RenderContext): void {
     // entity has no rendering.
+    context.rect(0, 0, 100, 100);
   }
 
   private getTraits(): TraitAdapter[] {

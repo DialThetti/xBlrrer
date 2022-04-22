@@ -9,6 +9,7 @@ export const InitialSaveData: Partial<xBlrrerSaveData> = {
 export interface xBlrrerSaveData {
   position: Vector;
   life: number;
+  comboSkill: number;
   stage: {
     name: string;
   };
