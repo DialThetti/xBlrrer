@@ -4,12 +4,12 @@ import FontLoader from './font.loader';
 
 describe('FontLoader', () => {
     let fontLoader: FontLoader;
-    let fontSpriteSheet: Font = mock(Font);
+    const fontSpriteSheet: Font = mock(Font);
 
     beforeEach(() => {
         fontLoader = new FontLoader('http://localhost/font');
         fontLoader['loadImage'] = async () => new Promise((e) => e({ width: 16 * 8 } as HTMLImageElement));
-        fontLoader['createNewFont'] = (img, w, h) => fontSpriteSheet;
+        fontLoader['createNewFont'] = () => fontSpriteSheet;
     });
 
     it('should load a font', async (done) => {

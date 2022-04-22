@@ -1,4 +1,5 @@
-export default interface SpriteSheetModel {
+export interface SpriteSheetModel {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     imageURL: string;
     tileW: number;
     tileH: number;

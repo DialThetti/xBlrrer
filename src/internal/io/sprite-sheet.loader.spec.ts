@@ -1,5 +1,5 @@
 import { anyFunction, anyNumber, anything, mock, spy, verify } from 'ts-mockito';
-import SpriteSheetModel from '../model/sprite-sheet-model';
+import { SpriteSheetModel } from '../model/sprite-sheet-model';
 import SpriteSheet from '../sprite-sheet';
 import SpriteSheetLoader from './sprite-sheet.loader';
 describe('SpriteSheetLoader', () => {
@@ -12,7 +12,7 @@ describe('SpriteSheetLoader', () => {
         spriteSheet = mock(SpriteSheet);
         spriteSheetLoader = new SpriteSheetLoader('http://localhost/font');
         spriteSheetLoader['loadImage'] = async () => new Promise((e) => e({ width: 16 * 8 } as HTMLImageElement));
-        spriteSheetLoader['createNewSpriteSheet'] = (img, w, h) => spriteSheet;
+        spriteSheetLoader['createNewSpriteSheet'] = () => spriteSheet;
         spriteSpy = spy(spriteSheet);
     });
 
