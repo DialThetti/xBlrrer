@@ -3,6 +3,7 @@ import { EventStack } from '@dialthetti/feather-engine-events';
 import { TraitCtnr } from '../trait/trait-container';
 import { EntityState } from './entity-state';
 
+// eslint-disable-next-line no-shadow
 export enum Side {
     TOP,
     BOTTOM,
