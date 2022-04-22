@@ -3,6 +3,7 @@ import { Entity, EntityState } from '@dialthetti/feather-engine-entities';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import MetroidCamera from '@extension/platformer/world/metroid-camera';
+import { SavePoint } from '@game/entities/prefabs/save-point-prefab';
 import { PlayerController } from '@game/entities/traits';
 import { LEVEL_RENDERER } from 'src/app/core/level';
 import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
@@ -67,6 +68,14 @@ export default class GameScene implements Scene {
     this.player = player;
 
     addDebugToLevel(level);
+    //Set Active Savepoint
+    if (saveData.savePoint) {
+      this.level.entities.forEach((e) => {
+        if (e.hasTrait(SavePoint) && e.pos.x == saveData.savePoint.x && e.pos.y == saveData.savePoint.y) {
+          e.getTrait(SavePoint).active = true;
+        }
+      });
+    }
   }
 
   update(deltaTime: number): void {

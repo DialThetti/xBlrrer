@@ -1,29 +1,26 @@
-import { log } from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
-import { TraitAdapter } from 'src/app/core/entities';
+import { Activatable, TraitAdapter } from 'src/app/core/entities';
+import { TouchableEntity } from '../prefabs/touchable-entity';
 
 export default class Player extends TraitAdapter {
-  lives = 3;
-  private c = 0;
-  score = 0;
+  active = false;
   constructor() {
     super('player');
   }
 
   update(entity: Entity): void {
-    entity.events.process('stomp', { receive: () => (this.score += 100) });
-  }
-
-  get coins(): number {
-    return this.c;
-  }
-
-  set coins(val: number) {
-    if (val >= 100) {
-      this.lives++;
-      val -= 100;
-      log(this, '1-up');
+    if (this.active) {
+      if (entity instanceof TouchableEntity) {
+        entity.isOverlappingWith.forEach((target) => {
+          if (target.hasTrait(Activatable)) {
+            (target.getTrait(Activatable) as Activatable).activate();
+          }
+        });
+      }
     }
-    this.c = val;
+    this.active = false;
+  }
+  activate(): void {
+    this.active = true;
   }
 }

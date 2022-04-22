@@ -44,8 +44,9 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
       levelSpec.tiledMap.entities
         .map(a => ({ ...a, entity: entityRepo[a.prefab]() as PlatformerEntity }))
         .filter(({ entity }) => entity)
-        .forEach(({ position: { x, y }, entity }) => {
+        .forEach(({ position: { x, y }, entity, properties }) => {
           entity.pos.set(x, y);
+          entity.properties = properties;
           level.entities.add(entity);
         });
     }
@@ -56,6 +57,10 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
     if (player.getTrait(Attack)) {
       player.getTrait(Attack).comboSkill = this.saveData.comboSkill ?? 1;
     }
+
+    level.startPosition = new Vector(levelSpec.startPosition.x, levelSpec.startPosition.y);
+    level.estimateTime = levelSpec.estimateTime;
+    level.bgm = levelSpec.bgm;
 
     player.state = EntityState.ACTIVE;
 

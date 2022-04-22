@@ -1,0 +1,14 @@
+{
+    "imageURL": "./img/objects/chest.png",
+    "frames": [
+        {
+            "name": "idle",
+            "rect": [
+                0,
+                0,
+                16,
+                16
+            ]
+        }
+    ]
+}

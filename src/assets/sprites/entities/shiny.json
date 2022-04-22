@@ -1,0 +1,32 @@
+{
+    "imageURL": "./img/objects/chest.png",
+    "frames": [
+        {
+            "name": "yellow",
+            "rect": [
+                16,
+                0,
+                5,
+                5
+            ]
+        },
+        {
+            "name": "red",
+            "rect": [
+                16,
+                5,
+                5,
+                5
+            ]
+        },
+        {
+            "name": "blue",
+            "rect": [
+                16,
+                10,
+                5,
+                5
+            ]
+        }
+    ]
+}

@@ -1,12 +1,14 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 import { EntityPrefab } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
-import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
-import { TraitAdapter } from 'src/app/core/entities';
 import { Gravity, Physics, Solid } from 'src/app/core/physics';
+import { Overlappable, TraitAdapter } from 'src/app/core/entities';
 import { Attack, Crouch, Glide, Go, Jump, Killable, Player, Stomp } from '../traits';
+import { TouchableEntity } from './touchable-entity';
+
 
 export default class CrowPrefab extends EntityPrefab {
+
   constructor() {
     super('crow', 'ssp:player');
     this.size = new Vector(20, 32);
@@ -22,12 +24,14 @@ export default class CrowPrefab extends EntityPrefab {
       new Killable('dead', 3, 0),
       new Crouch(),
       new Player(),
-      //  new Attack()
+      //  new Attack(),
+      new Overlappable(),
     ];
   }
-  entityFac = (): PlatformerEntity => new PlatformerEntity();
+  entityFac = (): TouchableEntity => new TouchableEntity();
 
-  routeFrame(entity: PlatformerEntity, sprite: SpriteSheet): string {
+
+  routeFrame(entity: TouchableEntity, sprite: SpriteSheet): string {
 
     const go = entity.getTrait(Go);
     const jump = entity.getTrait(Jump);
@@ -62,11 +66,12 @@ export default class CrowPrefab extends EntityPrefab {
 
     if (go.distance !== 0 && entity.vel.x !== 0) {
       return sprite.getAnimation('run')(go.distance);
+
     }
     return sprite.getAnimation('idle')(entity.lifeTime * 150);
   }
 
-  flipped(f: PlatformerEntity): boolean {
+  flipped(f: TouchableEntity): boolean {
     const go = f.getTrait(Go);
     return go.facingDirection == -1;
   }
