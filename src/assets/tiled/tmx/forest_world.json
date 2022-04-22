@@ -887,6 +887,28 @@
                  "width":31.5,
                  "x":2335.82575757576,
                  "y":1632.19318181818
+                }, 
+                {
+                 "height":16,
+                 "id":59,
+                 "name":"Chest",
+                 "properties":[
+                        {
+                         "name":"contentValue",
+                         "type":"float",
+                         "value":15
+                        }, 
+                        {
+                         "name":"entity_prefab",
+                         "type":"string",
+                         "value":"chest"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1328.5,
+                 "y":1056.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -895,7 +917,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":59,
+ "nextobjectid":60,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

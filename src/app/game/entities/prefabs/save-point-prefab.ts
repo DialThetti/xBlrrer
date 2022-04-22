@@ -1,4 +1,4 @@
-import { Vector } from '@dialthetti/feather-engine-core';
+import { info, Vector } from '@dialthetti/feather-engine-core';
 import { EntityPrefab } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import { Player } from '../traits';
@@ -15,7 +15,7 @@ export class SavePointPrefab extends EntityPrefab {
         this.traits = (): TraitAdapter[] => [
             new Overlappable(),
             new Activatable((e: TouchableEntity, context: Context) => {
-                console.log('save');
+                info(this, 'save');
                 context.level.entities.forEach((savePoint) => {
                     if (savePoint.hasTrait(SavePoint)) {
                         savePoint.getTrait(SavePoint).active = false;
