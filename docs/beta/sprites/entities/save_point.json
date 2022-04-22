@@ -1,0 +1,85 @@
+{
+    "imageURL": "./img/objects/save_point.png",
+    "frames": [
+        {
+            "name": "idle-1",
+            "rect": [
+                0,
+                0,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "highlighted-1",
+            "rect": [
+                0,
+                16,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "highlighted-2",
+            "rect": [
+                32,
+                16,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "highlighted-3",
+            "rect": [
+                64,
+                16,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "highlighted-4",
+            "rect": [
+                96,
+                16,
+                32,
+                16
+            ]
+        },
+        {
+            "name": "active-1",
+            "rect": [
+                0,
+                32,
+                32,
+                16
+            ]
+        }
+    ],
+    "animations": [
+        {
+            "name": "idle",
+            "frameLen": 8,
+            "frames": [
+                "idle-1"
+            ]
+        },
+        {
+            "name": "highlighted",
+            "frameLen": 16,
+            "frames": [
+                "highlighted-1",
+                "highlighted-2",
+                "highlighted-3",
+                "highlighted-4"
+            ]
+        },
+        {
+            "name": "active",
+            "frameLen": 8,
+            "frames": [
+                "active-1"
+            ]
+        }
+    ]
+}
