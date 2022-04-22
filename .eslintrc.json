@@ -1,0 +1,96 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "prefer-arrow",
+    "unused-imports"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": true
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      }
+    }
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": "error",
+    "@typescript-eslint/dot-notation": "off",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "off",
+      {
+        "accessibility": "explicit"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "property",
+        "format": [
+          "strictCamelCase"
+        ],
+        "filter": {
+          // you can expand this regex to add more allowed names
+          "regex": "^(Authorization|Authentication-Info)$",
+          "match": false
+        }
+      }
+    ],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "dot-notation": "off",
+    "id-denylist": "off",
+    "id-match": "off",
+    "indent": [
+      "off",
+      2
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "error",
+          "warn"
+        ]
+      }
+    ],
+    "no-empty-function": "off",
+    "no-shadow": "error",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": "error",
+    "prefer-arrow/prefer-arrow-functions": "warn",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": "off", // done by @typescript-eslint/no-unused-vars
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "semi": "error"
+  }
+}
