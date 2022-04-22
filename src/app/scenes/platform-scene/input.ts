@@ -49,17 +49,23 @@ export default class Input implements KeyListener {
 
         break;
       case 'Digit5':
+        if (!FeatherEngine.debugSettings.enabled) {
+          return;
+        }
         // TODO Due by Actions
         FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().pushData({
           position: this.playerFigure.pos,
           life: killable.hp,
-          comboSkill: attack.comboSkill,
+          comboSkill: attack?.comboSkill ?? 0,
           stage: { name: 'forest' },
           collectables: { hasGliding: this.playerFigure.hasTrait(Glide) },
         });
         FeatherEngine.getSaveDataSystem().storeCurrentData(0);
         break;
       case 'Digit9':
+        if (!FeatherEngine.debugSettings.enabled) {
+          return;
+        }
         FeatherEngine.getSaveDataSystem().loadCurrentData(0);
         FeatherEngine.eventBus.publish(
           new ShowSceneEvent({ name: SceneNames.gameScene, withLoading: true, forceLoading: true })
