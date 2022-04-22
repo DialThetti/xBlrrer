@@ -1,9 +1,10 @@
 import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core';
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
-import { Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
+import { Attack, Crouch, Glide, Go, Jump, Killable } from '@game/entities/traits';
 import { ShowSceneEvent } from 'src/app/core/scenes';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
+import { Keys } from '../keys';
 import { SceneNames } from '../scene-names';
 
 export default class Input implements KeyListener {
@@ -14,22 +15,27 @@ export default class Input implements KeyListener {
     const crouch = this.playerFigure.getTrait(Crouch);
     const glide = this.playerFigure.getTrait(Glide);
     const killable = this.playerFigure.getTrait(Killable);
+    const attack = this.playerFigure.getTrait(Attack);
     switch (code) {
-      case 'Space':
+      case Keys.A:
         if (glide && jump.falling) {
           glide.start();
         } else {
           jump.start();
         }
         break;
-      case 'KeyS':
+      case Keys.DOWN:
         if (!jump.falling) crouch.start();
         break;
-      case 'KeyA':
+      case Keys.LEFT:
         go.left(true);
         break;
-      case 'KeyD':
+      case Keys.RIGHT:
         go.right(true);
+        break;
+      case Keys.B:
+        if (attack)
+          attack.attack();
         break;
       case 'Digit1':
         FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '-0.1' }));
@@ -44,6 +50,7 @@ export default class Input implements KeyListener {
         FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().pushData({
           position: this.playerFigure.pos,
           life: killable.hp,
+          comboSkill: attack.comboSkill,
           stage: { name: 'forest' },
           collectables: { hasGliding: this.playerFigure.hasTrait(Glide) },
         });
@@ -66,20 +73,20 @@ export default class Input implements KeyListener {
     const crouch = this.playerFigure.getTrait(Crouch);
     const glide = this.playerFigure.getTrait(Glide);
     switch (code) {
-      case 'Space':
+      case Keys.A:
         if (glide && glide.gliding) {
           glide.cancel();
         } else {
           jump.cancel();
         }
         break;
-      case 'KeyS':
+      case Keys.DOWN:
         crouch.cancel();
         break;
-      case 'KeyA':
+      case Keys.LEFT:
         go.left(false);
         break;
-      case 'KeyD':
+      case Keys.RIGHT:
         go.right(false);
         break;
     }

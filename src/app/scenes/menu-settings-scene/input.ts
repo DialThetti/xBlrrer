@@ -1,26 +1,27 @@
 import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core';
 import { PlaySfxEvent } from 'src/app/core/sfx';
+import { Keys } from '../keys';
 import MenuSettingsScene from './menu-settings-scene';
 
 export default class Input implements KeyListener {
   constructor(private menuSettings: MenuSettingsScene) { }
   keyDown(code: string): void {
     switch (code) {
-      case 'Space':
+      case Keys.A:
         if (this.menuSettings.option === 3) this.menuSettings.submit();
         break;
-      case 'KeyW':
+      case Keys.UP:
         this.menuSettings.option--;
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'pointer' }));
         break;
-      case 'KeyS':
+      case Keys.DOWN:
         this.menuSettings.option++;
         FeatherEngine.eventBus.publish(new PlaySfxEvent({ name: 'pointer' }));
         break;
-      case 'KeyD':
+      case Keys.RIGHT:
         this.menuSettings.changeSettings('inc');
         break;
-      case 'KeyA':
+      case Keys.LEFT:
         this.menuSettings.changeSettings('dec');
         break;
 
