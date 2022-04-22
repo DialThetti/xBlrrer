@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tech Demo: xBlrrer</title>
+        <style>
+            body {
+                background: #000;
+                margin: 0;
+            }
+
+            #screen {
+                display: block;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -webkit-crisp-edges;
+                image-rendering: pixelated;
+                image-rendering: crisp-edges;
+                height: 100vh;
+                margin: auto;
+            }
+        </style>
+        <script type="module" src="./js/main.js"></script>
+    </head>
+    <body>
+        <canvas id="screen" width="512" height="448"></canvas>
+    </body>
+</html>

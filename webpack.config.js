@@ -7,7 +7,7 @@ module.exports = {
 
     entry: './src/app/main.ts',
     output: {
-        path: path.resolve(__dirname, 'docs'),
+        path: path.resolve(__dirname, 'docs/beta'),
         filename: './js/main.js',
     },
 

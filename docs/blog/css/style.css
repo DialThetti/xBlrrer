@@ -6,56 +6,32 @@
     --grey: #555b6d;
     --primary: #7a5239;
 }
-.btn-floating.btn-large{
+.btn-floating.btn-large {
     background-color: var(--grey);
 }
 nav {
     background-color: var(--grey);
+}
 
-}
-sidenav .bottom {
-    position: absolute;
-    bottom: 0;
-    width:300px;
-    left: 0;
-}
-.bottom .btn{
-    margin-bottom:10px;
+.bottom .btn {
+    margin-bottom: 10px;
 }
 .discord-btn {
     background-color: #7289da;
 }
-.discord-btn:hover,.discord-btn:focus {
+.discord-btn:hover,
+.discord-btn:focus {
     background-color: #677bc4;
 }
-body {
-    display: flex;
-    overflow: hidden;
-    height: 100vh;
-    background-color: #efefef;
-}
-a .fa-discord{
+
+a .fa-discord {
     margin-right: 10px;
 }
-sidenav {
-    width: 300px;
-    background-color: var(--grey);
-    color: #efefef;
-    display: block;
-    padding: 10px;
-}
+
 blockquote {
     border-left-color: var(--primary);
 }
-main {
-    display: block;
-    overflow-y: auto;
-}
-@media all and (min-width: 996px) {
-    main {
-        width: calc(100% - 300px);
-    }
-}
+
 a {
     cursor: pointer;
     color: var(--primary);

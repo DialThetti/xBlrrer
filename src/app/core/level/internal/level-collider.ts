@@ -1,7 +1,7 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
 import LevelCollider from '@extension/platformer/level/level-collider';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
-import { Collidable } from 'src/app/core/physics/internal/collidable';
+import { Collidable } from 'src/app/core/physics';
 import { Level } from './level';
 
 class X implements Collidable {

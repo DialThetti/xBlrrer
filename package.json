@@ -1,6 +1,6 @@
 {
     "name": "xblrrer",
-    "version": "0.0.20211018-1",
+    "version": "0.0.20220110-1",
     "description": "",
     "private": true,
     "scripts": {
@@ -65,6 +65,6 @@
         "@dialthetti/feather-engine-entities": "0.0.1-alpha",
         "@dialthetti/feather-engine-events": "0.0.1-alpha",
         "@dialthetti/feather-engine-graphics": "0.0.1-alpha",
-        "@dialthetti/feather-engine-tiled": "0.1.0"
+        "@dialthetti/feather-engine-tiled": "0.2.0"
     }
 }

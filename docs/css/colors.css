@@ -1,0 +1,11 @@
+.primary {
+    background-color: #dd9831;
+}
+.primary:hover,
+.primary:focus {
+    background-color: #b17926;
+}
+
+.primary-text {
+    color: #dd9831;
+}

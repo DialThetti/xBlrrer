@@ -1,0 +1,91 @@
+@import "./colors.css";
+@import "./font.css";
+
+:root {
+    --grey: #555b6d;
+    --primary: #7a5239;
+}
+
+.world-bubble {
+    border-radius: 50%;
+    width: 300px;
+    transition: box-shadow 0.3s;
+}
+
+.world:hover .world-bubble.forest {
+    box-shadow: 0 0 25px green;
+}
+.world:hover .world-bubble.mountains {
+    box-shadow: 0 0 25px brown;
+}
+.world:hover .world-bubble.caves {
+    box-shadow: 0 0 25px silver;
+}
+.world:hover .world-bubble.sea {
+    box-shadow: 0 0 25px cyan;
+}
+.world:hover .world-bubble.graveyard {
+    box-shadow: 0 0 25px grey;
+}
+.world-info {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.world {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    margin-top: 25px;
+}
+.world:nth-child(2n + 1) {
+    flex-direction: row-reverse;
+}
+
+.background-img {
+    background: #000000 url("/img/title.png") top center no-repeat;
+    background-size: cover;
+
+    filter: blur(8px);
+    transform: scale(1.1);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -5;
+}
+body {
+    overflow: hidden;
+}
+
+main {
+    max-height: 100vh;
+    overflow: scroll;
+}
+
+.world.card {
+    background-color: #ffffff;
+    padding: 10px;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.footer-copyright a {
+    margin-left: 15px;
+}
+
+.grass {
+    border-image: url("/img/grass.png") 48 fill repeat;
+    border-image-width: 48px;
+}
+
+.grass > .row {
+    padding: 46px;
+}

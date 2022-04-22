@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>xBlrrer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/fontawesome.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="author" content="DialThetti" />
+    <meta name="keywords" content="TypeScript, Game Dev" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="xBlrrer is (or will be) a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dialthetti.github.io/xBlrrer/blog/" />
+    <meta property="og:title" content="xBlrrer" />
+    <meta property="og:description"
+        content="xBlrrer is a platformer game written in pure typescript, where the player takes on the role of a humanoid bird that... well... has to jump and run and stuff. DialThetti regularly tries to share the latest development steps in his devblog." />
+    <meta property="og:image" content="https://dialthetti.github.io/xBlrrer/blog/img/preview.png" />
+</head>
+
+<body>
+    <div class="background-img"></div>
+
+
+    <nav>
+        <div class="nav-wrapper  grey darken-4">
+            <a href="#" class="brand-logo"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="active"><a href="./index.html">Overview</a></li>
+                <li><a href="./blog/index.html">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="valign-wrapper">
+        <div class="container grass white-text">
+            <div class="row">
+                <div class="col s12 center">
+                    <h1 class="white-text center" id="game">xBlrrer</h1>
+                    <p>
+                        xBlrrer is a metroidvania, where you will need to find abilities to overcome obsticals.
+                    </p>
+                    <p>
+                        You are Blrr, a crow who wants to find the person who wants to demolish its forest.
+                    </p>
+                    <p>
+                        Use [W][A][S][D] and [Space] to navigate through the first level.
+                    </p>
+                </div>
+                <div class="col s12 center">
+                    <a href="./beta/index.html" class="waves-effect waves-light btn btn-large primary">Play
+                        Now</a><br>
+                    <lavel> or play the <a class="primary-text" href="./beta/index.html">beta version</a>
+                    </lavel>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer grey darken-4">
+
+        <div class="footer-copyright">
+            <div class="container">
+                MIT License
+                <a href="https://github.com/DialThetti/xBlrrer" class="primary-text">source code</a>
+                <a href="https://github.com/DialThetti/xBlrrer/issues" class="primary-text">report an issue</a>
+                <a class="right primary-text" target="blank" href="https://discord.gg/vCgDxPZwFU"><i
+                        class="fab fa-discord fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+                toolbarEnabled: true,
+            });
+        });
+    </script>
+</body>
+
+</html>
