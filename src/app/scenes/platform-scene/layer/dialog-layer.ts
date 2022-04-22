@@ -31,8 +31,10 @@ export default class DialogLayer implements RenderLayer {
       FeatherEngine.screenSize.width - 4 * this.level.tilesize,
       5 * this.level.tilesize
     );
+    for (let line = 0; line < this.textToShow.length; line++) {
+      this.font.print(this.textToShow[line], context, boxPos.x + margin, boxPos.y + margin + 16 * line);
 
-    this.font.print(this.textToShow[0], context, boxPos.x + margin, boxPos.y + margin);
+    }
   }
 
   withZero(count: number, length: number): string {

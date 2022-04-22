@@ -1,11 +1,13 @@
-import { info, Vector } from '@dialthetti/feather-engine-core';
-import { EntityPrefab } from '@dialthetti/feather-engine-entities';
+import { FeatherEngine, info, Vector } from '@dialthetti/feather-engine-core';
+import { Entity, EntityPrefab } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import { Player } from '../traits';
 import { TouchableEntity } from './touchable-entity';
 import { SaveSystem } from '@game/SaveSystem';
 import { Activatable, Context, Overlappable, TraitAdapter } from 'src/app/core/entities';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
+import { xBlrrerSaveData } from '@game/save-data';
+import Dialog from '@game/rendering/dialog/dialog';
 
 export class SavePointPrefab extends EntityPrefab {
     constructor() {
@@ -41,20 +43,34 @@ export class SavePointPrefab extends EntityPrefab {
         if (entity.getTrait(SavePoint)?.active) {
             return sprite.getAnimation('active')(entity.lifeTime * 60);
         }
-        if (this.overLappingWithPlayer(entity)) {
+        const overlappable = entity.getTrait(Overlappable);
+        if (overlappable.overLappingWithPlayer(entity)) {
             return sprite.getAnimation('highlighted')(entity.lifeTime * 60);
         }
         return sprite.getAnimation('idle')(entity.lifeTime * 60);
     }
 
-    overLappingWithPlayer(ov: TouchableEntity): boolean {
-        return [...ov.isOverlappingWith].some((e) => e.hasTrait(Player));
-    }
+
 }
 
 export class SavePoint extends TraitAdapter {
     active = false;
+    hadTutorial = false;
     constructor() {
         super('save-point');
+    }
+
+    update(entity: TouchableEntity): void {
+        if (this.hadTutorial)
+            return;
+        const overLappable = entity.getTrait(Overlappable);
+        if (overLappable.overLappingWithPlayer(entity) &&
+            !FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData().savePoint) {
+            Dialog.show([
+                'This is a savepoint. Press [UP] to save your process.\nWhenever you die, you will hatch on your\nlast activated savepoint.'
+            ]);
+            this.hadTutorial = true;
+        }
+
     }
 }

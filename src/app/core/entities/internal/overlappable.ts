@@ -1,4 +1,6 @@
 import { Entity } from '@dialthetti/feather-engine-entities';
+import { TouchableEntity } from '@game/entities/prefabs/touchable-entity';
+import { Player } from '@game/entities/traits';
 import { Context, TraitAdapter } from './trait';
 
 export interface Touchable {
@@ -30,5 +32,9 @@ export class Overlappable extends TraitAdapter {
         });
         //All elements which are in overMe now are not longer overMe
         overMe.forEach((target) => me.onLeave(target));
+    }
+
+    overLappingWithPlayer(ov: TouchableEntity): boolean {
+        return [...ov.isOverlappingWith].some((e) => e.hasTrait(Player));
     }
 }
