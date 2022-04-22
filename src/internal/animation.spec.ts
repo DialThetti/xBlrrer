@@ -2,7 +2,7 @@ import { createAnim } from './animation';
 
 describe('createAnim', () => {
     describe('looping', () => {
-        let anim = createAnim(['a', 'b', 'c'], 10, true);
+        const anim = createAnim(['a', 'b', 'c'], 10, true);
         it('should get normal frames by distance', () => {
             expect(anim(0)).toBe('a');
             expect(anim(5)).toBe('a');
@@ -21,7 +21,7 @@ describe('createAnim', () => {
         });
     });
     describe('not looping', () => {
-        let anim = createAnim(['a', 'b', 'c'], 10, false);
+        const anim = createAnim(['a', 'b', 'c'], 10, false);
         it('should get normal frames by distance', () => {
             expect(anim(0)).toBe('a');
             expect(anim(5)).toBe('a');

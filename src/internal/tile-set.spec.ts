@@ -4,21 +4,19 @@ import TileSet from './tile-set';
 
 describe('TileSet', () => {
     let tileSet: TileSet;
-    let img = mock(HTMLImageElement);
+    const mockImg = mock(HTMLImageElement);
 
     let renderContext: RenderContext;
-    let args: number[] = [];
     beforeEach(() => {
-        args = [];
         renderContext = {
-            scale: (x: number, y: number) => null,
-            translate: (x: number, y: number) => null,
-            drawImage: (c: HTMLCanvasElement, ...a: number[]) => (args = a),
+            scale: () => null,
+            translate: () => null,
+            drawImage: () => ({}),
             canvas: () => ({}),
-            clearRect: (x: number, y: number, w: number, h: number) => null,
+            clearRect: () => null,
         } as unknown as RenderContext;
-        CanvasRenderer.createRenderContext = (w, h) => renderContext;
-        tileSet = new TileSet(img, 10, 10);
+        CanvasRenderer.createRenderContext = () => renderContext;
+        tileSet = new TileSet(mockImg, 10, 10);
     });
     describe('defineTile', () => {
         it('should define a tile', () => {
@@ -30,27 +28,24 @@ describe('TileSet', () => {
     });
     describe('drawTile', () => {
         it('should render', () => {
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = true);
+            renderContext.drawImage = () => (a = true);
             tileSet.ref[0].pos['a'] = {} as any;
             tileSet.drawTile('a', renderContext, 0, 0);
             expect(a).toBeTruthy();
         });
         it('should not render if img not exist', () => {
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = false);
-            renderContext.clearRect = (c, x, y) => (a = true);
+            renderContext.drawImage = () => (a = false);
+            renderContext.clearRect = () => (a = true);
             tileSet.drawTile('b', renderContext, 0, 0);
             expect(a).toBeTruthy();
         });
         it('should render debug Rect if img not exist', () => {
             FeatherEngine.debugSettings.enabled = true;
-            const img = {} as HTMLCanvasElement;
             let a = false;
-            renderContext.drawImage = (c, x, y) => (a = false);
-            renderContext.fillRect = (x, y, w, h) => (a = true);
+            renderContext.drawImage = () => (a = false);
+            renderContext.fillRect = () => (a = true);
             tileSet.drawTile('b', renderContext, 0, 0);
             expect(a).toBeTruthy();
         });
@@ -69,7 +64,7 @@ describe('TileSet', () => {
         it('should render a animated tile', () => {
             let a = false;
             tileSet.animations['a'] = () => 'a';
-            renderContext.drawImage = (c, x, y) => (a = true);
+            renderContext.drawImage = () => (a = true);
             tileSet.ref[0].pos['a'] = {} as any;
             tileSet.drawAnim('a', renderContext, 0, 0, 0);
             expect(a).toBeTruthy();
