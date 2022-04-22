@@ -42,7 +42,7 @@
 }
 
 .background-img {
-    background: #000000 url("/img/title.png") top center no-repeat;
+    background: #000000 url("../img/title.png") top center no-repeat;
     background-size: cover;
 
     filter: blur(8px);
