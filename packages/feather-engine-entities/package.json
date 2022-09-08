@@ -1,0 +1,34 @@
+{
+  "name": "@dialthetti/feather-engine-entities",
+  "version": "0.1.4",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DialThetti/feather-engine-entities.git"
+  },
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage",
+    "format": "npx prettier --write 'src/**/*.ts'",
+    "lint": "eslint --fix 'src/**/*.ts'"
+  },
+  "nyc": {
+    "extension": [".ts"],
+    "exclude": ["**/*.d.ts", "**/*.spec.ts"],
+    "include": ["src/**"],
+    "reporter": ["html", "clover", "lcovonly"],
+    "all": true
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dialthetti/feather-engine-core": "0.1.2",
+    "@dialthetti/feather-engine-events": "0.1.1",
+    "@dialthetti/feather-engine-graphics": "0.1.1"
+  },
+  "files": ["lib/**/*"]
+}

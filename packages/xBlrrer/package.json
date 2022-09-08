@@ -1,0 +1,33 @@
+{
+  "name": "xblrrer",
+  "version": "0.0.20220422-3",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "prod": "serve ./dist",
+    "start": "webpack serve --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.js ",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "format": "prettier --write 'src/**/*.ts'",
+    "dependencyInsight:svg": "node_modules/.bin/depcruise --ts-config tsconfig.json --exclude '^node_modules' --output-type dot src/app/main.ts > dependencies.dot && dot dependencies.dot -T svg -o dependencies.svg",
+    "dependencyInsight:json": "node_modules/.bin/depcruise --ts-config tsconfig.json --exclude '^node_modules' --output-type json src/app/main.ts > dependencies.json",
+    "lint": "eslint --fix 'src/**/*.ts'"
+  },
+  "nyc": {
+    "extension": [".ts"],
+    "exclude": ["**/*.d.ts", "**/*.spec.ts"],
+    "include": ["src/**"],
+    "reporter": ["html", "clover", "lcovonly"],
+    "all": true
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dialthetti/feather-engine-core": "0.1.2",
+    "@dialthetti/feather-engine-entities": "0.1.4",
+    "@dialthetti/feather-engine-events": "0.1.1",
+    "@dialthetti/feather-engine-graphics": "0.1.1",
+    "@dialthetti/feather-engine-tiled": "0.3.1"
+  }
+}
