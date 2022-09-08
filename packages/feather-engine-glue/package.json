@@ -1,0 +1,45 @@
+{
+  "name": "@dialthetti/feather-engine-glue",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DialThetti/feather-engine-glue.git"
+  },
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "jest --coverage --passWithNoTests",
+    "test:watch": "jest --watch --coverage",
+    "format": "prettier --write 'src/**/*.ts'",
+    "lint": "eslint --fix 'src/**/*.ts'"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.spec.ts"
+    ],
+    "include": [
+      "src/**"
+    ],
+    "reporter": [
+      "html",
+      "clover",
+      "lcovonly"
+    ],
+    "all": true
+  },
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
+}
