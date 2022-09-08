@@ -14,7 +14,7 @@ module.exports = {
         }),
     ],
     devServer: {
-        contentBase: './docs',
+        contentBase: '../../docs',
         compress: false,
         port: 12345,
     },
