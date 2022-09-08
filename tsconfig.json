@@ -11,7 +11,5 @@
 
     "baseUrl": "."
   },
-  "include": ["src*", "jest.config.js"],
-  "exclude": ["./node_modules", "**/*.spec.ts"],
-  "types": ["mocha", "node", "chai", "ts-mockito"]
+  "types": ["jest"]
 }
