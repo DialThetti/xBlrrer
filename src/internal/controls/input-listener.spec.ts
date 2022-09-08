@@ -2,13 +2,13 @@ import { KeyboardInput, KeyListener, KeyState } from './input-listener';
 describe('KeyboardInput', () => {
     let down = false;
     const keyListener = {
-        keyDown: (keyCode: string) => {
+        keyDown: () => {
             down = true;
         },
-        keyUp: (keyCode: string) => {
+        keyUp: () => {
             down = false;
         },
-        keyPressed: (keyCode: string) => {},
+        keyPressed: () => {},
     } as KeyListener;
 
     it('should be a singleton', () => {

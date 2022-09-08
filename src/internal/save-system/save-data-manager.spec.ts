@@ -12,7 +12,7 @@ class TestMarshaller implements SaveDataMarshaller<{ a: string }> {
 
 describe('LocalStorageSaveDataSystem', () => {
     const sav = new LocalStorageSaveDataSystem<{ a: string }>(new TestMarshaller());
-    let store: string = '';
+    let store = '';
     beforeEach(() => {
         sav['storage'] = {
             setItem: (a: string, data: string) => (store = data),
