@@ -8,8 +8,10 @@
     "postinstall": "lerna bootstrap",
     "graph": "lerna-dependency-graph",
     "start": "lerna run start --stream",
+    "format": "lerna run format --stream",
     "lint": "lerna run lint --stream",
-    "build": "lerna run build --stream"
+    "build": "lerna run build --stream",
+    "clean": "rm -r node_modules;rm package-lock.json; for d in packages/*/node_modules; do echo $d; rm -r $d; done; for d in packages/*/package-lock.json; do echo $d; rm $d; done"
   },
   "author": "",
   "license": "ISC",

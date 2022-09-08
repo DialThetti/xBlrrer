@@ -1,70 +1,33 @@
 {
-    "name": "xblrrer",
-    "version": "0.0.20220422-3",
-    "description": "",
-    "private": true,
-    "scripts": {
-        "prod": "serve ./dist",
-        "start": "webpack serve --config webpack.config.dev.js",
-        "build": "webpack --config webpack.config.js ",
-        "test": "jest --coverage",
-        "test:watch": "jest --watch",
-        "format": "npx prettier --write 'src/**/*.ts'",
-        "lint": "npx eslint --fix 'src/**/*.ts'",
-        "dependencyInsight:svg": "node_modules/.bin/depcruise --ts-config tsconfig.json --exclude '^node_modules' --output-type dot src/app/main.ts > dependencies.dot && dot dependencies.dot -T svg -o dependencies.svg",
-        "dependencyInsight:json": "node_modules/.bin/depcruise --ts-config tsconfig.json --exclude '^node_modules' --output-type json src/app/main.ts > dependencies.json"
-    },
-    "nyc": {
-        "extension": [
-            ".ts"
-        ],
-        "exclude": [
-            "**/*.d.ts",
-            "**/*.spec.ts"
-        ],
-        "include": [
-            "src/**"
-        ],
-        "reporter": [
-            "html",
-            "clover",
-            "lcovonly"
-        ],
-        "all": true
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@types/jest": "^26.0.23",
-        "@typescript-eslint/eslint-plugin": "^4.33.0",
-        "@typescript-eslint/parser": "^4.33.0",
-        "babel-eslint": "^10.1.0",
-        "copy-webpack-plugin": "^9.1.0",
-        "dependency-cruiser": "^10.9.0",
-        "eslint": "^7.22.0",
-        "eslint-config-prettier": "^8.1.0",
-        "eslint-import-resolver-alias": "^1.1.2",
-        "eslint-plugin-import": "^2.25.4",
-        "eslint-plugin-jsdoc": "37.5.1",
-        "eslint-plugin-prefer-arrow": "1.2.3",
-        "eslint-plugin-prettier": "^3.3.1",
-        "eslint-plugin-unused-imports": "^1.1.0",
-        "jest": "^26.6.3",
-        "prettier": "^2.5.1",
-        "ts-jest": "^26.5.6",
-        "ts-loader": "^9.2.2",
-        "ts-mockito": "^2.6.1",
-        "tsconfig-paths-webpack-plugin": "^3.5.2",
-        "typescript": "^4.5.4",
-        "webpack": "^5.65.0",
-        "webpack-cli": "^4.9.1",
-        "webpack-dev-server": "^3.11.3"
-    },
-    "dependencies": {
-        "@dialthetti/feather-engine-core": "0.1.2",
-        "@dialthetti/feather-engine-entities": "0.1.4",
-        "@dialthetti/feather-engine-events": "0.1.1",
-        "@dialthetti/feather-engine-graphics": "0.1.1",
-        "@dialthetti/feather-engine-tiled": "0.3.1"
-    }
+  "name": "xblrrer",
+  "version": "0.0.20220422-3",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "prod": "serve ./dist",
+    "start": "webpack serve --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.js ",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "format": "prettier --write 'src/**/*.ts'",
+    "dependencyInsight:svg": "node_modules/.bin/depcruise --ts-config tsconfig.json --exclude '^node_modules' --output-type dot src/app/main.ts > dependencies.dot && dot dependencies.dot -T svg -o dependencies.svg",
+    "dependencyInsight:json": "node_modules/.bin/depcruise --ts-config tsconfig.json --exclude '^node_modules' --output-type json src/app/main.ts > dependencies.json",
+    "lint": "eslint --fix 'src/**/*.ts'"
+  },
+  "nyc": {
+    "extension": [".ts"],
+    "exclude": ["**/*.d.ts", "**/*.spec.ts"],
+    "include": ["src/**"],
+    "reporter": ["html", "clover", "lcovonly"],
+    "all": true
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dialthetti/feather-engine-core": "0.1.2",
+    "@dialthetti/feather-engine-entities": "0.1.4",
+    "@dialthetti/feather-engine-events": "0.1.1",
+    "@dialthetti/feather-engine-graphics": "0.1.1",
+    "@dialthetti/feather-engine-tiled": "0.3.1"
+  }
 }

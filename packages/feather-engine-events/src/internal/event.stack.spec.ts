@@ -1,8 +1,8 @@
 import { EventStack } from './event.stack';
 import { Receiver } from './receiver';
 describe('EventBus', () => {
-    let eventStack = new EventStack();
-    let receiver: Receiver = { receive: () => a++ };
+    const eventStack = new EventStack();
+    const receiver: Receiver = { receive: () => a++ };
     let a = 0;
     it('should be created', () => {
         expect(eventStack).toBeTruthy();

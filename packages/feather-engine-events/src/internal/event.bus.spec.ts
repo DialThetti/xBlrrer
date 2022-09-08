@@ -1,8 +1,8 @@
 import { EventBus } from './event.bus';
 import { Receiver } from './receiver';
 describe('EventBus', () => {
-    let eventBus = new EventBus();
-    let receiver: Receiver = { receive: () => a++ };
+    const eventBus = new EventBus();
+    const receiver: Receiver = { receive: () => a++ };
     let a = 0;
     it('should be created', () => {
         expect(eventBus).toBeTruthy();

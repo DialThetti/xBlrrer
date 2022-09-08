@@ -4,12 +4,12 @@
     "module": "commonjs",
     "allowJs": true,
     "outDir": "dist/js",
-    "strict": false,
+    "strict": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
 
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "include": ["src*", "jest.config.js"],
   "exclude": ["./node_modules", "**/*.spec.ts"],
