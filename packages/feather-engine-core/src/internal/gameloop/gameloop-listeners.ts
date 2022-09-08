@@ -6,7 +6,7 @@ import { RenderContext } from '../renderer/canvas-renderer';
  * implement `handleInput` to get notified
  */
 export interface OnInput {
-    handleInput(): void;
+  handleInput(): void;
 }
 /**
  * a update observer, which will be invoked by the GameLoop
@@ -14,7 +14,7 @@ export interface OnInput {
  * implement `update(delatTime)` to get notified
  */
 export interface OnUpdate {
-    update(deltaTime: number): void;
+  update(deltaTime: number): void;
 }
 /**
  * a draw observer, which will be invoked by the GameLoop
@@ -22,7 +22,7 @@ export interface OnUpdate {
  * implement `draw()` to get notified
  */
 export interface OnDraw {
-    draw(renderingContext: RenderContext): void;
+  draw(renderingContext: RenderContext): void;
 }
 
 export type GameLoopListener = OnInput | OnUpdate | OnDraw;

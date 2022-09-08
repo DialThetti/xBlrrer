@@ -4,7 +4,7 @@ import { Keys } from '../keys';
 import MenuSettingsScene from './menu-settings-scene';
 
 export default class Input implements KeyListener {
-  constructor(private menuSettings: MenuSettingsScene) { }
+  constructor(private menuSettings: MenuSettingsScene) {}
   keyDown(code: string): void {
     switch (code) {
       case Keys.A:

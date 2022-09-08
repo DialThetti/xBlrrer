@@ -7,7 +7,6 @@ import { SavePointPrefab } from './prefabs/save-point-prefab';
 import { ChestPrefab } from './prefabs/chest-prefab';
 import { ShinyPrefab } from './prefabs/shiny-prefab';
 
-
 const prefabs = [
   CrowPrefab,
   DamageArea,
@@ -16,7 +15,7 @@ const prefabs = [
   GlideCollectable,
   SavePointPrefab,
   ChestPrefab,
-  ShinyPrefab
+  ShinyPrefab,
 ];
 
 export default class EntityFactory {

@@ -70,7 +70,7 @@ export default class GameScene implements Scene {
     addDebugToLevel(level);
     //Set Active Savepoint
     if (saveData.savePoint) {
-      this.level.entities.forEach((e) => {
+      this.level.entities.forEach(e => {
         if (e.hasTrait(SavePoint) && e.pos.x == saveData.savePoint.x && e.pos.y == saveData.savePoint.y) {
           e.getTrait(SavePoint).active = true;
         }

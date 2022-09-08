@@ -6,9 +6,7 @@ import { Overlappable, TraitAdapter } from 'src/app/core/entities';
 import { Attack, Crouch, Glide, Go, Jump, Killable, Player, Stomp } from '../traits';
 import { TouchableEntity } from './touchable-entity';
 
-
 export default class CrowPrefab extends EntityPrefab {
-
   constructor() {
     super('crow', 'ssp:player');
     this.size = new Vector(20, 32);
@@ -30,9 +28,7 @@ export default class CrowPrefab extends EntityPrefab {
   }
   entityFac = (): TouchableEntity => new TouchableEntity();
 
-
   routeFrame(entity: TouchableEntity, sprite: SpriteSheet): string {
-
     const go = entity.getTrait(Go);
     const jump = entity.getTrait(Jump);
     const crouch = entity.getTrait(Crouch);
@@ -66,7 +62,6 @@ export default class CrowPrefab extends EntityPrefab {
 
     if (go.distance !== 0 && entity.vel.x !== 0) {
       return sprite.getAnimation('run')(go.distance);
-
     }
     return sprite.getAnimation('idle')(entity.lifeTime * 150);
   }
@@ -90,7 +85,5 @@ export default class CrowPrefab extends EntityPrefab {
       return { x: flipped ? 0 : 22, y: 0 } as Vector;
     }
     return { x: flipped ? 0 : 22, y: 0 } as Vector;
-
   }
-
 }

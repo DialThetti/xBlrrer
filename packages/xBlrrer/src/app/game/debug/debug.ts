@@ -19,9 +19,9 @@ export const addDebugToLevel = (level: PlatformerLevel): void => {
     window.hitboxesOnly = (enabled): void => {
       FeatherEngine.debugSettings.hitboxesOnly = enabled;
     };
-    window.freezeEntities = ()=> {
-      level.entities.forEach(e=>e.state === EntityState.UNTRIGGERED)
-    }
+    window.freezeEntities = () => {
+      level.entities.forEach(e => e.state === EntityState.UNTRIGGERED);
+    };
     window.FeatherEngine = FeatherEngine;
   }
 };

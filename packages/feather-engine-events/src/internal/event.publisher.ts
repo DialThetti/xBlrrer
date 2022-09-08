@@ -1,3 +1,3 @@
 export interface EventPublisher<T> {
-    publish(subject: T, tries: number): Promise<void>;
+  publish(subject: T, tries: number): Promise<void>;
 }

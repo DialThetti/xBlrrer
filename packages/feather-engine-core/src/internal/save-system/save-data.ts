@@ -1,5 +1,5 @@
 export interface SaveData {
-    getSummary(): SaveDataSummary;
+  getSummary(): SaveDataSummary;
 }
 
 export interface SaveDataSummary {}

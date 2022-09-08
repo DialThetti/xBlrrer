@@ -5,5 +5,5 @@ export enum Keys {
   LEFT = 'KeyA',
   RIGHT = 'KeyD',
   A = 'Space', // confirm, jump
-  B = 'KeyK' // attack
+  B = 'KeyK', // attack
 }

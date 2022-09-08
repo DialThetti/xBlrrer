@@ -38,7 +38,6 @@ export default class Crouch extends TraitAdapter {
       return;
     }
     if (this.memoSize) {
-
       entity.size.set(this.memoSize.x, this.memoSize.y);
       entity.pos.y -= 12;
       this.memoSize = undefined;

@@ -21,7 +21,7 @@ import { createOnlyCrouchTileHandler } from '../physics/collider/only-crouch-han
 import { xBlrrerSaveData } from '../save-data';
 
 export default class LevelLoader implements Loader<{ level: PlatformerLevel; player: PlatformerEntity }> {
-  constructor(private saveData: xBlrrerSaveData) { }
+  constructor(private saveData: xBlrrerSaveData) {}
 
   async load(): Promise<{
     level: PlatformerLevel;
@@ -88,20 +88,20 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
       ),
 
       new TilesetLayer(
-        levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && a.dynamic).map((a) => a.matrix),
+        levelSpec.tiledMap.layers.filter(a => !a.frontLayer && a.dynamic).map(a => a.matrix),
         levelSpec.tiledMap.tileset,
-        () => level.time,
+        () => level.time
       ),
       new EntityLayer(level.entities),
       new ChunkedTilesetLayer(
-        levelSpec.tiledMap.layers.filter((a) => a.frontLayer && !a.dynamic).map((a) => a.matrix),
-        levelSpec.tiledMap.tileset,
+        levelSpec.tiledMap.layers.filter(a => a.frontLayer && !a.dynamic).map(a => a.matrix),
+        levelSpec.tiledMap.tileset
       ),
       new TilesetLayer(
-        levelSpec.tiledMap.layers.filter((a) => a.frontLayer && a.dynamic).map((a) => a.matrix),
+        levelSpec.tiledMap.layers.filter(a => a.frontLayer && a.dynamic).map(a => a.matrix),
         levelSpec.tiledMap.tileset,
-        () => level.time,
-      ),
+        () => level.time
+      )
     );
     composition.push(new CollisionLayer(level));
     // prepare collider

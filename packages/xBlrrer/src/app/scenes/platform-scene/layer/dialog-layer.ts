@@ -33,7 +33,6 @@ export default class DialogLayer implements RenderLayer {
     );
     for (let line = 0; line < this.textToShow.length; line++) {
       this.font.print(this.textToShow[line], context, boxPos.x + margin, boxPos.y + margin + 16 * line);
-
     }
   }
 

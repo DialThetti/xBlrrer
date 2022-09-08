@@ -6,5 +6,5 @@ export const Names = {
 };
 export class SpawnEvent implements Subject<{ entity: Entity }> {
   topic = Names.spawn;
-  constructor(public payload: { entity: Entity }) { }
+  constructor(public payload: { entity: Entity }) {}
 }

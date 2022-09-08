@@ -14,8 +14,8 @@ export interface xBlrrerSaveData {
     name: string;
   };
 
-    collectables: {
-        hasGliding: boolean;
-    };
-    savePoint: Vector;
+  collectables: {
+    hasGliding: boolean;
+  };
+  savePoint: Vector;
 }

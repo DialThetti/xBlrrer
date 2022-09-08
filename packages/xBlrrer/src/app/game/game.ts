@@ -12,7 +12,7 @@ import { initialData, Settings, settingsSaveSlot } from './settings';
 declare const window: any; // eslint-disable-line
 
 export default class Game {
-  constructor(private canvasId: string) { }
+  constructor(private canvasId: string) {}
 
   async start(): Promise<void> {
     const sceneMachine = new SceneMachine().addScenes([
@@ -20,9 +20,9 @@ export default class Game {
       () => new MainMenuScene(),
       () => new GameScene(),
       () => new MenuSettingsScene(),
-            () => new EngineScene(),
-        ]);
-        await new AudioBoardLoader('./sfx/audio.json').load();
+      () => new EngineScene(),
+    ]);
+    await new AudioBoardLoader('./sfx/audio.json').load();
 
     this.setVolumeBySave();
     await sceneMachine.load();

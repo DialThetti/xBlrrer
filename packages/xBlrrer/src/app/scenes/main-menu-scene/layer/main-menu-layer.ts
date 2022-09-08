@@ -12,16 +12,16 @@ export default class MainMenuLayer implements RenderLayer {
     private mainMenu: MainMenuScene
   ) {}
 
-    public draw(context: RenderContext): void {
-        drawRect(context, 0, 0, FeatherEngine.screenSize.width, FeatherEngine.screenSize.height, 'black', {
-            filled: true,
-        });
-        context.drawImage(this.img, 0, 0);
-        this.drawSelectBox(context, (FeatherEngine.screenSize.width - 32 * 6) / 2, 16 * 21);
-        const lastRow = FeatherEngine.screenSize.height - 8 - 4;
-        this.font.print('by DialThetti', context, FeatherEngine.screenSize.width - 8 * 14 + 4, lastRow);
-        this.font.print('v' + packageInfo.version, context, 4, lastRow);
-    }
+  public draw(context: RenderContext): void {
+    drawRect(context, 0, 0, FeatherEngine.screenSize.width, FeatherEngine.screenSize.height, 'black', {
+      filled: true,
+    });
+    context.drawImage(this.img, 0, 0);
+    this.drawSelectBox(context, (FeatherEngine.screenSize.width - 32 * 6) / 2, 16 * 21);
+    const lastRow = FeatherEngine.screenSize.height - 8 - 4;
+    this.font.print('by DialThetti', context, FeatherEngine.screenSize.width - 8 * 14 + 4, lastRow);
+    this.font.print('v' + packageInfo.version, context, 4, lastRow);
+  }
 
   private drawSelectBox(context: RenderContext, boxX: number, boxY: number): void {
     this.frame.draw(context, boxX, boxY, 32 * 6, 32 * 3);

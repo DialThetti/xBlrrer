@@ -11,7 +11,7 @@ interface AttackMove {
   damageAreas: {
     size: Vector;
     offset: Vector;
-  }[]
+  }[];
 }
 export class Attack extends TraitAdapter {
   enabled = true;
@@ -22,16 +22,15 @@ export class Attack extends TraitAdapter {
     { time: 7, anim: 'attackA', damageAreas: [{ size: new Vector(22, 32), offset: new Vector(42, 28) }] },
     { time: 5, anim: 'attackB', damageAreas: [{ size: new Vector(32, 8), offset: new Vector(42, 28 + 14) }] },
     {
-      time: 7, anim: 'attackC', damageAreas: [
+      time: 7,
+      anim: 'attackC',
+      damageAreas: [
         { size: new Vector(32, 32 + 28), offset: new Vector(42, 0) },
         { size: new Vector(20 + 20, 26), offset: new Vector(22, 0) },
-      ]
+      ],
     },
-    { time: 8, anim: 'attackD', damageAreas: [{ size: new Vector(32, 32), offset: new Vector(42, 28) }] }
+    { time: 8, anim: 'attackD', damageAreas: [{ size: new Vector(32, 32), offset: new Vector(42, 28) }] },
   ];
-
-
-
 
   nextMove = 0;
   internalCurrentMove = -1;
@@ -61,7 +60,6 @@ export class Attack extends TraitAdapter {
         this.queueAttack = false;
       }
       this.endAttack();
-
     }
   }
   endAttack(): void {
@@ -74,7 +72,6 @@ export class Attack extends TraitAdapter {
       this.nextMove = 0;
       this.facing = undefined;
     }
-
   }
   attackPressed = false;
   attack(): void {
@@ -93,7 +90,6 @@ export class Attack extends TraitAdapter {
     this.time = 0;
     this.internalCurrentMove = this.nextMove;
     this.createDamageArea(entity, entity.pos);
-
   }
 
   get currentMove(): AttackMove | null {
@@ -118,6 +114,5 @@ export class Attack extends TraitAdapter {
       e.size.set(area.size.x, area.size.y);
       entity.events.publish(new SpawnEvent({ entity: e }));
     });
-
   }
 }

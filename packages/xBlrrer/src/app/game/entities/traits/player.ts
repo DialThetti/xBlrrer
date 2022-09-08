@@ -11,7 +11,7 @@ export default class Player extends TraitAdapter {
   update(entity: Entity): void {
     if (this.active) {
       if (entity instanceof TouchableEntity) {
-        entity.isOverlappingWith.forEach((target) => {
+        entity.isOverlappingWith.forEach(target => {
           if (target.hasTrait(Activatable)) {
             (target.getTrait(Activatable) as Activatable).activate();
           }

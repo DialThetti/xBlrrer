@@ -1,4 +1,11 @@
-import { BoundingBox, debug, FeatherEngine, PauseGameEvent, ResumeGameEvent, Vector } from '@dialthetti/feather-engine-core';
+import {
+  BoundingBox,
+  debug,
+  FeatherEngine,
+  PauseGameEvent,
+  ResumeGameEvent,
+  Vector,
+} from '@dialthetti/feather-engine-core';
 import { Entity } from '@dialthetti/feather-engine-entities';
 import { Camera } from 'src/app/core/rendering';
 
@@ -60,7 +67,7 @@ export default class MetroidCamera extends Camera {
 
 class Transition {
   delta = 0; //0..1
-  constructor(private currentPosition: Vector, public targetPosition: Vector) { }
+  constructor(private currentPosition: Vector, public targetPosition: Vector) {}
   get(deltaTime: number): Vector {
     this.delta += deltaTime;
     if (this.delta > 1) this.delta = 1;

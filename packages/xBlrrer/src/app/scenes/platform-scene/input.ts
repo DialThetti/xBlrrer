@@ -8,7 +8,7 @@ import { Keys } from '../keys';
 import { SceneNames } from '../scene-names';
 
 export default class Input implements KeyListener {
-  constructor(private playerFigure: Entity & TraitCtnr) { }
+  constructor(private playerFigure: Entity & TraitCtnr) {}
   keyDown(code: string): void {
     const go = this.playerFigure.getTrait(Go);
     const jump = this.playerFigure.getTrait(Jump);
@@ -38,8 +38,7 @@ export default class Input implements KeyListener {
         player.activate();
         break;
       case Keys.B:
-        if (attack)
-          attack.attack();
+        if (attack) attack.attack();
         break;
       case 'Digit1':
         FeatherEngine.eventBus.publish(new SetMasterVolumeEvent({ value: '-0.1' }));

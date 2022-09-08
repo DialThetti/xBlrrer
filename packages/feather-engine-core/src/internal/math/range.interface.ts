@@ -1,4 +1,4 @@
 export default interface Range {
-    from: number;
-    to: number;
-};;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  from: number;
+  to: number;
+}

@@ -52,10 +52,7 @@ abstract class CollectablePrefab extends EntityPrefab {
 export class GlideCollectable extends CollectablePrefab {
   constructor() {
     super('glide-collectable', 'crow_feather', e => {
-      Dialog.show([
-        'You have collected a crow Feather: Glide',
-        'Press and Hold [Space] in midair to glide'
-      ]);
+      Dialog.show(['You have collected a crow Feather: Glide', 'Press and Hold [Space] in midair to glide']);
       e.addTraits([new Glide()]);
     });
   }

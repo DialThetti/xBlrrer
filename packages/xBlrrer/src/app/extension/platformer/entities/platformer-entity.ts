@@ -6,15 +6,15 @@ import { TraitAdapter } from 'src/app/core/entities';
 import { PositionedTile } from 'src/app/core/level';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {
-    pos = new Vector(0, 0);
-    vel = new Vector(0, 0);
-    size = new Vector(16, 16);
-    offset = new Vector(0, 0);
-    lifeTime = 0;
-    state = EntityState.ACTIVE;
-    spriteChanged = false;
-    bypassPlatform = false;
-    properties: { [name: string]: unknown }
+  pos = new Vector(0, 0);
+  vel = new Vector(0, 0);
+  size = new Vector(16, 16);
+  offset = new Vector(0, 0);
+  lifeTime = 0;
+  state = EntityState.ACTIVE;
+  spriteChanged = false;
+  bypassPlatform = false;
+  properties: { [name: string]: unknown };
 
   bounds = new BoundingBox(this.pos, this.size, this.offset);
 

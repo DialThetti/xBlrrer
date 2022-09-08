@@ -38,7 +38,7 @@ export default class Go extends TraitAdapter {
     const dirOfAppliedForce = this.getDirection();
     this.turnToMovementDirection(dirOfAppliedForce, jump);
     if (crouch.down) {
-      this.decelToStand(entity, context.deltaTime/3);
+      this.decelToStand(entity, context.deltaTime / 3);
       return;
     }
 
