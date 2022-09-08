@@ -1,0 +1,39 @@
+{
+    "printWidth": 120,
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "parser": "flow",
+    "endOfLine": "auto",
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "options": {
+                "parser": "typescript"
+            }
+        },
+        {
+            "files": [
+                "*.json",
+                ".*.json",
+                "*.code-snippets",
+                "*.webmanifest"
+            ],
+            "options": {
+                "parser": "json",
+                "printWidth": 80
+            }
+        },
+        {
+            "files": [
+                "*.md",
+                "LICENSE"
+            ],
+            "options": {
+                "parser": "markdown"
+            }
+        }
+    ]
+}
