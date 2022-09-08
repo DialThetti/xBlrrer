@@ -23,7 +23,7 @@ export class KeyboardInput implements OnInput {
 
   private keyListeners: KeyListener[] = [];
 
-  private static _instance: KeyboardInput;
+  private static internalInstance: KeyboardInput;
 
   private registered = false;
   private constructor() {
@@ -45,11 +45,11 @@ export class KeyboardInput implements OnInput {
   }
 
   private static get instance() {
-    if (!KeyboardInput._instance) {
-      KeyboardInput._instance = new KeyboardInput();
-      GameLoop.register(KeyboardInput._instance as OnInput);
+    if (!KeyboardInput.internalInstance) {
+      KeyboardInput.internalInstance = new KeyboardInput();
+      GameLoop.register(KeyboardInput.internalInstance as OnInput);
     }
-    return KeyboardInput._instance;
+    return KeyboardInput.internalInstance;
   }
 
   public static addKeyListener(keyListener: KeyListener): void {

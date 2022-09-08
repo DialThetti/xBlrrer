@@ -1,7 +1,6 @@
 import { FeatherEngine, info, Vector } from '@dialthetti/feather-engine-core';
-import { Entity, EntityPrefab } from '@dialthetti/feather-engine-entities';
+import { EntityPrefab } from '@dialthetti/feather-engine-entities';
 import { SpriteSheet } from '@dialthetti/feather-engine-graphics';
-import { Player } from '../traits';
 import { TouchableEntity } from './touchable-entity';
 import { SaveSystem } from '@game/SaveSystem';
 import { Activatable, Context, Overlappable, TraitAdapter } from 'src/app/core/entities';

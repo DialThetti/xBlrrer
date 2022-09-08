@@ -1,4 +1,4 @@
-import { FeatherEngine, Vector } from '@dialthetti/feather-engine-core';
+import { Vector } from '@dialthetti/feather-engine-core';
 import { Entity, entityRepo, EntityState } from '@dialthetti/feather-engine-entities';
 import { Context, SpawnEvent, TraitAdapter } from 'src/app/core/entities';
 import { Damaging, TTL } from '../prefabs/damage-area.prefab';

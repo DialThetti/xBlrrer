@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { KeyboardInput, KeyListener, KeyState } from './input-listener';
 describe('KeyboardInput', () => {
   let down = false;
@@ -8,6 +9,7 @@ describe('KeyboardInput', () => {
     keyUp: () => {
       down = false;
     },
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     keyPressed: () => {},
   } as KeyListener;
 

@@ -5,7 +5,7 @@ export default class Timer {
 
   private lastTime = 0;
   private accumulatedTime = 0;
-  private _fps = 0;
+  private internalFps = 0;
   private canceled = false;
 
   constructor(private updateFunc: (deltaTime: number) => void, private deltaTime = 1 / 60) {}
@@ -35,14 +35,14 @@ export default class Timer {
     this.canceled = true;
   }
   private enqueue(): void {
-    this._fps++;
+    this.internalFps++;
     requestAnimationFrame(time => this.update(time));
   }
 
   private updateFps(): void {
     setTimeout(() => {
-      this.fps = this._fps;
-      this._fps = 0;
+      this.fps = this.internalFps;
+      this.internalFps = 0;
       this.updateFps();
     }, 1000);
   }

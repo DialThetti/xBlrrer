@@ -12,6 +12,7 @@ global.fetch = (name: RequestInfo, init?: RequestInit) =>
     }
   });
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 global.Image.prototype.decode = () => {};
 describe('loadJson', () => {
   it('should load a resource if it exists', async done => {

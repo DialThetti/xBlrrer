@@ -17,21 +17,10 @@
     "lint": "eslint --fix 'src/**/*.ts'"
   },
   "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*.d.ts",
-      "**/*.spec.ts"
-    ],
-    "include": [
-      "src/**"
-    ],
-    "reporter": [
-      "html",
-      "clover",
-      "lcovonly"
-    ],
+    "extension": [".ts"],
+    "exclude": ["**/*.d.ts", "**/*.spec.ts"],
+    "include": ["src/**"],
+    "reporter": ["html", "clover", "lcovonly"],
     "all": true
   },
   "author": "",
@@ -39,7 +28,5 @@
   "dependencies": {
     "@dialthetti/feather-engine-events": "0.1.1"
   },
-  "files": [
-    "lib/**/*"
-  ]
+  "files": ["lib/**/*"]
 }

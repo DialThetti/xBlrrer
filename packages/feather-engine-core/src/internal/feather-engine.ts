@@ -13,7 +13,7 @@ export interface EngineConfig {
 export interface DebugSettings {
   enabled: boolean;
   hitboxesOnly: boolean;
-  showFPS: boolean;
+  showFps: boolean;
 }
 
 export default class FeatherEngine {
@@ -27,7 +27,7 @@ export default class FeatherEngine {
   private debugSettings: DebugSettings = {
     enabled: false,
     hitboxesOnly: false,
-    showFPS: false,
+    showFps: false,
   };
 
   public static readonly eventBus = new EventBus();

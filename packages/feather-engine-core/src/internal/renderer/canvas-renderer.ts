@@ -1,17 +1,17 @@
 export type Canvas = HTMLCanvasElement | HTMLImageElement;
 export class CanvasRenderer {
   private canvas: HTMLCanvasElement;
-  private _context: RenderingContext;
+  private internalContext: RenderingContext;
 
   constructor({ canvasId }: { canvasId: string }) {
     this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
     const c = this.canvas.getContext('2d');
     //const c = this.canvas.getContext('webgl') || this.canvas.getContext('experimental-webgl');
-    this._context = c as RenderingContext;
+    this.internalContext = c as RenderingContext;
   }
 
   get context(): RenderContext {
-    return this._context as RenderContext;
+    return this.internalContext as RenderContext;
   }
 
   public static createRenderContext(width: number, height: number): RenderContext {

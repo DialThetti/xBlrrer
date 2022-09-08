@@ -23,13 +23,9 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
+        "project": ["tsconfig.json"],
         "createDefaultProgram": true
       }
     }
@@ -43,13 +39,12 @@
         "accessibility": "explicit"
       }
     ],
+    "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/naming-convention": [
       "error",
       {
         "selector": "property",
-        "format": [
-          "strictCamelCase"
-        ],
+        "format": ["strictCamelCase"],
         "filter": {
           // you can expand this regex to add more allowed names
           "regex": "^(Authorization|Authentication-Info)$",
@@ -57,28 +52,20 @@
         }
       }
     ],
-    "brace-style": [
-      "error",
-      "1tbs"
-    ],
+    "@typescript-eslint/semi": "error",
+    "brace-style": ["error", "1tbs"],
     "dot-notation": "off",
     "id-denylist": "off",
     "id-match": "off",
-    "indent": [
-      "off",
-      2
-    ],
+    "indent": ["off", 2],
     "no-console": [
       "warn",
       {
-        "allow": [
-          "error",
-          "warn"
-        ]
+        "allow": ["error", "warn"]
       }
     ],
     "no-empty-function": "off",
-    "no-shadow": "error",
+    "no-shadow": "off",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "error",
     "prefer-arrow/prefer-arrow-functions": "warn",
@@ -91,6 +78,6 @@
         "avoidEscape": true
       }
     ],
-    "semi": "error"
+    "semi": "off"
   }
 }
