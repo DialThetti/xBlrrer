@@ -53,6 +53,7 @@
       }
     ],
     "@typescript-eslint/semi": "error",
+    "@typescript-eslint/no-unused-vars": "error",
     "brace-style": ["error", "1tbs"],
     "dot-notation": "off",
     "id-denylist": "off",
@@ -69,7 +70,7 @@
     "no-underscore-dangle": "off",
     "no-unused-expressions": "error",
     "prefer-arrow/prefer-arrow-functions": "warn",
-    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "off",
     "unused-imports/no-unused-vars": "off", // done by @typescript-eslint/no-unused-vars
     "quotes": [
       "error",
