@@ -17,29 +17,13 @@
     "lint": "eslint --fix 'src/**/*.ts'"
   },
   "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*.d.ts",
-      "**/*.spec.ts"
-    ],
-    "include": [
-      "src/**"
-    ],
-    "reporter": [
-      "html",
-      "clover",
-      "lcovonly"
-    ],
+    "extension": [".ts"],
+    "exclude": ["**/*.d.ts", "**/*.spec.ts"],
+    "include": ["src/**"],
+    "reporter": ["html", "clover", "lcovonly"],
     "all": true
   },
   "author": "",
   "license": "ISC",
-  "files": [
-    "lib/**/*"
-  ],
-  "dependencies": {
-    "reflect-metadata": "^0.1.13"
-  }
+  "files": ["lib/**/*"]
 }
