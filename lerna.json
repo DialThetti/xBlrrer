@@ -1,7 +1,13 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "useNx": false,
-  "version": "independent"
+  "useNx": true,
+  "version": "independent",
+  "command": {
+    "publish": {
+      "message": "release: publish"
+    },
+    "version": {
+      "preid": "dev",
+      "ignoreChanges": ["**/package-lock.json"]
+    }
+  }
 }
