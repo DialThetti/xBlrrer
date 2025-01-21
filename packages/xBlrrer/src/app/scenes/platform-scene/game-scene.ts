@@ -18,6 +18,8 @@ import DashboardLayer from './layer/dashboard-layer';
 import CameraLayer from './layer/debug/camera-layer';
 import ScrollSpyLayer from './layer/debug/scrollSpy-layer';
 import DialogLayer from './layer/dialog-layer';
+import { SpriteSheet, SpriteSheetLoader, TileSet } from '@dialthetti/feather-engine-graphics';
+import SSPSpriteSheetLoader from '@dialthetti/feather-engine-graphics/lib/internal/io/ssp-sprite-sheet.loader';
 export default class GameScene implements Scene {
   name = SceneNames.gameScene;
   isLoadingScene = false;
@@ -87,6 +89,9 @@ export default class GameScene implements Scene {
     if (saveData.position) {
       level.startPosition.set(saveData.position.x / level.tilesize, saveData.position.y / level.tilesize);
     }
+
+    const gui = await new SpriteSheetLoader('gui').load();
+
     const playerEnv = this.createPlayerEnv(player, level);
     player.state = EntityState.ACTIVE;
     level.entities.add(playerEnv);
@@ -94,7 +99,7 @@ export default class GameScene implements Scene {
     renderer.push(
       new CameraLayer(camera),
       new ScrollSpyLayer(),
-      new DashboardLayer(font, level, player),
+      new DashboardLayer(font, level, player, gui),
       new DialogLayer(font, frame, level)
       //  new RasterDebugLayer(),
     );

@@ -1,3 +1,6 @@
+/**
+ * supports spritesheet packer format
+ */
 export interface SSPSpriteSheet {
   frames: {
     [name: string]: {
