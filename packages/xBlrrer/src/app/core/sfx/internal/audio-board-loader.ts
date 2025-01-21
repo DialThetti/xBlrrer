@@ -9,16 +9,15 @@ export default class AudioBoardLoader implements Loader<AudioBoard> {
   async load(): Promise<AudioBoard> {
     const dcFile = await loadJson<AudioSpec>(this.audioURL);
     const audioBoard = new AudioBoard();
-
-    const a = [...Object.keys(dcFile.fx)];
-    for (const key in a) {
-      if (Object.prototype.hasOwnProperty.call(a, key)) {
-        const name = a[key];
-        const url = dcFile.fx[name].url;
+    console.log(this.audioURL);
+    Promise.all(
+      Object.entries(dcFile.fx).map(async ([name, value]) => {
+        const url = value.url;
         const buffer = await new AudioLoader(audioBoard.audioContext, url).load();
         audioBoard.addAudio(name, buffer);
-      }
-    }
+      })
+    );
+
     return audioBoard;
   }
 }

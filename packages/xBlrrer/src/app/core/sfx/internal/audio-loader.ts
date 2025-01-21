@@ -7,6 +7,7 @@ export default class AudioLoader implements Loader<AudioBuffer> {
   ) {}
   async load(): Promise<AudioBuffer> {
     const audioFile = await fetch(this.audioURL);
+    console.log(this.audioURL);
     const buffer = await audioFile.arrayBuffer();
     return this.context.decodeAudioData(buffer);
   }
