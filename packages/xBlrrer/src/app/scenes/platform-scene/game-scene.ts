@@ -4,10 +4,10 @@ import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import MetroidCamera from '@extension/platformer/world/metroid-camera';
 import { SavePoint } from '@game/entities/prefabs/save-point-prefab';
-import { PlayerController } from '@game/entities/traits';
-import { LEVEL_RENDERER } from 'src/app/core/level';
+import { Glide, Killable, PlayerController } from '@game/entities/traits';
+import { LevelRenderer } from 'src/app/core/level';
 import { ResourceRegistry } from 'src/app/core/resources/resource-registry';
-import { Scene } from 'src/app/core/scenes';
+import { Scene, ShowSceneEvent, TRANSITION_EVENT, TransitionEvent } from 'src/app/core/scenes';
 import { addDebugToLevel } from '../../game/debug/debug';
 import LevelTimer from '../../game/entities/traits/leveltimer';
 import LevelLoader from '../../game/loader/level-loader';
@@ -25,6 +25,31 @@ export default class GameScene implements Scene {
 
   player: Entity;
 
+  data?: xBlrrerSaveData;
+  levelRenderer: LevelRenderer;
+
+  constructor() {
+    FeatherEngine.eventBus.subscribe(TRANSITION_EVENT, {
+      receive: async (event: TransitionEvent) => {
+        const saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
+        const p = this.level.findPlayer();
+        const killable = p.getTrait(Killable);
+        const { levelName, position } = event.payload;
+        console.log(levelName, position);
+        this.data = {
+          position,
+          life: killable.hp,
+          stage: { name: levelName },
+          collectables: { hasGliding: p.hasTrait(Glide) },
+          savePoint: saveData.savePoint,
+          comboSkill: 0,
+        };
+        FeatherEngine.eventBus.publish(
+          new ShowSceneEvent({ name: SceneNames.gameScene, withLoading: true, forceLoading: true })
+        );
+      },
+    });
+  }
   createPlayerEnv(player: PlatformerEntity, level: PlatformerLevel): PlatformerEntity {
     const playerEnv = new PlatformerEntity();
     const playerControl = new PlayerController(level);
@@ -38,8 +63,20 @@ export default class GameScene implements Scene {
     return playerEnv;
   }
   async load(): Promise<void> {
-    const saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
+    if (this.data) {
+      await this.loadLevel(this.data);
+      delete this.data;
+    } else {
+      const saveData = FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().getData();
+      await this.loadLevel(saveData);
+    }
+  }
 
+  async loadLevel(saveData: xBlrrerSaveData) {
+    if (this.level) {
+      //unload
+      delete this.level;
+    }
     const { level, player, renderer, viewPorts } = await new LevelLoader(saveData).load();
 
     const font = await ResourceRegistry.font();
@@ -63,8 +100,8 @@ export default class GameScene implements Scene {
     );
     level.camera = camera;
     this.level = level;
-
-    renderer.forEach(l => LEVEL_RENDERER.addLayer(l));
+    this.levelRenderer = new LevelRenderer();
+    renderer.forEach(l => this.levelRenderer.addLayer(l));
     this.player = player;
 
     addDebugToLevel(level);
@@ -83,9 +120,7 @@ export default class GameScene implements Scene {
   }
 
   draw(context: RenderContext): void {
-    LEVEL_RENDERER.render(context, this.level);
+    this.levelRenderer.render(context, this.level);
   }
-  async start(): Promise<void> {
-    // resetting not required here
-  }
+  async start(): Promise<void> {}
 }

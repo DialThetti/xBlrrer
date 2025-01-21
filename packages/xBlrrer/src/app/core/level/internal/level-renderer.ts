@@ -2,7 +2,7 @@ import { RenderContext } from '@dialthetti/feather-engine-core';
 import { RenderLayer } from 'src/app/core/rendering';
 import { Level } from './level';
 
-class LevelRenderer {
+export class LevelRenderer {
   private layers: RenderLayer[] = [];
 
   public render(context: RenderContext, level: Level): void {
@@ -13,5 +13,3 @@ class LevelRenderer {
     this.layers.push(layer);
   }
 }
-
-export const LEVEL_RENDERER = new LevelRenderer();
