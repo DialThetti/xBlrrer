@@ -12,12 +12,11 @@ describe('FontLoader', () => {
     fontLoader['createNewFont'] = () => fontSpriteSheet;
   });
 
-  it('should load a font', async done => {
+  it('should load a font', async () => {
     const fontSpy = spy(fontSpriteSheet);
     const font = await fontLoader.load();
     expect(font).toBe(fontSpriteSheet);
     verify(fontSpy.define(' ', 0, 0, 8, 8)).once();
     verify(fontSpy.define('9', 72, 8, 8, 8)).once();
-    done();
   });
 });
