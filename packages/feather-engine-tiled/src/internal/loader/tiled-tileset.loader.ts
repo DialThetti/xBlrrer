@@ -10,7 +10,10 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
   createTileSet = (img: Canvas, tsxModel: TsxModel): TileSet =>
     new TileSet(img, tsxModel.tilewidth, tsxModel.tileheight);
 
-  constructor(private path: string, private idOffset: number) {
+  constructor(
+    private path: string,
+    private idOffset: number
+  ) {
     this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
   }
 

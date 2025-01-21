@@ -10,7 +10,10 @@ export abstract class EntityPrefab {
   public traits: () => Trait[] = () => [];
 
   abstract entityFac: () => Entity;
-  constructor(public name: string, private spriteName?: string) {}
+  constructor(
+    public name: string,
+    private spriteName?: string
+  ) {}
 
   abstract routeFrame(entity: Entity, sprite: SpriteSheet): string;
 

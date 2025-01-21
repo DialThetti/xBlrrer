@@ -18,7 +18,10 @@ export class TileCollider {
   static addHandler(name: string, handler: TwoDimTileCollisionHandler): void {
     handlers[name] = handler;
   }
-  constructor(private level: Level, private tileSize: number) {}
+  constructor(
+    private level: Level,
+    private tileSize: number
+  ) {}
 
   checkX(entity: Entity): void {
     const box = entity.bounds;

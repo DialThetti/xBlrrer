@@ -6,7 +6,11 @@ import { RenderLayer } from 'src/app/core/rendering';
 
 export default class ChunkedTilesetLayer implements RenderLayer {
   private chunks: Matrix<Canvas> = new Matrix();
-  constructor(private tiles: Matrix<Tile>[], private tileset: TileSet, private chunkSize: number = 32) {}
+  constructor(
+    private tiles: Matrix<Tile>[],
+    private tileset: TileSet,
+    private chunkSize: number = 32
+  ) {}
   draw(context: RenderContext, level: Level): void {
     const { camera } = level;
     const xRange = { from: this.toChunkPosition(camera.box.left), to: this.toChunkPosition(camera.box.right) + 1 };

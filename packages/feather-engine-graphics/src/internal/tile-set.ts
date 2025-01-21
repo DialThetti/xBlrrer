@@ -4,7 +4,11 @@ import ImageContainer from './image-container';
 
 export default class TileSet extends ImageContainer {
   tilesize: number;
-  constructor(img: Canvas, private width: number, private height: number) {
+  constructor(
+    img: Canvas,
+    private width: number,
+    private height: number
+  ) {
     super(img);
     this.tilesize = height;
   }

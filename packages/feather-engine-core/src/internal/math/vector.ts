@@ -1,5 +1,8 @@
 export default class Vector {
-  constructor(public x: number, public y: number) {}
+  constructor(
+    public x: number,
+    public y: number
+  ) {}
 
   add(vec: Vector): void {
     this.x += vec.x;

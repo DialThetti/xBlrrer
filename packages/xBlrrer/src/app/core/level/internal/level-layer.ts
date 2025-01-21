@@ -4,7 +4,10 @@ import { notNull } from 'src/app/core/polyfill';
 
 export class LevelLayer {
   private math: TileMath;
-  constructor(protected tiles: { matrix: Matrix<Tile>; name: string }, private tilesize: number) {
+  constructor(
+    protected tiles: { matrix: Matrix<Tile>; name: string },
+    private tilesize: number
+  ) {
     this.math = new TileMath(tilesize);
   }
   /**

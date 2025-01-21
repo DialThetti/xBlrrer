@@ -33,7 +33,7 @@ describe('AudioBoard', () => {
           chain += 'P';
           return node;
         },
-      } as unknown as StereoPannerNode);
+      }) as unknown as StereoPannerNode;
   });
   it('shouls be created', () => {
     expect(audioBoard).toBeTruthy();

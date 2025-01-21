@@ -22,7 +22,10 @@ export class EngineLayer implements RenderLayer {
     '0100011000000000';
 
   order: number[];
-  constructor(private font: Font, private timer: () => number) {
+  constructor(
+    private font: Font,
+    private timer: () => number
+  ) {
     this.order = this.shuffle(intRange(0, this.feather.length).filter(a => a !== 0));
   }
 

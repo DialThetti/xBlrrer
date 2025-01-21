@@ -4,7 +4,10 @@ export class AudioLayer {
   volume = 1;
 
   public readonly gainNode: GainNode;
-  constructor(private audioContext: AudioContext, private layerName: string) {
+  constructor(
+    private audioContext: AudioContext,
+    private layerName: string
+  ) {
     this.gainNode = this.audioContext.createGain();
   }
 

@@ -8,7 +8,7 @@ global.fetch = (name: RequestInfo | URL, init?: RequestInit) =>
     if (name.toString().startsWith('error')) {
       error({ status: 404 } as Response);
     } else {
-      success({ status: 200, json: () => ({ data: name } as any) } as Response);
+      success({ status: 200, json: () => ({ data: name }) as any } as Response);
     }
   });
 
