@@ -9,7 +9,11 @@ export default class Killable extends TraitAdapter {
   invulnabilityTime = 0;
   hp = 1;
 
-  constructor(public deathAnim: string = 'dead', public maxHP = 1, private fadeoutTime = 2) {
+  constructor(
+    public deathAnim: string = 'dead',
+    public maxHP = 1,
+    private fadeoutTime = 2
+  ) {
     super('killable');
     this.hp = maxHP;
   }

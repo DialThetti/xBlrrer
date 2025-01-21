@@ -31,7 +31,7 @@ describe('TiledTilesetLoader', () => {
           defineTile: () => {
             /*NOOP*/
           },
-        } as unknown as TileSet);
+        }) as unknown as TileSet;
     });
     it('should work', async () => {
       const tiledTileset = await tiledTilesetLoader.load();

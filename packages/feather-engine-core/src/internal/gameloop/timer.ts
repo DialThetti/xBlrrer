@@ -8,7 +8,10 @@ export default class Timer {
   private internalFps = 0;
   private canceled = false;
 
-  constructor(private updateFunc: (deltaTime: number) => void, private deltaTime = 1 / 60) {}
+  constructor(
+    private updateFunc: (deltaTime: number) => void,
+    private deltaTime = 1 / 60
+  ) {}
 
   private update(absoluteTime: number): void {
     const currentDt = (absoluteTime - this.lastTime) / 1000;

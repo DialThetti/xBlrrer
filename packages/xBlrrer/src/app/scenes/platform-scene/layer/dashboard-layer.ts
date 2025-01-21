@@ -8,7 +8,11 @@ import { RenderLayer } from 'src/app/core/rendering';
 export default class DashboardLayer implements RenderLayer {
   rad = 1;
 
-  constructor(private font: Font, private level: PlatformerLevel, private player: PlatformerEntity) {}
+  constructor(
+    private font: Font,
+    private level: PlatformerLevel,
+    private player: PlatformerEntity
+  ) {}
 
   draw(context: RenderContext): void {
     drawRect(context, 0, 23 * this.level.tilesize, FeatherEngine.screenSize.width, 5 * this.level.tilesize, 'black', {

@@ -10,7 +10,11 @@ import { PlatformerTraitContext } from '../traits/traits';
 
 class Interval {
   currentTime = 0;
-  constructor(private interval: number, initialOffset?: boolean, private f?: () => void) {
+  constructor(
+    private interval: number,
+    initialOffset?: boolean,
+    private f?: () => void
+  ) {
     if (initialOffset) {
       this.currentTime = Math.random() * interval;
     }

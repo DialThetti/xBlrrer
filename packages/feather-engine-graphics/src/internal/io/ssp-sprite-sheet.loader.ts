@@ -6,7 +6,10 @@ import SpriteSheet from '../sprite-sheet';
 export default class SSPSpriteSheetLoader implements Loader<SpriteSheet> {
   loader = new ResourceLoader();
 
-  constructor(private basePath: string, private name: string) {}
+  constructor(
+    private basePath: string,
+    private name: string
+  ) {}
 
   async load(): Promise<SpriteSheet> {
     const sheetSpec = await this.loader.loadJson<SSPSpriteSheet | AnimatedSSPSpriteSheet>(

@@ -13,12 +13,12 @@ export interface SpriteSheetModel {
       frameLen: number;
       loop?: boolean;
       frames: string[];
-    }
+    },
   ];
   frames?: [
     {
       name: string;
       rect: number[];
-    }
+    },
   ];
 }

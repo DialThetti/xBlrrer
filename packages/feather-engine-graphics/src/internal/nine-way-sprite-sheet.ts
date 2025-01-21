@@ -5,7 +5,10 @@ import ImageContainer from './image-container';
 export default class NineWaySpriteSheet extends ImageContainer {
   tileWidth: number;
   tileHeight: number;
-  constructor(protected img: Canvas, protected flippable = false) {
+  constructor(
+    protected img: Canvas,
+    protected flippable = false
+  ) {
     super(img, flippable);
     const width = img.width / 3;
     const height = img.height / 3;

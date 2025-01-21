@@ -18,7 +18,7 @@ export interface TmxModel<T extends TmxLayer> {
     {
       firstgid: number;
       source: string;
-    }
+    },
   ];
   tilewidth: number;
   type: 'map' | string;

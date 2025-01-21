@@ -67,7 +67,10 @@ export default class MetroidCamera extends Camera {
 
 class Transition {
   delta = 0; //0..1
-  constructor(private currentPosition: Vector, public targetPosition: Vector) {}
+  constructor(
+    private currentPosition: Vector,
+    public targetPosition: Vector
+  ) {}
   get(deltaTime: number): Vector {
     this.delta += deltaTime;
     if (this.delta > 1) this.delta = 1;

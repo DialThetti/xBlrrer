@@ -4,7 +4,12 @@ import { drawRect } from './helper';
 import ImageContainer from './image-container';
 
 export default class SpriteSheet extends ImageContainer {
-  constructor(img: Canvas, private w: number, private h: number, flippable = true) {
+  constructor(
+    img: Canvas,
+    private w: number,
+    private h: number,
+    flippable = true
+  ) {
     super(img, flippable);
   }
 

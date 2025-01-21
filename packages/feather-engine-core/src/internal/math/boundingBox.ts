@@ -1,7 +1,11 @@
 import Vector from './vector';
 
 export default class BoundingBox {
-  constructor(public pos: Vector, public size: Vector, private offset: Vector = new Vector(0, 0)) {}
+  constructor(
+    public pos: Vector,
+    public size: Vector,
+    private offset: Vector = new Vector(0, 0)
+  ) {}
 
   overlaps(box: BoundingBox): boolean {
     return this.bottom > box.top && this.top < box.bottom && this.left < box.right && this.right > box.left;

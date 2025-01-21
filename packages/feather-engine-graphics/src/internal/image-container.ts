@@ -9,7 +9,10 @@ export default abstract class ImageContainer {
   animations: { [name: string]: FrameAnimation };
 
   ref: ImagePosReferences[] = [];
-  constructor(protected img: Canvas, protected flippable = false) {
+  constructor(
+    protected img: Canvas,
+    protected flippable = false
+  ) {
     this.animations = {};
 
     this.ref = [{ img, pos: {} }];
