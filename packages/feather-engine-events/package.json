@@ -11,6 +11,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc",
+    "watch": "tsc --watch",
     "test": "jest --coverage --passWithNoTests",
     "test:watch": "jest --watch --coverage",
     "format": "prettier --write 'src/**/*.ts'",
