@@ -4,18 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "watch": "lerna run watch --parallel --stream",
     "test": "lerna run test",
     "graph": "lerna-dependency-graph",
-    "prestart": "lerna run prepublish",
+    "postinstall": "lerna run prepublish",
     "start": "lerna run start",
     "format": "lerna run format",
     "lint": "lerna run lint",
     "build": "lerna run build",
     "clean": "rm -r node_modules;rm package-lock.json; for d in packages/*/node_modules; do echo $d; rm -r $d; done; for d in packages/*/package-lock.json; do echo $d; rm $d; done"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
