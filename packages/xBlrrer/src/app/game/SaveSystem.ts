@@ -13,7 +13,7 @@ export class SaveSystem {
     FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().pushData({
       position: p.pos,
       life: killable.hp,
-      stage: { name: 'forest' },
+      stage: { name: l.name },
       collectables: { hasGliding: p.hasTrait(Glide) },
       savePoint: [...l.entities].find(e => e.getTrait(SavePoint)?.active)?.pos,
     });
