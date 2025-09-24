@@ -107,6 +107,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
             .filter(({ prefabId }) => prefabId !== undefined)
             .map(o => ({
               prefab: o.prefabId as string,
+              tiledId: o.id,
               position: { x: o.x, y: o.y },
               properties: this.toMap(o.properties),
             }))
@@ -118,7 +119,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
 
   toMap(o: { name: string; type: string; value: unknown }[]): { [name: string]: unknown } {
     const x = {} as any;
-    o.forEach(entry => (x[entry.name] = entry.value));
+    o.forEach(entry => (x[entry.name] = entry.type === 'object' ? 'obj://' + entry.value : entry.value));
     return x;
   }
 

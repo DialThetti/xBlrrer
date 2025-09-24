@@ -7,6 +7,8 @@ import { SavePointPrefab } from './prefabs/save-point-prefab';
 import { ChestPrefab } from './prefabs/chest-prefab';
 import { ShinyPrefab } from './prefabs/shiny-prefab';
 import { TransitionPrefab } from './prefabs/transition-prefab';
+import { LeverPrefab } from '@game/entities/prefabs/lever-prefab';
+import { DoorPrefab } from '@game/entities/prefabs/door-prefab';
 
 const prefabs = [
   CrowPrefab,
@@ -18,6 +20,8 @@ const prefabs = [
   ChestPrefab,
   ShinyPrefab,
   TransitionPrefab,
+  LeverPrefab,
+  DoorPrefab,
 ];
 
 export default class EntityFactory {

@@ -1,0 +1,13 @@
+{
+  "imageURL": "./img/objects/door.png",
+  "frames": [
+    {
+      "name": "closed",
+      "rect": [0, 0, 16, 32]
+    },
+    {
+      "name": "pressure_plate",
+      "rect": [16, 16, 16, 16]
+    }
+  ]
+}

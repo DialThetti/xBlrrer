@@ -6,6 +6,7 @@ import { TraitAdapter } from 'src/app/core/entities';
 import { PositionedTile } from 'src/app/core/level';
 
 export default class PlatformerEntity implements Entity, TraitCtnr {
+  objectRef: string;
   pos = new Vector(0, 0);
   vel = new Vector(0, 0);
   size = new Vector(16, 16);

@@ -20,7 +20,7 @@ export default class SpriteSheet extends ImageContainer {
 
   public draw(name: string, context: RenderContext, x: number, y: number, flipped = false): void {
     const image = this.getImage(name + (flipped ? '_switched' : ''));
-    if (name === 'heart') debugger;
+
     if (image) {
       context.drawImage(image.img, image.x, image.y, image.width, image.height, x, y, image.width, image.height);
     } else {

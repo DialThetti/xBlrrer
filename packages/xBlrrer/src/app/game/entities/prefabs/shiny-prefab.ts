@@ -47,7 +47,7 @@ export class ShinyPrefab extends EntityPrefab {
     this.offset = new Vector(0, 0);
     this.traits = (): TraitAdapter[] => [new Solid(), new Gravity(), new Bounce(), new Physics(), new Shiny()];
   }
-  entityFac = (): Entity => new PlatformerEntity() as Entity;
+  entityFac = () => new PlatformerEntity();
 
   routeFrame(entity: Entity): string {
     return entity.getTrait(Shiny).color;

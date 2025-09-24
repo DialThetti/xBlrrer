@@ -44,9 +44,10 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
       levelSpec.tiledMap.entities
         .map(a => ({ ...a, entity: entityRepo[a.prefab]() as PlatformerEntity }))
         .filter(({ entity }) => entity)
-        .forEach(({ position: { x, y }, entity, properties }) => {
+        .forEach(({ position: { x, y }, entity, properties, tiledId }) => {
           entity.pos.set(x, y);
-          entity.properties = properties;
+          entity.objectRef = 'obj://' + tiledId;
+          entity.properties = properties; //properties are written here
           level.entities.add(entity);
         });
     }
@@ -68,23 +69,23 @@ export default class LevelLoader implements Loader<{ level: PlatformerLevel; pla
     level.estimateTime = levelSpec.estimateTime;
     level.bgm = levelSpec.bgm;
 
-        const layers: LevelLayer[] = levelSpec.tiledMap.layers.map((layer) => new LevelLayer(layer, level.tilesize));
-        level.levelLayer = layers;
-        // Render Layer initialization
-        const composition = [];
-        composition.push(new SingleColorLayer('#6B88FE'));
-        if (levelSpec.parallax) {
-            composition.push(
-                ...(await Promise.all(
-                    levelSpec.parallax.map(async (a) => new ParallaxLayer(await loadImage(a.img), a.y, a.speed)),
-                )),
-            );
-        }
-        composition.push(
-            new ChunkedTilesetLayer(
-                levelSpec.tiledMap.layers.filter((a) => !a.frontLayer && !a.dynamic).map((a) => a.matrix),
-                levelSpec.tiledMap.tileset,
-            ),
+    const layers: LevelLayer[] = levelSpec.tiledMap.layers.map(layer => new LevelLayer(layer, level.tilesize));
+    level.levelLayer = layers;
+    // Render Layer initialization
+    const composition = [];
+    composition.push(new SingleColorLayer('#6B88FE'));
+    if (levelSpec.parallax) {
+      composition.push(
+        ...(await Promise.all(
+          levelSpec.parallax.map(async a => new ParallaxLayer(await loadImage(a.img), a.y, a.speed))
+        ))
+      );
+    }
+    composition.push(
+      new ChunkedTilesetLayer(
+        levelSpec.tiledMap.layers.filter(a => !a.frontLayer && !a.dynamic).map(a => a.matrix),
+        levelSpec.tiledMap.tileset
+      ),
 
       new TilesetLayer(
         levelSpec.tiledMap.layers.filter(a => !a.frontLayer && a.dynamic).map(a => a.matrix),

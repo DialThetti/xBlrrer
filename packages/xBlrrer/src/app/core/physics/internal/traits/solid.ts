@@ -3,7 +3,7 @@ import { PositionedTile } from 'src/app/core/level';
 import { TraitAdapter } from 'src/app/core/entities/internal/trait';
 
 export class Solid extends TraitAdapter {
-  constructor() {
+  constructor(public config: { forEntities: boolean } = { forEntities: false }) {
     super('solid');
   }
 
@@ -28,6 +28,19 @@ export class Solid extends TraitAdapter {
         entity.bounds.top = match.y.to;
         entity.vel.y = 0;
         break;
+    }
+  }
+
+  collides(entity: Entity, target: Entity): void {
+    if (!this.config.forEntities) {
+      return;
+    }
+
+    if (target.bounds.left < entity.bounds.left) {
+      target.bounds.right = entity.bounds.left;
+    }
+    if (target.bounds.left > entity.bounds.left) {
+      target.bounds.left = entity.bounds.right;
     }
   }
 }
