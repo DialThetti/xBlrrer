@@ -1,14 +1,18 @@
 import { FeatherEngine, KeyListener, log } from '@dialthetti/feather-engine-core';
 import { Entity, TraitCtnr } from '@dialthetti/feather-engine-entities';
-import { Attack, Crouch, Glide, Go, Jump, Killable, Player } from '@game/entities/traits';
+import { Crouch, Glide, Go, Jump, Killable, Attack, Player } from '@game/entities/traits';
 import { ShowSceneEvent } from 'src/app/core/scenes';
 import { SetMasterVolumeEvent } from 'src/app/core/sfx';
 import { xBlrrerSaveData } from '../../game/save-data';
 import { Keys } from '../keys';
 import { SceneNames } from '../scene-names';
+import PlatformerLevel from '@extension/platformer/level/platformer-level';
 
 export default class Input implements KeyListener {
-  constructor(private playerFigure: Entity & TraitCtnr) {}
+  constructor(
+    private playerFigure: Entity & TraitCtnr,
+    private level: PlatformerLevel
+  ) {}
   keyDown(code: string): void {
     const go = this.playerFigure.getTrait(Go);
     const jump = this.playerFigure.getTrait(Jump);
@@ -55,8 +59,7 @@ export default class Input implements KeyListener {
         FeatherEngine.getSaveDataSystem<xBlrrerSaveData>().pushData({
           position: this.playerFigure.pos,
           life: killable.hp,
-          comboSkill: attack?.comboSkill ?? 0,
-          stage: { name: 'forest' },
+          stage: { name: this.level.name },
           collectables: { hasGliding: this.playerFigure.hasTrait(Glide) },
         });
         FeatherEngine.getSaveDataSystem().storeCurrentData(0);

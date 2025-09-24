@@ -1,0 +1,11 @@
+{
+  "bgm": "water",
+  "tiledMapPath": "tiled/tmx/dev.json",
+  "estimateTime": 999,
+  "startPosition": {
+    "x": 90,
+    "y": 55
+  },
+  "parallax": [],
+  "minimap": ["375", "BFD", "AEC"]
+}

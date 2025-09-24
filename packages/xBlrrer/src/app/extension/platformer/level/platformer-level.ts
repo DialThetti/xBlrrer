@@ -28,10 +28,6 @@ export default class PlatformerLevel extends Level {
   constructor(public tilesize: number) {
     super();
     this.levelTraits.push(new EntityColliderTrait());
-  }
-
-  update(deltaTime: number): void {
-    super.update(deltaTime);
     FeatherEngine.eventBus.subscribe(GAME_CONTROL_TOPIC, {
       receive: (subject: Subject<string>) => {
         if (subject.payload === 'pause') {
@@ -42,6 +38,11 @@ export default class PlatformerLevel extends Level {
         }
       },
     });
+  }
+
+  update(deltaTime: number): void {
+    super.update(deltaTime);
+
     const context = { deltaTime: this.paused ? 0 : deltaTime, level: this, camera: this.camera };
     this.camera.update(this.findPlayer(), deltaTime);
     this.activateEntititesOnSight(context);

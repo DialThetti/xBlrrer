@@ -1,22 +1,25 @@
 {
-    "fx": {
-        "jump": {
-            "url": "./sfx/jump.wav"
-        },
-        "collect": {
-            "url": "./sfx/jingle.mp3"
-        },
-        "confirm": {
-            "url": "./sfx/confirm.mp3"
-        },
-        "pointer": {
-            "url": "./sfx/pointer.mp3"
-        },
-        "forest": {
-            "url": "./sfx/bgm/forest.wav"
-        },
-        "menu": {
-            "url": "./sfx/menu.wav"
-        }
+  "fx": {
+    "jump": {
+      "url": "./sfx/jump.wav"
+    },
+    "collect": {
+      "url": "./sfx/jingle.mp3"
+    },
+    "confirm": {
+      "url": "./sfx/confirm.mp3"
+    },
+    "pointer": {
+      "url": "./sfx/pointer.mp3"
+    },
+    "forest": {
+      "url": "./sfx/bgm/sinnesloschen-beam-117362.mp3"
+    },
+    "water": {
+      "url": "./sfx/bgm/8-bit-arcade-138828.mp3"
+    },
+    "menu": {
+      "url": "./sfx/menu.wav"
     }
+  }
 }

@@ -6,6 +6,7 @@ import { BlueSlimePrefab, RedSlimePrefab } from './prefabs/slime-prefab';
 import { SavePointPrefab } from './prefabs/save-point-prefab';
 import { ChestPrefab } from './prefabs/chest-prefab';
 import { ShinyPrefab } from './prefabs/shiny-prefab';
+import { TransitionPrefab } from './prefabs/transition-prefab';
 
 const prefabs = [
   CrowPrefab,
@@ -16,6 +17,7 @@ const prefabs = [
   SavePointPrefab,
   ChestPrefab,
   ShinyPrefab,
+  TransitionPrefab,
 ];
 
 export default class EntityFactory {

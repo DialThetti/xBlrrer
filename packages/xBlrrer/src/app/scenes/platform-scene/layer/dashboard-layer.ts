@@ -1,5 +1,5 @@
 import { FeatherEngine, RenderContext } from '@dialthetti/feather-engine-core';
-import { drawRect, Font } from '@dialthetti/feather-engine-graphics';
+import { drawRect, Font, SpriteSheet } from '@dialthetti/feather-engine-graphics';
 import PlatformerEntity from '@extension/platformer/entities/platformer-entity';
 import PlatformerLevel from '@extension/platformer/level/platformer-level';
 import { Killable } from '@game/entities/traits';
@@ -11,7 +11,8 @@ export default class DashboardLayer implements RenderLayer {
   constructor(
     private font: Font,
     private level: PlatformerLevel,
-    private player: PlatformerEntity
+    private player: PlatformerEntity,
+    private gui: SpriteSheet
   ) {}
 
   draw(context: RenderContext): void {
@@ -25,12 +26,12 @@ export default class DashboardLayer implements RenderLayer {
     this.drawMinimap(context);
   }
   drawLives(context: RenderContext): void {
-    this.font.print('HP', context, 4, 4 + 16 * 23);
+    //   this.font.print('HP', context, 4, 4 + 16 * 23);
     for (let hp = 0; hp < this.player.getTrait(Killable).hp; hp++) {
-      this.font.draw('o', context, 16 + 16 * hp, 16 * 24);
+      this.gui.draw('heart', context, 16 + 16 * hp, 16 * 24);
     }
     for (let hp = this.player.getTrait(Killable).hp; hp < this.player.getTrait(Killable).maxHP; hp++) {
-      this.font.draw('.', context, 16 + 16 * hp, 16 * 24);
+      this.gui.draw('empty_heart', context, 16 + 16 * hp, 16 * 24);
     }
   }
   drawMinimap(context: RenderContext): void {

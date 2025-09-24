@@ -1,0 +1,9 @@
+{
+  "imageURL": "./img/GUISprite.png",
+  "frames": [
+    { "name": "heart", "rect": [16, 16, 16, 16] },
+    { "name": "half_heart", "rect": [32, 16, 16, 16] },
+    { "name": "quarter_heart", "rect": [48, 16, 16, 16] },
+    { "name": "empty_heart", "rect": [64, 16, 16, 16] }
+  ]
+}
