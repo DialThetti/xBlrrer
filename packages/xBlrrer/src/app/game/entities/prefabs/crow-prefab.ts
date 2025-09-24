@@ -20,7 +20,7 @@ export default class CrowPrefab extends EntityPrefab {
       new Stomp(),
       //  new Glide(),
       new Killable('dead', 3, 0),
-      new Crouch(),
+      //  new Crouch(),
       new Player(),
       //  new Attack(),
       new Overlappable(),
@@ -38,7 +38,7 @@ export default class CrowPrefab extends EntityPrefab {
     if (killable.invulnable) {
       if (Math.floor(killable.invulnabilityTime * 10) % 2 == 0) return '';
     }
-    if (crouch.active) {
+    if (crouch?.active) {
       if (crouch.down && !crouch.standUpTime) {
         return sprite.getAnimation('crouch')(crouch.crouchTime * 150);
       } else {

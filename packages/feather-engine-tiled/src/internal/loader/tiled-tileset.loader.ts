@@ -14,7 +14,7 @@ export default class TiledTilesetLoader implements Loader<TiledTileset> {
     private path: string,
     private idOffset: number
   ) {
-    this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
+    this.directory = path.substring(0, this.path.lastIndexOf('/') + 1);
   }
 
   filteredBy(ids: number[]): TiledTilesetLoader {

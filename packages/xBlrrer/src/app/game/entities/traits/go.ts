@@ -8,9 +8,6 @@ import Jump from './jump';
 import Killable from './killable';
 
 export default class Go extends TraitAdapter {
-  private acceleration = 400;
-  private deceleration = 300;
-
   private goLeft = false;
   private goRight = false;
   distance = 0;
@@ -37,8 +34,8 @@ export default class Go extends TraitAdapter {
 
     const dirOfAppliedForce = this.getDirection();
     this.turnToMovementDirection(dirOfAppliedForce, jump);
-    if (crouch.down) {
-      this.decelToStand(entity, context.deltaTime / 3);
+    if (crouch?.down) {
+      this.decelToStand(entity, context.deltaTime / 2);
       return;
     }
 
@@ -49,9 +46,9 @@ export default class Go extends TraitAdapter {
 
     const absX = Math.abs(entity.vel.x);
     if (dirOfAppliedForce !== 0) {
-      entity.vel.x += this.acceleration * dirOfAppliedForce * context.deltaTime;
+      entity.vel.x = 120 * dirOfAppliedForce;
     } else if (entity.vel.x !== 0) {
-      this.decelToStand(entity, context.deltaTime);
+      entity.vel.x = 0;
     } else {
       this.resetMovement(entity);
     }
@@ -88,17 +85,21 @@ export default class Go extends TraitAdapter {
 
   private decelToStand(entity: Entity, deltaTime: number) {
     const absX = Math.abs(entity.vel.x);
-    const decel = Math.min(absX, this.deceleration * deltaTime);
+    const decel = Math.min(absX, 300 * deltaTime);
     entity.vel.x += entity.vel.x > 0 ? -decel : decel;
   }
 
   public right(accel: boolean): void {
     this.goRight = accel;
-    if (accel) this.goLeft = false;
+    if (accel) {
+      this.goLeft = false;
+    }
   }
 
   public left(accel: boolean): void {
     this.goLeft = accel;
-    if (accel) this.goRight = false;
+    if (accel) {
+      this.goRight = false;
+    }
   }
 }

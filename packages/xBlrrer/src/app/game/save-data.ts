@@ -1,7 +1,7 @@
 import { Vector } from '@dialthetti/feather-engine-core';
 
 export const InitialSaveData: Partial<xBlrrerSaveData> = {
-  stage: { name: 'forest' },
+  stage: { name: 'demo' },
   collectables: {
     hasGliding: false,
   },

@@ -41,7 +41,7 @@ class CountDown {
 export default class Jump extends TraitAdapter {
   private eventBuffer = new EventStack();
   private velocity = 220;
-  private raisingTime = new CountDown(0.15);
+  private raisingTime = new CountDown(0.18);
 
   private onGround = 0;
   distance = 0;

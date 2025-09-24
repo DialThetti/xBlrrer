@@ -21,7 +21,7 @@ export default class TiledMapLoader implements Loader<TiledMap> {
     ids: number[]
   ): Promise<TiledTileset> => new TiledTilesetLoader(this.directory + tileset.source, tileset.firstgid).load();
   constructor(private path: string) {
-    this.directory = path.substr(0, this.path.lastIndexOf('/') + 1);
+    this.directory = path.substring(0, this.path.lastIndexOf('/') + 1);
   }
   public async load(): Promise<TiledMap> {
     const json = await this.loader();

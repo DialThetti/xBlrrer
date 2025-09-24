@@ -30,7 +30,7 @@ export default class Input implements KeyListener {
         }
         break;
       case Keys.DOWN:
-        if (!jump.falling) crouch.start();
+        if (!jump.falling) crouch?.start();
         break;
       case Keys.LEFT:
         go.left(true);
@@ -60,6 +60,7 @@ export default class Input implements KeyListener {
           position: this.playerFigure.pos,
           life: killable.hp,
           stage: { name: this.level.name },
+          comboSkill: attack?.comboSkill ?? 0,
           collectables: { hasGliding: this.playerFigure.hasTrait(Glide) },
         });
         FeatherEngine.getSaveDataSystem().storeCurrentData(0);
@@ -92,7 +93,7 @@ export default class Input implements KeyListener {
         }
         break;
       case Keys.DOWN:
-        crouch.cancel();
+        crouch?.cancel();
         break;
       case Keys.LEFT:
         go.left(false);

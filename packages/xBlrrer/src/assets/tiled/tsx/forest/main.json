@@ -6,7 +6,7 @@
  "name":"mainlevbuild",
  "spacing":0,
  "tilecount":4096,
- "tiledversion":"1.7.2",
+ "tiledversion":"1.11.2",
  "tileheight":16,
  "tiles":[
         {
@@ -26872,7 +26872,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -26891,7 +26891,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -27328,7 +27328,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -27347,7 +27347,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -28088,7 +28088,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -28107,7 +28107,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -28544,7 +28544,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -28563,7 +28563,7 @@
                 {
                  "name":"solid",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -77835,7 +77835,7 @@
         }],
  "tilewidth":16,
  "type":"tileset",
- "version":"1.6",
+ "version":"1.11",
  "wangsets":[
         {
          "colors":[
