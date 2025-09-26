@@ -9,7 +9,6 @@ export default class LevelSpecLoader implements Loader<PlatformerLevelData & { t
     const level = await loadJson<PlatformerLevelData>(`./levels/${this.levelName}/main.json`);
 
     const tiledMap = await new TiledMapLoader(level.tiledMapPath).load();
-
     return { ...level, tiledMap };
   }
 }

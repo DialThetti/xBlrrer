@@ -2,9 +2,9 @@ import { BoundingBox, FeatherEngine, Vector } from '@dialthetti/feather-engine-c
 import { Entity } from '@dialthetti/feather-engine-entities';
 
 export class Camera {
-  protected pos = new Vector(0, 0);
+  public pos = new Vector(0, 0);
 
-  edge = new Vector((256 * 2 - 32) / 2, 64);
+  padding = new Vector((256 * 2 - 32) / 2, 64 * 2);
 
   constructor(
     private totalMovementBounds = new BoundingBox(
@@ -25,13 +25,13 @@ export class Camera {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(playerFigure: Entity, dT: number): void {
-    const right = playerFigure.bounds.right - this.box.right + this.edge.x;
-    const left = playerFigure.bounds.left - this.box.left - this.edge.x;
+    const right = playerFigure.bounds.right - this.box.right + this.padding.x;
+    const left = playerFigure.bounds.left - this.box.left - this.padding.x;
     this.pos.x += Math.max(right, Math.min(left, 0));
 
     // if backward is allowed
-    const bottom = playerFigure.bounds.bottom - this.box.bottom + this.edge.y;
-    const top = playerFigure.bounds.top - this.box.top - this.edge.y;
+    const bottom = playerFigure.bounds.bottom - this.box.bottom + this.padding.y;
+    const top = playerFigure.bounds.top - this.box.top - this.padding.y;
     this.pos.y += Math.max(bottom, Math.min(top, 0));
 
     this.pos.set(

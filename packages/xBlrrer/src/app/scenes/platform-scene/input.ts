@@ -31,6 +31,9 @@ export default class Input implements KeyListener {
         break;
       case Keys.DOWN:
         if (!jump.falling) crouch?.start();
+
+        break;
+      case Keys.UP:
         break;
       case Keys.LEFT:
         go.left(true);

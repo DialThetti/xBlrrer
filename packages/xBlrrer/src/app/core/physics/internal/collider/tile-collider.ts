@@ -3,6 +3,7 @@ import { Level } from 'src/app/core/level';
 import { LevelLayer, PositionedTile } from 'src/app/core/level';
 import { createPlatformTileHandler } from './handler/platform-tile-handler';
 import { createSolidTileHandler } from './handler/solid-tile-handler';
+import { BoundingBox, Vector } from '@dialthetti/feather-engine-core';
 
 export interface TwoDimTileCollisionHandler {
   x: (e: Entity, m: PositionedTile, tiles: LevelLayer) => void;
@@ -32,6 +33,8 @@ export class TileCollider {
     for (const resolver of this.level.levelLayer) {
       resolver
         .get({ from: x, to: x }, { from: box.top, to: box.bottom })
+        .map(match => this.filterByCollider(box, match))
+        .filter(m => m !== undefined)
         .forEach(match => this.handle('x', entity, match, resolver));
     }
   }
@@ -45,10 +48,23 @@ export class TileCollider {
     for (const resolver of this.level.levelLayer) {
       resolver
         .get({ from: box.left, to: box.right }, { from: y, to: y })
+        .map(match => this.filterByCollider(box, match))
+        .filter(m => m !== undefined)
         .forEach(match => this.handle('y', entity, match, resolver));
     }
   }
 
+  private filterByCollider(box: BoundingBox, match: PositionedTile): PositionedTile | undefined {
+    const { collider } = match.tile;
+    if (!collider) {
+      return match;
+    }
+    const collisionBox = new BoundingBox(
+      new Vector(match.x.from + collider.x, match.y.from + collider.y),
+      new Vector(collider.width, collider.height)
+    );
+    return collisionBox.overlaps(box) ? match : undefined;
+  }
   handle(dimension: 'x' | 'y', entity: Entity, match: PositionedTile, tiles: LevelLayer): void {
     if (!match.tile.types) {
       return;

@@ -18,8 +18,7 @@ import DashboardLayer from './layer/dashboard-layer';
 import CameraLayer from './layer/debug/camera-layer';
 import ScrollSpyLayer from './layer/debug/scrollSpy-layer';
 import DialogLayer from './layer/dialog-layer';
-import { SpriteSheet, SpriteSheetLoader, TileSet } from '@dialthetti/feather-engine-graphics';
-import SSPSpriteSheetLoader from '@dialthetti/feather-engine-graphics/lib/internal/io/ssp-sprite-sheet.loader';
+import { SpriteSheetLoader } from '@dialthetti/feather-engine-graphics';
 export default class GameScene implements Scene {
   name = SceneNames.gameScene;
   isLoadingScene = false;

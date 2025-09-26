@@ -48,7 +48,7 @@ export default class TileMatrixCreator {
     if (tile && tile.properties.some(t => t.name === 'other' && (t.value as string).includes('respawn'))) {
       tags.push('respawn');
     }
-    tiles.set(x, y, new Tile(`${id}`, tags));
+    tiles.set(x, y, new Tile(`${id}`, tags, tile?.objectgroup?.objects?.[0]));
   }
 
   hasEnabled(tile: TsxTileModel, key: string): boolean {

@@ -20,6 +20,7 @@ export interface TsxModel {
 
 export interface TsxTileModel {
   id: number;
+  objectgroup?: { objects: { x: number; y: number; height: number; width: number }[] };
   properties: { name: string; type: string; value: unknown }[];
   animation?: {
     duration: number;

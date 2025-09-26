@@ -10,10 +10,10 @@ export default class ScrollSpyLayer implements RenderLayer {
     }
     drawRect(
       context,
-      level.camera.edge.x,
-      level.camera.edge.y,
-      level.camera.size.x - level.camera.edge.x * 2,
-      level.camera.size.y - level.camera.edge.y * 2,
+      level.camera.padding.x,
+      level.camera.padding.y,
+      level.camera.size.x - level.camera.padding.x * 2,
+      level.camera.size.y - level.camera.padding.y * 2,
       'green'
     );
   }

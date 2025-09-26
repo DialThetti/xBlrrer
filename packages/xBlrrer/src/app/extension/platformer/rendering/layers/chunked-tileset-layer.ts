@@ -1,5 +1,5 @@
-import { Canvas, CanvasRenderer, Matrix, RenderContext } from '@dialthetti/feather-engine-core';
-import { TileSet } from '@dialthetti/feather-engine-graphics';
+import { Canvas, CanvasRenderer, FeatherEngine, Matrix, RenderContext } from '@dialthetti/feather-engine-core';
+import { drawRect, TileSet } from '@dialthetti/feather-engine-graphics';
 import { Tile } from '@dialthetti/feather-engine-tiled';
 import { Level } from 'src/app/core/level';
 import { RenderLayer } from 'src/app/core/rendering';
@@ -44,6 +44,17 @@ export default class ChunkedTilesetLayer implements RenderLayer {
           const tile = layer.get(relX, relY);
           if (tile) {
             this.tileset.drawTile(tile.name, context, relX - xRange.from, relY - yRange.from);
+            if (tile.collider && FeatherEngine.debugSettings.enabled) {
+              drawRect(
+                context,
+                Math.floor(16 * (relX - xRange.from)) + tile.collider.x,
+                Math.floor(16 * (relY - yRange.from)) + tile.collider.y,
+                tile.collider.width,
+                tile.collider.height,
+                'red',
+                { filled: false }
+              );
+            }
           }
         }
       }
